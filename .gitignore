@@ -1,0 +1,28 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Maquettes d'exploration (hors prod)
+maquettes/
+
+# Sauvegardes et anciennes versions
+*-backup.html
+*-old.html
+*.bak
+
+# Documents internes
+SYNTHESE-*.md
+AUDIT_*.md
+DEPLOY.md
+
+# Logs / temp
+*.log
+.cache/
+node_modules/
