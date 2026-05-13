@@ -3105,31 +3105,28 @@ h2 em {
   padding-left: 30px !important;
 }
 
-/* Lien LinkedIn discret sous la citation, registre cabinet */
-.team-linkedin {
+/* Icone LinkedIn discrete a cote du nom, registre cabinet */
+.team-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.team-linkedin-icon {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  font-family: 'Geist Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 600;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   color: var(--ink-3);
-  text-decoration: none;
-  padding: 8px 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  transition: all .2s ease;
+  transition: color .2s ease, transform .2s ease;
+  border-radius: 6px;
 }
-.team-linkedin svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
+.team-linkedin-icon svg {
+  width: 18px;
+  height: 18px;
 }
-.team-linkedin:hover {
+.team-linkedin-icon:hover {
   color: var(--accent);
-  border-color: var(--accent);
-  background: rgba(79, 70, 229, 0.04);
+  transform: translateY(-1px);
 }
