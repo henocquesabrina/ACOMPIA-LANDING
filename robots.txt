@@ -1,5 +1,36 @@
-# Phase d'audit pre-lancement — indexation bloquee
-# A remplacer par la version production avant le branchement DNS d'acompia.com
+# ACOMPIA — robots.txt production
+# Site officiel : https://www.acompia.com/
 
 User-agent: *
+Allow: /
+
+# Pages legales : pas d'indexation (deja noindex en meta)
+Disallow: /mentions-legales.html
+Disallow: /politique-confidentialite.html
+
+# Crawlers IA explicitement autorises (Perplexity, ChatGPT, Claude, etc.)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Bytespider
 Disallow: /
+
+Sitemap: https://www.acompia.com/sitemap.xml
