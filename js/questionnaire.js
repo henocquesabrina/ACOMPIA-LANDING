@@ -546,6 +546,10 @@ class Questionnaire {
               <span>J'accepte d'être recontacté par ACOMPIA pour un échange sans engagement.</span>
             </label>
           </div>
+          <div class="hp-field" aria-hidden="true">
+            <label for="q-website">Site web (à ne pas remplir)</label>
+            <input type="text" id="q-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
           <button type="submit" class="btn-primary q-submit">Afficher mon rapport →</button>
         </form>
 
@@ -567,6 +571,13 @@ class Questionnaire {
     document.getElementById('q-contact-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const fd = new FormData(e.target);
+
+      // Anti-bot honeypot
+      if (fd.get('website')) {
+        this.container.innerHTML = '<div style="text-align:center;padding:40px"><p>Merci.</p></div>';
+        return;
+      }
+
       const contact = {
         email: fd.get('email'),
         name: fd.get('name'),
@@ -610,18 +621,7 @@ class Questionnaire {
         })
       })
       .then(r => r.json())
-      .then(res => console.log('Notion sync prédiag:', res.success ? '✓' : 'erreur', res))
-      .catch(err => console.warn('Notion sync échoué:', err.message));
-
-      // Sauvegarde localStorage (sécurité — perte réseau)
-      const all = JSON.parse(localStorage.getItem('acompia_prediags') || '[]');
-      all.push({
-        date: new Date().toISOString(),
-        contact,
-        answers: this.answers,
-        scoring: { indice: scoring.indice, themes: scoring.themes.map(t => ({ name: t.name, level: t.level })) }
-      });
-      localStorage.setItem('acompia_prediags', JSON.stringify(all));
+      .catch(() => {});
 
       // Injection du rapport dans le DOM
       // On sort du container prediag (bg/padding hérités qui cassent la lisibilité)

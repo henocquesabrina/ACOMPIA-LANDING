@@ -108,14 +108,15 @@ document.addEventListener('DOMContentLoaded', () => {
         employees: formData.get('employees'),
         audit_type: formData.get('audit_type'),
         vehicles: formData.get('vehicles'),
-        message: formData.get('message')
+        message: formData.get('message'),
+        website: formData.get('website')
       };
 
-      // Store in localStorage
-      const allDevis = JSON.parse(localStorage.getItem('acompia_devis') || '[]');
-      allDevis.push({ date: new Date().toISOString(), ...data });
-      localStorage.setItem('acompia_devis', JSON.stringify(allDevis));
-      console.log('Devis sauvegardé. Total:', allDevis.length);
+      // Anti-bot honeypot : si "website" est rempli, c'est un bot
+      if (data.website) {
+        devisForm.parentElement.innerHTML = '<div class="devis-success"><h3>Demande envoyee !</h3></div>';
+        return;
+      }
 
       // Send to Notion via Cloudflare Worker
       const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
@@ -128,21 +129,22 @@ document.addEventListener('DOMContentLoaded', () => {
             name: data.name,
             email: data.email,
             audit_type: data.audit_type || '',
-            message: `Entreprise: ${data.company} | Salariés: ${data.employees} | Véhicules: ${data.vehicles || 'N/A'} | ${data.message || ''}`
+            message: `Entreprise: ${data.company || ''} | Salaries: ${data.employees || ''} | Vehicules: ${data.vehicles || 'N/A'} | ${data.message || ''}`
           }
         })
       })
       .then(r => r.json())
-      .then(res => console.log('Notion devis sync:', res.success ? '✓' : 'erreur', res))
-      .catch(err => console.warn('Notion sync échoué:', err.message));
+      .catch(() => {});
 
       devisForm.parentElement.innerHTML = `
         <div class="devis-success">
           <div class="devis-success-icon">✓</div>
           <h3>Demande envoyée !</h3>
-          <p>Merci ${data.name.split(' ')[0]}. Notre équipe vous recontactera à <strong>${data.email}</strong> sous 48h avec un devis adapté à votre entreprise.</p>
+          <p>Merci <span class="js-name"></span>. Notre équipe vous recontactera à <strong class="js-email"></strong> sous 48h avec un devis adapté à votre entreprise.</p>
         </div>
       `;
+      devisForm.parentElement.querySelector('.js-name').textContent = (data.name || '').split(' ')[0];
+      devisForm.parentElement.querySelector('.js-email').textContent = data.email || '';
     });
   }
 
@@ -151,12 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (notifyForm) {
     notifyForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = notifyForm.querySelector('input').value;
+      const fd = new FormData(notifyForm);
+      const email = fd.get('email') || notifyForm.querySelector('input[type="email"]').value;
+      const honeypot = fd.get('website');
 
-      // Store in localStorage
-      const allNotifs = JSON.parse(localStorage.getItem('acompia_notify') || '[]');
-      allNotifs.push({ date: new Date().toISOString(), email });
-      localStorage.setItem('acompia_notify', JSON.stringify(allNotifs));
+      // Anti-bot honeypot
+      if (honeypot) {
+        notifyForm.innerHTML = '<div style="text-align:center;padding:16px 0"><p>Merci.</p></div>';
+        return;
+      }
 
       // Send to Notion via Cloudflare Worker
       const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
@@ -169,16 +174,16 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       })
       .then(r => r.json())
-      .then(res => console.log('Notion newsletter sync:', res.success ? '✓' : 'erreur', res))
-      .catch(err => console.warn('Notion sync échoué:', err.message));
+      .catch(() => {});
 
-      // Replace form with confirmation
+      // Replace form with confirmation (email injected safely via textContent)
       notifyForm.innerHTML = `
         <div style="text-align:center;padding:16px 0">
           <p style="color:var(--accent-cyan);font-weight:700;font-size:16px">✓ Merci !</p>
-          <p style="color:var(--text-dark-sec);font-size:14px;margin-top:6px">Vous serez informé(e) du lancement à <strong style="color:var(--text-dark)">${email}</strong></p>
+          <p style="color:var(--text-dark-sec);font-size:14px;margin-top:6px">Vous serez informé(e) du lancement à <strong class="js-email" style="color:var(--text-dark)"></strong></p>
         </div>
       `;
+      notifyForm.querySelector('.js-email').textContent = email;
     });
   }
 

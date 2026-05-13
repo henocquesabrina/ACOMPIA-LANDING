@@ -21,6 +21,8 @@ maquettes/
 SYNTHESE-*.md
 AUDIT_*.md
 DEPLOY.md
+PRODUCT.md
+DESIGN.md
 
 # Logs / temp
 *.log

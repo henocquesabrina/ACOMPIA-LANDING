@@ -1,0 +1,5 @@
+# Phase d'audit pre-lancement — indexation bloquee
+# A remplacer par la version production avant le branchement DNS d'acompia.com
+
+User-agent: *
+Disallow: /
