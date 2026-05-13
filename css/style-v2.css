@@ -3149,6 +3149,13 @@ h2 em {
     position: relative !important;
     z-index: 70 !important;
   }
+  /* Force la hauteur des 3 barres a 2px : 1.5px etait arrondi a 0
+     par certains navigateurs (dpr=1), rendant le burger invisible */
+  .nav-burger span {
+    height: 2px !important;
+    min-height: 2px !important;
+    background: var(--ink) !important;
+  }
   .nav-links {
     position: fixed !important;
     top: 64px !important;
