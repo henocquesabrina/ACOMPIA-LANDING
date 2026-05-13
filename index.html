@@ -48,24 +48,124 @@
         "name": "ComplyDB SAS",
         "alternateName": "ACOMPIA",
         "url": "https://www.acompia.com/",
-        "description": "Solution de conformité URSSAF conçue par une avocate spécialisée en droit social."
+        "logo": "https://www.acompia.com/assets/og-image.png",
+        "image": "https://www.acompia.com/assets/og-image.png",
+        "description": "Solution de conformité URSSAF conçue par une avocate spécialisée en droit social, augmentée par intelligence artificielle.",
+        "foundingDate": "2026-01-29",
+        "founder": { "@id": "https://www.acompia.com/#founder" },
+        "email": "she@acompia.com",
+        "telephone": "+33677052175",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "25 rue de Ponthieu",
+          "postalCode": "75008",
+          "addressLocality": "Paris",
+          "addressCountry": "FR"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/sabrina-henocque-chiche"
+        ]
       },
       {
         "@type": "LegalService",
         "@id": "https://www.acompia.com/#service",
-        "name": "ACOMPIA ·Audit et conformité URSSAF",
+        "name": "ACOMPIA · Audit et conformité URSSAF",
         "provider": { "@id": "https://www.acompia.com/#org" },
-        "areaServed": "FR",
-        "description": "Audit URSSAF, prédiagnostic gratuit, monitoring continu de la conformité sociale pour les entreprises françaises.",
-        "audience": { "@type": "Audience", "audienceType": "Entreprises 50 à 1000 salariés" }
+        "founder": { "@id": "https://www.acompia.com/#founder" },
+        "areaServed": { "@type": "Country", "name": "France" },
+        "serviceType": "Audit de conformité URSSAF",
+        "description": "Audit URSSAF, prédiagnostic gratuit, monitoring continu de la conformité sociale pour les entreprises françaises. Couvre les avantages en nature véhicules, les frais professionnels, la protection sociale complémentaire, les rémunérations et le temps de travail.",
+        "audience": { "@type": "Audience", "audienceType": "Entreprises 50 à 1000 salariés" },
+        "priceRange": "€€€",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Audits URSSAF ACOMPIA",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Prédiagnostic URSSAF",
+              "description": "Évaluation gratuite en 32 questions de votre exposition aux principaux risques URSSAF.",
+              "price": "0",
+              "priceCurrency": "EUR"
+            },
+            {
+              "@type": "Offer",
+              "name": "Audit Avantages en Nature Véhicules (5–15 véhicules)",
+              "description": "Audit complet de votre flotte selon la réforme 2025 : évaluation, traitement social, preuve documentaire.",
+              "price": "2500",
+              "priceCurrency": "EUR"
+            },
+            {
+              "@type": "Offer",
+              "name": "Audit Avantages en Nature Véhicules (16–40 véhicules)",
+              "price": "4000",
+              "priceCurrency": "EUR"
+            },
+            {
+              "@type": "Offer",
+              "name": "Audit Avantages en Nature Véhicules (41–100 véhicules)",
+              "price": "6000",
+              "priceCurrency": "EUR"
+            }
+          ]
+        }
       },
       {
         "@type": "Person",
         "@id": "https://www.acompia.com/#founder",
         "name": "Sabrina Henocque Chiche",
-        "jobTitle": "Fondatrice & avocate en droit social",
+        "givenName": "Sabrina",
+        "familyName": "Henocque Chiche",
+        "jobTitle": "Fondatrice & avocate au Barreau de Paris",
         "worksFor": { "@id": "https://www.acompia.com/#org" },
-        "description": "Avocate en droit social depuis plus de 10 ans, spécialiste des contrôles URSSAF. Solution incubée au Barreau de Paris."
+        "memberOf": {
+          "@type": "Organization",
+          "name": "Barreau de Paris"
+        },
+        "description": "Avocate en droit social depuis plus de 10 ans, spécialiste des contrôles URSSAF et du contentieux de la sécurité sociale. Solution incubée par le Barreau de Paris.",
+        "email": "she@acompia.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/sabrina-henocque-chiche"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.acompia.com/#website",
+        "url": "https://www.acompia.com/",
+        "name": "ACOMPIA",
+        "description": "La conformité URSSAF, enfin maîtrisée.",
+        "publisher": { "@id": "https://www.acompia.com/#org" },
+        "inLanguage": "fr-FR"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.acompia.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "L'URSSAF utilise-t-elle vraiment l'intelligence artificielle pour ses contrôles ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, et c'est officiel. Depuis 2025, l'URSSAF utilise une intelligence artificielle qui analyse plus de 12 millions de déclarations par mois pour détecter les anomalies. Le déploiement a été présenté officiellement par Thomas Cazenave, ministre du Budget, en 2024. En parallèle, 55 % des contrôles des TPE et 50 % des PME sont déjà déclenchés par datamining (Sénat, 2024). Un protocole DGFIP-URSSAF de 2025 a étendu le croisement automatisé à 17 bases de données administratives."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Mes données restent-elles confidentielles avec ACOMPIA ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Totalement. Vos données sont chiffrées, hébergées en France, et conformes au RGPD. Aucune donnée n'est partagée avec des tiers, et nous n'utilisons jamais vos données pour entraîner des modèles ou les revendre. Vous restez seul propriétaire de vos données. Pour les audits, un accord de confidentialité (NDA) peut être signé en complément."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Y a-t-il un engagement à signer avec ACOMPIA ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Aucun engagement pour le prédiagnostic, qui est gratuit, anonyme côté entreprise et sans obligation. Pour un audit, vous recevez un devis personnalisé sous 48 heures, sans engagement de votre part. Paiement 50 % à la commande, 50 % à la livraison. La solution de monitoring continu (bientôt disponible) proposera des abonnements flexibles, résiliables à tout moment."
+            }
+          }
+        ]
       }
     ]
   }
