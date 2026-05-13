@@ -3148,6 +3148,7 @@ h2 em {
     display: flex !important;
     position: relative !important;
     z-index: 70 !important;
+    gap: 3px !important;
   }
   /* Force la hauteur des 3 barres a 2px : 1.5px etait arrondi a 0
      par certains navigateurs (dpr=1), rendant le burger invisible */
