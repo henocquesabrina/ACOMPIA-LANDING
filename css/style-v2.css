@@ -4,7 +4,7 @@
    Logo D4 (horizon + soleil), wordmark 01 mono caps
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
 /* === RESET === */
 *, *::before, *::after { box-sizing: border-box; }
@@ -3221,5 +3221,81 @@ h2 em {
   .hero {
     padding-top: 100px !important;
     padding-bottom: 64px !important;
+  }
+}
+
+/* ============================================================ */
+/* === TYPO V3 - DM Sans humaniste + degrade aurora dynamique === */
+/* === Mai 2026, ferme l'esthetique "IA-italique"            === */
+/* ============================================================ */
+
+/* Tous les elements precedemment en Instrument Serif italique
+   passent en DM Sans bold (font normal, plus aucune italique).
+   On reprend les selecteurs exacts du V1 pour battre la specificite. */
+h1 em, h2 em, h3 em, h4 em,
+.trust-bar-item b,
+.stats-title em,
+.stats .stat-suffix,
+.stats .stat-prefix,
+.section-header h2 em,
+.section-header h2 .gradient-text,
+.how-title em,
+.how .step.final .step-name,
+.how .seal em,
+.audits .section-header h2 em,
+.audits .section-header h2 .gradient-text,
+.audits .devis-promise h3 em,
+section.platform h2 em,
+.team .section-header h2 em,
+.team .section-header h2 .gradient-text,
+.team-quote,
+.team-quote-mark,
+.contact-compact-inner h2 em,
+.preview-mockup-out .strong {
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Mots-accents principaux : on applique le degrade aurora
+   (violet -> violet doux -> cyan -> vert) en animation 8s
+   pour un effet vivant, non-statique. */
+h1 em,
+.stats-title em,
+.section-header h2 em,
+.section-header h2 .gradient-text,
+.how-title em,
+.audits .section-header h2 em,
+.audits .section-header h2 .gradient-text,
+.audits .devis-promise h3 em,
+section.platform h2 em,
+.team .section-header h2 em,
+.team .section-header h2 .gradient-text,
+.contact-compact-inner h2 em {
+  background: var(--g-aurora) !important;
+  background-size: 300% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  animation: gradient-shift 8s ease-in-out infinite !important;
+}
+
+/* Respect du prefers-reduced-motion : pas d'animation */
+@media (prefers-reduced-motion: reduce) {
+  h1 em,
+  .stats-title em,
+  .section-header h2 em,
+  .section-header h2 .gradient-text,
+  .how-title em,
+  .audits .section-header h2 em,
+  .audits .section-header h2 .gradient-text,
+  .audits .devis-promise h3 em,
+  section.platform h2 em,
+  .team .section-header h2 em,
+  .team .section-header h2 .gradient-text,
+  .contact-compact-inner h2 em {
+    animation: none !important;
   }
 }
