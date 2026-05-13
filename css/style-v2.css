@@ -3137,37 +3137,47 @@ h2 em {
 /* ============================================================ */
 
 /* Tablette/téléphone (≤ 768px) : afficher le hamburger,
-   transformer la nav en drawer latéral */
+   transformer la nav en drawer latéral.
+   Override explicite des règles existantes du V1 (lignes 3036-3054) qui
+   utilisent translateY + classe .is-open jamais ajoutée par le JS. */
 @media (max-width: 768px) {
   #nav {
-    padding: 14px 20px;
+    padding: 14px 20px !important;
   }
   .nav-burger {
     display: flex !important;
-    position: relative;
-    z-index: 70;
+    position: relative !important;
+    z-index: 70 !important;
   }
   .nav-links {
-    position: fixed;
-    top: 64px;
-    right: 0;
-    height: calc(100vh - 64px);
-    width: min(86%, 320px);
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 0;
-    padding: 24px;
-    background: rgba(250, 250, 247, 0.98);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-left: 1px solid var(--line);
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.06);
+    position: fixed !important;
+    top: 64px !important;
+    bottom: 0 !important;
+    left: auto !important;
+    right: -100% !important;
+    height: calc(100vh - 64px) !important;
+    min-height: calc(100vh - 64px) !important;
+    width: min(86%, 320px) !important;
+    max-width: 320px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    padding: 24px !important;
+    background: rgba(250, 250, 247, 0.98) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-left: 1px solid var(--line) !important;
+    border-bottom: none !important;
+    transform: none !important;
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.06) !important;
+    z-index: 50;
   }
-  .nav-links.nav-open {
-    transform: translateX(0);
+  /* Ouverture : le JS ajoute soit .nav-open soit .is-open selon les versions */
+  .nav-links.nav-open,
+  .nav-links.is-open {
+    right: 0 !important;
   }
   .nav-links a {
     font-size: 16px;
