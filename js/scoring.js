@@ -555,7 +555,6 @@ function disclaimerFinal() {
   return `
     <div class="rpt-disclaimer">
       <p><strong>Prédiagnostic non contractuel.</strong> Ce rapport est établi sur la base exclusive de vos réponses déclaratives. Il ne constitue ni un audit au sens de l'art. R. 243-59 CSS, ni une consultation juridique au sens de la loi n° 71-1130 du 31 décembre 1971. Il n'est pas opposable à l'URSSAF ni devant une juridiction.</p>
-      <p>Les estimations d'exposition mentionnées sont indicatives et ne constituent pas un chiffrage d'audit. Elles ont vocation à donner un ordre de grandeur et devront, le cas échéant, être confirmées ou ajustées après revue documentaire.</p>
       <p>Responsable de traitement : ComplyDB SAS (ACOMPIA). Les données de diagnostic sont anonymisées et conservées 36 mois ; les coordonnées sont conservées 3 ans après le dernier contact. Vous disposez des droits d'accès, de rectification, d'effacement, de limitation, d'opposition et, le cas échéant, de portabilité. Contact : <a href="mailto:she@acompia.com">she@acompia.com</a>.</p>
     </div>
   `;
@@ -644,14 +643,6 @@ function generateReportHTML(scoring, contact) {
       <h4 class="rpt-sub">Top 3 des thèmes à plus fort risque</h4>
       ${top3HTML}
       ${top3.length ? `<p class="rpt-muted rpt-see-detail">Le détail de chaque thème et les éléments justificatifs figurent dans l'analyse détaillée ci-dessous.</p>` : ''}
-
-      ${fourchetteAgr ? `
-        <div class="rpt-fourchette">
-          <div class="rpt-fourchette-label">Fourchette d'exposition agrégée (thèmes à fort enjeu)</div>
-          <div class="rpt-fourchette-value">${fourchetteAgr}</div>
-          <div class="rpt-fourchette-note">Estimation indicative fondée sur votre effectif déclaré, un taux moyen de cotisations de 42 % et une prescription de 3 à 5 ans. Ne remplace pas un chiffrage d'audit.</div>
-        </div>
-      ` : ''}
     </section>
   `;
 
@@ -668,10 +659,8 @@ function generateReportHTML(scoring, contact) {
     `).join('');
 
     let chiffrageHTML = '';
-    if (t.chiffrageType === 'fourchette' && (t.level === 'CRITIQUE' || t.level === 'ELEVE')) {
-      chiffrageHTML = `<p class="rpt-chiffrage"><strong>Ordre de grandeur indicatif :</strong> ${computeFourchette(t, meta)}.</p>`;
-    } else if (t.chiffrageType === 'qualitatif' && t.level !== 'REDUIT') {
-      chiffrageHTML = `<p class="rpt-chiffrage rpt-chiffrage-qual"><em>Exposition non chiffrable à ce stade — l'estimation suppose l'accès aux données détaillées (montants, volumes, effectifs concernés).</em></p>`;
+    if (t.level !== 'REDUIT') {
+      chiffrageHTML = `<p class="rpt-chiffrage rpt-chiffrage-qual"><em>Exposition non chiffrable à ce stade — un audit ciblé permet de quantifier précisément l'enjeu à partir de vos données réelles (montants, volumes, effectifs concernés).</em></p>`;
     }
 
     // Encart dispenses si thème complémentaire santé ressort avec alerte sur les dispenses
