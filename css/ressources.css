@@ -938,9 +938,9 @@ a.article-cta-btn--accent:hover,
   .article-content h3 { font-size: 19px; }
 }
 
-/* Nav fond + scroll */
+/* Nav fond + scroll : opacite renforcee pour eviter le bleed-through au scroll */
 body.ress-page header {
-  background: rgba(251, 250, 246, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(251, 250, 246, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
