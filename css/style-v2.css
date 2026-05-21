@@ -146,10 +146,15 @@ header {
   border-bottom: 1px solid var(--line);
 }
 #nav {
+  position: static;
   padding: 20px 48px;
   display: flex; align-items: center; justify-content: space-between;
   max-width: 1440px;
   margin: 0 auto;
+  width: 100%;
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
 }
 .nav-logo {
   display: inline-flex; align-items: center; gap: 14px;
