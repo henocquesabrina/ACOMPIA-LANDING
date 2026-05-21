@@ -9,7 +9,37 @@ body.ress-page {
 }
 
 /* ==================================================
-   HERO ÉDITORIAL — wordmark + signature + édition
+   HERO SOBRE — page index Ressources
+   ================================================== */
+.ress-page-header {
+  padding: 140px 48px 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.ress-page-title {
+  font-family: 'Geist', sans-serif;
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  margin: 0 0 16px;
+  color: #0A0A0A;
+}
+.ress-page-subtitle {
+  font-family: 'Geist', sans-serif;
+  font-size: 17px;
+  color: #3F3F3F;
+  margin: 0;
+  line-height: 1.55;
+  max-width: 680px;
+}
+@media (max-width: 720px) {
+  .ress-page-header { padding: 110px 24px 24px; }
+  .ress-page-subtitle { font-size: 15.5px; }
+}
+
+/* ==================================================
+   HERO ÉDITORIAL (legacy) — conservé pour compatibilité
    ================================================== */
 .ress-masthead {
   padding: 152px 48px 0;
