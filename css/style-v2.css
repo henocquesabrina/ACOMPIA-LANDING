@@ -153,7 +153,11 @@ header {
 }
 .nav-logo {
   display: inline-flex; align-items: center; gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity .2s ease;
 }
+a.nav-logo:hover { opacity: 0.75; }
 .nav-logo-icon {
   width: 30px; height: 30px;
   display: inline-block;
