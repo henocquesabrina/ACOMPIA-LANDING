@@ -107,8 +107,10 @@
           { "@type": "Legislation", "name": "Décret n° 2025-1228 du 17 décembre 2025 portant relèvement du SMIC" },
           { "@type": "Legislation", "name": "Décret n° 2026-509 du 12 juin 2026 relatif aux modalités d'application de la réduction générale dégressive unique" },
           { "@type": "Legislation", "name": "Arrêté du 22 mai 2026 relatif au relèvement du SMIC" },
+          { "@type": "CreativeWork", "name": "Cass. 2e civ., 15 mai 2025, n° 23-10.330" },
           { "@type": "CreativeWork", "name": "Cass. 2e civ., 29 janvier 2026, n° 23-14.671" },
           { "@type": "CreativeWork", "name": "Cass. 2e civ., 19 février 2026, n° 24-10.924" },
+          { "@type": "CreativeWork", "name": "Cass. 2e civ., 9 avril 2026, n° 24-17.209" },
           { "@type": "CreativeWork", "name": "BOSS, allègements généraux (boss.gouv.fr)" }
         ]
       },
@@ -189,7 +191,7 @@
             "name": "Qui a droit à la réduction générale des cotisations patronales en 2026 ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Presque toutes les entreprises du secteur privé qui cotisent à l'assurance chômage pour leurs salariés y ont droit, que le contrat soit un CDI ou un CDD, à temps plein ou à temps partiel. La seule exclusion notable est celle des particuliers employeurs, par exemple une garde d'enfants payée en CESU. Sont aussi exclus les mandataires sociaux sans contrat de travail et les stagiaires sous convention de stage. Ce qui compte, c'est que la rémunération du salarié soit inférieure à 3 SMIC."
+              "text": "Les entreprises du secteur privé entrant dans le champ de l'article L.241-13 peuvent en principe en bénéficier pour leurs salariés éligibles, que le contrat soit un CDI ou un CDD, à temps plein ou à temps partiel. Sont notamment exclus ou à traiter à part les particuliers employeurs (par exemple une garde d'enfants payée en CESU), les stagiaires, les mandataires sociaux sans contrat de travail, certains employeurs publics ou parapublics, ainsi que les situations dans lesquelles une exonération spécifique non cumulable est déjà appliquée. Ce qui compte ensuite, c'est que la rémunération du salarié soit inférieure à 3 SMIC."
             }
           },
           {
@@ -470,17 +472,17 @@
         </p>
 
         <p style="background:#FAFAF7; border:1px solid #0A0A0A; border-radius:8px; padding:18px 20px; text-align:left; hyphens:none; font-size:15.5px;">
-          <strong>Coefficient</strong> = Tmin + ( Tdelta × [ 0,5 × ( 3 × SMIC annuel ÷ rémunération annuelle brute − 1 ) ] <sup>P</sup> )
+          <strong>Coefficient</strong> = Tmin + Tdelta × [ 0,5 × ( 3 × SMIC annuel ÷ rémunération annuelle brute − 1 ) ]<sup>P</sup>
         </p>
 
         <p>
-          Inutile d'être mathématicien pour en saisir l'essentiel. Le coefficient est <strong>dégressif</strong>, maximal au niveau du SMIC, puis décroissant jusqu'à s'éteindre à 3 SMIC. Il comporte un <strong>plancher</strong>, le paramètre Tmin, qui maintient une petite réduction même près du seuil de sortie. Le paramètre <strong>Tdelta</strong> représente la somme des taux de cotisations sur lesquels porte l'allègement, et le paramètre <strong>P</strong> règle la vitesse à laquelle la courbe décroît.
+          Le terme entre crochets est élevé à la puissance P. Inutile d'être mathématicien pour en saisir l'essentiel. Le coefficient est <strong>dégressif</strong>, maximal au niveau du SMIC, puis décroissant jusqu'à s'éteindre à 3 SMIC. Il comporte un <strong>plancher</strong>, le paramètre Tmin, qui maintient une petite réduction même près du seuil de sortie. Le paramètre <strong>Tdelta</strong> représente la somme des taux de cotisations sur lesquels porte l'allègement, et le paramètre <strong>P</strong> règle la vitesse à laquelle la courbe décroît.
         </p>
 
         <div class="callout-retenir">
           <div class="callout-retenir-title">Les paramètres 2026 en un coup d'œil</div>
           <ul>
-            <li><strong>Tmin = 0,0200</strong>, le socle minimal de 2 % conservé jusqu'à 3 SMIC.</li>
+            <li><strong>Tmin = 0,0200</strong>, qui garantit un socle de réduction de 2 % pour les rémunérations comprises entre le SMIC et strictement inférieures à 3 SMIC. À 3 SMIC, le coefficient devient nul.</li>
             <li><strong>P = 1,75</strong>, l'exposant qui adoucit la pente de la dégressivité.</li>
             <li><strong>Tdelta = 0,3781</strong> pour les employeurs redevables du FNAL au taux de 0,10 % (en pratique, moins de 50 salariés), ou <strong>0,3821</strong> pour ceux redevables du FNAL au taux de 0,50 % (en pratique, 50 salariés et plus).</li>
             <li><strong>Coefficient maximal</strong> (au niveau du SMIC) de <strong>0,3981</strong> ou <strong>0,4021</strong> selon le cas, soit près de 40 % du brut rendu en cotisations.</li>
@@ -523,7 +525,7 @@
         </p>
 
         <p>
-          La <strong>régularisation</strong> enfin, et c'est le point qui surprend le plus les dirigeants. La RGDU est par nature une réduction <strong>annuelle</strong>, mais on ne peut pas attendre décembre pour la pratiquer. Chaque mois, on calcule donc une réduction par anticipation, sur la base de la rémunération du mois (article <strong>D.241-8</strong>). Or la formule est dégressive, si bien que la somme des douze réductions mensuelles ne correspond presque jamais à la réduction calculée sur le total de l'année, surtout lorsqu'une prime ou un treizième mois vient gonfler un mois en particulier. Il faut donc <strong>régulariser</strong>, en recalculant la réduction sur la rémunération annuelle réelle (article <strong>D.241-9</strong>). Cette régularisation peut être opérée en une fois, sur le dernier mois ou le dernier trimestre, ou bien <strong>progressivement</strong> au fil de l'année dans la déclaration sociale nominative. Avec le gel du SMIC, elle fait légèrement remonter les cotisations dues sur la fin de l'année, un point à anticiper pour vos provisions.
+          La <strong>régularisation</strong> enfin, et c'est le point qui surprend le plus les dirigeants. La RGDU est par nature une réduction <strong>annuelle</strong>, mais on ne peut pas attendre décembre pour la pratiquer. Chaque mois, on calcule donc une réduction par anticipation, sur la base de la rémunération du mois (article <strong>D.241-8</strong>). Or la formule est dégressive, si bien que la somme des douze réductions mensuelles ne correspond presque jamais à la réduction calculée sur le total de l'année, surtout lorsqu'une prime ou un treizième mois vient gonfler un mois en particulier. Il faut donc <strong>régulariser</strong>, en recalculant la réduction sur la rémunération annuelle réelle (article <strong>D.241-9</strong>). Cette régularisation peut être opérée en une fois, sur le dernier mois ou le dernier trimestre, ou bien <strong>progressivement</strong> au fil de l'année dans la déclaration sociale nominative. Avec le gel du SMIC de référence, les régularisations de fin d'année devront être surveillées de près, surtout si le logiciel de paie a continué à utiliser le SMIC revalorisé au 1<sup>er</sup> juin 2026.
         </p>
 
         <h2 id="redressement">Les erreurs qui déclenchent un redressement</h2>
@@ -599,8 +601,10 @@
           <li><strong>Décret n° 2025-1228 du 17 décembre 2025</strong>, SMIC au 1<sup>er</sup> janvier 2026 (12,02 € de l'heure, 1 823,03 € par mois).</li>
           <li><strong>Décret n° 2026-509 du 12 juin 2026</strong>, modalités d'application de la RGDU et gel du paramètre SMIC pour 2026.</li>
           <li><strong>Arrêté du 22 mai 2026</strong>, relèvement du SMIC à 12,31 € de l'heure au 1<sup>er</sup> juin 2026.</li>
-          <li><em>Cass. 2<sup>e</sup> civ., 29 janvier 2026, n° 23-14.671</em>, suspension de la prescription pendant la période contradictoire du contrôle.</li>
-          <li><em>Cass. 2<sup>e</sup> civ., 19 février 2026, n° 24-10.924</em>, conditions d'éligibilité à la réduction et adhésion au régime d'assurance chômage.</li>
+          <li><em>Cass. 2<sup>e</sup> civ., 15 mai 2025, n° 23-10.330</em>, intérim et compte épargne-temps, preuve des éléments permettant de déterminer le coefficient de réduction pour chaque mission.</li>
+          <li><em>Cass. 2<sup>e</sup> civ., 29 janvier 2026, n° 23-14.671</em>, suspension du délai de prescription pendant la période contradictoire du contrôle.</li>
+          <li><em>Cass. 2<sup>e</sup> civ., 19 février 2026, n° 24-10.924</em>, charge de la preuve pesant sur le cotisant qui sollicite une exonération ou une réduction de cotisations.</li>
+          <li><em>Cass. 2<sup>e</sup> civ., 9 avril 2026, n° 24-17.209</em>, éligibilité de certains employeurs publics ou parapublics et adhésion irrévocable au régime d'assurance chômage.</li>
           <li><strong>BOSS, rubrique allègements généraux</strong>, publié au <a href="https://boss.gouv.fr/" target="_blank" rel="noopener noreferrer">BOSS</a>, source de référence pour les paramètres applicables.</li>
         </ul>
 
@@ -617,7 +621,7 @@
           <details>
             <summary>Qui a droit à la réduction générale des cotisations patronales en 2026 ?</summary>
             <div>
-              Presque toutes les entreprises du secteur privé qui cotisent à l'<strong>assurance chômage</strong> pour leurs salariés y ont droit, que le contrat soit un CDI ou un CDD, à temps plein ou à temps partiel. La seule exclusion notable est celle des <strong>particuliers employeurs</strong>, par exemple une garde d'enfants payée en CESU. Sont aussi exclus les mandataires sociaux sans contrat de travail et les stagiaires sous convention de stage. Ce qui compte, c'est que la rémunération du salarié soit inférieure à 3 SMIC.
+              Les entreprises du secteur privé entrant dans le champ de l'<strong>article L.241-13</strong> peuvent en principe en bénéficier pour leurs salariés éligibles, que le contrat soit un CDI ou un CDD, à temps plein ou à temps partiel. Sont notamment exclus ou à traiter à part les <strong>particuliers employeurs</strong> (par exemple une garde d'enfants payée en CESU), les stagiaires, les mandataires sociaux sans contrat de travail, certains employeurs publics ou parapublics, ainsi que les situations dans lesquelles une exonération spécifique non cumulable est déjà appliquée. Ce qui compte ensuite, c'est que la rémunération du salarié soit inférieure à 3 SMIC.
             </div>
           </details>
 
