@@ -522,31 +522,13 @@ function encartDispenses() {
   `;
 }
 
-// Grille tarifaire ANV — ne s'affiche que si Bloc 5 = ELEVE ou CRITIQUE (arbitrage #10)
+// Encart module ANV — ne s'affiche que si Bloc 5 = ELEVE ou CRITIQUE (arbitrage #10)
 function grilleANV(fleetAnswer) {
-  const tiers = [
-    { key: '5-15',   label: '5 à 15 véhicules',    price: '2 500 €' },
-    { key: '16-40',  label: '16 à 40 véhicules',   price: '4 000 €' },
-    { key: '41-100', label: '41 à 100 véhicules',  price: '6 000 €' },
-    { key: '100+',   label: 'Plus de 100 véhicules', price: 'Sur devis' }
-  ];
-  const rows = tiers.map(t => {
-    const active = (t.key === fleetAnswer);
-    return `<tr class="${active ? 'rpt-anv-active' : ''}">
-      <td>${t.label}</td><td><strong>${t.price}</strong></td>
-      ${active ? '<td class="rpt-anv-yours">Votre tranche</td>' : '<td></td>'}
-    </tr>`;
-  }).join('');
-
   return `
     <div class="rpt-anv">
-      <h4>Audit ANV véhicule — grille tarifaire</h4>
-      <p class="rpt-anv-mention">Tarif fondateur — 50 premiers clients. Ajustement possible selon complexité.</p>
-      <table class="rpt-anv-table">
-        <thead><tr><th>Taille de flotte</th><th>Tarif</th><th></th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-      <a href="#devis" class="btn-primary rpt-anv-cta">Demander un devis ANV →</a>
+      <h4>Le module Avantage en nature véhicule</h4>
+      <p class="rpt-anv-mention">Surveillance continue de la conformité de votre flotte, à partir de 89 € HT/mois (tarif au véhicule, dégressif). Ouverture en septembre 2026. Les entreprises fondatrices bénéficient de la mise en route offerte et de leur diagnostic livré avant la rentrée.</p>
+      <a href="#fondateurs" class="btn-primary rpt-anv-cta">Découvrir l'offre fondatrice →</a>
     </div>
   `;
 }

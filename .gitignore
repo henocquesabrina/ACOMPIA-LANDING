@@ -6,11 +6,14 @@ desktop.ini
 # IDE
 .vscode/
 .idea/
+.claude/
 *.swp
 *~
 
 # Maquettes d'exploration (hors prod)
 maquettes/
+_mockups/
+typo-preview.html
 
 # Sauvegardes et anciennes versions
 *-backup.html
@@ -20,6 +23,7 @@ maquettes/
 # Documents internes
 SYNTHESE-*.md
 AUDIT_*.md
+AUDIT-*.md
 DEPLOY.md
 PRODUCT.md
 DESIGN.md
