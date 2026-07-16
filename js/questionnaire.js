@@ -602,6 +602,15 @@ class Questionnaire {
       if (byLevel.REDUIT.length)   parts.push(`RÉDUIT: ${byLevel.REDUIT.join(', ')}`);
       const scoringString = parts.join(' | ');
 
+      // Analytics PostHog — aucune donnée personnelle (ni nom, ni email)
+      if (window.posthog) posthog.capture('prediag_termine', {
+        indice: scoring.indice,
+        nb_critique: byLevel.CRITIQUE.length,
+        nb_eleve: byLevel.ELEVE.length,
+        nb_moyen: byLevel.MOYEN.length,
+        nb_reduit: byLevel.REDUIT.length
+      });
+
       // Envoi au Cloudflare Worker (Notion)
       // Le worker reçoit { type:'prediag', data:{ name, email, function, optin, scoring } }
       const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
@@ -675,5 +684,8 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   `;
 
-  document.getElementById('start-prediag').addEventListener('click', () => q.start());
+  document.getElementById('start-prediag').addEventListener('click', () => {
+    if (window.posthog) posthog.capture('prediag_lance');
+    q.start();
+  });
 });

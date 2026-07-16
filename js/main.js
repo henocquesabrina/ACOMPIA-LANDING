@@ -118,6 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      // Analytics PostHog — aucune donnée personnelle (type d'audit et tranche d'effectif seulement)
+      if (window.posthog) posthog.capture('devis_envoye', {
+        audit_type: data.audit_type || '',
+        effectif: data.employees || ''
+      });
+
       // Send to Notion via Cloudflare Worker
       const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
       fetch(WORKER_URL, {
@@ -162,6 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
         notifyForm.innerHTML = '<div style="text-align:center;padding:16px 0"><p>Merci.</p></div>';
         return;
       }
+
+      // Analytics PostHog — aucune donnée personnelle
+      if (window.posthog) posthog.capture('notify_inscrit');
 
       // Send to Notion via Cloudflare Worker
       const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
