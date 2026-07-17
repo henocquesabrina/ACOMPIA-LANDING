@@ -3753,7 +3753,7 @@ section.platform h2 em,
   background: rgba(17, 24, 54, 0.04);
   border-radius: 7px;
 }
-/* Cadre sur la partie haute du dashboard : masque l'annotation de dev en bas */
+/* Cadre sur la partie haute du dashboard (KPIs + graphique visibles, tableau coupé net) */
 .dash-shot-clip {
   aspect-ratio: 1760 / 985;
   overflow: hidden;
@@ -4023,6 +4023,16 @@ section.platform h2 em,
   .hero-split .hero-subtitle { margin-left: auto; margin-right: auto; }
   .hero-split .hero-content .trust-bar { justify-content: center; }
   .hero-split .hero-ctas { justify-content: center; }
+}
+
+/* Signature de marque en eyebrow au-dessus du H1 */
+.hero-eyebrow {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent, #4F46E5);
+  margin-bottom: 18px;
 }
 
 /* Hero au-dessus de la ligne de flottaison : visible dès le chargement (pas d'entrée fantomatique).
