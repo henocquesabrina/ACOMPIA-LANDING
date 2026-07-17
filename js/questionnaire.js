@@ -1,6 +1,6 @@
 /* ============================================
    ACOMPIA — Questionnaire Prédiagnostic URSSAF
-   Version consolidée 15/04/2026 — 32 questions / 9 blocs
+   Version consolidée 15/04/2026 · 29 questions / 9 blocs
    Refonte complète : matrice Sabrina + arbitrages clients
    ============================================ */
 

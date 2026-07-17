@@ -38,6 +38,37 @@
       {"@type":"ListItem","position":3,"name":"Prédiagnostic URSSAF","item":"https://www.acompia.com/outils/prediagnostic-urssaf/"}
   ]}
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"Comment évaluer son risque URSSAF ?","acceptedAnswer":{"@type":"Answer","text":"Évaluer son exposition URSSAF consiste à passer en revue, avant l'URSSAF, les zones les plus fréquemment redressées, parmi lesquelles l'assiette des cotisations (art. L.242-1 du Code de la sécurité sociale), les avantages en nature, les frais professionnels, la protection sociale complémentaire, le forfait jours, la réduction générale et la cohérence des DSN, y compris lorsque la paie est externalisée. L'URSSAF peut vérifier les trois années civiles précédant le contrôle (art. L.244-3) et 9 contrôles sur 10 sont désormais ciblés par l'analyse de données (rapport d'activité Urssaf 2025). Le prédiagnostic gratuit ACOMPIA, conçu par une avocate au Barreau de Paris, permet cette première revue en 29 questions."}},
+      {"@type":"Question","name":"Le prédiagnostic URSSAF est-il vraiment gratuit et confidentiel ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Le prédiagnostic ACOMPIA est gratuit, confidentiel et sans engagement. Le rapport s'affiche directement dans votre navigateur, sans création de compte. Une adresse email professionnelle est demandée avant son affichage et les données renseignées sont traitées afin de générer le rapport, conformément à la politique de confidentialité d'ACOMPIA (ComplyDB SAS). Le résultat est indicatif, il ne constitue ni un audit ni une consultation juridique."}},
+      {"@type":"Question","name":"Que contient le rapport de prédiagnostic ?","acceptedAnswer":{"@type":"Answer","text":"Le rapport, affiché immédiatement après le questionnaire de 29 questions réparties en 9 blocs thématiques, comprend un indice d'exposition URSSAF sur 100 (exposition maîtrisée de 0 à 29, modérée de 30 à 59, forte de 60 à 100), une synthèse dirigeant avec les thèmes à plus fort risque, une analyse détaillée par thème avec un niveau de risque allant de réduit à critique, et des premières actions recommandées. Il peut être imprimé ou sauvegardé en PDF depuis le navigateur."}}
+  ]}
+  </script>
+
+  <style>
+    /* Sections statiques « Réponses de référence », classes reprises du simulateur AEN véhicule */
+    .statique {
+      --ink: #0A0A0A; --ink-2: #3F3F3F; --ink-3: #6B6B6B;
+      --indigo: #4F46E5; --ligne: rgba(10,10,10,0.11);
+      max-width: 1240px; margin: 0 auto;
+      padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 56px);
+      border-top: 1px solid var(--ligne);
+    }
+    .statique-eyebrow {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--indigo); font-weight: 500; margin-bottom: 12px;
+    }
+    .statique h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; letter-spacing: -0.015em; margin-bottom: 8px; color: var(--ink); }
+    .statique-fold summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .statique-fold summary::-webkit-details-marker { display: none; }
+    .statique-fold summary h2 { margin: 0; }
+    .statique-fold summary::after { content: '+'; font-size: 26px; font-weight: 300; color: #4F46E5; flex: 0 0 auto; transition: transform .2s ease; }
+    .statique-fold[open] summary::after { transform: rotate(45deg); }
+    .statique-fold-body { padding-top: 18px; }
+    .geo-intro { color: var(--ink-2); max-width: 72ch; font-size: 15px; margin-bottom: 24px; }
+  </style>
 
   <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
@@ -164,7 +195,7 @@
   <section id="prediag" class="prediag">
     <div class="section-header reveal">
       <h2>Évaluez votre exposition,<br><em>maintenant</em>.</h2>
-      <p>32 questions ciblées. Un rapport personnalisé avec votre indice d'exposition, vos zones à risque et un plan d'action. Gratuit, confidentiel et sans engagement.</p>
+      <p>29 questions ciblées. Un rapport personnalisé avec votre indice d'exposition, vos zones à risque et un plan d'action. Gratuit, confidentiel et sans engagement.</p>
     </div>
 
     <div class="prediag-container reveal">
@@ -213,7 +244,7 @@
               </div>
 
               <div class="preview-mockup-footer">
-                + analyse détaillée · fourchette chiffrée · plan d'action
+                + analyse détaillée · niveau de risque par thème · plan d'action
               </div>
             </div>
           </div>
@@ -232,7 +263,7 @@
             <span class="benefit-sep"></span>
             <span class="benefit-item">
               <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Fourchette financière
+              Niveau de risque par thème
             </span>
             <span class="benefit-sep"></span>
             <span class="benefit-item">
@@ -246,7 +277,7 @@
             <button class="btn-primary" type="button" id="start-prediag">
               <span>Commencer le prédiagnostic <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span>
             </button>
-            <p class="prediag-mini-trust">Gratuit · Confidentiel · <b>~5 minutes</b> · 32 questions</p>
+            <p class="prediag-mini-trust">Gratuit · Confidentiel · <b>~5 minutes</b> · 29 questions</p>
           </div>
 
         </div>
@@ -254,7 +285,18 @@
     </div>
   </section>
 
-  
+  <!-- ==================== RÉPONSES DE RÉFÉRENCE ==================== -->
+  <section class="statique">
+    <p class="statique-eyebrow">Réponses de référence</p>
+    <details class="statique-fold">
+    <summary><h2>Comment évaluer son risque URSSAF ?</h2></summary>
+    <div class="statique-fold-body">
+    <p class="geo-intro">Évaluer son exposition URSSAF consiste à passer en revue, avant l'URSSAF, les zones les plus fréquemment redressées, parmi lesquelles l'assiette des cotisations (Code de la sécurité sociale, art. L.242-1), les avantages en nature, les frais professionnels, la protection sociale complémentaire, le forfait jours, la réduction générale et la cohérence des DSN, y compris lorsque la paie est externalisée. L'URSSAF peut vérifier les trois années civiles précédant le contrôle (CSS, art. L.244-3) et 9 contrôles sur 10 sont désormais ciblés par l'analyse de données (rapport d'activité Urssaf 2025).</p>
+    <p class="geo-intro">Le prédiagnostic ACOMPIA permet cette première revue. Questionnaire gratuit de 29 questions réparties en 9 blocs thématiques, conçu par Maître Sabrina Henocque Chiche, avocate au Barreau de Paris, il produit un rapport immédiat dans votre navigateur, avec un indice d'exposition sur 100, le niveau de risque de chaque thème examiné, la synthèse des zones les plus exposées et des premières actions recommandées. Il est confidentiel, sans création de compte et sans engagement. Il ne remplace pas un audit, il indique où regarder en premier.</p>
+    </div>
+    </details>
+  </section>
+
   <section class="solution-door">
     <div class="solution-door-inner">
       <h2>Et pour aller plus loin, la <em>solution ACOMPIA</em>.</h2>
