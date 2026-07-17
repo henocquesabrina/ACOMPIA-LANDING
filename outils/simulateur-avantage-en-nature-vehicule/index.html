@@ -12,13 +12,13 @@
 <meta property="og:title" content="Simulateur d'avantage en nature véhicule, barème URSSAF 2026">
 <meta property="og:description" content="Calculez gratuitement l'assiette de cotisations d'un véhicule de fonction au barème 2026. Calcul immédiat, sans inscription.">
 <meta property="og:url" content="https://www.acompia.com/outils/simulateur-avantage-en-nature-vehicule/">
-<meta property="og:image" content="https://www.acompia.com/og/simulateur-aen.png">
+<meta property="og:image" content="https://www.acompia.com/assets/og-image.png">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="ACOMPIA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Simulateur AEN véhicule 2026 · calcul URSSAF gratuit · ACOMPIA">
 <meta name="twitter:description" content="Calculez l'avantage en nature d'un véhicule de fonction au barème 2026. Conçu par une avocate au Barreau de Paris.">
-<meta name="twitter:image" content="https://www.acompia.com/og/simulateur-aen.png">
+<meta name="twitter:image" content="https://www.acompia.com/assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -864,6 +864,32 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
 }
 
 </style>
+
+  <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
+
+  <!-- Analytics · PostHog EU (sans cookie : persistence memory, IP écartées côté projet, pas de session recording) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Ni qi init Xi rn Rr tn sn Ki capture calculateEventProperties dn register register_once register_for_session unregister unregister_for_session fn getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync pn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty cn un createPersonProfile setInternalOrTestUser vn Qi yn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing an debug Or Rt getPageViewId captureTraceFeedback captureTraceMetric Wi".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tzcr2EPAnKEJNFC3w9rsfwkjJB7zQFJ8NuDziAGZJ8qq', {
+      api_host: 'https://eu.i.posthog.com',
+      defaults: '2026-05-30',
+      persistence: 'memory',
+      person_profiles: 'identified_only',
+      respect_dnt: true,
+      capture_pageview: true,
+      capture_pageleave: true,
+      autocapture: true,
+      disable_session_recording: true
+    });
+  </script>
+  <!-- Mesure des clics rendez-vous (aucune donnée personnelle) -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"]') : null;
+      if (a && window.posthog) { posthog.capture('rdv_click', { source: location.pathname }); }
+    });
+  </script>
 </head>
 <body>
 

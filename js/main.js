@@ -197,3 +197,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+
+/* Mesure des clics rendez-vous (Calendly) · aucune donnée personnelle */
+document.addEventListener('click', function (e) {
+  var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"]') : null;
+  if (a && window.posthog) { posthog.capture('rdv_click', { source: location.pathname }); }
+});
