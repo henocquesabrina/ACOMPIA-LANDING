@@ -4182,3 +4182,16 @@ section { scroll-margin-top: 84px; }
   max-width: 70ch;
 }
 .stats-sources a { color: var(--accent, #4F46E5); }
+
+
+/* Trio solution sur l'accueil : même langage visuel que le duo d'outils */
+.solution-trio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+@media (max-width: 1020px) { .solution-trio-grid { grid-template-columns: 1fr; max-width: 560px; } }
+.solution-trio-grid .outil-card h3 { font-size: 21px; }
+.outil-note a { color: var(--accent, #4F46E5); font-weight: 600; }
