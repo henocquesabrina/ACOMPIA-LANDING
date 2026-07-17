@@ -4278,3 +4278,50 @@ section { scroll-margin-top: 84px; }
 @media (max-width: 900px) {
   .ress-filters { top: 64px !important; }
 }
+
+/* /solution/ : sommaire d'ancres sous l'en-tête de page (la page s'annonce en un écran) */
+.solution-jump {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.solution-jump a {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 22px;
+  border: 1px solid var(--line, #E5E4DF);
+  border-radius: 12px;
+  background: #fff;
+  text-decoration: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+.solution-jump a:hover {
+  border-color: var(--accent, #4F46E5);
+  box-shadow: 0 10px 28px -16px rgba(79, 70, 229, 0.35);
+  transform: translateY(-2px);
+}
+.solution-jump b { font-size: 15px; color: var(--ink, #171717); font-weight: 600; }
+.solution-jump span { font-size: 12.5px; color: var(--ink-2, #6B6B66); }
+@media (max-width: 640px) {
+  .solution-jump { flex-direction: column; align-items: stretch; }
+  .solution-jump a { text-align: center; align-items: center; }
+}
+
+/* /solution/ : teaser audit continu 2026 (section platform raccourcie) */
+.platform-teaser-text {
+  max-width: 56ch;
+  margin: 22px auto 30px;
+  text-align: center;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
+}
+.platform-note {
+  margin-top: 14px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
