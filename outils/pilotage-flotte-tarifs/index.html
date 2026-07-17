@@ -11,6 +11,13 @@
 <meta property="og:title" content="Tarifs Pilotage de flotte et Audit AEN véhicule · ACOMPIA">
 <meta property="og:description" content="Abonnement de pilotage dès 150 € HT/mois, audit AEN 3 ans dès 1 500 € HT (à moitié prix pour les abonnés).">
 <meta property="og:url" content="https://www.acompia.com/outils/pilotage-flotte-tarifs/">
+<meta property="og:image" content="https://www.acompia.com/assets/og-image.png">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="ACOMPIA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tarifs Pilotage de flotte et Audit AEN véhicule · ACOMPIA">
+<meta name="twitter:description" content="Abonnement de pilotage dès 150 € HT/mois, audit AEN 3 ans dès 1 500 € HT (à moitié prix pour les abonnés).">
+<meta name="twitter:image" content="https://www.acompia.com/assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -99,6 +106,92 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
       if (a && window.posthog) { posthog.capture('rdv_click', { source: location.pathname }); }
     });
   </script>
+
+  <!-- Données structurées schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://www.acompia.com/outils/pilotage-flotte-tarifs/#service",
+        "name": "Pilotage de la conformité URSSAF de la flotte automobile",
+        "serviceType": "Conformité URSSAF de l'avantage en nature véhicule",
+        "url": "https://www.acompia.com/outils/pilotage-flotte-tarifs/",
+        "description": "Pilotage de la conformité URSSAF de l'avantage en nature véhicule, conçu par une avocate au Barreau de Paris et exécuté par le logiciel. Calcul de l'avantage en nature de chaque véhicule au barème en vigueur, détection des écarts entre la paie et la DSN, suivi des pièces justificatives et veille du barème BOSS.",
+        "provider": {
+          "@type": "Organization",
+          "name": "ComplyDB SAS",
+          "alternateName": "ACOMPIA",
+          "url": "https://www.acompia.com/"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "France"
+        },
+        "audience": {
+          "@type": "BusinessAudience",
+          "name": "Entreprises de 50 à 500 salariés disposant d'une flotte de véhicules"
+        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Abonnement pilotage de flotte",
+            "url": "https://www.acompia.com/outils/pilotage-flotte-tarifs/",
+            "priceCurrency": "EUR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": 150,
+              "priceCurrency": "EUR",
+              "unitText": "HT par mois, à partir de",
+              "valueAddedTaxIncluded": false
+            },
+            "description": "Abonnement annuel de pilotage de la conformité URSSAF de la flotte, à partir de 150 € HT par mois selon le nombre de véhicules."
+          },
+          {
+            "@type": "Offer",
+            "name": "Audit AEN véhicule sur 3 ans",
+            "url": "https://www.acompia.com/outils/pilotage-flotte-tarifs/",
+            "price": 1500,
+            "priceCurrency": "EUR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": 1500,
+              "priceCurrency": "EUR",
+              "unitText": "HT, à partir de",
+              "valueAddedTaxIncluded": false
+            },
+            "description": "Audit de l'avantage en nature véhicule sur les trois dernières années, à partir de 1 500 € HT selon la taille de la flotte, proposé à moitié prix aux entreprises abonnées au pilotage de flotte."
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.acompia.com/outils/pilotage-flotte-tarifs/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://www.acompia.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Outils",
+            "item": "https://www.acompia.com/outils/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Pilotage de flotte et tarifs",
+            "item": "https://www.acompia.com/outils/pilotage-flotte-tarifs/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 <nav style="display:flex;align-items:center;justify-content:space-between;max-width:1060px;margin:0 auto;padding:22px 32px 0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.12em">
@@ -123,7 +216,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
     <!-- AUDIT -->
     <div class="card">
       <span class="tag">Prestation ponctuelle</span>
-      <div class="nom">Audit AEN sur 3 ans</div>
+      <h2 class="nom">Audit AEN sur 3 ans</h2>
       <p class="pitch">Nous analysons votre avantage en nature véhicule sur les <b>trois dernières années</b>, exactement comme le ferait un contrôle URSSAF, la période que l'inspecteur peut vérifier.</p>
       <div class="prix"><span class="n" id="p-audit">1 500 €</span><span class="u">HT</span></div>
       <p class="prix-note" id="p-audit-note">pour une flotte de 15 véhicules</p>
@@ -139,7 +232,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
     <!-- ABONNEMENT (hero) -->
     <div class="card card--hero">
       <span class="tag">Abonnement · pilotage continu</span>
-      <div class="nom"><span class="grad">Pilotage de flotte</span></div>
+      <h2 class="nom"><span class="grad">Pilotage de flotte</span></h2>
       <p class="pitch">L'outil de conformité URSSAF que <b>vous gardez en main</b> pendant un an : il calcule l'avantage en nature de chaque véhicule, signale les pièces manquantes, détecte les écarts paie / DSN et vous alerte dès qu'un barème change.</p>
       <div class="prix"><span class="n" id="p-abo">150 €</span><span class="u">HT / mois</span></div>
       <p class="prix-note" id="p-abo-note">soit 1 800 € HT / an · contrat annuel</p>
@@ -161,7 +254,23 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
     </div>
   </div>
 
-  <p class="note-bas">Tarifs hors taxes, conçus par une avocate au Barreau de Paris. Au-delà de 200 véhicules, ou pour une intégration à votre SIRH, tarif sur devis.</p>
+  <section style="margin-top:44px">
+    <h2 class="nom">Ce que l'outil de pilotage vérifiera</h2>
+    <p class="sub">L'outil de pilotage et l'audit continu ouvriront en septembre 2026. Conçu par une avocate au Barreau de Paris et exécuté par le logiciel, l'outil calculera l'avantage en nature de chaque véhicule au barème en vigueur, détectera les écarts entre la paie et la DSN, signalera les pièces justificatives manquantes et suivra les évolutions du barème publié au BOSS. Chaque vérification alimentera un historique horodaté, opposable en cas de contrôle.</p>
+    <p class="sub">Dans l'attente de cette ouverture, les audits ponctuels de l'avantage en nature véhicule sont disponibles dès maintenant, sur devis.</p>
+  </section>
+
+  <section style="margin-top:36px">
+    <h2 class="nom">Pourquoi la flotte attire les contrôles URSSAF</h2>
+    <p class="sub">L'avantage en nature véhicule figure parmi les chefs de redressement les plus fréquents. L'inspecteur peut vérifier les trois années civiles qui précèdent l'avis de contrôle, si bien qu'une erreur de barème ou une omission dans la DSN se répète mois après mois et se chiffre sur trois ans. Une flotte de quelques dizaines de véhicules suffit à représenter un enjeu financier significatif.</p>
+  </section>
+
+  <section style="margin-top:36px">
+    <h2 class="nom">À qui s'adresse l'abonnement</h2>
+    <p class="sub">L'abonnement s'adresse aux entreprises de 50 à 500 salariés qui mettent des véhicules à la disposition de leurs salariés, et en pratique à leurs directions financières, paie ou ressources humaines. Il couvre l'ensemble de la flotte, quel que soit le mode de détention des véhicules, achat, location longue durée ou crédit-bail. Le prix de l'abonnement s'ajuste au nombre de véhicules, à partir de 150 € HT par mois, et l'audit AEN sur 3 ans passe à moitié prix pour les entreprises abonnées.</p>
+  </section>
+
+  <p class="note-bas" style="margin-top:44px">Tarifs hors taxes, conçus par une avocate au Barreau de Paris. Au-delà de 200 véhicules, ou pour une intégration à votre SIRH, tarif sur devis.</p>
   <p class="note-bas" style="margin-top:14px"><a href="/outils/simulateur-avantage-en-nature-vehicule/" style="color:var(--indigo);font-weight:600">← Estimer l'avantage en nature de votre flotte avec le simulateur gratuit</a></p>
   <p class="note-bas" style="margin-top:26px;opacity:.8"><a href="/" style="color:inherit">ACOMPIA</a> · <a href="/mentions-legales.html" style="color:inherit">Mentions légales</a> · <a href="/politique-confidentialite.html" style="color:inherit">Confidentialité</a> · ComplyDB SAS</p>
 </div>
