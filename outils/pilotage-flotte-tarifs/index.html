@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarifs Pilotage de flotte et Audit AEN véhicule · ACOMPIA</title>
+<meta name="description" content="Prix du pilotage de conformité URSSAF de votre flotte et de l'audit de l'avantage en nature véhicule sur 3 ans. Abonnement dès 150 € HT/mois, audit dès 1 500 € HT. Conçu par une avocate au Barreau de Paris.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.acompia.com/outils/pilotage-flotte-tarifs/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tarifs Pilotage de flotte et Audit AEN véhicule · ACOMPIA">
+<meta property="og:description" content="Abonnement de pilotage dès 150 € HT/mois, audit AEN 3 ans dès 1 500 € HT (à moitié prix pour les abonnés).">
+<meta property="og:url" content="https://www.acompia.com/outils/pilotage-flotte-tarifs/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pierre:#FAFAF7; --carte:#fff; --ink:#0A0A0A; --ink-2:#3F3F3F; --ink-3:#6B6B6B;
+  --indigo:#4F46E5; --indigo-deep:#1E1B4B; --indigo-pale:#EEF0FD; --violet:#8B84F0;
+  --vert:#047857; --vert-pale:#ECFDF5; --ambre:#92400E; --ambre-pale:#FEF7EC;
+  --ligne:rgba(10,10,10,.11); --ligne-forte:rgba(10,10,10,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Geist',system-ui,sans-serif;background:var(--pierre);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:48px 36px 80px}
+.eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);font-weight:600}
+h1{font-size:38px;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin:12px 0 0}
+h1 .grad{background:linear-gradient(90deg,var(--indigo),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--ink-2);font-size:16.5px;margin-top:14px;max-width:62ch}
+
+/* Slider */
+.slider-box{margin-top:30px;background:var(--carte);border:1px solid var(--ligne-forte);border-radius:16px;padding:22px 26px;box-shadow:0 1px 2px rgba(10,10,10,.04)}
+.slider-tt{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.slider-lab{font-size:15px;font-weight:600}
+.slider-val{font-family:'Geist Mono',monospace;font-size:15px;font-weight:600;color:var(--indigo)}
+.slider-val b{font-size:26px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:999px;margin-top:16px;
+  background:linear-gradient(90deg,var(--indigo) 0%,var(--indigo) var(--pct,10%),var(--indigo-pale) var(--pct,10%),var(--indigo-pale) 100%);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--indigo);box-shadow:0 2px 6px rgba(79,70,229,.35);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--indigo);box-shadow:0 2px 6px rgba(79,70,229,.35);cursor:pointer}
+.slider-echelle{display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:10.5px;color:var(--ink-3);margin-top:8px}
+
+.grid{display:grid;gap:18px;margin-top:22px;align-items:start}
+@media(min-width:720px){.grid{grid-template-columns:0.82fr 1.18fr}}
+.card{background:var(--carte);border:1px solid var(--ligne);border-radius:18px;padding:26px;box-shadow:0 1px 2px rgba(10,10,10,.04)}
+.card--hero{border:1.5px solid var(--indigo);box-shadow:0 1px 2px rgba(10,10,10,.05),0 18px 44px rgba(79,70,229,.13);position:relative}
+.card--hero::before{content:'Le plus complet';position:absolute;top:-11px;left:26px;background:linear-gradient(90deg,var(--indigo),var(--violet));color:#fff;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:4px 11px;border-radius:999px}
+.tag{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.card--hero .tag{color:var(--indigo)}
+.nom{font-size:22px;font-weight:750;letter-spacing:-.015em;margin-top:6px}
+.card--hero .nom{font-size:26px}
+.nom .grad{background:linear-gradient(90deg,var(--indigo),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pitch{color:var(--ink-2);font-size:13.5px;margin-top:10px;line-height:1.5}
+
+.prix{margin-top:18px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.prix .n{font-size:34px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.card--hero .prix .n{font-size:46px}
+.prix .u{font-size:14px;color:var(--ink-3);font-weight:500}
+.prix-note{font-size:12px;color:var(--ink-3);margin-top:4px;font-family:'Geist Mono',monospace}
+
+.liste{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:9px}
+.liste li{font-size:13.5px;color:var(--ink-2);padding-left:24px;position:relative;line-height:1.4}
+.liste li::before{content:'';position:absolute;left:0;top:2px;width:16px;height:16px;border-radius:50%;background:var(--vert-pale);border:1px solid color-mix(in srgb,var(--vert) 35%,transparent)}
+.liste li::after{content:'✓';position:absolute;left:4px;top:1px;font-size:10px;color:var(--vert);font-weight:800}
+.liste li b{color:var(--ink);font-weight:650}
+.inclus-tt{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);font-weight:600;margin-top:20px}
+.pont{margin-top:20px;padding:14px 16px;background:var(--ambre-pale);border:1px solid color-mix(in srgb,var(--ambre) 28%,transparent);border-radius:12px;font-size:13px;color:var(--ambre);line-height:1.45}
+.pont b{font-weight:700}
+.cta{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{border-radius:10px;padding:11px 18px;font-weight:600;font-size:14px;border:1px solid var(--ligne-forte);background:#fff;color:var(--ink);text-decoration:none;display:inline-block;cursor:pointer}
+.btn--primaire{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.devis{font-size:15px;font-weight:700;color:var(--indigo)}
+.note-bas{margin-top:24px;font-size:12.5px;color:var(--ink-3);text-align:center}
+</style>
+
+  <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
+
+  <!-- Analytics · PostHog EU (sans cookie : persistence memory, IP écartées côté projet, pas de session recording) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Ni qi init Xi rn Rr tn sn Ki capture calculateEventProperties dn register register_once register_for_session unregister unregister_for_session fn getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync pn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty cn un createPersonProfile setInternalOrTestUser vn Qi yn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing an debug Or Rt getPageViewId captureTraceFeedback captureTraceMetric Wi".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tzcr2EPAnKEJNFC3w9rsfwkjJB7zQFJ8NuDziAGZJ8qq', {
+      api_host: 'https://eu.i.posthog.com',
+      defaults: '2026-05-30',
+      persistence: 'memory',
+      person_profiles: 'identified_only',
+      respect_dnt: true,
+      capture_pageview: true,
+      capture_pageleave: true,
+      autocapture: true,
+      disable_session_recording: true
+    });
+  </script>
+  <!-- Mesure des clics rendez-vous (aucune donnée personnelle) -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"]') : null;
+      if (a && window.posthog) { posthog.capture('rdv_click', { source: location.pathname }); }
+    });
+  </script>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">ACOMPIA · avantage en nature véhicule</p>
+  <h1>Combien pour <span class="grad">sécuriser votre flotte</span> ?</h1>
+  <p class="sub">Déplacez le curseur sur votre nombre de véhicules : le prix de l'audit et de l'abonnement s'ajuste à votre flotte.</p>
+
+  <div class="slider-box">
+    <div class="slider-tt">
+      <span class="slider-lab">Nombre de véhicules dans votre flotte</span>
+      <span class="slider-val"><b id="v-nb">15</b> véhicules</span>
+    </div>
+    <input type="range" id="slider" min="1" max="200" value="15">
+    <div class="slider-echelle"><span>1</span><span>50</span><span>100</span><span>150</span><span>200+</span></div>
+  </div>
+
+  <div class="grid">
+    <!-- AUDIT -->
+    <div class="card">
+      <span class="tag">Prestation ponctuelle</span>
+      <div class="nom">Audit AEN sur 3 ans</div>
+      <p class="pitch">Nous analysons votre avantage en nature véhicule sur les <b>trois dernières années</b>, exactement comme le ferait un contrôle URSSAF, la période que l'inspecteur peut vérifier.</p>
+      <div class="prix"><span class="n" id="p-audit">1 500 €</span><span class="u">HT</span></div>
+      <p class="prix-note" id="p-audit-note">pour une flotte de 15 véhicules</p>
+      <ul class="liste">
+        <li>Cartographie véhicule par véhicule</li>
+        <li>Écarts avec votre paie et votre DSN</li>
+        <li>Exposition chiffrée sur 3 ans</li>
+        <li>Plan de régularisation signé d'une avocate</li>
+      </ul>
+      <div class="cta"><a class="btn" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Demander un devis</a></div>
+    </div>
+
+    <!-- ABONNEMENT (hero) -->
+    <div class="card card--hero">
+      <span class="tag">Abonnement · pilotage continu</span>
+      <div class="nom"><span class="grad">Pilotage de flotte</span></div>
+      <p class="pitch">L'outil de conformité URSSAF que <b>vous gardez en main</b> pendant un an : il calcule l'avantage en nature de chaque véhicule, signale les pièces manquantes, détecte les écarts paie / DSN et vous alerte dès qu'un barème change.</p>
+      <div class="prix"><span class="n" id="p-abo">150 €</span><span class="u">HT / mois</span></div>
+      <p class="prix-note" id="p-abo-note">soit 1 800 € HT / an · contrat annuel</p>
+
+      <p class="inclus-tt">Compris dans l'abonnement</p>
+      <ul class="liste">
+        <li><b>1 an d'accès</b> à l'outil de gestion et de conformité de votre flotte</li>
+        <li><b>L'audit de conformité de votre flotte sur l'année (N-1) inclus</b></li>
+        <li>Veille automatique du barème BOSS</li>
+        <li>Historique opposable en cas de contrôle</li>
+      </ul>
+
+      <div class="pont"><b>Vous voulez l'audit complet sur 3 ans ?</b> <span id="pont-txt">Il passe à moitié prix, 750 € HT au lieu de 1 500 €,</span> dès que vous souscrivez l'abonnement.</div>
+
+      <div class="cta">
+        <a class="btn btn--primaire" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Demander une démo</a>
+        <a class="btn" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Demander un devis</a>
+      </div>
+    </div>
+  </div>
+
+  <p class="note-bas">Tarifs hors taxes, conçus par une avocate au Barreau de Paris. Au-delà de 200 véhicules, ou pour une intégration à votre SIRH, tarif sur devis.</p>
+  <p class="note-bas" style="margin-top:14px"><a href="/outils/simulateur-avantage-en-nature-vehicule/" style="color:var(--indigo);font-weight:600">← Estimer l'avantage en nature de votre flotte avec le simulateur gratuit</a></p>
+  <p class="note-bas" style="margin-top:26px;opacity:.8"><a href="/" style="color:inherit">ACOMPIA</a> · <a href="/mentions-legales.html" style="color:inherit">Mentions légales</a> · <a href="/politique-confidentialite.html" style="color:inherit">Confidentialité</a> · ComplyDB SAS</p>
+</div>
+
+<script>
+const eur = new Intl.NumberFormat('fr-FR');
+function abonnementMensuel(n){
+  let t = 0;
+  t += Math.min(n,25) * 8;
+  if(n>25) t += Math.min(n-25,50) * 6;
+  if(n>75) t += Math.min(n-75,75) * 4.5;
+  if(n>150) t += Math.min(n-150,50) * 3.5;
+  return Math.max(150, t);
+}
+function auditPrix(n){
+  if(n<=50) return 1500;
+  if(n<=100) return 2500;
+  return 3500;
+}
+const slider = document.getElementById('slider');
+function maj(){
+  const n = +slider.value;
+  document.getElementById('v-nb').textContent = n === 200 ? '200+' : n;
+  slider.style.setProperty('--pct', ((n-1)/199*100).toFixed(1) + '%');
+
+  const audit = auditPrix(n);
+  const mens = Math.round(abonnementMensuel(n));
+  const annuel = mens * 12;
+
+  document.getElementById('p-audit').textContent = eur.format(audit) + ' €';
+  document.getElementById('p-audit-note').textContent = 'pour une flotte de ' + (n===200?'200+':n) + ' véhicule' + (n>1?'s':'');
+  document.getElementById('p-abo').textContent = eur.format(mens) + ' €';
+  document.getElementById('p-abo-note').textContent = 'soit ' + eur.format(annuel) + ' € HT / an · contrat annuel';
+  document.getElementById('pont-txt').textContent = 'Il passe à moitié prix, ' + eur.format(Math.round(audit/2)) + ' € HT au lieu de ' + eur.format(audit) + ' €,';
+}
+slider.addEventListener('input', maj);
+maj();
+</script>
+</body>
+</html>

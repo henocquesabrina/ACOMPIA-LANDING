@@ -661,14 +661,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const q = new Questionnaire('prediag-form', 'progress-bar', 'progress-text');
 
-  // Écran d'intro (cadre & portée + RGPD dépliable)
-  form.innerHTML = `
+  /* La vitrine (aperçu du rapport, benefits, CTA) écrite en dur dans index.html
+     reste affichée au chargement : on ne l'écrase plus.
+     Clic 1 (#start-prediag, dans la vitrine) : cadre juridique condensé.
+     Clic 2 (#prediag-go) : lancement du questionnaire. */
+  const INTRO_HTML = `
     <div class="prediag-placeholder">
       <div class="prediag-intro">
-        <h3>Prédiagnostic URSSAF — cadre et portée</h3>
-        <p>Ce questionnaire vous permet d'obtenir un prédiagnostic rapide de votre exposition aux principaux risques de redressement URSSAF.</p>
-        <p>Il repose intégralement sur vos réponses déclaratives. Il ne constitue ni un audit, ni une validation de conformité. Son objectif est d'identifier des zones d'attention et des situations d'exposition probables. Les résultats sont indicatifs et ne valent pas conclusions juridiques définitives.</p>
-        <p>Seul un audit approfondi portant sur les documents, les données de paie, les DSN et les pratiques effectives permet de confirmer ou d'infirmer les risques identifiés.</p>
+        <h3>Avant de commencer</h3>
+        <p>Ce questionnaire évalue votre exposition aux principaux risques de redressement URSSAF à partir de vos réponses déclaratives.</p>
+        <p>Le résultat est indicatif. Il identifie des zones d'attention, il ne constitue ni un audit ni une conclusion juridique. Seul un audit portant sur les documents, les données de paie et les DSN permet de confirmer les risques identifiés.</p>
         <p class="q-hint">Durée estimée : 4 à 6 minutes.</p>
 
         <details class="rgpd-toggle">
@@ -680,12 +682,17 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </details>
       </div>
-      <button class="btn-primary" id="start-prediag">Commencer le prédiagnostic →</button>
+      <button class="btn-primary" id="prediag-go">J'ai compris, commencer →</button>
     </div>
   `;
 
-  document.getElementById('start-prediag').addEventListener('click', () => {
-    if (window.posthog) posthog.capture('prediag_lance');
-    q.start();
+  form.addEventListener('click', (e) => {
+    if (e.target.closest('#start-prediag')) {
+      if (window.posthog) posthog.capture('prediag_intro_vue');
+      form.innerHTML = INTRO_HTML;
+    } else if (e.target.closest('#prediag-go')) {
+      if (window.posthog) posthog.capture('prediag_lance');
+      q.start();
+    }
   });
 });
