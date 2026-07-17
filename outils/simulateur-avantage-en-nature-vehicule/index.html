@@ -670,6 +670,200 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
   font-size: 12.5px; color: var(--ink-3); text-align: center;
 }
 </style>
+<style>
+
+:root{
+  --pierre:#FAFAF7;--carte:#fff;--ink:#0A0A0A;--ink-2:#3F3F3F;--ink-3:#6B6B6B;
+  --indigo:#4F46E5;--indigo-deep:#1E1B4B;--indigo-pale:#EEF0FD;--violet:#8B84F0;
+  --vert:#047857;--vert-pale:#ECFDF5;--ambre:#92400E;--ambre-pale:#FEF7EC;
+  --ligne:rgba(10,10,10,.11);--ligne-forte:rgba(10,10,10,.2);
+}
+
+/* ---- Fausse landing (démo du contexte) ---- */
+.demo-hero{max-width:780px;margin:0 auto;padding:88px 32px;text-align:center}
+.demo-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);font-weight:600}
+.demo-hero h1{font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.025em;font-weight:800;margin:14px 0 0}
+.demo-hero h1 .grad{background:linear-gradient(90deg,var(--indigo),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.demo-hero p{color:var(--ink-2);font-size:18px;margin-top:16px}
+.cta-ouvrir{margin-top:28px;background:var(--indigo);color:#fff;border:none;border-radius:12px;padding:16px 28px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 10px 30px rgba(79,70,229,.3)}
+.cta-ouvrir:hover{background:var(--indigo-deep)}
+.demo-stats{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.demo-stat{text-align:center}
+.demo-stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--indigo-deep)}
+.demo-stat span{font-size:12.5px;color:var(--ink-3)}
+.demo-note{margin-top:26px;font-size:13px;color:var(--ink-3)}
+
+/* ---- Overlay + modale ---- */
+.overlay{position:fixed;inset:0;background:rgba(10,10,20,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.open{display:flex}
+.modale{background:var(--carte);border-radius:22px;width:100%;max-width:560px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(10,10,20,.35);animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.modale{animation:none}}
+
+/* barre du haut : progression + fermer */
+.m-tete{padding:18px 22px 0;flex:none}
+.m-tete-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.m-marque{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
+.m-marque .pt{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--violet))}
+.m-fermer{background:none;border:none;color:var(--ink-3);font-size:22px;line-height:1;cursor:pointer;padding:4px;border-radius:8px}
+.m-fermer:hover{background:var(--pierre);color:var(--ink)}
+.progress-wrap{margin-top:14px}
+.progress-lib{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.progress-bar{height:6px;border-radius:999px;background:var(--indigo-pale);margin-top:6px;overflow:hidden}
+.progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--indigo),var(--violet));width:0;transition:width .35s ease}
+
+/* corps : une question */
+.m-corps{padding:22px;overflow-y:auto;flex:1}
+.q-titre{font-size:22px;font-weight:750;letter-spacing:-.015em;line-height:1.2;text-wrap:balance}
+.q-aide{color:var(--ink-3);font-size:13.5px;margin-top:8px;line-height:1.45}
+.q-options{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.opt{display:flex;align-items:center;gap:13px;padding:15px 16px;border:1.5px solid var(--ligne-forte);border-radius:13px;cursor:pointer;transition:border-color .12s,background .12s;background:var(--carte);text-align:left;font-family:inherit;width:100%}
+.opt:hover{border-color:var(--indigo);background:var(--indigo-pale)}
+.opt.on{border-color:var(--indigo);background:var(--indigo-pale)}
+.opt .puce{width:20px;height:20px;border-radius:50%;border:2px solid var(--ligne-forte);flex:none}
+.opt.on .puce{border-color:var(--indigo);background:var(--indigo);box-shadow:inset 0 0 0 3px #fff}
+.opt .lib{flex:1}
+.opt .lib b{display:block;font-size:15px;font-weight:600;color:var(--ink)}
+.opt .lib span{font-size:12.5px;color:var(--ink-3)}
+.opt .fleche{color:var(--ink-3);font-size:18px}
+.champ{margin-top:20px}
+.champ label{font-size:14px;font-weight:600}
+.champ .aide{font-size:12.5px;color:var(--ink-3);margin-top:4px;line-height:1.45}
+.champ-input{display:flex;align-items:center;gap:8px;margin-top:12px;border:1.5px solid var(--ligne-forte);border-radius:12px;padding:4px 14px;max-width:280px}
+.champ-input:focus-within{border-color:var(--indigo)}
+.champ-input input{border:none;outline:none;font-family:inherit;font-size:22px;font-weight:600;padding:10px 0;width:100%;background:transparent;color:var(--ink)}
+.champ-input .suf{font-size:16px;color:var(--ink-3);font-weight:500}
+
+/* pied : navigation */
+.m-pied{padding:16px 22px;border-top:1px solid var(--ligne);display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none}
+.btn-retour{background:none;border:none;color:var(--ink-3);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px}
+.btn-retour:hover{color:var(--ink)}
+.btn-retour:disabled{opacity:.35;cursor:default}
+.btn-suivant{background:var(--indigo);color:#fff;border:none;border-radius:11px;padding:12px 22px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.btn-suivant:hover{background:var(--indigo-deep)}
+.btn-suivant:disabled{opacity:.4;cursor:default}
+
+/* écran résultat */
+.res-lib{font-size:13px;color:var(--ink-3)}
+.res-montant{font-size:52px;font-weight:800;letter-spacing:-.025em;line-height:1;margin-top:6px;font-variant-numeric:tabular-nums}
+.res-mens{font-family:'Geist Mono',monospace;font-size:13px;color:var(--ink-3);margin-top:8px}
+.res-cotis{margin-top:14px;padding:12px 14px;border-radius:11px;background:var(--pierre);border:1px solid var(--ligne);font-size:13px;color:var(--ink-2);line-height:1.5}
+.res-cotis b{color:var(--ink);font-variant-numeric:tabular-nums}
+.res-apercu{margin-top:14px;border:1px solid var(--ligne);border-radius:12px;padding:14px 16px}
+.res-apercu-t{font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;font-family:'Geist Mono',monospace}
+.res-ligne{display:flex;justify-content:space-between;gap:14px;font-size:12.5px;color:var(--ink-2);padding:5px 0;font-variant-numeric:tabular-nums;border-top:1px solid var(--ligne)}
+.res-ligne:first-of-type{border-top:none}
+.res-ligne .l{color:var(--ink-2)}
+.res-ligne .v{font-weight:600;color:var(--ink);white-space:nowrap}
+.res-ligne.neg .v{color:var(--vert)}
+.res-ligne.tot{border-top:1.5px solid var(--ligne-forte);margin-top:2px;font-size:13.5px}
+.res-ligne.tot .l,.res-ligne.tot .v{color:var(--ink);font-weight:700}
+.res-expo{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--ambre-pale);border:1px solid color-mix(in srgb,var(--ambre) 28%,transparent);font-size:13.5px;color:var(--ambre);line-height:1.5}
+.res-expo b{font-variant-numeric:tabular-nums}
+.res-alerte-ind{margin-top:12px;padding:12px 14px;border-radius:11px;background:var(--indigo-pale);border:1px solid color-mix(in srgb,var(--indigo) 20%,transparent);color:var(--indigo-deep);font-size:12.5px;line-height:1.45}
+.res-source{margin-top:16px;font-size:11px;color:var(--ink-3);font-family:'Geist Mono',monospace;line-height:1.6}
+.res-analyse-t{font-size:21px;font-weight:750;letter-spacing:-.01em;line-height:1.2;text-wrap:balance}
+.res-analyse-m{color:var(--ink-2);font-size:14.5px;margin-top:10px;line-height:1.55}
+.res-cta{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.res-cta .btn-p{background:var(--indigo);color:#fff;border:none;border-radius:11px;padding:13px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;text-align:center;text-decoration:none}
+.res-cta .btn-p:hover{background:var(--indigo-deep)}
+.res-cta .btn-s{background:var(--carte);color:var(--ink);border:1px solid var(--ligne-forte);border-radius:11px;padding:13px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;text-align:center;text-decoration:none}
+.res-cta .btn-s:hover{border-color:var(--indigo);color:var(--indigo)}
+
+/* fins de qualification : bloc "ce que vous pouvez faire" */
+.analyse-faire{margin-top:16px;border:1px solid var(--ligne);border-radius:12px;padding:14px 16px;background:var(--pierre)}
+.analyse-faire h4{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.analyse-faire ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.analyse-faire li{position:relative;padding-left:20px;font-size:13px;color:var(--ink-2);line-height:1.5}
+.analyse-faire li::before{content:'';position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--indigo)}
+
+/* comparateur réel (révélé à la demande) */
+.reel-hook{margin-top:20px;border:1.5px solid var(--indigo);border-radius:16px;overflow:hidden}
+.reel-toggle{width:100%;background:var(--indigo-pale);border:none;padding:16px 18px;text-align:left;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.reel-toggle .rt-txt b{display:block;font-size:15px;font-weight:700;color:var(--indigo-deep)}
+.reel-toggle .rt-txt span{font-size:12.5px;color:var(--ink-2)}
+.reel-toggle .rt-chevron{font-size:18px;color:var(--indigo);transition:transform .2s}
+.reel-hook.open .rt-chevron{transform:rotate(180deg)}
+.reel-panel{display:none;padding:16px 18px}
+.reel-hook.open .reel-panel{display:block}
+.reel-champs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.reel-champs .rc{display:flex;flex-direction:column;gap:5px}
+.reel-champs .rc.full{grid-column:1/-1}
+.reel-champs label{font-size:12px;font-weight:600;color:var(--ink-2);line-height:1.3}
+.reel-champs input{border:1.5px solid var(--ligne-forte);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:14.5px;background:#fff;color:var(--ink)}
+.reel-champs input:focus{outline:none;border-color:var(--indigo)}
+.comp-attente{margin-top:14px;font-size:12.5px;color:var(--ink-3);font-style:italic}
+.comp-resultat{display:none;margin-top:16px}
+.comp-resultat.visible{display:block}
+.comp-vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.comp-carte{border:1.5px solid var(--ligne-forte);border-radius:12px;padding:13px 14px;background:#fff}
+.comp-carte.reco{border-color:var(--vert);background:var(--vert-pale)}
+.comp-carte .lib{font-size:12px;color:var(--ink-3);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.comp-carte .val{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:6px;font-variant-numeric:tabular-nums}
+.comp-reco{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--vert);background:#fff;border:1px solid color-mix(in srgb,var(--vert) 40%,transparent);border-radius:6px;padding:2px 6px}
+.comp-verdict{margin-top:12px;font-size:13px;font-weight:500;color:var(--indigo-deep);background:var(--indigo-pale);border-radius:9px;padding:11px 13px;line-height:1.55}
+.comp-verdict:empty{display:none}
+.comp-rappel{margin-top:10px;font-size:10.5px;color:var(--ink-3);line-height:1.55}
+
+/* rapport = lead magnet */
+.res-rapport{margin-top:22px;border:1.5px solid var(--indigo);border-radius:16px;padding:20px;background:linear-gradient(180deg,var(--indigo-pale),transparent)}
+.res-rapport h3{font-size:17px;font-weight:750;letter-spacing:-.01em}
+.res-rapport>p{color:var(--ink-2);font-size:13.5px;margin-top:8px;line-height:1.55}
+.rap-form{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.rap-row{display:flex;gap:10px}
+.rap-form input[type=text],.rap-form input[type=email],.rap-form select{flex:1;width:100%;padding:12px 14px;border:1.5px solid var(--ligne-forte);border-radius:10px;font-family:inherit;font-size:14.5px;background:#fff;color:var(--ink)}
+.rap-form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.rap-form input:focus,.rap-form select:focus{outline:none;border-color:var(--indigo)}
+.opt-mini{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--ink-2);cursor:pointer;line-height:1.4}
+.opt-mini input{margin-top:2px;flex:none}
+.rap-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:2px}
+.rap-btns .btn-p{flex:1;background:var(--indigo);color:#fff;border:none;border-radius:11px;padding:13px;font-family:inherit;font-size:14.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.rap-btns .btn-p:hover{background:var(--indigo-deep)}
+.rap-btns .btn-s{background:#fff;color:var(--ink);border:1px solid var(--ligne-forte);border-radius:11px;padding:13px 16px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap}
+.rap-btns .btn-s:hover{border-color:var(--indigo);color:var(--indigo)}
+.rap-ok{font-size:13px;color:var(--vert);font-weight:600;background:var(--vert-pale);border:1px solid color-mix(in srgb,var(--vert) 26%,transparent);border-radius:9px;padding:10px 12px}
+.rap-rgpd{font-size:10.5px;color:var(--ink-3);line-height:1.45}
+.res-flotte{margin-top:22px;padding-top:20px;border-top:1px solid var(--ligne)}
+.rf-intro{font-size:15px;font-weight:650;margin-bottom:4px}
+.rf-sous{font-size:13px;color:var(--ink-3);margin-bottom:12px;line-height:1.5}
+.res-caution{margin-top:18px;font-size:11.5px;color:var(--ink-3);line-height:1.55;border-top:1px solid var(--ligne);padding-top:14px}
+
+/* ---- Rapport (vue plein écran dans la modale) ---- */
+.rapport-vue{padding:4px 2px}
+.rapport-tete{border-bottom:2px solid var(--indigo-deep);padding-bottom:14px;margin-bottom:20px}
+.rapport-kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo);font-weight:600}
+.rapport-h1{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-top:6px;line-height:1.2}
+.rapport-meta{font-size:12px;color:var(--ink-3);margin-top:8px;line-height:1.5}
+.rapport-section{margin-top:24px}
+.rapport-section h3{font-size:14px;font-weight:750;letter-spacing:-.01em;padding-bottom:8px;border-bottom:1px solid var(--ligne);margin-bottom:12px}
+.rapport-synth{display:flex;gap:14px;flex-wrap:wrap}
+.rapport-tuile{flex:1;min-width:150px;border:1px solid var(--ligne);border-radius:12px;padding:14px 16px;background:var(--pierre)}
+.rapport-tuile .lab{font-size:11.5px;color:var(--ink-3)}
+.rapport-tuile .num{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.rapport-p{font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:8px}
+.rapport-regle{display:flex;gap:10px;font-size:13px;color:var(--ink-2);line-height:1.55;padding:8px 0;border-top:1px solid var(--ligne)}
+.rapport-regle:first-child{border-top:none}
+.rapport-regle b{color:var(--ink);flex:none;min-width:120px}
+.rapport-pieces{list-style:none;display:flex;flex-direction:column;gap:9px}
+.rapport-pieces li{position:relative;padding-left:26px;font-size:13px;color:var(--ink-2);line-height:1.5}
+.rapport-pieces li::before{content:'';position:absolute;left:0;top:1px;width:16px;height:16px;border:1.5px solid var(--ligne-forte);border-radius:4px}
+.rapport-src{font-size:11px;color:var(--ink-3);line-height:1.6;font-family:'Geist Mono',monospace}
+.rapport-cta{margin-top:24px;background:var(--indigo-deep);border-radius:14px;padding:20px;color:#fff}
+.rapport-cta h3{font-size:16px;font-weight:750;border:none;padding:0;margin:0;color:#fff}
+.rapport-cta p{font-size:13px;color:rgba(255,255,255,.85);margin-top:6px;line-height:1.55}
+.rapport-cta .rc-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.rapport-cta a{flex:1;text-align:center;border-radius:10px;padding:11px;font-size:13.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.rapport-cta a.p{background:#fff;color:var(--indigo-deep)}
+.rapport-cta a.s{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3)}
+
+@media print{
+  .overlay{position:static;background:none;padding:0;display:block}
+  .modale{max-width:none;max-height:none;box-shadow:none;border-radius:0}
+  .m-tete,.m-pied,.no-print{display:none!important}
+  .m-corps{overflow:visible;padding:0}
+}
+
+</style>
 </head>
 <body>
 
@@ -709,455 +903,15 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
       Conçu par une avocate au Barreau de Paris
     </span>
   </div>
+  <div style="margin-top:28px;text-align:center">
+    <button class="cta-ouvrir" id="ouvrir">Calculer mon avantage en nature →</button>
+  </div>
 </header>
 
-<div class="sim-wrap">
-
-  <!-- ============ COLONNE QUESTIONS ============ -->
-  <form class="sim-form" id="aen-form" autocomplete="off">
-
-    <!-- ===== Qualification : y a-t-il un avantage en nature à calculer ? ===== -->
-    <fieldset id="q-type">
-      <legend class="q-legend">De quel type de véhicule s'agit-il ?</legend>
-      <div class="q-cartes">
-        <label class="q-carte">
-          <input type="radio" name="typevhc" value="vp">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Voiture particulière</span>
-            <span class="q-carte-sous">Véhicule de fonction fourni par l'entreprise</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="typevhc" value="vu">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Véhicule utilitaire</span>
-            <span class="q-carte-sous">Fourgon, camionnette, VU deux places</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="typevhc" value="deuxroues">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Deux-roues ou vélo</span>
-            <span class="q-carte-sous">Scooter, moto, vélo de fonction</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="typevhc" value="salarie">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Véhicule du salarié</span>
-            <span class="q-carte-sous">Le véhicule appartient au salarié</span></span>
-          </span>
-        </label>
-      </div>
-    </fieldset>
-
-    <fieldset id="q-attribution" hidden>
-      <legend class="q-legend">Le véhicule est-il attribué à un salarié identifié, qui le conserve en dehors du temps de travail (soirs, week-ends) ?</legend>
-      <div class="q-cartes">
-        <label class="q-carte">
-          <input type="radio" name="attribution" value="oui">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Oui</span>
-            <span class="q-carte-sous">Mise à disposition permanente, usage privé possible</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="attribution" value="non">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Non</span>
-            <span class="q-carte-sous">Véhicule partagé (pool) ou restitué chaque soir</span></span>
-          </span>
-        </label>
-      </div>
-    </fieldset>
-
-    <fieldset id="q-beneficiaire" hidden>
-      <legend class="q-legend">Qui utilise le véhicule ?</legend>
-      <div class="q-cartes">
-        <label class="q-carte">
-          <input type="radio" name="beneficiaire" value="salarie">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Un salarié</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="beneficiaire" value="assimile">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Un dirigeant assimilé salarié</span>
-            <span class="q-carte-sous">Président de SAS, gérant minoritaire ou égalitaire</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="beneficiaire" value="tns">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Un gérant majoritaire ou autre TNS</span>
-            <span class="q-carte-sous">Travailleur non salarié</span></span>
-          </span>
-        </label>
-      </div>
-    </fieldset>
-
-    <fieldset id="q-mode" hidden>
-      <legend class="q-legend">Le véhicule est-il acheté ou loué par l'entreprise ?</legend>
-      <div class="q-cartes">
-        <label class="q-carte">
-          <input type="radio" name="mode" value="achat">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Acheté</span>
-            <span class="q-carte-sous">Véhicule détenu par l'entreprise, y compris financé par crédit (hors crédit-bail)</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="mode" value="location">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Loué</span>
-            <span class="q-carte-sous">LLD, LOA (leasing) ou crédit-bail. Locations courtes répétées : analyse individuelle</span></span>
-          </span>
-        </label>
-      </div>
-    </fieldset>
-
-    <fieldset id="q-periode" hidden>
-      <legend class="q-legend">À quelle date le véhicule a-t-il été mis à la disposition du salarié ?</legend>
-      <div class="q-cartes">
-        <label class="q-carte">
-          <input type="radio" name="periode" value="post" checked>
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">À partir du 1er février 2025</span>
-            <span class="q-carte-sous">Barème renforcé issu de l'arrêté du 25 février 2025</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="periode" value="pre">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Avant le 1er février 2025</span>
-            <span class="q-carte-sous">Ancien barème, conservé tant que la mise à disposition se poursuit</span></span>
-          </span>
-        </label>
-      </div>
-    </fieldset>
-
-    <fieldset id="q-energie" hidden>
-      <legend class="q-legend">Quelle est la motorisation du véhicule ?</legend>
-      <div class="q-cartes">
-        <label class="q-carte">
-          <input type="radio" name="energie" value="thermique" checked>
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Thermique</span>
-            <span class="q-carte-sous">Essence, diesel, GPL</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="energie" value="hybride">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">Hybride</span>
-            <span class="q-carte-sous">Y compris hybride rechargeable</span></span>
-          </span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="energie" value="electrique">
-          <span class="q-carte-corps"><span class="q-puce"></span>
-            <span><span class="q-carte-titre">100 % électrique</span></span>
-          </span>
-        </label>
-      </div>
-      <div class="q-note-auto" id="note-hybride" hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
-        <span>Aucun abattement pour les hybrides, même rechargeables : l'abattement de 70 % est réservé aux véhicules fonctionnant exclusivement à l'électricité, sous condition d'éco-score (arrêté du 25 février 2025, art. 3, III, B et D).</span>
-      </div>
-    </fieldset>
-
-    <fieldset id="q-ecoscore" hidden>
-      <legend class="q-legend">Le véhicule atteint-il le score environnemental requis (éco-score) ?</legend>
-      <p class="q-aide">Cette condition ouvre droit à l'abattement de 70 %. Le véhicule doit figurer sur la liste des versions éligibles publiée par l'ADEME, en vigueur à la date de mise à disposition (Code de l'énergie, art. D.251-1). S'il a intégré la liste après sa mise à disposition, l'abattement de 70 % s'applique à compter de la date de son inscription (BOSS, mise à jour du 7 mai 2026) : répondez Oui à partir de cette date, ou faites vérifier votre situation. Votre loueur ou votre concessionnaire peut vous le confirmer.</p>
-      <div class="q-cartes q-cartes--rang">
-        <label class="q-carte">
-          <input type="radio" name="ecoscore" value="oui">
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">Oui</span></span></span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="ecoscore" value="non">
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">Non</span></span></span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="ecoscore" value="nsp">
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">Je ne sais pas</span></span></span>
-        </label>
-      </div>
-      <p class="q-msg-double" id="msg-nsp" hidden>Nous affichons les deux montants, avec et sans abattement, pour situer l'enjeu.</p>
-    </fieldset>
-
-    <fieldset id="q-age" hidden>
-      <legend class="q-legend">Le véhicule a-t-il plus de 5 ans ?</legend>
-      <p class="q-aide">L'âge se compte depuis la première mise en circulation du véhicule, pas depuis son acquisition par l'entreprise, et s'apprécie à la date de mise à disposition au salarié.</p>
-      <div class="q-cartes q-cartes--rang">
-        <label class="q-carte">
-          <input type="radio" name="age" value="jeune" checked>
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">5 ans ou moins</span></span></span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="age" value="ancien">
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">Plus de 5 ans</span></span></span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="age" value="bascule">
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">Il franchit les 5 ans cette année</span></span></span>
-        </label>
-      </div>
-    </fieldset>
-
-    <fieldset id="q-carburant" hidden>
-      <legend class="q-legend">L'entreprise prend-elle en charge le carburant utilisé pour les trajets privés ?</legend>
-      <p class="q-aide">Si la carte carburant ne sert qu'aux trajets professionnels et que vous pouvez le justifier (suivi kilométrique), répondez non. Sans suivi, l'URSSAF présume la prise en charge du carburant privé. Le calcul « oui » retient le forfait global carburant ; l'employeur peut aussi retenir le taux de base majoré des dépenses réelles de carburant privé, option non calculée ici.</p>
-      <div class="q-cartes q-cartes--rang">
-        <label class="q-carte">
-          <input type="radio" name="carburant" value="non" checked>
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">Non</span></span></span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="carburant" value="oui">
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">Oui</span></span></span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="carburant" value="partiel">
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">En partie</span><span class="q-carte-sous">Carte plafonnée, prise en charge partielle</span></span></span>
-        </label>
-      </div>
-    </fieldset>
-
-    <div class="q-note-auto" id="note-recharge" hidden>
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
-      <span>Véhicule électrique : pour un véhicule mis à disposition jusqu'au 31 décembre 2027, l'évaluation de l'avantage ne tient pas compte des frais d'électricité engagés par l'employeur pour la recharge. La mise à disposition d'une borne sur le lieu de travail est évaluée à un montant nul, y compris pour les frais d'électricité. Les bornes installées hors du lieu de travail obéissent à des règles propres (arrêté du 25 février 2025, art. 3 et 4).</span>
-    </div>
-
-    <fieldset id="q-borne" hidden>
-      <legend class="q-legend">L'employeur a-t-il financé une borne de recharge au domicile du salarié ?</legend>
-      <div class="q-cartes q-cartes--rang">
-        <label class="q-carte">
-          <input type="radio" name="borne" value="non" checked>
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">Non</span></span></span>
-        </label>
-        <label class="q-carte">
-          <input type="radio" name="borne" value="oui">
-          <span class="q-carte-corps"><span class="q-puce"></span><span><span class="q-carte-titre">Oui</span></span></span>
-        </label>
-      </div>
-    </fieldset>
-
-    <fieldset id="q-montant-achat" hidden>
-      <legend class="q-legend">Prix d'achat du véhicule (TTC)</legend>
-      <p class="q-aide">Prix effectivement payé par l'entreprise, remises et reprises déduites, options comprises si elles figurent dans le prix d'acquisition.</p>
-      <div class="champ-montant">
-        <input type="text" inputmode="decimal" id="prix-achat" placeholder="38 000" aria-describedby="err-achat">
-        <span class="suffixe">€</span>
-      </div>
-      <p class="champ-erreur" id="err-achat" role="alert"></p>
-    </fieldset>
-
-    <fieldset id="q-montant-location" hidden>
-      <legend class="q-legend">Coût annuel de la location (TTC)</legend>
-      <p class="q-aide">Loyers de l'année, en ajoutant l'entretien et l'assurance pris en charge par l'entreprise, même facturés séparément. Si le carburant privé est pris en charge (forfait global), incluez aussi le carburant payé par l'entreprise.</p>
-      <div class="champ-montant">
-        <input type="text" inputmode="decimal" id="cout-location" placeholder="9 600" aria-describedby="err-location">
-        <span class="suffixe">€</span>
-      </div>
-      <p class="champ-erreur" id="err-location" role="alert"></p>
-    </fieldset>
-
-    <details class="affiner" id="bloc-affiner" hidden>
-      <summary>Affiner le calcul</summary>
-      <div class="affiner-corps">
-        <div>
-          <div class="affiner-rang">
-            <div class="affiner-groupe">
-              <label for="date-debut">Début de mise à disposition</label>
-              <input type="date" id="date-debut" value="2026-01-01" min="2026-01-01" max="2026-12-31">
-            </div>
-            <div class="affiner-groupe">
-              <label for="date-fin">Fin (si le véhicule n'est pas attribué toute l'année)</label>
-              <input type="date" id="date-fin" value="2026-12-31" min="2026-01-01" max="2026-12-31">
-            </div>
-          </div>
-          <p class="affiner-note" id="note-prorata"></p>
-          <p class="affiner-note">Ce simulateur calcule l'avantage de l'année 2026 (barèmes et plafonds 2026). Tout mois commencé compte comme un mois entier (BOSS, Avantages en nature). La restitution du véhicule pendant les congés peut, sous conditions de preuve, réduire l'avantage par semaines complètes de non-disposition : cas particulier relevant d'une analyse individuelle.</p>
-          <div class="affiner-groupe" style="margin-top:12px">
-            <label for="participation">Participation ou redevance annuelle versée par le salarié</label>
-            <input type="text" inputmode="decimal" id="participation" placeholder="0">
-            <p class="affiner-note">La participation du salarié vient en déduction de l'évaluation. Si elle est au moins égale à l'évaluation, l'avantage en nature est nul (BOSS, Avantages en nature).</p>
-          </div>
-          <div class="affiner-groupe" style="margin-top:12px">
-            <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer">
-              <input type="checkbox" id="chk-restitution" style="margin-top:3px">
-              <span>Le véhicule ne sert qu'aux trajets domicile-travail, ou il est restitué pendant les week-ends et les congés</span>
-            </label>
-          </div>
-        </div>
-        <div id="affiner-plafonnement" hidden>
-          <div class="affiner-rang">
-            <div class="affiner-groupe">
-              <label for="prix-loueur">Prix d'achat du véhicule par le loueur (TTC)</label>
-              <input type="text" inputmode="decimal" id="prix-loueur" placeholder="à demander au loueur">
-            </div>
-            <div class="affiner-groupe">
-              <label for="prix-catalogue">Prix public catalogue (TTC)</label>
-              <input type="text" inputmode="decimal" id="prix-catalogue" placeholder="42 000">
-            </div>
-          </div>
-          <p class="affiner-info" style="margin-top:10px">
-            En location, l'évaluation forfaitaire est plafonnée à ce qu'aurait donné un achat.
-            <span id="note-rabais"></span>
-            Le plafond retient le taux d'achat correspondant à l'âge du véhicule et à la même option carburant (plafonnement : doctrine BOSS, rubrique Avantages en nature ; taux d'achat : arrêté du 25 février 2025, art. 3, III, B, ou art. 3, III, A pour les mises à disposition antérieures au 1er février 2025). En location, l'âge ne joue que pour ce plafonnement.
-          </p>
-        </div>
-      </div>
-    </details>
-
-  </form>
-
-  <!-- ============ COLONNE RÉSULTAT ============ -->
-  <div class="sim-resultat-col">
-    <section class="resultat" aria-label="Résultat de la simulation">
-      <div class="resultat-tete">
-        <span class="resultat-tete-titre">Votre estimation</span>
-        <button type="button" class="btn-recommencer" id="btn-reset">Recommencer</button>
-      </div>
-      <div class="resultat-corps">
-        <div aria-live="polite" id="zone-resultat">
-          <div class="res-vide">
-            <p>Répondez aux questions pour obtenir votre estimation. Le calcul s'affiche au fur et à mesure.</p>
-            <div class="res-vide-etapes">
-              <span class="res-vide-etape"><span class="num">01</span> Qualifiez le véhicule et son usage</span>
-              <span class="res-vide-etape"><span class="num">02</span> Décrivez le véhicule</span>
-              <span class="res-vide-etape"><span class="num">03</span> Indiquez le montant</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PANNEAU FLOTTE ============ -->
-    <section class="flotte" id="flotte" hidden aria-label="Ma flotte">
-      <div class="flotte-tete">
-        <span class="flotte-titre">Ma flotte <span class="flotte-compte" id="flotte-compte">(0)</span></span>
-        <button type="button" class="flotte-vider" id="flotte-vider">Vider</button>
-      </div>
-      <div class="flotte-liste" id="flotte-liste"></div>
-      <div class="flotte-total">
-        <div class="flotte-total-lib">Assiette AEN annuelle cumulée</div>
-        <div class="flotte-total-val" id="flotte-total-val">0 €</div>
-        <div class="flotte-total-mens" id="flotte-total-mens"></div>
-      </div>
-      <div class="flotte-repartition" id="flotte-repartition"></div>
-      <div class="flotte-actions">
-        <button type="button" class="btn-copier" id="flotte-csv">Exporter la flotte (CSV)</button>
-        <button type="button" class="btn-copier" id="flotte-nouveau">Ajouter un autre véhicule</button>
-      </div>
-      <p class="flotte-note">Votre flotte est enregistrée dans ce navigateur uniquement. Rien n'est transmis.</p>
-    </section>
-
-    <div class="post-blocs">
-
-      <div class="post-bloc">
-        <h3>Forfait ou réel : quelle méthode retenir ?</h3>
-        <p>L'employeur peut retenir la méthode la plus basse, par salarié et par an. Comparez avec vos données réelles.</p>
-        <details id="comp-details" open>
-          <summary>Saisir mes données réelles (kilométrage, coûts)</summary>
-          <div>
-            <div class="comp-champs ouvert">
-              <div><label for="km-total">Kilométrage annuel total</label><input type="text" inputmode="numeric" id="km-total" placeholder="25 000"></div>
-              <div><label for="km-prive">Kilométrage à titre privé</label><input type="text" inputmode="numeric" id="km-prive" placeholder="8 000"></div>
-              <div><label for="cout-reel">Coût annuel réel du véhicule (amortissement ou loyers, assurance, entretien, hors carburant)</label><input type="text" inputmode="decimal" id="cout-reel" placeholder="7 400"></div>
-              <div><label for="carb-prive">Carburant payé par l'employeur pour l'usage privé (réel annuel)</label><input type="text" inputmode="decimal" id="carb-prive" placeholder="0"></div>
-              <p class="comp-attente" id="comp-attente">En attente de vos données.</p>
-              <div class="comp-resultat" id="comp-resultat">
-                <div class="comp-vs">
-                  <div class="comp-carte" id="carte-forfait"><span class="lib">Forfait <span class="comp-reco" id="reco-forfait" hidden>recommandé</span></span><div class="val" id="comp-forfait">·</div></div>
-                  <div class="comp-carte" id="carte-reel"><span class="lib">Réel (quote-part privée) <span class="comp-reco" id="reco-reel" hidden>recommandé</span></span><div class="val" id="comp-reel">·</div></div>
-                </div>
-                <p class="comp-verdict" id="comp-verdict"></p>
-                <p class="comp-rappel">Formule : (amortissement + assurance + entretien) × km privés / km totaux, puis ajout du carburant privé réellement payé par l'employeur (arrêté du 25 février 2025, art. 3, II ; prorata kilométrique : doctrine BOSS). Amortissement : 20 % du prix d'achat TTC par an pour un véhicule de 5 ans au plus, 10 % par an au-delà ; véhicule loué, loyers annuels à la place de l'amortissement. Véhicule 100 % électrique éligible à l'éco-score : en évaluation au réel, abattement de 50 % plafonné à 2 026,30 € en 2026, appliqué ici au réel. Sans éco-score, aucun abattement ne s'applique à l'évaluation au réel. L'évaluation au réel suppose de pouvoir justifier chaque élément en cas de contrôle ; à défaut de justificatifs, l'URSSAF retient le forfait.</p>
-              </div>
-            </div>
-          </div>
-        </details>
-      </div>
-
-      <div class="post-bloc">
-        <h3>En cas de contrôle URSSAF</h3>
-        <p>L'avantage en nature véhicule est régulièrement vérifié en contrôle.</p>
-        <details>
-          <summary>Voir ce que représente votre situation sur trois ans</summary>
-          <div>
-            <p style="margin-bottom:8px">En principe, l'URSSAF peut vérifier les trois années civiles précédant le contrôle (CSS, art. L.244-3). <span id="ctrl-assiette">Sur la base de votre paramétrage, jusqu'à <strong id="ctrl-montant">·</strong> d'assiette pourraient être réintégrés si l'avantage n'a pas été déclaré, selon la durée de mise à disposition sur la période.</span></p>
-            <p style="margin-bottom:8px">Le simulateur ne chiffre pas les majorations de redressement, les pénalités ni les majorations de retard : elles dépendent notamment de l'absence de mise en conformité, du travail dissimulé, de la procédure, de la date d'engagement du contrôle et de l'analyse URSSAF (CSS, art. L.243-7-6, L.243-7-7, R.243-18, R.243-59).</p>
-            <p>En cas de constatation d'une infraction de travail dissimulé, ce délai est porté à 5 ans (CSS, art. L.244-3, dernier alinéa).</p>
-          </div>
-        </details>
-      </div>
-
-      <div class="post-bloc bloc-email">
-        <h3>Recevez votre rapport gratuit</h3>
-        <p>Le détail de votre calcul au forfait et au réel, la méthode la plus favorable, votre exposition estimée en cas de contrôle, les références applicables et la liste des pièces utiles (carte grise, contrat d'attribution, politique véhicule, justificatifs carburant et kilométrages, loyers, assurance, entretien, participation du salarié). Sans engagement, utile à conserver dans votre dossier de paie.</p>
-        <input type="email" id="email-rapport" placeholder="Votre e-mail professionnel">
-        <label class="opt-veille"><input type="checkbox" id="opt-veille"><span>M'avertir si le barème de l'avantage en nature véhicule change. Un message uniquement lorsque le droit évolue (arrêté, LFSS, mise à jour du BOSS). Pas de démarchage.</span></label>
-        <br><button class="btn-primaire" type="button" id="btn-rapport">Recevoir le rapport</button>
-        <button class="btn-copier" type="button" id="btn-imprimer" style="margin-left:8px">Imprimer / PDF</button>
-        <p class="capture-ok" id="capture-ok-email" hidden></p>
-        <p class="rgpd">Adresse traitée par ComplyDB SAS (ACOMPIA), responsable de traitement, pour vous adresser ce rapport et, si vous l'avez coché, vous alerter des évolutions du barème (base légale : votre consentement). Conservation : 6 mois à compter du dernier contact. Vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition, et pouvez introduire une réclamation auprès de la CNIL. Exercice des droits : contact@acompia.fr.</p>
-      </div>
-
-      <div class="post-bloc bloc-produit">
-        <span class="produit-label">Offre entreprise · disponible</span>
-        <h3>Passez du calcul ponctuel au <span class="grad-clair">pilotage</span> de toute votre flotte.</h3>
-        <p class="produit-accroche">Un redressement se joue rarement sur un véhicule isolé : c'est l'accumulation d'écarts sur toute la flotte, sur plusieurs années, qui fait grimper l'addition.</p>
-
-        <div class="produit-apercu" aria-hidden="true">
-          <div class="pa-tete"><span class="pa-titre">Tableau de bord · avantage en nature</span><span class="pa-compte">14 véhicules</span></div>
-          <div class="pa-ligne"><span class="pa-vhc">Peugeot 308 · GE-742-QA</span><span class="pa-statut ok">à jour</span></div>
-          <div class="pa-ligne"><span class="pa-vhc">Renault Clio · AB-129-CD</span><span class="pa-statut manque">carte grise manquante</span></div>
-          <div class="pa-ligne"><span class="pa-vhc">Tesla Model 3 · FT-051-ZE</span><span class="pa-statut alerte">écart paie / DSN</span></div>
-        </div>
-
-        <div class="produit-offres">
-          <div class="produit-offre">
-            <div class="po-tete"><span class="po-nom">Pilotage de flotte</span><span class="po-prix">dès 150 € HT / mois</span></div>
-            <p class="po-desc">L'outil de conformité URSSAF que vous gardez en main : il calcule l'avantage en nature de chaque véhicule, signale les pièces manquantes, vous alerte au moindre écart paie / DSN et tient votre historique opposable. L'audit de l'année en cours est inclus.</p>
-          </div>
-          <div class="produit-offre">
-            <div class="po-tete"><span class="po-nom">Audit AEN des 3 ans</span><span class="po-prix">dès 1 500 € HT</span></div>
-            <p class="po-desc">L'état des lieux de vos pratiques sur les 3 années que l'URSSAF peut contrôler. <b>À moitié prix si vous adoptez l'outil.</b></p>
-          </div>
-        </div>
-        <div class="produit-cta">
-          <a class="btn-rdv" href="/outils/pilotage-flotte-tarifs/">Voir les tarifs et calculer mon prix</a>
-          <a class="btn-devis" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Demander une démo</a>
-        </div>
-        <p class="produit-signe">L'expertise d'une avocate au Barreau de Paris, dans un outil que votre équipe garde en main.</p>
-      </div>
-
-      <div class="post-bloc bloc-attente">
-        <h3>Bientôt : la conformité sociale complète</h3>
-        <p><b>Au-delà des véhicules</b>, ACOMPIA étend sa surveillance à l'ensemble de vos thématiques URSSAF. Rejoignez la liste d'attente pour être informé de l'ouverture.</p>
-        <div class="veille-form">
-          <input type="email" id="email-flotte" placeholder="Votre e-mail professionnel">
-          <input type="text" inputmode="numeric" id="nb-vehicules" placeholder="Nombre de véhicules dans votre flotte" style="margin-top:8px">
-          <label class="opt-veille"><input type="checkbox" id="opt-flotte"><span>Être informé de l'ouverture et rejoindre la liste d'attente.</span></label>
-          <br><button class="btn-copier" type="button" id="btn-flotte" style="margin-top:10px">Rejoindre la liste d'attente</button>
-          <p class="capture-ok" id="capture-ok-flotte" hidden></p>
-          <p class="rgpd">Adresse et nombre de véhicules traités par ComplyDB SAS (ACOMPIA), responsable de traitement, pour vous informer de l'ouverture et vous recontacter (base légale : intérêt légitime au développement d'une relation commerciale entre professionnels). Conservation : 3 ans à compter du dernier contact. Vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition, et pouvez introduire une réclamation auprès de la CNIL : contact@acompia.fr.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ============ BARRE MOBILE ============ -->
-<div class="barre-mobile" id="barre-mobile" aria-hidden="true">
-  <span><span class="lib">AEN annuel estimé</span><br><span class="val" id="barre-montant">·</span></span>
-  <a href="#zone-resultat">Voir le détail</a>
-</div>
-
+<section style="max-width:760px;margin:0 auto;padding:8px 32px 48px;text-align:center">
+  <p style="color:var(--ink-2);font-size:16px;margin-bottom:18px">Estimez en 2 minutes l’impact pour votre entreprise et vos salariés. Gratuit, sans inscription.</p>
+  <button class="cta-ouvrir" onclick="ouvrirModale()">Calculer mon avantage en nature →</button>
+</section>
 <!-- ============ SECTIONS STATIQUES ============ -->
 <section class="statique">
   <p class="statique-eyebrow">Réponses de référence</p>
@@ -1293,18 +1047,34 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
   <a href="/" style="color:inherit">ACOMPIA</a> · conformité URSSAF par une avocate au Barreau de Paris · <a href="/mentions-legales.html" style="color:inherit">Mentions légales</a> · <a href="/politique-confidentialite.html" style="color:inherit">Confidentialité</a> · ComplyDB SAS
 </footer>
 
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Simulateur d'avantage en nature véhicule">
+  <div class="modale">
+    <div class="m-tete">
+      <div class="m-tete-row">
+        <span class="m-marque"><span class="pt"></span>Avantage en nature véhicule</span>
+        <button class="m-fermer" id="fermer" aria-label="Fermer">×</button>
+      </div>
+      <div class="progress-wrap" id="progress-wrap">
+        <div class="progress-lib" id="progress-lib">Étape 1</div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+    </div>
+    <div class="m-corps" id="corps"></div>
+    <div class="m-pied" id="pied">
+      <button class="btn-retour" id="retour" disabled>← Retour</button>
+      <button class="btn-suivant" id="suivant" hidden>Continuer</button>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ============================================================
    Moteur de calcul (maquette) · barème validé de l'article
+   VERROUILLÉ ET CONFORME AU POC — NE PAS MODIFIER.
    Montants en CENTIMES entiers. Taux en entiers (÷100).
    ============================================================ */
 const BAREME = {
   annee: 2026,
-  /* Constantes par année (centimes). Sources vérifiées le 14/07/2026 :
-     nouveau régime (abattement 70 %, art. 3, III, D) : 2025 arrêté 25/02/2025, 2026 BOSS § 910 ;
-     ancien régime (abattement 50 %, art. 3, III, C) : 2020 arrêté 21/05/2019, 2021-2023 BOSS versions
-     archivées (1 800 €, non revalorisé), 2024 BOSS 01/01/2024, 2025 arrêté, 2026 BOSS § 900.
-     Fin du régime de faveur électrique : 31/12/2027 (art. 3, III, D ; bornes : art. 4). Revalorisation annuelle des plafonds : art. 8. */
   constantes: {
     2020: { plafondElecAncien: 180000 },
     2021: { plafondElecAncien: 180000 },
@@ -1327,27 +1097,23 @@ const eurC = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR'
 function fmt(cents) {
   return (cents % 100 === 0 ? eur : eurC).format(cents / 100);
 }
-/* Mensuel : arrondi à l'euro (pas de fausse précision sur un forfait).
-   Le diviseur est le nombre de mois de mise à disposition, pas toujours 12. */
 function fmtMois(centsAnnuels, mois = 12) {
   return eur.format(Math.round(centsAnnuels / mois / 100));
 }
 
-/* Parsing d'un montant saisi à la française : espaces (fines, insécables), virgule décimale */
 function parseMontant(txt) {
   if (txt == null) return null;
-  let s = String(txt).replace(/[\s  €]/g, '');
+  let s = String(txt).replace(/[\s  €]/g, '');
   if (s === '') return null;
   s = s.replace(',', '.');
   if (!/^\d+(\.\d{0,2})?$/.test(s)) return NaN;
   return Math.round(parseFloat(s) * 100);
 }
 
-/* Prorata en douzièmes de mois entamés : tout mois commencé compte comme un mois entier (BOSS) */
 function moisEntames(debut, fin) {
   if (!debut || !fin) return 12;
   const d = new Date(debut), f = new Date(fin);
-  if (isNaN(d) || isNaN(f) || f < d) return null; // dates incohérentes
+  if (isNaN(d) || isNaN(f) || f < d) return null;
   let mois = (f.getFullYear() - d.getFullYear()) * 12 + (f.getMonth() - d.getMonth()) + 1;
   return Math.max(1, Math.min(12, mois));
 }
@@ -1355,28 +1121,28 @@ function moisEntames(debut, fin) {
 function calculer(etat) {
   const alertes = [];
 
-  /* ===== Qualification : y a-t-il un avantage en nature forfaitaire à calculer ? ===== */
+  /* ===== Qualification ===== */
   if (!etat.typevhc) return { incomplet: true, etape: 'qualification' };
   if (etat.typevhc === 'vu') {
-    return { analyse: true,
+    return { analyse: true, genre: 'aucun',
       motif: "Un véhicule utilitaire n'est pas considéré comme un avantage en nature lorsque l'employeur indique par écrit (règlement intérieur, note de service, contrat) qu'il est utilisé à des fins uniquement professionnelles (tolérance BOSS, rubrique Avantages en nature). Si un usage privé est possible ou si aucun écrit n'existe, le cas relève d'une analyse individuelle." };
   }
   if (etat.typevhc === 'deuxroues') {
-    return { analyse: true,
+    return { analyse: true, genre: 'specifique',
       motif: "Les deux-roues motorisés et les vélos de fonction obéissent à des règles propres, distinctes du forfait automobile. Ce cas est hors périmètre du simulateur." };
   }
   if (etat.typevhc === 'salarie') {
-    return { analyse: true,
+    return { analyse: true, genre: 'aucun',
       motif: "Un véhicule appartenant au salarié ne crée pas d'avantage en nature : les trajets professionnels relèvent du régime des frais professionnels et du barème kilométrique, un sujet distinct de ce simulateur." };
   }
   if (!etat.attribution) return { incomplet: true, etape: 'qualification' };
   if (etat.attribution === 'non') {
-    return { analyse: true,
+    return { analyse: true, genre: 'aucun',
       motif: "Sans attribution permanente à un salarié identifié (véhicule partagé, pool, véhicule restitué chaque soir), il n'y a pas d'avantage en nature forfaitaire, à condition de pouvoir le prouver. Attention : l'attribution de fait, un véhicule conservé le soir et le week-end sans écrit, est le premier chef de redressement de la matière. La charge de la preuve pèse sur l'employeur." };
   }
   if (!etat.beneficiaire) return { incomplet: true, etape: 'qualification' };
   if (etat.beneficiaire === 'tns') {
-    return { analyse: true,
+    return { analyse: true, genre: 'specifique',
       motif: "Le forfait de l'arrêté est réservé aux salariés et aux dirigeants assimilés salariés. Pour un gérant majoritaire ou un autre travailleur non salarié, l'avantage relève d'une logique propre, avec des enjeux sociaux et fiscaux différents. Ce cas est hors périmètre du simulateur." };
   }
   if (etat.beneficiaire === 'assimile') {
@@ -1385,21 +1151,21 @@ function calculer(etat) {
 
   /* ===== Cas hors périmètre du calcul ===== */
   if (etat.energie === 'electrique' && etat.periode === 'pre') {
-    return { analyse: true,
+    return { analyse: true, genre: 'specifique',
       motif: "Un véhicule 100 % électrique mis à disposition entre le 1er janvier 2020 et le 31 janvier 2025 bénéficie d'un abattement de 50 % plafonné (2 000,30 € en 2025, 2 026,30 € en 2026), sans condition d'éco-score, avec exclusion des frais d'électricité payés par l'employeur (arrêté du 25 février 2025, art. 3, III, C). Ce cas est hors périmètre du simulateur." };
   }
   if (etat.age === 'bascule') {
-    return { analyse: true,
+    return { analyse: true, genre: 'complexe',
       motif: "Le véhicule franchit le cap des 5 ans en cours d'année : la date de bascule entre les deux taux n'est pas fixée par les textes. Ce cas mérite une analyse individuelle." };
   }
   if (etat.energie !== 'electrique' && etat.carburant === 'partiel') {
-    return { analyse: true,
+    return { analyse: true, genre: 'complexe',
       motif: "Une prise en charge partielle du carburant (carte plafonnée, prise en charge limitée) ne correspond ni au taux de base ni au forfait global : l'avantage se calcule au taux de base majoré du carburant privé réellement pris en charge. Ce cas mérite une analyse individuelle." };
   }
 
   const grille = BAREME.taux[etat.periode];
   const carb = (etat.energie === 'electrique') ? 'non' : etat.carburant;
-  let taux, base, libBase, formuleBase;
+  let taux, base, libBase;
 
   if (etat.mode === 'achat') {
     taux = grille.achat[carb][etat.age];
@@ -1416,11 +1182,8 @@ function calculer(etat) {
   let montant = Math.round(base * taux / 100);
   lignes.push({ lib: 'Évaluation forfaitaire', formule: fmt(base) + ' × ' + taux + ' %', mnt: montant });
 
-  /* Plafonnement location (champs facultatifs). Référence : prix d'achat TTC du loueur ;
-     à défaut, prix catalogue constructeur (BOSS : prix conseillé au début du contrat). */
   if (etat.mode === 'location' && (etat.prixLoueur || etat.prixCatalogue)) {
     let ref = etat.prixLoueur || etat.prixCatalogue;
-    /* Écrêtage du rabais à 30 % du prix catalogue, seulement si les deux prix sont connus */
     if (etat.prixLoueur && etat.prixCatalogue) {
       const rabais = etat.prixCatalogue - etat.prixLoueur;
       const rabaisMax = Math.round(etat.prixCatalogue * 30 / 100);
@@ -1439,15 +1202,11 @@ function calculer(etat) {
     }
   }
 
-  /* Prorata : dates incohérentes = erreur explicite (etat.prorata === null) */
   if (etat.prorata === null) return { erreur: 'La date de fin doit être postérieure à la date de début.' };
   const prorata = etat.prorata ?? 12;
 
-  /* Abattement électrique */
   function appliquerAbattement(m) {
     const brut = Math.round(m * 70 / 100);
-    /* Plafond du millésime affiché (4 641,60 € en 2026, BOSS § 910 + urssaf.fr, vérifié le 14/07/2026) ;
-       les champs de dates sont bornés à l'année BAREME.annee pour rester cohérents avec ces constantes. */
     const plafond = Math.round(BAREME.constantes[BAREME.annee].plafondElecNouveau * prorata / 12);
     const abatt = Math.min(brut, plafond);
     return { abatt, plafonne: brut > plafond, plafond };
@@ -1468,7 +1227,6 @@ function calculer(etat) {
         formule: 'min(70 % × ' + fmt(m) + ' ; ' + fmt(plafond) + ')', mnt: -abatt, negatif: true });
       mF = m - abatt;
     }
-    /* Participation / redevance du salarié : AEN = max(0 ; évaluation − participation) */
     if (etat.participation > 0) {
       const deduit = Math.min(etat.participation, mF);
       ls.push({ lib: 'Participation du salarié', formule: 'max(0 ; ' + fmt(mF) + ' − ' + fmt(etat.participation) + ')', mnt: -deduit, negatif: true });
@@ -1494,7 +1252,6 @@ function calculer(etat) {
     sortie = { simple: resultatFinal(montant, false) };
   }
 
-  /* Alertes contextuelles */
   if (etat.energie === 'hybride' && carb === 'oui') {
     alertes.push("Hybride rechargeable : si l'employeur prend en charge l'électricité, le traitement de cette prise en charge relève d'une analyse individuelle.");
   }
@@ -1514,525 +1271,525 @@ function calculer(etat) {
     (etat.periode === 'post' ? 'art. 3, III, B' : 'art. 3, III, A') +
     (estElecEligible && etat.ecoscore !== 'non' ? ' et art. 3, III, D' : '');
 
-  return { ...sortie, alertes, regime: regimeTxt, artRef, prorataMois: prorata };
+  return { ...sortie, alertes, regime: regimeTxt, artRef, prorataMois: prorata,
+    baseLib: libBase, base, taux };
 }
+</script>
 
+<script>
 /* ============================================================
-   UI : le DOM est l'état, une map de visibilité, un recalcul
+   WIZARD : une question à la fois, barre de progression.
+   Réutilise le moteur calculer(etat) / BAREME ci-dessus.
    ============================================================ */
-const form = document.getElementById('aen-form');
-const zone = document.getElementById('zone-resultat');
-const barreMobile = document.getElementById('barre-mobile');
-const barreMontant = document.getElementById('barre-montant');
+const overlay = document.getElementById('overlay');
+const corps = document.getElementById('corps');
+const progressFill = document.getElementById('progress-fill');
+const progressLib = document.getElementById('progress-lib');
+const progressWrap = document.getElementById('progress-wrap');
+const btnRetour = document.getElementById('retour');
+const btnSuivant = document.getElementById('suivant');
+const pied = document.getElementById('pied');
 
-function lireEtat() {
-  const fd = new FormData(form);
-  return {
-    typevhc: fd.get('typevhc'),
-    attribution: fd.get('attribution'),
-    beneficiaire: fd.get('beneficiaire'),
-    mode: fd.get('mode'),
-    periode: fd.get('periode'),
-    energie: fd.get('energie'),
-    ecoscore: fd.get('ecoscore'),
-    age: fd.get('age') || 'jeune',
-    carburant: fd.get('carburant') || 'non',
-    borne: fd.get('borne') || 'non',
-    restitution: document.getElementById('chk-restitution').checked,
-    participation: parseMontant(document.getElementById('participation').value) || 0,
-    prixAchat: parseMontant(document.getElementById('prix-achat').value),
-    coutLocation: parseMontant(document.getElementById('cout-location').value),
-    prixLoueur: parseMontant(document.getElementById('prix-loueur').value),
-    prixCatalogue: parseMontant(document.getElementById('prix-catalogue').value),
-    prorata: moisEntames(document.getElementById('date-debut').value, document.getElementById('date-fin').value)
-  };
+/* Taux de cotisations patronales retenu pour la traduction en euros (hypothèse pédagogique, à valider). */
+const TAUX_COTIS_PATRONALES = 0.45;
+
+let etat = {};
+function neuf(){
+  etat = { typevhc:null, attribution:null, beneficiaire:null, mode:null, periode:'post',
+    energie:null, ecoscore:null, age:'jeune', carburant:'non', borne:'non', restitution:false,
+    participation:0, prixAchat:null, coutLocation:null, prixLoueur:null, prixCatalogue:null, prorata:12 };
+}
+const qualifie = s => s.typevhc==='vp' && s.attribution==='oui' && (s.beneficiaire==='salarie'||s.beneficiaire==='assimile');
+
+const STEPS = [
+  { id:'typevhc', applies:()=>true, titre:"De quel type de véhicule s'agit-il ?",
+    options:[
+      {v:'vp',t:'Voiture particulière',s:"Véhicule de fonction fourni par l'entreprise"},
+      {v:'vu',t:'Véhicule utilitaire',s:'Fourgon, camionnette, VU 2 places'},
+      {v:'deuxroues',t:'Deux-roues ou vélo',s:'Scooter, moto, vélo de fonction'},
+      {v:'salarie',t:'Véhicule du salarié',s:'Le véhicule appartient au salarié'},
+    ]},
+  { id:'attribution', applies:s=>s.typevhc==='vp', titre:"Le salarié conserve-t-il le véhicule en dehors du travail (soirs, week-ends) ?",
+    options:[
+      {v:'oui',t:'Oui',s:'Mise à disposition permanente, usage privé possible'},
+      {v:'non',t:'Non',s:'Véhicule partagé (pool) ou restitué chaque soir'},
+    ]},
+  { id:'beneficiaire', applies:s=>s.typevhc==='vp'&&s.attribution==='oui', titre:'Qui utilise le véhicule ?',
+    options:[
+      {v:'salarie',t:'Un salarié'},
+      {v:'assimile',t:'Un dirigeant assimilé salarié',s:'Président de SAS, gérant minoritaire ou égalitaire'},
+      {v:'tns',t:'Un gérant majoritaire ou autre TNS',s:'Travailleur non salarié'},
+    ]},
+  { id:'mode', applies:s=>qualifie(s), titre:"Le véhicule est-il acheté ou loué par l'entreprise ?",
+    options:[
+      {v:'achat',t:'Acheté',s:'Détenu par l\'entreprise, y compris à crédit'},
+      {v:'location',t:'Loué',s:'LLD, LOA (leasing) ou crédit-bail'},
+    ]},
+  { id:'periode', applies:s=>qualifie(s), titre:'À quelle date le véhicule a-t-il été mis à la disposition du salarié ?',
+    options:[
+      {v:'post',t:'À partir du 1er février 2025',s:'Barème renforcé (arrêté du 25 février 2025)'},
+      {v:'pre',t:'Avant le 1er février 2025',s:'Ancien barème, conservé tant que la mise à disposition se poursuit'},
+    ]},
+  { id:'energie', applies:s=>qualifie(s), titre:'Quelle est la motorisation du véhicule ?',
+    options:[
+      {v:'thermique',t:'Thermique',s:'Essence, diesel, GPL'},
+      {v:'hybride',t:'Hybride',s:'Y compris hybride rechargeable'},
+      {v:'electrique',t:'100 % électrique'},
+    ]},
+  { id:'ecoscore', applies:s=>qualifie(s)&&s.energie==='electrique'&&s.periode==='post', titre:'Le véhicule atteint-il le score environnemental requis (éco-score) ?',
+    aide:"Il doit figurer sur la liste ADEME des versions éligibles. Votre loueur ou concessionnaire peut le confirmer.",
+    options:[{v:'oui',t:'Oui'},{v:'non',t:'Non'},{v:'nsp',t:'Je ne sais pas',s:'Nous affichons alors le montant le plus prudent'}]},
+  { id:'age', applies:s=>qualifie(s)&&(s.mode==='achat'||s.mode==='location'), titre:'Le véhicule a-t-il plus de 5 ans ?',
+    aide:"L'âge se compte depuis la première mise en circulation, et s'apprécie à la mise à disposition au salarié.",
+    options:[{v:'jeune',t:'5 ans ou moins'},{v:'ancien',t:'Plus de 5 ans'},{v:'bascule',t:'Il franchit les 5 ans cette année'}]},
+  { id:'carburant', applies:s=>qualifie(s)&&s.energie&&s.energie!=='electrique', titre:"L'entreprise prend-elle en charge le carburant des trajets privés ?",
+    options:[{v:'non',t:'Non'},{v:'oui',t:'Oui'},{v:'partiel',t:'En partie',s:'Carte plafonnée, prise en charge partielle'}]},
+  { id:'montant', applies:s=>qualifie(s)&&!!s.mode, montant:true },
+];
+
+let parcours = [];
+let etapeActuelle = null;
+
+/* Mémoire du dernier résultat pour le comparateur réel et le rapport */
+let dernierResultat = null, dernierEtat = null, dernierForfait = null, dernierReel = null;
+
+function etapesApplicables(){ return STEPS.filter(st=>st.applies(etat)); }
+
+function ouvrirModale(){ neuf(); parcours=[]; dernierReel=null; overlay.classList.add('open'); document.body.style.overflow='hidden'; aller(STEPS[0]); }
+function fermerModale(){ overlay.classList.remove('open'); document.body.style.overflow=''; }
+
+function aller(step){
+  etapeActuelle = step;
+  if(!parcours.includes(step.id)) parcours.push(step.id);
+  majProgress();
+  rendre(step);
+  pied.style.display='';
+  btnRetour.disabled = parcours.length<=1;
 }
 
-/* La qualification (type de véhicule, attribution, bénéficiaire) conditionne tout le parcours.
-   Un cas disqualifiant masque le formulaire de calcul : le message s'affiche côté résultat. */
-function qualifie(e) {
-  return e.typevhc === 'vp' && e.attribution === 'oui' &&
-    (e.beneficiaire === 'salarie' || e.beneficiaire === 'assimile');
+function majProgress(){
+  const list = etapesApplicables();
+  let n, total;
+  if(qualifie(etat) && etat.energie){
+    const idx = list.findIndex(s=>s.id===etapeActuelle.id);
+    n = idx>=0 ? idx+1 : parcours.length;
+    total = list.length;
+  } else {
+    n = parcours.length;
+    const deadEnd = (etat.typevhc && etat.typevhc!=='vp') || etat.attribution==='non' || etat.beneficiaire==='tns';
+    total = deadEnd ? n : 9;
+  }
+  total = Math.max(total, n);
+  progressWrap.style.display='';
+  progressLib.textContent = 'Étape ' + n + ' sur ' + total;
+  progressFill.style.width = Math.round(n/total*100) + '%';
 }
 
-const VISIBILITE = {
-  'q-attribution':       e => e.typevhc === 'vp',
-  'q-beneficiaire':      e => e.typevhc === 'vp' && e.attribution === 'oui',
-  'q-mode':              e => qualifie(e),
-  'q-periode':           e => qualifie(e),
-  'q-energie':           e => qualifie(e),
-  'note-hybride':        e => qualifie(e) && e.energie === 'hybride',
-  'q-ecoscore':          e => qualifie(e) && e.energie === 'electrique' && e.periode === 'post',
-  'q-age':               e => qualifie(e) && (e.mode === 'achat' || e.mode === 'location'),
-  'q-carburant':         e => qualifie(e) && e.energie !== 'electrique',
-  'note-recharge':       e => qualifie(e) && e.energie === 'electrique',
-  'q-borne':             e => qualifie(e) && e.energie === 'electrique',
-  'q-montant-achat':     e => qualifie(e) && e.mode === 'achat',
-  'q-montant-location':  e => qualifie(e) && e.mode === 'location',
-  'bloc-affiner':        e => qualifie(e) && !!e.mode,
-  'affiner-plafonnement':e => qualifie(e) && e.mode === 'location',
-  'msg-nsp':             e => e.ecoscore === 'nsp'
+function rendre(step){
+  if(step.montant){ rendreMontant(); return; }
+  btnSuivant.hidden = true;
+  let h = '<h2 class="q-titre">'+step.titre+'</h2>';
+  if(step.aide) h += '<p class="q-aide">'+step.aide+'</p>';
+  h += '<div class="q-options">';
+  step.options.forEach(o=>{
+    const on = etat[step.id]===o.v ? ' on' : '';
+    h += '<button class="opt'+on+'" data-v="'+o.v+'"><span class="puce"></span><span class="lib"><b>'+o.t+'</b>'+(o.s?'<span>'+o.s+'</span>':'')+'</span><span class="fleche">→</span></button>';
+  });
+  h += '</div>';
+  corps.innerHTML = h;
+  corps.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+    etat[step.id] = b.dataset.v;
+    repondre();
+  }));
+}
+
+function rendreMontant(){
+  const loc = etat.mode==='location';
+  btnSuivant.hidden = false; btnSuivant.textContent = 'Voir mon résultat';
+  corps.innerHTML =
+    '<h2 class="q-titre">'+(loc?'Coût annuel de la location (TTC)':"Prix d'achat du véhicule (TTC)")+'</h2>'+
+    '<div class="champ"><p class="aide">'+(loc?'Loyers de l\'année, entretien et assurance compris.':'Prix effectivement payé, remises et reprises déduites.')+'</p>'+
+    '<div class="champ-input"><input type="text" inputmode="decimal" id="montant-input" placeholder="'+(loc?'9 600':'38 000')+'" autofocus><span class="suf">€</span></div></div>';
+  const inp = document.getElementById('montant-input');
+  const val = loc?etat.coutLocation:etat.prixAchat;
+  if(val) inp.value = (val/100).toLocaleString('fr-FR');
+  const sync=()=>{ const c=parseMontant(inp.value); if(loc) etat.coutLocation=c; else etat.prixAchat=c; btnSuivant.disabled = !c || isNaN(c); };
+  inp.addEventListener('input',sync); sync();
+  inp.addEventListener('keydown',e=>{ if(e.key==='Enter'&&!btnSuivant.disabled) repondre(); });
+}
+
+function repondre(){
+  const r = calculer(etat);
+  if(r.analyse){ rendreAnalyse(r); return; }
+  const list = etapesApplicables();
+  const idx = list.findIndex(s=>s.id===etapeActuelle.id);
+  const suite = list[idx+1];
+  if(suite){ aller(suite); }
+  else { rendreResultat(r); }
+}
+
+function retourWizard(){
+  if(parcours.length<=1) return;
+  parcours.pop();
+  const prevId = parcours[parcours.length-1];
+  const step = STEPS.find(s=>s.id===prevId);
+  etapeActuelle = step; majProgress(); rendre(step);
+  btnRetour.disabled = parcours.length<=1;
+}
+btnSuivant.onclick = repondre;
+btnRetour.onclick = retourWizard;
+
+function finProgress(){ progressLib.textContent='Résultat'; progressFill.style.width='100%'; }
+
+/* Formulaire de capture (prénom, nom, fonction, e-mail) réutilisé partout */
+function formCapture(intro){
+  return '<div class="rap-form">'+
+    '<div class="rap-row"><input type="text" id="l-prenom" placeholder="Prénom" autocomplete="given-name"><input type="text" id="l-nom" placeholder="Nom" autocomplete="family-name"></div>'+
+    '<select id="l-fonction" aria-label="Votre fonction">'+
+      '<option value="" selected disabled>Votre fonction</option>'+
+      '<option>Direction générale</option>'+
+      '<option>Direction administrative et financière</option>'+
+      '<option>Ressources humaines / Paie</option>'+
+      '<option>Gestionnaire de flotte</option>'+
+      '<option>Expert-comptable</option>'+
+      '<option>Autre</option>'+
+    '</select>'+
+    '<input type="email" id="l-email" placeholder="E-mail professionnel" autocomplete="email">'+
+    '<label class="opt-mini"><input type="checkbox" id="l-veille"><span>M\'avertir si le barème de l\'avantage en nature véhicule change. Un message seulement quand le droit évolue, pas de démarchage.</span></label>'+
+    '<div class="rap-btns"><button class="btn-p" id="l-email-btn">'+intro+'</button><button class="btn-s" id="l-pdf-btn">Télécharger le PDF</button></div>'+
+    '<p class="rap-ok" id="l-ok" hidden></p>'+
+    '<p class="rap-rgpd">Prénom, nom, fonction et e-mail traités par ComplyDB SAS (ACOMPIA) pour vous adresser ce document. Conservation 6 mois. Droits d\'accès, de rectification et d\'effacement : contact@acompia.fr.</p>'+
+  '</div>';
+}
+
+/* Récupère et valide les coordonnées ; renvoie {p,n,f,e} ou null */
+function okForm(){
+  const p = (document.getElementById('l-prenom')||{}).value?.trim();
+  const n = (document.getElementById('l-nom')||{}).value?.trim();
+  const f = (document.getElementById('l-fonction')||{}).value;
+  const e = (document.getElementById('l-email')||{}).value?.trim();
+  return p && n && f && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e||'') ? { p, n, f, e } : null;
+}
+function direOk(msg, err){
+  const el = document.getElementById('l-ok'); if(!el) return;
+  el.hidden = false;
+  el.style.color = err ? 'var(--ambre)' : '';
+  el.style.background = err ? 'var(--ambre-pale)' : '';
+  el.style.borderColor = err ? 'color-mix(in srgb,var(--ambre) 26%,transparent)' : '';
+  el.textContent = msg;
+}
+
+/* ===== Fins de qualification : réponse utile + capture ===== */
+const FAIRE = {
+  aucun: ["Formalisez par écrit l'usage (règlement, note de service ou avenant) : c'est la pièce qui vous protège en contrôle.",
+          "Conservez la preuve de la restitution ou de l'usage professionnel (carte grise, planning, suivi kilométrique).",
+          "Vérifiez qu'aucun usage privé de fait ne s'est installé : c'est le premier motif de redressement."],
+  specifique: ["Faites confirmer le régime exact applicable à votre situation avant la prochaine paie.",
+               "Rassemblez les justificatifs propres à ce type de véhicule (contrat, facture, caractéristiques techniques).",
+               "Sécurisez le traitement en paie pour éviter une régularisation sur les trois dernières années."],
+  complexe: ["Faites établir le calcul au cas par cas : quelques centaines d'euros d'assiette peuvent changer selon la méthode retenue.",
+             "Documentez la date de mise à disposition et les paramètres du véhicule, ils déterminent le taux.",
+             "Comparez forfait et réel : la méthode la plus basse est admise, à condition de pouvoir la justifier."]
 };
 
-function appliquerVisibilite(etat) {
-  for (const [id, cond] of Object.entries(VISIBILITE)) {
-    document.getElementById(id).hidden = !cond(etat);
-  }
+function rendreAnalyse(r){
+  finProgress(); btnSuivant.hidden=true;
+  const titres = {
+    aucun: "A priori, pas d'avantage en nature à déclarer",
+    specifique: 'Votre véhicule obéit à des règles particulières',
+    complexe: 'Votre situation demande un calcul sur mesure'
+  };
+  const faire = FAIRE[r.genre] || FAIRE.complexe;
+  dernierResultat = r; dernierEtat = {...etat};
+  let h =
+    '<h2 class="res-analyse-t">'+(titres[r.genre]||'Votre situation mérite une analyse individuelle')+'</h2>'+
+    '<p class="res-analyse-m">'+r.motif+'</p>'+
+    '<div class="analyse-faire"><h4>Ce que vous pouvez faire</h4><ul>'+
+      faire.map(x=>'<li>'+x+'</li>').join('')+
+    '</ul></div>'+
+    '<div class="res-rapport">'+
+      '<h3>Recevez la note sur votre cas</h3>'+
+      '<p>Une note claire qui explique la règle applicable à votre situation, ce qui déclenche ou écarte l\'avantage en nature, et la liste des pièces à conserver en cas de contrôle.</p>'+
+      formCapture('Recevoir la note par e-mail')+
+    '</div>'+
+    '<div class="res-flotte">'+
+      '<p class="rf-intro">Besoin d\'une réponse ferme ?</p>'+
+      '<p class="rf-sous">Un échange court avec notre équipe pour sécuriser le traitement de ce véhicule.</p>'+
+      '<div class="res-cta">'+
+        '<a class="btn-p" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Prendre un rendez-vous</a>'+
+        '<button class="btn-s" id="recommencer">Tester un autre véhicule</button>'+
+      '</div>'+
+    '</div>';
+  corps.innerHTML = h;
+  document.getElementById('recommencer').addEventListener('click',ouvrirModale);
+  wireCapture('note');
 }
 
-function ligneHTML(l) {
-  return '<div class="res-ligne"><span class="lib">' + l.lib +
-    '<span class="formule">' + l.formule + '</span></span>' +
-    '<span class="mnt' + (l.negatif ? ' negatif' : '') + '">' + (l.negatif ? '− ' + fmt(-l.mnt) : fmt(l.mnt)) + '</span></div>';
-}
+/* ===== Résultat chiffré ===== */
+function rendreResultat(r){
+  finProgress(); btnSuivant.hidden=true;
+  btnSuivant.onclick = repondre; btnRetour.onclick = retourWizard; btnRetour.disabled = false;
+  dernierResultat = r; dernierEtat = {...etat}; dernierReel = null;
+  const sortie = r.double ? r.double.sans : r.simple;
+  const m = sortie.montant;
+  dernierForfait = m;
+  const expo = m*3;
+  const cotis = Math.round(m * TAUX_COTIS_PATRONALES);
 
-/* Module « en cas de contrôle » : assiette potentielle sur 3 années civiles (jamais un montant de redressement) */
-function majControle(montantAnnuel) {
-  const el = document.getElementById('ctrl-montant');
-  const phrase = document.getElementById('ctrl-assiette');
-  if (!el || !phrase) return;
-  if (montantAnnuel == null) {
-    phrase.style.display = 'none';
-  } else {
-    phrase.style.display = '';
-    el.textContent = fmt(montantAnnuel * 3);
-  }
-}
+  let h = '<p class="res-lib">Avantage en nature à réintégrer, par an</p>';
+  h += '<div class="res-montant">'+fmt(m)+'</div>';
+  h += '<div class="res-mens">soit '+fmtMois(m, r.prorataMois)+' par mois d\'assiette de cotisations</div>';
+  h += '<div class="res-cotis">Pour l\'employeur, cela représente environ <b>'+fmt(cotis)+'</b> de cotisations patronales par an (estimation à 45 %). Ce montant s\'ajoute chaque année, par véhicule concerné.</div>';
 
-function renduResultat(etat) {
-  const r = calculer(etat);
+  /* Aperçu du calcul (le détail complet est dans le rapport) */
+  h += '<div class="res-apercu"><div class="res-apercu-t">D\'où vient ce montant</div>';
+  sortie.lignes.forEach((l,i)=>{
+    const dernier = i===sortie.lignes.length-1;
+    h += '<div class="res-ligne'+(l.negatif?' neg':'')+(dernier&&sortie.lignes.length>1?'':'')+'"><span class="l">'+l.lib+'</span><span class="v">'+(l.mnt<0?'− '+fmt(-l.mnt):fmt(l.mnt))+'</span></div>';
+  });
+  h += '<div class="res-ligne tot"><span class="l">Assiette retenue</span><span class="v">'+fmt(m)+'</span></div>';
+  h += '</div>';
 
-  if (r.analyse) {
-    zone.innerHTML = '<div class="res-analyse"><h3>Votre situation mérite une analyse individuelle</h3><p>' + r.motif +
-      '</p><p style="margin-top:10px"><a class="btn-rdv" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Prendre un rendez-vous</a></p>' +
-      '<div class="res-actions"><button type="button" class="btn-copier" id="btn-ajouter-flotte">+ Suivre ce véhicule dans ma flotte</button></div></div>';
-    barreMobile.classList.remove('visible');
-    majControle(null);
-    dernierCalcul = { etat: JSON.parse(JSON.stringify(etat)), montant: 0, mois: 12, libelle: libelleVehicule(etat), estGrise: true };
-    const btnA = document.getElementById('btn-ajouter-flotte');
-    if (btnA) btnA.addEventListener('click', () => {
-      ajouterAFlotte(dernierCalcul);
-      btnA.textContent = 'Suivi ✓';
-      setTimeout(() => { btnA.textContent = '+ Suivre ce véhicule dans ma flotte'; }, 1400);
-    });
-    return;
-  }
-  if (r.erreur) {
-    zone.innerHTML = '<div class="res-vide"><p>' + r.erreur + '</p></div>';
-    barreMobile.classList.remove('visible');
-    majControle(null);
-    return;
-  }
-  if (r.incomplet || (!etat.mode)) {
-    let manque;
-    if (r.etape === 'qualification') {
-      manque = 'Répondez d’abord aux questions de qualification : elles déterminent s’il y a un avantage en nature à calculer.';
-    } else if (!etat.mode) {
-      manque = null;
-    } else {
-      manque = 'Il ne manque que le ' + (etat.mode === 'achat' ? 'prix d’achat' : 'coût annuel de location') + ' pour afficher votre estimation.';
-    }
-    zone.innerHTML = '<div class="res-vide"><p>' + (manque || 'Répondez aux questions pour obtenir votre estimation. Le calcul s’affiche au fur et à mesure.') + '</p>' +
-      (r.etape === 'qualification' || !etat.mode ? '<div class="res-vide-etapes"><span class="res-vide-etape"><span class="num">01</span> Qualifiez le véhicule et son usage</span><span class="res-vide-etape"><span class="num">02</span> Décrivez le véhicule</span><span class="res-vide-etape"><span class="num">03</span> Indiquez le montant</span></div>' : '') +
-      '</div>';
-    barreMobile.classList.remove('visible');
-    majControle(null);
-    return;
-  }
+  h += '<div class="res-expo">En cas de contrôle, l\'URSSAF peut vérifier les trois dernières années : jusqu\'à <b>'+fmt(expo)+'</b> d\'assiette pourraient être réintégrés si l\'avantage n\'a pas été déclaré, hors majorations de redressement.</div>';
+  (r.alertes||[]).forEach(a=>{ h += '<div class="res-alerte-ind">'+a+'</div>'; });
 
-  let html = '';
-  const nbMois = r.prorataMois || 12;
-  if (r.double) {
-    html += '<div class="res-montant-libelle" style="margin-bottom:10px">Avantage en nature à réintégrer, par an, selon l’éco-score :</div>';
-    html += '<div class="res-double">';
-    html += '<div class="res-double-carte"><span class="lib">Si éligible à l’éco-score</span><div class="val">' + fmt(r.double.avec.montant) + '</div><span class="men">soit ' + fmtMois(r.double.avec.montant, nbMois) + ' par mois</span></div>';
-    html += '<div class="res-double-carte"><span class="lib">Si non éligible</span><div class="val">' + fmt(r.double.sans.montant) + '</div><span class="men">soit ' + fmtMois(r.double.sans.montant, nbMois) + ' par mois</span></div>';
-    html += '</div>';
-    html += '<div class="res-detail"><div class="res-detail-titre">Détail du calcul · hypothèse éco-score éligible</div><div class="res-lignes">' + r.double.avec.lignes.map(ligneHTML).join('') + '</div></div>';
-    barreMontant.textContent = fmt(r.double.avec.montant) + ' / ' + fmt(r.double.sans.montant);
-  } else {
-    const m = r.simple.montant;
-    html += '<div class="res-montant-bloc"><div class="res-montant-libelle">Avantage en nature à réintégrer, par an</div>';
-    html += '<div class="res-montant">' + fmt(m) + '</div>';
-    html += '<div class="res-mensuel">soit ' + fmtMois(m, nbMois) + ' par mois</div></div>';
-    if (etat.energie === 'electrique' && etat.ecoscore === 'oui') {
-      html += '<div class="res-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5L18.5 10H12z"/></svg>Abattement électrique de 70 % appliqué</div>';
-    }
-    html += '<div class="res-detail"><div class="res-detail-titre">Détail du calcul</div><div class="res-lignes">' + r.simple.lignes.map(ligneHTML).join('') +
-      '<div class="res-ligne res-ligne--total"><span class="lib">Avantage en nature retenu</span><span class="mnt">' + fmt(m) + '</span></div></div></div>';
-    barreMontant.textContent = fmt(m);
-  }
+  /* HOOK réel : comparaison forfait / réel accessible à la demande */
+  h += '<div class="reel-hook" id="reel-hook">'+
+    '<button class="reel-toggle" id="reel-toggle" type="button"><span class="rt-txt"><b>Pourriez-vous payer moins au réel ?</b><span>L\'employeur retient la méthode la plus basse. Comparez en 4 chiffres.</span></span><span class="rt-chevron">▾</span></button>'+
+    '<div class="reel-panel">'+
+      '<div class="reel-champs">'+
+        '<div class="rc"><label for="km-total">Kilométrage annuel total</label><input type="text" inputmode="numeric" id="km-total" placeholder="25 000"></div>'+
+        '<div class="rc"><label for="km-prive">Kilométrage à titre privé</label><input type="text" inputmode="numeric" id="km-prive" placeholder="8 000"></div>'+
+        '<div class="rc full"><label for="cout-reel">Coût annuel réel (amortissement ou loyers, assurance, entretien, hors carburant)</label><input type="text" inputmode="decimal" id="cout-reel" placeholder="7 400"></div>'+
+        '<div class="rc full"><label for="carb-prive">Carburant payé par l\'employeur pour l\'usage privé (réel annuel)</label><input type="text" inputmode="decimal" id="carb-prive" placeholder="0"></div>'+
+      '</div>'+
+      '<p class="comp-attente" id="comp-attente">Renseignez vos données pour comparer.</p>'+
+      '<div class="comp-resultat" id="comp-resultat">'+
+        '<div class="comp-vs">'+
+          '<div class="comp-carte" id="carte-forfait"><span class="lib">Forfait <span class="comp-reco" id="reco-forfait" hidden>le plus bas</span></span><div class="val" id="comp-forfait">·</div></div>'+
+          '<div class="comp-carte" id="carte-reel"><span class="lib">Réel (quote-part privée) <span class="comp-reco" id="reco-reel" hidden>le plus bas</span></span><div class="val" id="comp-reel">·</div></div>'+
+        '</div>'+
+        '<p class="comp-verdict" id="comp-verdict"></p>'+
+        '<p class="comp-rappel">Formule : (amortissement + assurance + entretien) × km privés / km totaux, puis carburant privé réellement payé par l\'employeur (arrêté du 25 février 2025, art. 3, II ; prorata kilométrique : doctrine BOSS). Véhicule 100 % électrique éligible à l\'éco-score : abattement de 50 % plafonné à 2 026,30 € en 2026 appliqué au réel. L\'évaluation au réel suppose de pouvoir justifier chaque élément ; à défaut, l\'URSSAF retient le forfait.</p>'+
+      '</div>'+
+    '</div>'+
+  '</div>';
 
-  html += '<p class="res-regime">' + r.regime + '</p>';
-  html += '<p class="res-source">Source : ' + (r.artRef || 'arrêté du 25 février 2025') + ' · <a href="https://boss.gouv.fr/portail/accueil/autres-elements-de-remuneration/avantages-en-nature.html" target="_blank" rel="noopener">BOSS, Avantages en nature</a></p>';
-  html += '<p class="res-opposable"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Chaque montant est adossé à sa source, prêt à justifier en cas de contrôle URSSAF.</p>';
-  html += '<p class="res-assiette">Ce montant est une assiette : il supporte les cotisations patronales et salariales et la CSG/CRDS, et il est imposable pour le salarié (aspect fiscal hors périmètre de cet outil). Un calcul par véhicule et par période de mise à disposition : en cas de changement en cours d’année, additionnez les périodes.</p>';
-  const mCot = r.double ? r.double.sans.montant : r.simple.montant;
-  html += '<div class="res-cotis"><div class="res-cotis-lib">Impact estimé en cotisations, par an</div><div class="res-cotis-val">~' + fmt(Math.round(mCot * 42 / 100)) + ' employeur · ~' + fmt(Math.round(mCot * 22 / 100)) + ' salarié</div><div class="res-cotis-note">Estimation, taux moyens indicatifs, variables selon la rémunération et l’entreprise.</div></div>';
-  (r.alertes || []).forEach(a => { html += '<div class="res-alerte">' + a + '</div>'; });
-  const montantRetenu = r.double ? r.double.sans.montant : r.simple.montant;
-  html += '<div class="res-actions">' +
-    '<button type="button" class="btn-ajouter-flotte" id="btn-ajouter-flotte">+ Ajouter à ma flotte</button>' +
-    '<button type="button" class="btn-copier" id="btn-copier">Copier le détail du calcul</button></div>';
+  /* Rapport = lead magnet, au moment le plus opportun */
+  h += '<div class="res-rapport">'+
+    '<h3>Votre rapport complet</h3>'+
+    '<p>Le détail chiffré de votre calcul, la comparaison entre le forfait et l\'évaluation au réel, les règles applicables à votre situation (barème, seuil des 5 ans, abattements, plafonnement) et la liste des pièces à conserver en cas de contrôle. Utile à joindre à votre dossier de paie.</p>'+
+    formCapture('Recevoir le rapport par e-mail')+
+  '</div>';
 
-  zone.innerHTML = html;
-  barreMobile.classList.add('visible');
-  majControle(montantRetenu);
+  /* Flotte */
+  h += '<div class="res-flotte">'+
+    '<p class="rf-intro">Vous gérez plusieurs véhicules ?</p>'+
+    '<p class="rf-sous">Multipliez ce montant par votre flotte : l\'enjeu se compte souvent en dizaines de milliers d\'euros d\'assiette. Deux façons d\'y voir clair.</p>'+
+    '<div class="res-cta">'+
+      '<a class="btn-p" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Demander un devis pour l\'audit de votre flotte</a>'+
+      '<a class="btn-s" href="/outils/pilotage-flotte-tarifs/">Découvrir l\'outil de pilotage continu</a>'+
+    '</div>'+
+  '</div>';
 
-  /* mémorise l'état calculé pour l'ajout à la flotte */
-  dernierCalcul = { etat: JSON.parse(JSON.stringify(etat)), montant: montantRetenu, mois: nbMois, libelle: libelleVehicule(etat), estGrise: false };
+  h += '<p class="res-caution">'+(r.regime||'')+'.<br>Barèmes établis d\'après boss.gouv.fr, urssaf.fr et legifrance.gouv.fr. Estimation indicative, non constitutive d\'une consultation juridique.</p>';
+  h += '<p class="res-source">Source : '+(r.artRef||'arrêté du 25 février 2025')+' · BOSS, rubrique Avantages en nature. À jour des derniers arrêtés et mises à jour du BOSS en la matière.</p>';
 
-  const btnAjout = document.getElementById('btn-ajouter-flotte');
-  if (btnAjout) btnAjout.addEventListener('click', () => {
-    ajouterAFlotte(dernierCalcul);
-    btnAjout.textContent = 'Ajouté ✓';
-    setTimeout(() => { btnAjout.textContent = '+ Ajouter à ma flotte'; }, 1400);
+  corps.innerHTML = h;
+
+  /* Réel : ouverture + recalcul en direct */
+  const hook = document.getElementById('reel-hook');
+  document.getElementById('reel-toggle').addEventListener('click',()=>hook.classList.toggle('open'));
+  ['km-total','km-prive','cout-reel','carb-prive'].forEach(id=>{
+    document.getElementById(id).addEventListener('input', majComparateur);
   });
 
-  const btnCopier = document.getElementById('btn-copier');
-  if (btnCopier) btnCopier.addEventListener('click', () => {
-    const texte = zone.innerText;
-    navigator.clipboard && navigator.clipboard.writeText('Simulation AEN véhicule · ACOMPIA\n\n' + texte + '\n\nEstimation indicative · acompia.com');
-    btnCopier.textContent = 'Copié';
-    setTimeout(() => { btnCopier.textContent = 'Copier le détail du calcul'; }, 1600);
-  });
+  wireCapture('rapport');
 }
 
-/* Comparateur réel : (amortissement + assurance + entretien) × km privés / km totaux,
-   PUIS ajout du carburant privé réel payé par l'employeur (art. 3, II ; prorata km : doctrine BOSS).
-   La participation du salarié vient en déduction, comme au forfait. */
-function majComparateur(etat) {
+/* Comparateur réel — logique VERROUILLÉE, portée à l'identique de la version vérifiée conforme */
+function majComparateur(){
   const kmT = parseMontant(document.getElementById('km-total').value);
   const kmP = parseMontant(document.getElementById('km-prive').value);
   const coutReel = parseMontant(document.getElementById('cout-reel').value);
   const carbP = parseMontant(document.getElementById('carb-prive').value) || 0;
   const attente = document.getElementById('comp-attente');
   const resDiv = document.getElementById('comp-resultat');
-  const r = calculer(etat);
-  /* Éco-score inconnu (nsp) : on compare sur la base MAJORANTE (sans abattement), comme la valeur retenue ailleurs, pour rester sur la même hypothèse que le réel corrigé ci-dessous. */
-  const forfait = r.simple ? r.simple.montant : (r.double ? r.double.sans.montant : null);
-  if (!kmT || !kmP || !coutReel || !forfait || kmP > kmT) {
-    attente.style.display = 'block'; resDiv.classList.remove('visible');
-    if (kmP && kmT && kmP > kmT) attente.textContent = 'Le kilométrage privé ne peut pas dépasser le kilométrage total.';
-    else attente.textContent = 'En attente de vos données.';
+  const forfait = dernierForfait;
+  if(!kmT || !kmP || !coutReel || !forfait || kmP > kmT){
+    attente.style.display=''; resDiv.classList.remove('visible'); dernierReel = null;
+    if(kmP && kmT && kmP > kmT) attente.textContent = 'Le kilométrage privé ne peut pas dépasser le kilométrage total.';
+    else attente.textContent = 'Renseignez vos données pour comparer.';
     return;
   }
-  attente.style.display = 'none'; resDiv.classList.add('visible');
-  /* Nombre de mois de mise à disposition, pour aligner le réel sur la même période que le forfait (déjà proratisé par calculer) */
-  const mois = etat.prorata ?? 12;
-  /* Quote-part privée des dépenses réelles + carburant privé réel payé par l'employeur (art. 3, II ; prorata km : doctrine BOSS) */
+  attente.style.display='none'; resDiv.classList.add('visible');
+  const mois = dernierEtat.prorata ?? 12;
   let reel = Math.round(coutReel * (kmP / 100) / (kmT / 100)) + carbP;
-  /* Prorata : le réel annuel est ramené à la période de mise à disposition, comme le forfait */
-  if (mois < 12) reel = Math.round(reel * mois / 12);
-  /* Véhicule 100 % électrique éligible à l'éco-score PROUVÉ : abattement de 50 % plafonné (2 026,30 € en 2026, proratisé). À défaut d'éco-score confirmé, aucun abattement (droit qui se prouve). */
-  const elecEligible = etat.energie === 'electrique' && etat.periode === 'post' && etat.ecoscore === 'oui';
-  if (elecEligible) {
+  if(mois < 12) reel = Math.round(reel * mois / 12);
+  const elecEligible = dernierEtat.energie === 'electrique' && dernierEtat.periode === 'post' && dernierEtat.ecoscore === 'oui';
+  if(elecEligible){
     const plafondReel = Math.round(BAREME.constantes[BAREME.annee].plafondElecReelNouveau * mois / 12);
     reel = reel - Math.min(Math.round(reel * 50 / 100), plafondReel);
   }
-  /* Participation du salarié : déduite comme au forfait */
-  if (etat.participation > 0) reel = Math.max(0, reel - etat.participation);
+  if(dernierEtat.participation > 0) reel = Math.max(0, reel - dernierEtat.participation);
+  dernierReel = reel;
   document.getElementById('comp-forfait').textContent = fmt(forfait);
   document.getElementById('comp-reel').textContent = fmt(reel);
-  /* Badge « recommandé » sur la méthode la plus basse */
   const forfaitBas = forfait <= reel;
   document.getElementById('reco-forfait').hidden = !forfaitBas;
   document.getElementById('reco-reel').hidden = forfaitBas;
   document.getElementById('carte-forfait').classList.toggle('reco', forfaitBas);
   document.getElementById('carte-reel').classList.toggle('reco', !forfaitBas);
-  /* Verdict en clair pour le prospect */
   const verdict = document.getElementById('comp-verdict');
-  if (verdict) {
-    if (reel < forfait) {
-      verdict.textContent = "Ici, l'évaluation au réel est plus basse : " + fmt(reel) + " contre " + fmt(forfait) + " au forfait, soit " + fmt(forfait - reel) + " d'assiette en moins. L'employeur peut retenir la méthode la plus favorable, par salarié et par an, à condition de pouvoir justifier chaque montant en cas de contrôle.";
-    } else if (reel > forfait) {
-      verdict.textContent = "Ici, le forfait est plus bas : " + fmt(forfait) + " contre " + fmt(reel) + " au réel. Le forfait est alors le plus avantageux, et il évite d'avoir à justifier le détail des dépenses.";
-    } else {
-      verdict.textContent = "Les deux méthodes donnent la même assiette. Le forfait évite d'avoir à justifier le détail des dépenses.";
-    }
+  if(reel < forfait){
+    verdict.textContent = "Ici, l'évaluation au réel est plus basse : " + fmt(reel) + " contre " + fmt(forfait) + " au forfait, soit " + fmt(forfait - reel) + " d'assiette en moins. L'employeur peut retenir la méthode la plus favorable, par salarié et par an, à condition de pouvoir justifier chaque montant.";
+  } else if(reel > forfait){
+    verdict.textContent = "Ici, le forfait est plus bas : " + fmt(forfait) + " contre " + fmt(reel) + " au réel. Le forfait est alors le plus avantageux, et il évite d'avoir à justifier le détail des dépenses.";
+  } else {
+    verdict.textContent = "Les deux méthodes donnent la même assiette. Le forfait évite d'avoir à justifier le détail des dépenses.";
   }
 }
 
-/* Validation du montant au blur */
-function validerMontant(inputId, errId) {
-  const input = document.getElementById(inputId);
-  const err = document.getElementById(errId);
-  input.addEventListener('blur', () => {
-    const v = parseMontant(input.value);
-    if (input.value.trim() !== '' && (v === null || isNaN(v))) {
-      err.textContent = 'Ce champ n’accepte que des chiffres, par exemple 38 000.';
-      err.classList.add('visible'); input.setAttribute('aria-invalid', 'true');
-    } else if (v !== null && !isNaN(v) && v > 30000000) {
-      err.textContent = 'Ce montant est inhabituel pour un véhicule de fonction. Vérifiez votre saisie.';
-      err.classList.add('visible'); input.removeAttribute('aria-invalid');
-    } else {
-      err.classList.remove('visible'); input.removeAttribute('aria-invalid');
-    }
-  });
-  input.addEventListener('input', () => {
-    if (err.classList.contains('visible')) {
-      const v = parseMontant(input.value);
-      if (v !== null && !isNaN(v) && v <= 30000000) { err.classList.remove('visible'); input.removeAttribute('aria-invalid'); }
-    }
-  });
-}
-validerMontant('prix-achat', 'err-achat');
-validerMontant('cout-location', 'err-location');
-
-/* Note prorata dynamique */
-function majNoteProrata() {
-  const p = moisEntames(document.getElementById('date-debut').value, document.getElementById('date-fin').value);
-  const note = document.getElementById('note-prorata');
-  if (p === null) note.textContent = 'La date de fin doit être postérieure à la date de début.';
-  else if (p < 12) note.textContent = 'Mise à disposition sur ' + p + ' mois : le montant annuel est proratisé.';
-  else note.textContent = '';
-}
-
-/* Note rabais */
-function majNoteRabais() {
-  const pl = parseMontant(document.getElementById('prix-loueur').value);
-  const pc = parseMontant(document.getElementById('prix-catalogue').value);
-  const note = document.getElementById('note-rabais');
-  if (pl && pc && pc > 0) {
-    const rabais = Math.round((pc - pl) / pc * 100);
-    note.textContent = 'Rabais constaté par rapport au prix catalogue : ' + rabais + ' %. ';
-  } else note.textContent = '';
-}
-
-/* ============================================================
-   Flotte : un véhicule = un état calculé. Persistance localStorage.
-   ============================================================ */
-let dernierCalcul = null;      // dernier résultat calculé, candidat à l'ajout
-let flotte = [];               // tableau de { etat, montant, mois, libelle, estGrise }
-const LS_FLOTTE = 'acompia-aen-flotte';
-const LS_FORM = 'acompia-aen-form';
-
-function libelleVehicule(etat) {
-  const type = 'Voiture particulière';
-  const mode = etat.mode === 'location' ? 'louée' : 'achetée';
-  const energie = etat.energie === 'electrique' ? 'électrique' : (etat.energie === 'hybride' ? 'hybride' : 'thermique');
-  const base = etat.mode === 'location' ? etat.coutLocation : etat.prixAchat;
-  const prix = base ? ' · ' + eur.format(Math.round(base / 100)) : '';
-  return type + ' ' + energie + ' ' + mode + prix;
-}
-
-/* Ajoute à la flotte le calcul mémorisé (ou un cas « analyse individuelle ») */
-function ajouterAFlotte(calc) {
-  if (!calc) return;
-  flotte.push(calc);
-  sauverFlotte();
-  renderFlotte();
-}
-
-function sauverFlotte() {
-  try { localStorage.setItem(LS_FLOTTE, JSON.stringify(flotte)); } catch (e) {}
-}
-function chargerFlotte() {
-  try { const v = localStorage.getItem(LS_FLOTTE); if (v) flotte = JSON.parse(v) || []; } catch (e) { flotte = []; }
-}
-
-function renderFlotte() {
-  const panneau = document.getElementById('flotte');
-  const liste = document.getElementById('flotte-liste');
-  if (!flotte.length) { panneau.hidden = true; return; }
-  panneau.hidden = false;
-  document.getElementById('flotte-compte').textContent = '(' + flotte.length + ')';
-
-  liste.innerHTML = flotte.map((v, i) =>
-    '<div class="flotte-item' + (v.estGrise ? ' zone-grise' : '') + '">' +
-      '<span class="fi-lib"><b>' + v.libelle + '</b>' +
-        '<span class="fi-detail">' + (v.estGrise ? 'À analyser individuellement' : fmtMois(v.montant, v.mois || 12) + ' / mois') + '</span></span>' +
-      '<span class="fi-mnt">' + (v.estGrise ? '—' : fmt(v.montant) + '/an') + '</span>' +
-      '<button type="button" class="fi-btn" data-dup="' + i + '" title="Dupliquer">⧉</button>' +
-      '<button type="button" class="fi-btn" data-del="' + i + '" title="Retirer">✕</button>' +
-    '</div>'
-  ).join('');
-
-  const total = flotte.reduce((s, v) => s + (v.estGrise ? 0 : v.montant), 0);
-  document.getElementById('flotte-total-val').textContent = fmt(total);
-  document.getElementById('flotte-total-mens').textContent = 'soit ' + fmtMois(total, 12) + ' par mois · ' + flotte.length + ' véhicule' + (flotte.length > 1 ? 's' : '');
-
-  /* répartition : régime, motorisation, cas à analyser */
-  const rep = document.getElementById('flotte-repartition');
-  const nAchat = flotte.filter(v => v.etat.mode === 'achat').length;
-  const nLoc = flotte.filter(v => v.etat.mode === 'location').length;
-  const nElec = flotte.filter(v => v.etat.energie === 'electrique').length;
-  const nGrise = flotte.filter(v => v.estGrise).length;
-  const chips = [];
-  if (nAchat) chips.push('<span class="flotte-chip">' + nAchat + ' à l\'achat</span>');
-  if (nLoc) chips.push('<span class="flotte-chip">' + nLoc + ' en location</span>');
-  if (nElec) chips.push('<span class="flotte-chip">' + nElec + ' électrique' + (nElec > 1 ? 's' : '') + '</span>');
-  if (nGrise) chips.push('<span class="flotte-chip alerte">' + nGrise + ' à analyser individuellement</span>');
-  rep.innerHTML = chips.join('');
-
-  liste.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => {
-    flotte.splice(+b.dataset.del, 1); sauverFlotte(); renderFlotte();
-  }));
-  liste.querySelectorAll('[data-dup]').forEach(b => b.addEventListener('click', () => {
-    const src = flotte[+b.dataset.dup];
-    flotte.push(JSON.parse(JSON.stringify(src))); sauverFlotte(); renderFlotte();
-  }));
-}
-
-/* Export CSV de la flotte */
-function exporterCSV() {
-  const lignes = [['Vehicule', 'Regime', 'Motorisation', 'AEN annuel (EUR)', 'AEN mensuel (EUR)', 'Statut']];
-  flotte.forEach(v => lignes.push([
-    '"' + v.libelle.replace(/"/g, '""') + '"',
-    v.etat.mode === 'location' ? 'Location' : 'Achat',
-    v.etat.energie,
-    v.estGrise ? '' : (v.montant / 100).toFixed(2),
-    v.estGrise ? '' : (v.montant / (v.mois || 12) / 100).toFixed(2),
-    v.estGrise ? 'Analyse individuelle' : 'Calcule'
-  ]));
-  const total = flotte.reduce((s, v) => s + (v.estGrise ? 0 : v.montant), 0);
-  lignes.push(['"TOTAL FLOTTE"', '', '', (total / 100).toFixed(2), '', '']);
-  const csv = lignes.map(l => l.join(';')).join('\n');
-  const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'flotte-aen-acompia.csv';
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-
-document.getElementById('flotte-csv').addEventListener('click', exporterCSV);
-document.getElementById('flotte-vider').addEventListener('click', () => {
-  if (flotte.length && confirm('Vider toute la flotte ? Cette action est définitive.')) {
-    flotte = []; sauverFlotte(); renderFlotte();
-  }
-});
-document.getElementById('flotte-nouveau').addEventListener('click', () => {
-  document.getElementById('btn-reset').click();
-});
-
-/* Persistance du formulaire (reprise de session) */
-function sauverForm() {
-  try {
-    const snap = {};
-    new FormData(form).forEach((v, k) => { snap[k] = v; });
-    ['prix-achat','cout-location','prix-loueur','prix-catalogue','participation','date-debut','date-fin','km-total','km-prive','cout-reel','carb-prive'].forEach(id => {
-      snap['#' + id] = document.getElementById(id).value;
-    });
-    snap['#chk-restitution'] = document.getElementById('chk-restitution').checked;
-    localStorage.setItem(LS_FORM, JSON.stringify(snap));
-  } catch (e) {}
-}
-function restaurerForm() {
-  try {
-    const raw = localStorage.getItem(LS_FORM); if (!raw) return;
-    const snap = JSON.parse(raw);
-    Object.keys(snap).forEach(k => {
-      if (k.startsWith('#')) {
-        const el = document.getElementById(k.slice(1));
-        if (el) { if (el.type === 'checkbox') el.checked = !!snap[k]; else el.value = snap[k]; }
-      } else {
-        const el = form.querySelector('[name="' + k + '"][value="' + snap[k] + '"]');
-        if (el) el.checked = true;
-      }
-    });
-  } catch (e) {}
-}
-
-/* Recalcul global, debounce sur la frappe */
-let timerFrappe = null;
-function majTout() {
-  const etat = lireEtat();
-  appliquerVisibilite(etat);
-  majNoteProrata();
-  majNoteRabais();
-  renduResultat(etat);
-  majComparateur(etat);
-  sauverForm();
-}
-form.addEventListener('change', majTout);
-form.addEventListener('input', (e) => {
-  if (e.target.type === 'radio') return;
-  clearTimeout(timerFrappe);
-  timerFrappe = setTimeout(majTout, 300);
-});
-['km-total', 'km-prive', 'cout-reel', 'carb-prive'].forEach(id => {
-  document.getElementById(id).addEventListener('input', () => {
-    clearTimeout(timerFrappe);
-    timerFrappe = setTimeout(majTout, 300);
-  });
-});
-
-/* Recommencer */
-document.getElementById('btn-reset').addEventListener('click', () => {
-  form.reset();
-  ['prix-achat','cout-location','prix-loueur','prix-catalogue','km-total','km-prive','cout-reel','carb-prive','participation'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('date-debut').value = '2026-01-01';
-  document.getElementById('date-fin').value = '2026-12-31';
-  document.getElementById('chk-restitution').checked = false;
-  form.querySelectorAll('input[name="typevhc"], input[name="attribution"], input[name="beneficiaire"], input[name="mode"]').forEach(i => { i.checked = false; });
-  majTout();
-  document.getElementById('q-type').scrollIntoView({ behavior: 'smooth', block: 'center' });
-});
-
-/* Barre mobile : masquée quand la zone résultat est visible à l'écran */
-if ('IntersectionObserver' in window) {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(en => {
-      if (en.isIntersecting) barreMobile.classList.remove('visible');
-      else if (barreMontant.textContent !== '·') barreMobile.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-  obs.observe(document.querySelector('.resultat'));
-}
-
-/* Rapport imprimable / PDF : le navigateur imprime la vue résultat + flotte (voir @media print) */
-document.getElementById('btn-imprimer').addEventListener('click', () => { window.print(); });
-
-/* ============================================================
-   Capture de leads : envoi au Cloudflare Worker (email + Notion).
-   ============================================================ */
+/* Envoi du lead au Cloudflare Worker (Notion + email), comme le prédiagnostic.
+   Le Worker route déjà le type 'devis' vers Notion + notification email.
+   En local (démo) rien n'est transmis, pour ne pas polluer le Notion pendant les tests. */
 const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
-const emailValide = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v || '').trim());
-function confirmer(elId, message, erreur) {
-  const el = document.getElementById(elId);
-  el.hidden = false;
-  el.style.color = erreur ? 'var(--ambre-fonce)' : '';
-  el.innerHTML = (erreur ? '' : '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="flex:none;margin-top:1px"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>') + '<span>' + message + '</span>';
+const DEMO = ['127.0.0.1','localhost',''].includes(location.hostname) || location.protocol==='file:';
+function envoyerLead(f, type){
+  if(DEMO) return; // local : pas d'envoi réel
+  const veille = !!(document.getElementById('l-veille')||{}).checked;
+  let resume = '';
+  if(type==='rapport' && dernierResultat){
+    const s = dernierResultat.double ? dernierResultat.double.sans : dernierResultat.simple;
+    if(s) resume = 'Assiette forfait ' + fmt(s.montant) + '/an' + (dernierReel!=null ? ' · réel ' + fmt(dernierReel) + '/an' : '');
+  } else if(dernierResultat && dernierResultat.motif){
+    resume = 'Cas hors calcul : ' + dernierResultat.motif.slice(0,140);
+  }
+  fetch(WORKER_URL, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ type:'devis', data:{
+      name: f.p + ' ' + f.n,
+      email: f.e,
+      audit_type: type==='rapport' ? 'Simulateur AEN — rapport' : 'Simulateur AEN — note',
+      message: 'Fonction : ' + f.f + ' | Veille barème : ' + (veille?'oui':'non') + (resume ? ' | ' + resume : '')
+    }})
+  }).then(r=>r.json()).catch(()=>{});
+  if(window.posthog) posthog.capture('aen_lead', { source: type });
 }
-function envoyerLead(payload) {
-  return fetch(WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => {});
+
+/* Branchement des deux boutons de capture : envoi au Worker + affichage du rapport / confirmation */
+function wireCapture(type){
+  const btnMail = document.getElementById('l-email-btn');
+  const btnPdf = document.getElementById('l-pdf-btn');
+  if(!btnMail) return;
+  const action = (pdf)=>{
+    const f = okForm();
+    if(!f){ direOk('Renseignez votre prénom, votre nom, votre fonction et votre e-mail professionnel.', true); return; }
+    envoyerLead(f, type);
+    if(type==='rapport'){ afficherRapport(f); }
+    else { direOk('C\'est noté ' + f.p + '. Votre note vous sera envoyée à ' + f.e + '.'); }
+  };
+  btnMail.addEventListener('click',()=>action(false));
+  btnPdf.addEventListener('click',()=>action(true));
 }
-/* Rapport par e-mail + veille */
-document.getElementById('btn-rapport').addEventListener('click', async () => {
-  const email = document.getElementById('email-rapport').value;
-  if (!emailValide(email)) { confirmer('capture-ok-email', 'Vérifiez votre adresse e-mail (exemple : prenom@entreprise.fr).', true); return; }
-  const veille = document.getElementById('opt-veille').checked;
-  const btn = document.getElementById('btn-rapport'); btn.disabled = true; const t = btn.textContent; btn.textContent = 'Envoi…';
-  if (window.posthog) posthog.capture('aen_rapport_demande', { veille });
-  await envoyerLead({ type: 'devis', data: { name: email, email, audit_type: 'Simulateur AEN véhicule', message: 'Demande de rapport depuis le simulateur AEN' + (veille ? ' + veille barème' : '') } });
-  btn.disabled = false; btn.textContent = t;
-  confirmer('capture-ok-email', 'C\'est noté. Votre rapport vous sera envoyé à ' + email + (veille ? ', et vous serez averti à chaque évolution du barème.' : '.'));
-});
-/* Liste d'attente conformité complète */
-document.getElementById('btn-flotte').addEventListener('click', async () => {
-  const email = document.getElementById('email-flotte').value;
-  const nb = document.getElementById('nb-vehicules').value;
-  if (!emailValide(email)) { confirmer('capture-ok-flotte', 'Vérifiez votre adresse e-mail.', true); return; }
-  const btn = document.getElementById('btn-flotte'); btn.disabled = true; const t = btn.textContent; btn.textContent = 'Envoi…';
-  if (window.posthog) posthog.capture('aen_liste_attente', {});
-  await envoyerLead({ type: 'devis', data: { name: email, email, audit_type: 'Liste d\'attente conformité complète', message: 'Liste d\'attente (simulateur AEN)' + (nb ? ' — ' + nb + ' véhicules' : '') } });
-  btn.disabled = false; btn.textContent = t;
-  confirmer('capture-ok-flotte', 'C\'est noté, vous êtes inscrit' + (nb ? ' (' + nb + ' véhicules)' : '') + '. Nous vous informerons de l\'ouverture.');
-});
 
-/* Vider aussi le localStorage form au reset (mais pas la flotte) */
-document.getElementById('btn-reset').addEventListener('click', () => {
-  try { localStorage.removeItem(LS_FORM); } catch (e) {}
-});
+/* ===== Le rapport (vue montrable, aérée) ===== */
+function afficherRapport(f){
+  const r = dernierResultat;
+  const sortie = r.double ? r.double.sans : r.simple;
+  const m = sortie.montant;
+  const cotis = Math.round(m * TAUX_COTIS_PATRONALES);
+  const d = new Date();
+  const dateStr = d.toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
 
-/* État initial : restaurer la session (formulaire + flotte) puis calculer */
-chargerFlotte();
-restaurerForm();
-renderFlotte();
-majTout();
+  /* Règles applicables, formulées selon l'état */
+  const regles = [];
+  regles.push(['Barème', (etat.periode==='post'?'Barème renforcé applicable aux mises à disposition à compter du 1er février 2025 (arrêté du 25 février 2025, art. 3, III, B).':'Ancien barème, conservé pour les mises à disposition antérieures au 1er février 2025 (art. 3, III, A).')]);
+  regles.push(['Méthode', (etat.mode==='achat'?'Véhicule acheté par l\'entreprise : taux appliqué au prix d\'achat TTC.':'Véhicule loué : taux appliqué au coût annuel de la location, plafonné à la règle achat si elle est plus favorable.')]);
+  regles.push(['Taux retenu', r.taux + ' % ' + (etat.age==='ancien'?'(véhicule de plus de 5 ans)':'(véhicule de 5 ans ou moins)') + (etat.carburant==='oui'?', carburant privé pris en charge':'') + '.']);
+  if(etat.energie==='electrique'){
+    if(etat.ecoscore==='oui') regles.push(['Abattement électrique','Véhicule 100 % électrique éligible à l\'éco-score : abattement de 70 % sur l\'évaluation, plafonné à 4 641,60 € en 2026, jusqu\'au 31 décembre 2027 (art. 3, III, D ; BOSS § 910).']);
+    else regles.push(['Abattement électrique','Abattement de 70 % non appliqué, faute d\'éco-score confirmé. Il ouvrira droit à l\'abattement dès l\'inscription du véhicule sur la liste ADEME.']);
+  }
+  regles.push(['Seuil des 5 ans','L\'âge se compte depuis la première mise en circulation et s\'apprécie à la mise à disposition. Il fixe le taux applicable.']);
+  if(etat.participation>0) regles.push(['Participation','La participation du salarié vient en déduction de l\'évaluation, dans la limite de son montant.']);
+
+  const bloc = (titre, corps)=>'<div class="rapport-section"><h3>'+titre+'</h3>'+corps+'</div>';
+
+  const detailLignes = sortie.lignes.map(l=>
+    '<div class="rapport-regle"><b>'+l.lib+'</b><span>'+(l.formule?l.formule+' = ':'')+(l.mnt<0?'− '+fmt(-l.mnt):fmt(l.mnt))+'</span></div>'
+  ).join('') + '<div class="rapport-regle"><b>Assiette retenue</b><span>'+fmt(m)+'</span></div>';
+
+  let comparaison;
+  if(dernierReel != null){
+    const reelBas = dernierReel < m;
+    comparaison =
+      '<div class="rapport-synth">'+
+        '<div class="rapport-tuile"><div class="lab">Au forfait</div><div class="num">'+fmt(m)+'</div></div>'+
+        '<div class="rapport-tuile"><div class="lab">Au réel (quote-part privée)</div><div class="num">'+fmt(dernierReel)+'</div></div>'+
+      '</div>'+
+      '<p class="rapport-p">'+(reelBas
+        ? 'Dans votre cas, l\'évaluation au réel est plus basse de '+fmt(m-dernierReel)+' d\'assiette. L\'employeur peut retenir la méthode la plus favorable, par salarié et par an, à condition de pouvoir justifier chaque montant en cas de contrôle.'
+        : 'Dans votre cas, le forfait reste la méthode la plus basse, et il évite d\'avoir à justifier le détail des dépenses.')+'</p>';
+  } else {
+    comparaison = '<p class="rapport-p">Vous n\'avez pas renseigné vos données réelles. L\'employeur peut aussi évaluer l\'avantage aux dépenses réellement engagées : (amortissement ou loyers + assurance + entretien) × kilométrage privé / kilométrage total, majoré du carburant privé pris en charge (arrêté du 25 février 2025, art. 3, II). La méthode la plus basse est admise, par salarié et par an. Revenez au simulateur pour comparer vos deux chiffres.</p>';
+  }
+
+  const vue =
+    '<div class="rapport-vue">'+
+      '<div class="rapport-tete">'+
+        '<div class="rapport-kicker">Rapport ACOMPIA · Avantage en nature véhicule</div>'+
+        '<div class="rapport-h1">Votre estimation et les règles applicables</div>'+
+        '<div class="rapport-meta">Établi le '+dateStr+' pour '+f.p+' '+f.n+' ('+f.f+'). Année de référence 2026. Document indicatif, à conserver dans votre dossier de paie.</div>'+
+      '</div>'+
+      bloc('Synthèse',
+        '<div class="rapport-synth">'+
+          '<div class="rapport-tuile"><div class="lab">Assiette à réintégrer, par an</div><div class="num">'+fmt(m)+'</div></div>'+
+          '<div class="rapport-tuile"><div class="lab">Cotisations patronales estimées (45 %)</div><div class="num">'+fmt(cotis)+'</div></div>'+
+        '</div>'+
+        '<p class="rapport-p">Soit '+fmtMois(m, r.prorataMois)+' d\'assiette par mois. En cas de contrôle, l\'URSSAF peut vérifier les trois dernières années : jusqu\'à '+fmt(m*3)+' d\'assiette si l\'avantage n\'a pas été déclaré, hors majorations.</p>'
+      )+
+      bloc('Détail du calcul au forfait', detailLignes)+
+      bloc('Forfait ou réel : quelle méthode retenir ?', comparaison)+
+      bloc('Règles applicables à votre situation', regles.map(x=>'<div class="rapport-regle"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>').join(''))+
+      bloc('En cas de contrôle URSSAF',
+        '<p class="rapport-p">L\'URSSAF peut en principe vérifier les trois années civiles précédant le contrôle (CSS, art. L.244-3). En cas de constatation d\'un travail dissimulé, ce délai est porté à cinq ans (art. L.244-3, dernier alinéa). Les majorations et pénalités ne sont pas chiffrées ici : elles dépendent de la procédure et de l\'analyse de l\'URSSAF.</p>')+
+      bloc('Pièces à conserver',
+        '<ul class="rapport-pieces">'+
+          ['Carte grise et facture d\'achat ou contrat de location (loyers annuels)',
+           'Contrat ou avenant d\'attribution du véhicule, politique véhicule de l\'entreprise',
+           'Justificatifs d\'assurance et d\'entretien',
+           'Suivi kilométrique total et privé (si évaluation au réel)',
+           'Justificatifs de carburant pris en charge',
+           'Preuve de la participation éventuelle du salarié',
+           'Pour l\'électrique : attestation d\'éligibilité à l\'éco-score (liste ADEME)'].map(x=>'<li>'+x+'</li>').join('')+
+        '</ul>')+
+      bloc('Sources',
+        '<p class="rapport-src">Arrêté du 25 février 2025 relatif à l\'évaluation des avantages en nature · BOSS, rubrique Avantages en nature (§ 900 et 910) · Code de la sécurité sociale, art. L.242-1 et L.244-3 · boss.gouv.fr, urssaf.fr, legifrance.gouv.fr.<br>Estimation indicative, non constitutive d\'une consultation juridique.</p>')+
+      '<div class="rapport-cta no-print">'+
+        '<h3>Une flotte à sécuriser ?</h3>'+
+        '<p>Multiplié par vos véhicules, l\'enjeu se compte en dizaines de milliers d\'euros. Nous auditons vos pratiques sur les trois années contrôlables et vous outillons pour rester conforme en continu.</p>'+
+        '<div class="rc-btns">'+
+          '<a class="p" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Demander un devis d\'audit</a>'+
+          '<a class="s" href="/outils/pilotage-flotte-tarifs/">Découvrir le pilotage de flotte</a>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+
+  corps.innerHTML = vue;
+  progressLib.textContent = 'Rapport';
+  /* pied : imprimer + revenir */
+  pied.style.display='';
+  btnRetour.disabled = false;
+  btnSuivant.hidden = false; btnSuivant.textContent = 'Imprimer / PDF';
+  btnRetour.onclick = ()=>rendreResultat(dernierResultat);
+  btnSuivant.onclick = ()=>window.print();
+}
+
+document.getElementById('ouvrir').addEventListener('click',ouvrirModale);
+document.getElementById('fermer').addEventListener('click',fermerModale);
+overlay.addEventListener('click',e=>{ if(e.target===overlay) fermerModale(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&overlay.classList.contains('open')) fermerModale(); });
 </script>
 </body>
 </html>
