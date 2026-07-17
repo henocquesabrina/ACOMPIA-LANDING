@@ -3175,6 +3175,7 @@ section.contact-compact {
     transform: translateY(-120%);
     transition: transform .3s ease;
   }
+  .nav-links.nav-open,
   .nav-links.is-open {
     transform: translateY(0);
   }
@@ -3283,6 +3284,9 @@ h2 em {
     min-height: 2px !important;
     background: var(--ink) !important;
   }
+  /* Croix recalée : barres 2px + gap 3px => décalage 5px (le 7px/-6px de base vise gap 5px) */
+  .nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(5px) rotate(45deg) !important; }
+  .nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5px) rotate(-45deg) !important; }
   .nav-links {
     position: fixed !important;
     top: 64px !important;
@@ -3307,6 +3311,9 @@ h2 em {
     transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     box-shadow: -20px 0 60px rgba(0, 0, 0, 0.06) !important;
     z-index: 50;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 96px !important;
   }
   /* Ouverture : le JS ajoute soit .nav-open soit .is-open selon les versions */
   .nav-links.nav-open,
@@ -3651,4 +3658,14 @@ section.platform h2 em,
   .fondateurs { padding: 24px 20px 80px; }
   .fondateurs-card { padding: 42px 26px; }
   .fondateurs-grid { grid-template-columns: 1fr; gap: 38px; }
+}
+
+/* Atterrissage direct sur une ancre (campagnes Lemlist #prediag / #devis, liens profonds) :
+   le contenu cible doit être visible immédiatement, sans attendre l'animation .reveal.
+   L'animation reste active pour la navigation au scroll. */
+section:target .reveal,
+div:target.reveal,
+div:target .reveal {
+  opacity: 1 !important;
+  transform: none !important;
 }
