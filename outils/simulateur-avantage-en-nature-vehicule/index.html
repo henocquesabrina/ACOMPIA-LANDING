@@ -669,6 +669,14 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
   padding: 28px clamp(20px, 5vw, 56px) 90px;
   font-size: 12.5px; color: var(--ink-3); text-align: center;
 }
+
+/* Dépliants du contenu éditorial : le simulateur d'abord, la doc au clic */
+.statique-fold summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.statique-fold summary::-webkit-details-marker { display: none; }
+.statique-fold summary h2 { margin: 0; }
+.statique-fold summary::after { content: '+'; font-size: 26px; font-weight: 300; color: #4F46E5; flex: 0 0 auto; transition: transform .2s ease; }
+.statique-fold[open] summary::after { transform: rotate(45deg); }
+.statique-fold-body { padding-top: 18px; }
 </style>
 <style>
 
@@ -894,7 +902,7 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
 <body>
 
 <nav class="nav">
-  <span class="nav-brand">
+  <a class="nav-brand" href="/" aria-label="Retour à l'accueil ACOMPIA" style="text-decoration:none;color:inherit">
     <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
       <defs><radialGradient id="lgSun" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
@@ -904,8 +912,8 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
       <line x1="6" y1="34" x2="42" y2="34"/><line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/><line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
     </svg>
     <span class="nav-word">ACOMPIA</span>
-  </span>
-  <span class="nav-crumb">Outils / Simulateur AEN véhicule</span>
+  </a>
+  <span class="nav-crumb"><a href="/" style="color:inherit">Accueil</a> / <a href="/outils/" style="color:inherit">Outils</a> / Simulateur AEN véhicule</span>
 </nav>
 
 <header class="hero">
@@ -941,7 +949,9 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
 <!-- ============ SECTIONS STATIQUES ============ -->
 <section class="statique">
   <p class="statique-eyebrow">Réponses de référence</p>
-  <h2>Comment calcule-t-on l'avantage en nature d'un véhicule en 2026 ?</h2>
+  <details class="statique-fold">
+  <summary><h2>Comment calcule-t-on l'avantage en nature d'un véhicule en 2026 ?</h2></summary>
+  <div class="statique-fold-body">
   <p class="geo-intro">L'avantage en nature véhicule est la valeur, soumise à cotisations sociales, de l'usage privé d'un véhicule de fonction (Code de la sécurité sociale, art. L.242-1). L'employeur l'évalue au forfait ou aux dépenses réellement engagées. Barèmes établis d'après boss.gouv.fr, urssaf.fr et legifrance.gouv.fr, par Maître Sabrina Henocque Chiche, avocate au Barreau de Paris.</p>
   <div class="geo-faits">
     <div class="geo-fait"><p>Pour un véhicule <strong>acheté</strong> mis à disposition à compter du 1er février 2025, sans prise en charge du carburant, l'avantage forfaitaire annuel est de <strong>15 % du prix d'achat TTC</strong> (10 % au-delà de 5 ans).</p><cite>Arrêté du 25 février 2025, art. 3, III, B</cite></div>
@@ -952,12 +962,15 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
     <div class="geo-fait"><p>Le barème dépend de la <strong>date de mise à disposition au salarié</strong>, pas de la date d'achat. Avant le 1er février 2025 : 9 % / 6 % à l'achat, 30 % en location, conservés tant que la mise à disposition se poursuit.</p><cite>Arrêté du 25 février 2025, art. 3, III, A</cite></div>
     <div class="geo-fait"><p>L'URSSAF peut réintégrer un avantage sous-évalué sur les <strong>trois années civiles</strong> précédant le contrôle, porté à cinq ans en cas de travail dissimulé.</p><cite>CSS, art. L.244-3</cite></div>
     <div class="geo-fait"><p>La <strong>participation du salarié</strong> se déduit de l'évaluation ; si elle est au moins égale à l'évaluation, l'avantage en nature est nul.</p><cite>BOSS, Avantages en nature</cite></div>
-  </div>
+  </div></div>
+  </details>
 </section>
 
 <section class="statique">
   <p class="statique-eyebrow">Référence</p>
-  <h2>Quels sont les barèmes forfaitaires applicables ?</h2>
+  <details class="statique-fold">
+  <summary><h2>Quels sont les barèmes forfaitaires applicables ?</h2></summary>
+  <div class="statique-fold-body">
   <p>Le barème dépend de la date de mise à disposition du véhicule au salarié, et non de sa date d'achat par l'entreprise.</p>
   <div class="tables">
     <div class="table-bloc">
@@ -985,12 +998,15 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
       </table>
     </div>
   </div>
-  <p class="table-source">Source : arrêté du 25 février 2025 relatif à l'évaluation des avantages en nature, art. 3, III, B (mises à disposition à compter du 1er février 2025) et art. 3, III, A (mises à disposition antérieures) · <a href="https://boss.gouv.fr/portail/accueil/autres-elements-de-remuneration/avantages-en-nature.html" target="_blank" rel="noopener">BOSS, rubrique Avantages en nature</a>, § 910. Véhicules 100 % électriques éligibles à l'éco-score, mis à disposition à compter du 1er février 2025 : abattement de 70 % sur l'évaluation forfaitaire, plafonné à 4 641,60 € par an en 2026 (art. 3, III, D), applicable jusqu'au 31 décembre 2027. Véhicules électriques mis à disposition du 1er janvier 2020 au 31 janvier 2025 : abattement de 50 % plafonné (1 800 € de 2020 à 2023, 1 964,90 € en 2024, 2 000,30 € en 2025, 2 026,30 € en 2026), sans condition d'éco-score (art. 3, III, C). Valeurs établies d'après boss.gouv.fr et urssaf.fr.</p>
+  <p class="table-source">Source : arrêté du 25 février 2025 relatif à l'évaluation des avantages en nature, art. 3, III, B (mises à disposition à compter du 1er février 2025) et art. 3, III, A (mises à disposition antérieures) · <a href="https://boss.gouv.fr/portail/accueil/autres-elements-de-remuneration/avantages-en-nature.html" target="_blank" rel="noopener">BOSS, rubrique Avantages en nature</a>, § 910. Véhicules 100 % électriques éligibles à l'éco-score, mis à disposition à compter du 1er février 2025 : abattement de 70 % sur l'évaluation forfaitaire, plafonné à 4 641,60 € par an en 2026 (art. 3, III, D), applicable jusqu'au 31 décembre 2027. Véhicules électriques mis à disposition du 1er janvier 2020 au 31 janvier 2025 : abattement de 50 % plafonné (1 800 € de 2020 à 2023, 1 964,90 € en 2024, 2 000,30 € en 2025, 2 026,30 € en 2026), sans condition d'éco-score (art. 3, III, C). Valeurs établies d'après boss.gouv.fr et urssaf.fr.</p></div>
+  </details>
 </section>
 
 <section class="statique">
   <p class="statique-eyebrow">Exemples</p>
-  <h2>Trois exemples de calcul de l'avantage en nature véhicule</h2>
+  <details class="statique-fold">
+  <summary><h2>Trois exemples de calcul de l'avantage en nature véhicule</h2></summary>
+  <div class="statique-fold-body">
   <div class="exemples">
     <article class="exemple">
       <h3>Berline essence achetée 35 000 €, carte carburant</h3>
@@ -1019,7 +1035,8 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
       </ol>
       <p class="total">AEN : 1 800 € par an</p>
     </article>
-  </div>
+  </div></div>
+  </details>
 </section>
 
 <section class="statique faq">
@@ -1063,10 +1080,13 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
 
 <section class="statique">
   <p class="statique-eyebrow">Méthodologie</p>
-  <h2>Comment ce simulateur calcule</h2>
+  <details class="statique-fold">
+  <summary><h2>Comment ce simulateur calcule</h2></summary>
+  <div class="statique-fold-body">
   <div class="methodo">
     <p><strong>Textes appliqués :</strong> arrêté du 25 février 2025 relatif à l'évaluation des avantages en nature (art. 3 et 4), Bulletin officiel de la Sécurité sociale (BOSS, rubrique Avantages en nature), article L.242-1 du Code de la sécurité sociale. <strong>Dernière vérification des barèmes :</strong> 14 juillet 2026, sur boss.gouv.fr, urssaf.fr et legifrance.gouv.fr. <strong>Ce que l'outil ne couvre pas :</strong> véhicules utilitaires, deux-roues et vélos, véhicules partagés entre salariés, travailleurs non salariés, véhicules électriques mis à disposition avant le 1er février 2025, prises en charge partielles du carburant, bornes de recharge au domicile, situations de contrôle en cours. Cette estimation est indicative et automatisée, éditée par ComplyDB SAS (ACOMPIA). Elle ne constitue pas une consultation juridique personnalisée, ne remplace pas l'analyse d'un avocat ou conseil, ne crée pas de relation avocat-client et n'engage pas la responsabilité de l'éditeur ni de l'avocate. Elle repose sur les informations saisies et les règles paramétrées à la date d'édition. Pour toute décision, vérifiez auprès de l'URSSAF / du BOSS ou d'un professionnel. Si un contrôle est en cours, rapprochez-vous immédiatement d'un conseil : les délais de la procédure contradictoire sont brefs. Simulateur conçu par ACOMPIA, solution fondée par une avocate au Barreau de Paris.</p>
-  </div>
+  </div></div>
+  </details>
 </section>
 
 <footer class="pied">
