@@ -4325,3 +4325,304 @@ section { scroll-margin-top: 84px; }
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
 }
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║ ÉTAPE 2 DESIGN 21/07 · patch consolidé des 4 audits          ║
+   ║ (typo LOT 4, rendu premium, direction artistique, mobile).   ║
+   ║ Chaque segment est autonome et réversible.                   ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+/* ============================================================
+   SEGMENT A · LOT 4 : échelle typo harmonisée + rythme vertical
+   ============================================================ */
+:root {
+  --fs-display: clamp(36px, 4.4vw, 58px);
+  --fs-h1: clamp(30px, 3.6vw, 46px);
+  --fs-h2: clamp(28px, 3.2vw, 40px);
+  --fs-h2-sm: clamp(24px, 2.8vw, 34px);
+  --fs-h3-card: 22px;
+  --lh-display: 1.05;
+  --lh-h2: 1.15;
+  --ls-display: -0.03em;
+  --ls-h2: -0.025em;
+  --section-pad-y: clamp(56px, 7vw, 88px);
+  --section-pad: var(--section-pad-y) 48px;
+  --grid-gap: 24px;
+}
+.hero h1 {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+}
+.page-head-inner h1,
+.prediag .section-header h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.section-header h2, .stats-title, .how-title, .platform-header h2,
+section.platform h2, .team .section-header h2, .audits .section-header h2,
+.faq h2, .contact-compact-inner h2 {
+  font-size: var(--fs-h2) !important;
+  line-height: var(--lh-h2) !important;
+  letter-spacing: var(--ls-h2) !important;
+}
+.solution-door-inner h2, .anv-tool-head h2, .fondateurs-head h3 {
+  font-size: var(--fs-h2-sm);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.outil-card h3, .solution-trio-grid .outil-card h3 {
+  font-size: var(--fs-h3-card);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+.stats .stat-number, .stats .stat-prefix {
+  font-size: clamp(46px, 5vw, 72px) !important;
+  letter-spacing: -0.03em !important;
+}
+.stats .stat-suffix { font-size: clamp(20px, 2vw, 28px) !important; }
+section.stats, .prediag, section.how, section.audits, section.platform,
+section.team, section.faq, section.contact-compact, .fondateurs {
+  padding-top: var(--section-pad-y) !important;
+  padding-bottom: var(--section-pad-y) !important;
+}
+.hero-split ~ #stats.stats { padding-top: var(--section-pad-y) !important; }
+.section-header { margin-bottom: 40px !important; }
+.section-header .section-tag { margin-bottom: 16px; }
+.section-header h2, .how-title,
+.team .section-header h2, section.platform h2 { margin-bottom: 14px !important; }
+.how-sub { margin-bottom: 48px; }
+.outils-duo-grid, .solution-trio-grid, .stats .stats-grid { gap: var(--grid-gap); }
+.statique h2 { line-height: 1.25; }
+
+/* ============================================================
+   SEGMENT B · rendu premium : ombres tokenisées, bordures
+   translucides, transitions unifiées, focus clavier
+   ============================================================ */
+:root {
+  --ease-out: cubic-bezier(.25, 1, .5, 1);
+  --dur-1: .16s;
+  --dur-2: .3s;
+  --line-a: rgba(56, 50, 34, .13);
+  --line-a-strong: rgba(56, 50, 34, .26);
+  --line-accent: rgba(79, 70, 229, .25);
+  --shadow-sm: 0 1px 2px rgba(20, 18, 30, .05);
+  --shadow-md: 0 1px 2px rgba(20, 18, 30, .04),
+               0 8px 20px -6px rgba(38, 35, 66, .09);
+  --shadow-lg: 0 2px 4px rgba(20, 18, 30, .04),
+               0 16px 32px -12px rgba(38, 35, 66, .12),
+               0 32px 72px -28px rgba(38, 35, 66, .18);
+  --shadow-cta: 0 1px 2px rgba(20, 18, 30, .10),
+                0 8px 20px -8px rgba(67, 56, 202, .35);
+  --shadow-cta-hover: 0 2px 4px rgba(20, 18, 30, .10),
+                      0 12px 28px -10px rgba(67, 56, 202, .42);
+}
+:where(a, button, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.btn-primary, .btn-ghost, .nav-links a.nav-cta {
+  transition: transform var(--dur-1) var(--ease-out),
+              box-shadow var(--dur-1) var(--ease-out),
+              border-color var(--dur-1) var(--ease-out),
+              background-color var(--dur-1) var(--ease-out),
+              color var(--dur-1) var(--ease-out);
+}
+.btn-primary { box-shadow: var(--shadow-sm); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary:active { transform: translateY(0); box-shadow: var(--shadow-sm); transition-duration: .06s; }
+.btn-ghost:hover {
+  border-color: var(--line-a-strong);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-sm);
+}
+.btn-ghost:active { transform: translateY(1px); }
+.hero-ctas .btn-primary,
+.outil-card .btn-primary,
+.solution-door .btn-primary,
+.platform-inner .btn-primary { box-shadow: var(--shadow-cta); }
+.hero-ctas .btn-primary:hover,
+.outil-card .btn-primary:hover,
+.solution-door .btn-primary:hover,
+.platform-inner .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-cta-hover);
+}
+.outil-card {
+  border-color: var(--line-a);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-2) var(--ease-out),
+              box-shadow var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out);
+}
+.outil-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-a-strong);
+  box-shadow: var(--shadow-md);
+}
+.outil-card--featured { border-color: var(--line-accent); box-shadow: var(--shadow-md); }
+.outil-card--featured:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); }
+.audits .how-card { box-shadow: var(--shadow-sm) !important; }
+.audits .how-card:hover,
+.audits .pricing-card:hover,
+.audits .theme-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--line-accent) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+.audits .audit-form-block { box-shadow: var(--shadow-lg) !important; }
+.solution-jump a { border-color: var(--line-a); box-shadow: var(--shadow-sm); }
+.solution-jump a:hover {
+  border-color: var(--line-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.prediag-container {
+  border-color: var(--line-a) !important;
+  box-shadow: var(--shadow-lg);
+}
+.dash-window {
+  border-color: var(--line-a-strong);
+  box-shadow: 0 2px 6px rgba(20, 18, 30, .06),
+              0 40px 90px -34px rgba(24, 26, 46, .40);
+}
+.nav-dropdown-menu { border-color: var(--line-a); box-shadow: var(--shadow-lg); }
+::selection { background: rgba(79, 70, 229, .16); }
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary, .btn-ghost, .outil-card, .solution-jump a,
+  .audits .how-card, .audits .pricing-card, .audits .theme-card { transition: none !important; }
+}
+
+/* ============================================================
+   SEGMENT C · direction artistique : premium par soustraction
+   (décor éteint, un seul accent, une seule nuit, CTA indigo)
+   ============================================================ */
+@keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: none; } }
+@keyframes float-organic-1 { 0%, 100% { transform: none; } }
+@keyframes float-organic-2 { 0%, 100% { transform: none; } }
+@keyframes float-organic-3 { 0%, 100% { transform: none; } }
+@keyframes pulse-icon-soft { 0%, 100% { transform: none; opacity: 1; } }
+@keyframes pulse-glow-soft { 0%, 100% { opacity: 0.6; } }
+:root {
+  --g-aurora: linear-gradient(115deg, #4338CA 0%, #4F46E5 55%, #7C6FF0 100%);
+}
+section.platform h2 em,
+section.platform h2 .gradient-text,
+.how .step.final .step-name {
+  background-image: linear-gradient(115deg, #A5B4FC 0%, #C7D2FE 100%) !important;
+}
+.fondateurs-head h3 em {
+  background: none !important;
+  background-image: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: var(--indigo-pale) !important;
+}
+.btn-primary { background: linear-gradient(135deg, #4338CA 0%, #4F46E5 100%); }
+.btn-primary::before { background: linear-gradient(135deg, #3B31B5 0%, #4338CA 100%); }
+.audits .devis-submit .btn-primary {
+  background: linear-gradient(135deg, #4338CA 0%, #4F46E5 100%) !important;
+  box-shadow: 0 12px 24px -8px rgba(67, 56, 202, 0.35);
+}
+.hero-orb,
+.hero-watermark,
+section.platform .pf-orb,
+.fondateurs-glow { display: none !important; }
+section.stats::before,
+section.platform::before { display: none !important; }
+section.platform, section.how { background: var(--night) !important; }
+.fondateurs-card {
+  background: var(--night-2);
+  border-color: var(--night-line);
+  box-shadow: 0 30px 70px -40px rgba(7, 7, 15, 0.8);
+}
+.solution-door-inner { background: var(--night-2); }
+.platform-tag-soon {
+  background: rgba(165, 180, 252, 0.08);
+  color: var(--indigo-pale);
+  border-color: rgba(165, 180, 252, 0.28);
+}
+.preview-mockup-bar {
+  height: 6px;
+  background: linear-gradient(90deg,
+    #10B981 0%, #10B981 33%,
+    #F59E0B 45%, #F59E0B 66%,
+    #EF4444 78%, #EF4444 100%);
+}
+.preview-mockup-verdict {
+  font-family: 'Geist Mono', monospace;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B45309;
+}
+.preview-mockup-score {
+  background: none;
+  background-image: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--indigo);
+}
+.preview-mockup,
+.prediag-showcase:hover .preview-mockup { transform: none; }
+.prediag-showcase::before { opacity: 0.35; }
+.preview-mockup {
+  box-shadow: 0 24px 60px -24px rgba(12, 18, 34, 0.25),
+              0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+/* Les DEUX pastilles du hero sont conservées (décision Sabrina 17/07) ;
+   seule la collision à 1280px est corrigée : la pastille rentre dans le cadre. */
+.dash-chip-alert { top: -54px; right: 8px; }
+h1 em, h2 em, h3 em,
+.stats-title em,
+.section-header h2 em, .section-header h2 .gradient-text,
+.how-title em,
+.audits .section-header h2 em, .audits .devis-promise h3 em,
+section.platform h2 em,
+.team .section-header h2 em,
+.contact-compact-inner h2 em {
+  font-family: 'Geist', system-ui, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+.how .step:nth-child(1):hover { transform: translateY(-34px); }
+.how .step:nth-child(2):hover { transform: translateY(32px); }
+.how .step:nth-child(3):hover { transform: translateY(-30px); }
+.how .step:nth-child(4):hover { transform: translateY(32px); }
+.how .step:nth-child(5):hover { transform: translateY(-12px); }
+.how .step:nth-child(6):hover { transform: translateY(4px); }
+
+/* ============================================================
+   SEGMENT D · mobile : débordement horizontal réglé + finitions
+   ============================================================ */
+/* Le header sticky a un backdrop-filter, qui en fait le containing block
+   du tiroir .nav-links (fixed, right:-100%) : le tiroir étendait la zone
+   de scroll (x -> 750 à viewport 375). L'orbe du hero débordait aussi.
+   clip coupe SANS créer de scroll container : sticky et ancres intacts.
+   Sur html ET body, sinon le overflow-x:hidden du body (style.css) devient
+   un vrai scroll container et casse les sticky. */
+html, body { overflow-x: clip; }
+/* Croix du burger : style.css laisse margin 5px 0 sur les barres,
+   la croix était un chevron */
+.nav-burger span { margin: 0 !important; }
+@media (max-width: 900px) {
+  .nav-burger {
+    width: 44px !important;
+    height: 44px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .trust-bar-item { font-size: 11px !important; padding: 5px 10px !important; }
+}
+@media (max-width: 640px) {
+  .hero.hero-split { padding-left: 20px !important; padding-right: 20px !important; }
+  section.stats { padding: 64px 20px !important; }
+  .hero-split ~ #stats.stats { padding-top: 64px !important; }
+  .audits .devis-submit .btn-primary { padding: 16px 12px !important; white-space: nowrap; }
+  .stats .stat-label br,
+  .team .section-header h2 br { display: none; }
+  .footer-col a { display: inline-block; padding: 5px 0; }
+  .team-linkedin-icon { width: 40px; height: 40px; }
+}
+/* ==================== fin du patch étape 2 ==================== */
