@@ -192,6 +192,15 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
     ]
   }
   </script>
+  <style>
+    /* Finitions mobiles (étape 2 design 21/07) : le fil d'ariane ne colle plus
+       au logo quand il passe à la ligne ; curseur du slider au doigt */
+    body > nav { gap: 16px; flex-wrap: wrap; }
+    @media (max-width: 640px) {
+      input[type=range]::-webkit-slider-thumb { width: 32px; height: 32px; }
+      input[type=range]::-moz-range-thumb { width: 32px; height: 32px; }
+    }
+  </style>
 </head>
 <body>
 <nav style="display:flex;align-items:center;justify-content:space-between;max-width:1060px;margin:0 auto;padding:22px 32px 0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.12em">
