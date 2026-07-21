@@ -4632,3 +4632,26 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
 .stats .stat-number, .stats .stat-prefix { font-size: clamp(38px, 4vw, 56px) !important; }
 .stats .stat-suffix { font-size: clamp(16px, 1.6vw, 22px) !important; }
 .stats .stats-sources { font-size: 12.5px; }
+
+/* Texte justifié partout où la largeur de colonne le permet (demande Sabrina 21/07).
+   Les intros centrées et les libellés courts restent tels quels. */
+.outil-card p, .faq-content p, .fondateurs-lead, .fondateurs-give,
+.audit-block > p, .devis-promise > p, .team-info > p,
+.statique p, .geo-intro, .anv-tool-head > p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* Libellés du bandeau chiffres : phrase propre en Geist, fini les petites
+   capitales mono à la ligne cassée */
+.stats .stat-label {
+  font-family: 'Geist', system-ui, sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  color: var(--ink-2, #52525B) !important;
+  margin-top: 10px !important;
+  max-width: 34ch;
+}
