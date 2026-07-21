@@ -4626,3 +4626,9 @@ html, body { overflow-x: clip; }
   .team-linkedin-icon { width: 40px; height: 40px; }
 }
 /* ==================== fin du patch étape 2 ==================== */
+
+/* Bandeau chiffres plus compact (demande Sabrina 21/07) */
+section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
+.stats .stat-number, .stats .stat-prefix { font-size: clamp(38px, 4vw, 56px) !important; }
+.stats .stat-suffix { font-size: clamp(16px, 1.6vw, 22px) !important; }
+.stats .stats-sources { font-size: 12.5px; }
