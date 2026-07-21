@@ -200,6 +200,13 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
       input[type=range]::-webkit-slider-thumb { width: 32px; height: 32px; }
       input[type=range]::-moz-range-thumb { width: 32px; height: 32px; }
     }
+    /* Bloc éditorial « Comprendre l'offre » : trois colonnes de texte justifié */
+    .infos-flotte { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--ligne); }
+    .infos-flotte-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 20px; }
+    .infos-flotte h2 { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
+    .infos-flotte p { font-size: 14px; line-height: 1.68; color: var(--ink-2); text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .infos-flotte p + p { margin-top: 10px; }
+    @media (max-width: 860px) { .infos-flotte-grid { grid-template-columns: 1fr; gap: 26px; } }
   </style>
 </head>
 <body>
@@ -263,20 +270,24 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
     </div>
   </div>
 
-  <section style="margin-top:44px">
-    <h2 class="nom">Ce que l'outil de pilotage vérifiera</h2>
-    <p class="sub">L'outil de pilotage et l'audit continu ouvriront en septembre 2026. Conçu par une avocate au Barreau de Paris et exécuté par le logiciel, l'outil calculera l'avantage en nature de chaque véhicule au barème en vigueur, détectera les écarts entre la paie et la DSN, signalera les pièces justificatives manquantes et suivra les évolutions du barème publié au BOSS. Chaque vérification alimentera un historique horodaté, opposable en cas de contrôle.</p>
-    <p class="sub">Dans l'attente de cette ouverture, les audits ponctuels de l'avantage en nature véhicule sont disponibles dès maintenant, sur devis.</p>
-  </section>
-
-  <section style="margin-top:36px">
-    <h2 class="nom">Pourquoi la flotte attire les contrôles URSSAF</h2>
-    <p class="sub">L'avantage en nature véhicule figure parmi les chefs de redressement les plus fréquents. L'inspecteur peut vérifier les trois années civiles qui précèdent l'avis de contrôle, si bien qu'une erreur de barème ou une omission dans la DSN se répète mois après mois et se chiffre sur trois ans. Une flotte de quelques dizaines de véhicules suffit à représenter un enjeu financier significatif.</p>
-  </section>
-
-  <section style="margin-top:36px">
-    <h2 class="nom">À qui s'adresse l'abonnement</h2>
-    <p class="sub">L'abonnement s'adresse aux entreprises de 50 à 500 salariés qui mettent des véhicules à la disposition de leurs salariés, et en pratique à leurs directions financières, paie ou ressources humaines. Il couvre l'ensemble de la flotte, quel que soit le mode de détention des véhicules, achat, location longue durée ou crédit-bail. Le prix de l'abonnement s'ajuste au nombre de véhicules, à partir de 150 € HT par mois, et l'audit AEN sur 3 ans passe à moitié prix pour les entreprises abonnées.</p>
+  <section class="infos-flotte">
+    <p class="eyebrow">Comprendre l'offre</p>
+    <div class="infos-flotte-grid">
+      <article>
+        <h2>Ce que l'outil de pilotage vérifiera</h2>
+        <p>L'outil de pilotage et l'audit continu ouvriront en septembre 2026. Conçu par une avocate au Barreau de Paris et exécuté par le logiciel, l'outil calculera l'avantage en nature de chaque véhicule au barème en vigueur, détectera les écarts entre la paie et la DSN, signalera les pièces justificatives manquantes et suivra les évolutions du barème publié au BOSS. Chaque vérification alimentera un historique horodaté, opposable en cas de contrôle.</p>
+        <p>Au-delà de la conformité, c'est aussi un outil de gestion et de pilotage de la flotte. Il centralise les véhicules, leurs contrats et leurs justificatifs, et vérifie en continu que chaque situation reste conforme aux règles de droit en vigueur.</p>
+        <p>Dans l'attente de cette ouverture, les audits ponctuels de l'avantage en nature véhicule sont disponibles dès maintenant, sur devis.</p>
+      </article>
+      <article>
+        <h2>Pourquoi la flotte attire les contrôles URSSAF</h2>
+        <p>L'avantage en nature véhicule figure parmi les chefs de redressement les plus fréquents. L'inspecteur peut vérifier les trois années civiles qui précèdent l'avis de contrôle, si bien qu'une erreur de barème ou une omission dans la DSN se répète mois après mois et se chiffre sur trois ans. Une flotte de quelques dizaines de véhicules suffit à représenter un enjeu financier significatif.</p>
+      </article>
+      <article>
+        <h2>À qui s'adresse l'abonnement</h2>
+        <p>L'abonnement s'adresse aux entreprises de 50 à 500 salariés qui mettent des véhicules à la disposition de leurs salariés, et en pratique à leurs directions financières, paie ou ressources humaines. Il couvre l'ensemble de la flotte, quel que soit le mode de détention des véhicules, achat, location longue durée ou crédit-bail. Le prix de l'abonnement s'ajuste au nombre de véhicules, à partir de 150&nbsp;€ HT par mois, et l'audit AEN sur 3 ans passe à moitié prix pour les entreprises abonnées.</p>
+      </article>
+    </div>
   </section>
 
   <p class="note-bas" style="margin-top:44px">Tarifs hors taxes, conçus par une avocate au Barreau de Paris. Au-delà de 200 véhicules, ou pour une intégration à votre SIRH, tarif sur devis.</p>
