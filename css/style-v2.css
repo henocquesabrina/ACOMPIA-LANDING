@@ -4747,3 +4747,38 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
   .porte-steps { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .porte-path { display: none; }
 }
+
+/* Outils gratuits : mini-aperçus visuels (variante o1 choisie par Sabrina, 21/07) */
+.o1-visual {
+  width: 100%;
+  background: #EEF1FB;
+  border: 1px solid rgba(79, 70, 229, 0.10);
+  border-radius: 14px;
+  padding: 24px 26px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 196px;
+  margin-bottom: 18px;
+}
+.o1-gauge { width: 172px; height: auto; display: block; }
+.o1-rows { width: 100%; max-width: 230px; display: flex; flex-direction: column; gap: 8px; }
+.o1-row { display: flex; align-items: center; gap: 9px; }
+.o1-dot { width: 8px; height: 8px; border-radius: 50%; background: #4F46E5; flex-shrink: 0; }
+.o1-dot-2 { background: #8B5CF6; }
+.o1-dot-3 { background: #22D3EE; }
+.o1-row b { height: 8px; border-radius: 4px; background: #DDE1F2; display: block; }
+.o1-calc { width: 196px; display: flex; flex-direction: column; gap: 12px; }
+.o1-calc-screen { display: flex; align-items: center; justify-content: space-between; background: #0F0F1E; border-radius: 10px; padding: 14px 16px; }
+.o1-euro { font-family: 'Geist', system-ui, sans-serif; font-weight: 700; font-size: 22px; color: #A5B4FC; line-height: 1; }
+.o1-blocks { display: flex; gap: 6px; }
+.o1-blocks i { width: 13px; height: 20px; border-radius: 4px; background: #A5B4FC; display: block; }
+.o1-blocks i:nth-child(1) { opacity: .45; }
+.o1-blocks i:nth-child(2) { opacity: .65; }
+.o1-blocks i:nth-child(3) { opacity: .85; }
+.o1-keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.o1-keys i { height: 24px; border-radius: 6px; background: #E2E5F4; display: block; }
+.o1-key-accent { background: linear-gradient(135deg, #4338CA, #4F46E5) !important; }
+.o1-card { padding-top: 26px; }
