@@ -294,9 +294,9 @@
 
 /* Neutralise le sticky generique de style-v2 sur le header de page */
 .ress-page-header { position: static !important; }
-  .hubC-banner {
+.hubC-banner {
   margin: 46px 0 4px;
-  background: #0A0A0A;
+  background: var(--night, #07070F);
   border-radius: 20px;
   padding: 34px 40px;
   display: flex;
@@ -345,8 +345,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #FFFFFF;
-  color: #0A0A0A;
+  background: var(--accent, #4F46E5);
+  color: #FFFFFF;
   border-radius: 999px;
   padding: 13px 24px;
   font-size: 14px;
@@ -356,9 +356,11 @@
 }
 .hubC-banner-cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.18);
+  box-shadow: var(--shadow-cta, 0 8px 24px rgba(79, 70, 229, 0.35));
 }
-.hubC-banner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 24px; }
+@media (max-width: 860px) {
+  .hubC-banner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 24px; }
+}
 </style>
   <script id="hub-filtres">
 /* Filtrage par sujet : boutons .ress-filter[data-filter] / cartes [data-theme] */

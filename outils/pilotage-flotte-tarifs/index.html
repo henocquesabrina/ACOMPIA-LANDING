@@ -33,7 +33,7 @@ body{font-family:'Geist',system-ui,sans-serif;background:var(--pierre);color:var
 .wrap{max-width:980px;margin:0 auto;padding:48px 36px 80px}
 .eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);font-weight:600}
 h1{font-size:38px;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin:12px 0 0}
-h1 .grad{background:linear-gradient(90deg,var(--indigo),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 .grad{color:var(--indigo)}
 .sub{color:var(--ink-2);font-size:16.5px;margin-top:14px;max-width:62ch}
 
 /* Slider */
@@ -57,7 +57,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
 .card--hero .tag{color:var(--indigo)}
 .nom{font-size:22px;font-weight:750;letter-spacing:-.015em;margin-top:6px}
 .card--hero .nom{font-size:26px}
-.nom .grad{background:linear-gradient(90deg,var(--indigo),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nom .grad{color:var(--indigo)}
 .pitch{color:var(--ink-2);font-size:13.5px;margin-top:10px;line-height:1.5}
 
 .prix{margin-top:18px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
@@ -72,7 +72,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
 .liste li::after{content:'✓';position:absolute;left:4px;top:1px;font-size:10px;color:var(--vert);font-weight:800}
 .liste li b{color:var(--ink);font-weight:650}
 .inclus-tt{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);font-weight:600;margin-top:20px}
-.pont{margin-top:20px;padding:14px 16px;background:var(--ambre-pale);border:1px solid color-mix(in srgb,var(--ambre) 28%,transparent);border-radius:12px;font-size:13px;color:var(--ambre);line-height:1.45}
+.pont{margin-top:20px;padding:14px 16px;background:var(--indigo-pale,rgba(79,70,229,.07));border:1px solid color-mix(in srgb,var(--indigo) 24%,transparent);border-radius:12px;font-size:13px;color:var(--indigo);line-height:1.45}
 .pont b{font-weight:700}
 .cta{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
 .btn{border-radius:10px;padding:11px 18px;font-weight:600;font-size:14px;border:1px solid var(--ligne-forte);background:#fff;color:var(--ink);text-decoration:none;display:inline-block;cursor:pointer}
@@ -242,7 +242,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
         <li>Exposition chiffrée sur 3 ans</li>
         <li>Plan de régularisation signé d'une avocate</li>
       </ul>
-      <div class="cta"><a class="btn" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Demander un devis</a></div>
+      <div class="cta"><a class="btn btn--primaire" href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">Demander un devis</a></div>
     </div>
 
     <!-- ABONNEMENT (hero) -->

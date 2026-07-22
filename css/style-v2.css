@@ -4846,3 +4846,43 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
 .pil-tile b { display: block; color: #E6E8F5; font-size: 14.5px; font-weight: 650; margin-bottom: 5px; }
 .pil-tile span { color: rgba(255,255,255,0.55); font-size: 12.5px; line-height: 1.45; }
 @media (max-width: 860px) { .pil-grid { grid-template-columns: 1fr; } .pil-tiles { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   SEGMENT E — Passe DA du 22/07 (cohérence inter-pages)
+   Réversible : supprimer ce segment restaure l'état du 21/07.
+   ============================================================ */
+
+/* E1 — CTA prédiagnostic en indigo (le noir #start-prediag datait d'avant
+   la règle « CTA indigo partout » du 21/07 ; l'ID + !important battait l'override) */
+#start-prediag {
+  background: var(--accent) !important;
+  box-shadow: var(--shadow-cta) !important;
+}
+#start-prediag::before { background: linear-gradient(135deg, #3B31B5 0%, #4338CA 100%); }
+
+/* E2 — Étapes du parcours sur mobile : le nœud de timeline (.step-marker)
+   n'a plus de courbe à ponctuer quand les étapes s'empilent, il doublonnait
+   l'illustration */
+@media (max-width: 700px) {
+  .how .step-marker { display: none; }
+}
+
+/* E3 — Micro-typo mobile : l'hyphénation évite les rivières dans les
+   colonnes étroites justifiées (citation équipe, réponses FAQ) */
+@media (max-width: 700px) {
+  .team-quote, .team-quote p, .faq-answer p, .faq-a p { hyphens: auto; -webkit-hyphens: auto; }
+}
+
+/* E4 — Fiche AEN de /solution/ : la note de prestation redevient une phrase
+   (le mono majuscules est réservé aux petits labels, pas aux phrases) */
+.audits .pricing-note {
+  font-family: 'Geist', sans-serif !important;
+  font-size: 13.5px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  color: var(--ink-2, #3F3F46) !important;
+  line-height: 1.55 !important;
+  text-align: left !important;
+}
+.audits .pricing-note svg { color: var(--accent); }
