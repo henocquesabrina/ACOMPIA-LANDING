@@ -437,37 +437,122 @@
   </section>
 
   <!-- ==================== LA SOLUTION (trio) ==================== -->
-  <section id="solution-home" class="prediag solution-home">
+  <section id="solution-home" class="prediag solution-home portes">
     <div class="section-header reveal">
       <div class="section-tag">Notre solution</div>
-      <h2>Une conformité <em>complète</em>, rigoureuse et démontrable.</h2>
-      <p>Pilotage de flotte disponible dès maintenant, audits sur devis, audit continu dès septembre 2026. La rigueur d'une avocate, la puissance d'un logiciel.</p>
+      <h2>Un seul logiciel, trois façons de <em>l'utiliser</em>.</h2>
+      <p>Choisissez votre porte d'entrée. La rigueur d'une avocate, la puissance d'un logiciel.</p>
     </div>
-    <div class="solution-trio-grid reveal">
-      <div class="outil-card outil-card--featured">
-        <span class="outil-eyebrow">Septembre 2026 · audit continu</span>
-        <h3>Conformité URSSAF en continu</h3>
-        <p>Vous importez vos données, le logiciel chiffre votre exposition, corrige les écarts et constitue votre dossier de preuve. Sans y penser.</p>
-        <a href="/solution/#fondateurs" class="btn-primary"><span>Devenir entreprise fondatrice <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-        <span class="outil-note">10 places · <a href="/solution/#platform">ou être informé du lancement</a></span>
+
+    <div class="portes-tabs reveal" role="tablist" aria-label="Les trois offres">
+      <button class="porte-tab is-active" data-porte="pilotage" role="tab" aria-selected="true" type="button"><b>Pilotage de flotte</b><span>Disponible maintenant</span></button>
+      <button class="porte-tab" data-porte="audits" role="tab" aria-selected="false" type="button"><b>Audits sur mesure</b><span>Sur devis · 48 h</span></button>
+      <button class="porte-tab" data-porte="continu" role="tab" aria-selected="false" type="button"><b>Audit continu</b><span>Septembre 2026</span></button>
+    </div>
+
+    <div class="portes-panels reveal">
+
+      <div class="porte-panel is-active" id="porte-pilotage" role="tabpanel">
+        <div class="porte-head">
+          <h3>Pilotage de flotte AEN</h3>
+          <p>L'outil calcule l'avantage en nature de chaque véhicule, détecte les écarts entre paie et DSN, réclame les pièces manquantes et vous alerte quand un barème change.</p>
+        </div>
+        <div class="porte-path" aria-hidden="true"><svg viewBox="0 0 1100 12" preserveAspectRatio="none">
+            <defs><linearGradient id="porteG1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.15"/>
+              <stop offset="50%" stop-color="#A5B4FC" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.7"/>
+            </linearGradient></defs>
+            <line x1="20" y1="6" x2="1080" y2="6" stroke="url(#porteG1)" stroke-width="1.5" stroke-dasharray="3 8">
+              <animate attributeName="stroke-dashoffset" from="0" to="-44" dur="2s" repeatCount="indefinite"/>
+            </line>
+          </svg></div>
+        <div class="porte-steps">
+          <div class="porte-step"><b>Importez</b><span>paie, DSN, documents RH</span></div>
+          <div class="porte-step"><b>Analysez</b><span>le moteur juridique chiffre votre exposition</span></div>
+          <div class="porte-step"><b>Corrigez</b><span>un plan d'action priorisé, écart par écart</span></div>
+          <div class="porte-step porte-step--final"><b>Sérénité</b><span>le jour du contrôle, tout est prêt</span></div>
+        </div>
+        <div class="porte-ctas">
+          <a href="/solution/#fondateurs" class="btn-primary"><span>Devenir entreprise fondatrice <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+          <a href="/outils/pilotage-flotte-tarifs/" class="porte-link">Voir l'outil et les tarifs →</a>
+        </div>
       </div>
-      <div class="outil-card">
-        <span class="outil-eyebrow">Flotte véhicules · tarif au véhicule</span>
-        <h3>Pilotage de flotte AEN</h3>
-        <p>L'outil calcule l'avantage en nature de chaque véhicule, détecte les écarts entre paie et DSN, et vous alerte quand un barème change.</p>
-        <a href="/outils/pilotage-flotte-tarifs/" class="btn-primary"><span>Voir l'outil et les tarifs <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-        <span class="outil-note">Tarifs dégressifs, détaillés sur la page dédiée</span>
+
+      <div class="porte-panel" id="porte-audits" role="tabpanel">
+        <div class="porte-head">
+          <h3>Audits sur mesure</h3>
+          <p>Un audit outillé, ciblé ou multi-thématique, qui chiffre vos risques comme vos économies et livre un plan d'action. Réponse sous 48&nbsp;h, sans engagement.</p>
+        </div>
+        <div class="porte-path" aria-hidden="true"><svg viewBox="0 0 1100 12" preserveAspectRatio="none">
+            <defs><linearGradient id="porteG2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.15"/>
+              <stop offset="50%" stop-color="#A5B4FC" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.7"/>
+            </linearGradient></defs>
+            <line x1="20" y1="6" x2="1080" y2="6" stroke="url(#porteG2)" stroke-width="1.5" stroke-dasharray="3 8">
+              <animate attributeName="stroke-dashoffset" from="0" to="-44" dur="2s" repeatCount="indefinite"/>
+            </line>
+          </svg></div>
+        <div class="porte-steps">
+          <div class="porte-step"><b>Demandez</b><span>un devis, réponse sous 48 h</span></div>
+          <div class="porte-step"><b>Importez</b><span>les données du périmètre choisi</span></div>
+          <div class="porte-step"><b>Analysez</b><span>risques et économies, chiffrés</span></div>
+          <div class="porte-step porte-step--final"><b>Plan d'action</b><span>les corrections à mettre en œuvre</span></div>
+        </div>
+        <div class="porte-ctas">
+          <a href="/solution/#devis" class="btn-primary"><span>Demander un devis <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+          <a href="/solution/#audits" class="porte-link">Le détail des audits →</a>
+        </div>
       </div>
-      <div class="outil-card">
-        <span class="outil-eyebrow">Sur devis · réponse sous 48 h</span>
-        <h3>Audits sur mesure</h3>
-        <p>Un audit outillé, ciblé ou multi-thématique, qui chiffre vos risques comme vos économies et livre un plan d'action.</p>
-        <a href="/solution/#devis" class="btn-primary"><span>Demander un devis <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-        <span class="outil-note">Frais pro, AEN, PSC, rémunérations, RGDU</span>
+
+      <div class="porte-panel" id="porte-continu" role="tabpanel">
+        <div class="porte-head">
+          <h3>Audit continu</h3>
+          <p>En septembre 2026, le logiciel étendra la surveillance au-delà des véhicules. Tableau de bord d'exposition, alertes automatisées, dossier de preuve permanent.</p>
+        </div>
+        <div class="porte-path" aria-hidden="true"><svg viewBox="0 0 1100 12" preserveAspectRatio="none">
+            <defs><linearGradient id="porteG3" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.15"/>
+              <stop offset="50%" stop-color="#A5B4FC" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.7"/>
+            </linearGradient></defs>
+            <line x1="20" y1="6" x2="1080" y2="6" stroke="url(#porteG3)" stroke-width="1.5" stroke-dasharray="3 8">
+              <animate attributeName="stroke-dashoffset" from="0" to="-44" dur="2s" repeatCount="indefinite"/>
+            </line>
+          </svg></div>
+        <div class="porte-steps">
+          <div class="porte-step"><b>Connexion</b><span>vos données, en continu</span></div>
+          <div class="porte-step"><b>Surveillance</b><span>chaque règle, en permanence</span></div>
+          <div class="porte-step"><b>Alertes</b><span>écarts signalés et expliqués</span></div>
+          <div class="porte-step porte-step--final"><b>Preuve</b><span>un dossier opposable, à jour</span></div>
+        </div>
+        <div class="porte-ctas">
+          <a href="/solution/#platform" class="btn-primary"><span>Être informé du lancement <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+          <a href="/solution/" class="porte-link">Toute la solution →</a>
+        </div>
       </div>
+
     </div>
     <p class="outils-hub-more reveal"><a href="/solution/">Toute la solution sur une page →</a></p>
   </section>
+  <script>
+  (function () {
+    var tabs = document.querySelectorAll('.porte-tab');
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.classList.toggle('is-active', on);
+          x.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        document.querySelectorAll('.porte-panel').forEach(function (p) {
+          p.classList.toggle('is-active', p.id === 'porte-' + t.dataset.porte);
+        });
+      });
+    });
+  })();
+  </script>
 
   <!-- ==================== OUTILS GRATUITS (duo) ==================== -->
   <section id="prediag" class="prediag">
