@@ -237,21 +237,20 @@ body.ress-page {
 
 /* ===== Variantes de fond ===== */
 .ress-cover--aurora {
-  background: linear-gradient(115deg, #4F46E5 0%, #8B5CF6 25%, #22D3EE 50%, #10B981 75%, #4F46E5 100%);
-  background-size: 240% 240%;
-  animation: aurora-shift 22s ease infinite;
+  /* Gamme indigo-nuit (l'aurora multicolore est hors charte depuis le 21/07) */
+  background: linear-gradient(135deg, #0F0F1E 0%, #1E1B4B 40%, #312E81 72%, #4338CA 105%);
   color: #FAFAF7;
 }
 .ress-cover--aurora::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.20), transparent 55%),
-              linear-gradient(180deg, transparent 55%, rgba(10,10,10,0.30) 100%);
+  background: radial-gradient(circle at 85% 10%, rgba(129,140,248,0.28), transparent 55%),
+              linear-gradient(180deg, transparent 55%, rgba(7,7,15,0.35) 100%);
   pointer-events: none;
 }
 .ress-cover--ink {
-  background: #0A0A0A;
+  background: #07070F;
   color: #FAFAF7;
 }
 .ress-cover--indigo {
@@ -259,7 +258,7 @@ body.ress-page {
   color: #FAFAF7;
 }
 .ress-cover--dark {
-  background: #131322;
+  background: #0F0F1E;
   color: #FAFAF7;
 }
 .ress-cover--cream {
@@ -410,16 +409,14 @@ body.ress-page {
   margin-bottom: 36px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(115deg, #4F46E5 0%, #8B5CF6 25%, #22D3EE 50%, #10B981 75%, #4F46E5 100%);
-  background-size: 220% 220%;
-  animation: aurora-shift 18s ease infinite;
+  background: linear-gradient(135deg, #0F0F1E 0%, #1E1B4B 40%, #312E81 72%, #4338CA 105%);
 }
 .article-hero-banner::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 25% 30%, rgba(255,255,255,0.18), transparent 55%),
-              linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.25) 100%);
+  background: radial-gradient(circle at 85% 10%, rgba(129,140,248,0.28), transparent 55%),
+              linear-gradient(180deg, transparent 50%, rgba(7,7,15,0.30) 100%);
 }
 .article-hero-banner-content {
   position: absolute;
@@ -467,7 +464,7 @@ body.ress-page {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4F46E5 0%, #22D3EE 100%);
+  background: linear-gradient(135deg, #4F46E5 0%, #818CF8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
