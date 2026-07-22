@@ -445,102 +445,14 @@
     </div>
 
     <div class="portes-tabs reveal" role="tablist" aria-label="Les trois offres">
-      <button class="porte-tab is-active" data-porte="pilotage" role="tab" aria-selected="true" type="button"><b>Pilotage de flotte</b><span>Disponible maintenant</span></button>
+      <button class="porte-tab is-active" data-porte="continu" role="tab" aria-selected="true" type="button"><b>Audit continu</b><span>Septembre 2026</span></button>
       <button class="porte-tab" data-porte="audits" role="tab" aria-selected="false" type="button"><b>Audits sur mesure</b><span>Sur devis · 48 h</span></button>
-      <button class="porte-tab" data-porte="continu" role="tab" aria-selected="false" type="button"><b>Audit continu</b><span>Septembre 2026</span></button>
+      <button class="porte-tab" data-porte="pilotage" role="tab" aria-selected="false" type="button"><b>Pilotage de flotte</b><span>Disponible maintenant</span></button>
     </div>
 
     <div class="portes-panels reveal">
 
-<div class="porte-panel is-active" id="porte-pilotage" role="tabpanel">
-        <div class="porte-head">
-          <h3>Pilotage de flotte AEN</h3>
-          <p>L'outil calcule l'avantage en nature de chaque véhicule, détecte les écarts entre paie et DSN, réclame les pièces manquantes et vous alerte quand un barème change.</p>
-        </div>
-        <div class="porte-path" aria-hidden="true"><svg viewBox="0 0 1100 12" preserveAspectRatio="none">
-            <defs><linearGradient id="porteG1" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.15"/>
-              <stop offset="50%" stop-color="#A5B4FC" stop-opacity="0.9"/>
-              <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.7"/>
-            </linearGradient></defs>
-            <line x1="20" y1="6" x2="1080" y2="6" stroke="url(#porteG1)" stroke-width="1.5" stroke-dasharray="3 8">
-              <animate attributeName="stroke-dashoffset" from="0" to="-44" dur="2s" repeatCount="indefinite"/>
-            </line>
-          </svg></div>
-        <div class="porte-steps">
-          <div class="porte-step"><b>Importez</b><span>paie, DSN, documents RH</span></div>
-          <div class="porte-step"><b>Analysez</b><span>le moteur juridique chiffre votre exposition</span></div>
-          <div class="porte-step"><b>Corrigez</b><span>un plan d'action priorisé, écart par écart</span></div>
-          <div class="porte-step porte-step--final"><b>Sérénité</b><span>le jour du contrôle, tout est prêt</span></div>
-        </div>
-        <div class="porte-ctas">
-          <a href="/solution/#fondateurs" class="btn-primary"><span>Devenir entreprise fondatrice <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-          <a href="/outils/pilotage-flotte-tarifs/" class="porte-link">Voir l'outil et les tarifs →</a>
-        </div>
-      </div>
-
-      <div class="porte-panel porte-panel--light" id="porte-audits" role="tabpanel">
-        <div class="porte-head">
-          <h3>Audits sur mesure, du ciblé au multi-thématique</h3>
-          <p>Un audit croisé couvrant plusieurs axes de conformité, adapté à votre profil de risque. Chaque audit inclut un plan d'action détaillé avec les corrections concrètes à mettre en œuvre.</p>
-        </div>
-        <div class="themes-grid">
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-          </div>
-          <h4>Frais professionnels</h4>
-          <p>IK, forfaits repas, déplacements, DFS</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1-6h10l1 6M8 17v2M16 17v2"/><circle cx="8" cy="13" r="1.5"/><circle cx="16" cy="13" r="1.5"/></svg>
-          </div>
-          <h4>Avantages en nature</h4>
-          <p>Véhicules, NTIC, logement, nourriture</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <h4>Protection sociale</h4>
-          <p>Mutuelle, prévoyance, DUE, dispenses</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M16 8.5C15 7.5 13.5 7 12 7c-2.8 0-4.5 2-4.5 5s1.7 5 4.5 5c1.5 0 3-.5 4-1.5"/>
-              <line x1="7.5" y1="10.5" x2="13.5" y2="10.5"/>
-              <line x1="7.5" y1="13.5" x2="13.5" y2="13.5"/>
-            </svg>
-          </div>
-          <h4>Rémunérations</h4>
-          <p>Heures sup, forfait jours, primes, DSN</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="6" y="13" width="3" height="6"/><rect x="11" y="9" width="3" height="10"/><rect x="16" y="6" width="3" height="13"/></svg>
-          </div>
-          <h4>Réduction générale</h4>
-          <p>Calcul RGDU, seuils, situations complexes</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 14l2 2 4-4"/></svg>
-          </div>
-          <h4>Ruptures de contrat</h4>
-          <p>Transactions, ruptures conv., indemnités</p>
-        </div>
-      </div>
-        <p class="porte-note">Chaque audit est sur-mesure. Contactez-nous pour recevoir un devis adapté, réponse sous 48&nbsp;h, sans engagement.</p>
-        <div class="porte-ctas">
-          <a href="/solution/#devis" class="btn-primary"><span>Demander un devis <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-          <a href="/solution/#audits" class="porte-link porte-link--dark">Le détail des audits →</a>
-        </div>
-      </div>
-
-      <div class="porte-panel" id="porte-continu" role="tabpanel">
+      <div class="porte-panel is-active" id="porte-continu" role="tabpanel">
         <div class="porte-how how">
           <div class="platform-tag-soon porte-badge">● Ouverture en septembre 2026</div>
           <h2 class="how-title">De vos données à votre <em>conformité démontrable</em>.</h2>
@@ -699,6 +611,120 @@
           <a href="/solution/" class="porte-link">Toute la solution →</a>
         </div>
       </div>
+
+      <div class="porte-panel porte-panel--light" id="porte-audits" role="tabpanel">
+        <div class="porte-head">
+          <h3>Audits sur mesure, du ciblé au multi-thématique</h3>
+          <p>Un audit croisé couvrant plusieurs axes de conformité, adapté à votre profil de risque. Chaque audit inclut un plan d'action détaillé avec les corrections concrètes à mettre en œuvre.</p>
+        </div>
+        <div class="themes-grid">
+        <div class="theme-card">
+          <div class="theme-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          </div>
+          <h4>Frais professionnels</h4>
+          <p>IK, forfaits repas, déplacements, DFS</p>
+        </div>
+        <div class="theme-card">
+          <div class="theme-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1-6h10l1 6M8 17v2M16 17v2"/><circle cx="8" cy="13" r="1.5"/><circle cx="16" cy="13" r="1.5"/></svg>
+          </div>
+          <h4>Avantages en nature</h4>
+          <p>Véhicules, NTIC, logement, nourriture</p>
+        </div>
+        <div class="theme-card">
+          <div class="theme-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4>Protection sociale</h4>
+          <p>Mutuelle, prévoyance, DUE, dispenses</p>
+        </div>
+        <div class="theme-card">
+          <div class="theme-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M16 8.5C15 7.5 13.5 7 12 7c-2.8 0-4.5 2-4.5 5s1.7 5 4.5 5c1.5 0 3-.5 4-1.5"/>
+              <line x1="7.5" y1="10.5" x2="13.5" y2="10.5"/>
+              <line x1="7.5" y1="13.5" x2="13.5" y2="13.5"/>
+            </svg>
+          </div>
+          <h4>Rémunérations</h4>
+          <p>Heures sup, forfait jours, primes, DSN</p>
+        </div>
+        <div class="theme-card">
+          <div class="theme-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="6" y="13" width="3" height="6"/><rect x="11" y="9" width="3" height="10"/><rect x="16" y="6" width="3" height="13"/></svg>
+          </div>
+          <h4>Réduction générale</h4>
+          <p>Calcul RGDU, seuils, situations complexes</p>
+        </div>
+        <div class="theme-card">
+          <div class="theme-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 14l2 2 4-4"/></svg>
+          </div>
+          <h4>Ruptures de contrat</h4>
+          <p>Transactions, ruptures conv., indemnités</p>
+        </div>
+      </div>
+        <p class="porte-note">Chaque audit est sur-mesure. Contactez-nous pour recevoir un devis adapté, réponse sous 48&nbsp;h, sans engagement.</p>
+        <div class="porte-ctas">
+          <a href="/solution/#devis" class="btn-primary"><span>Demander un devis <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+          <a href="/solution/#audits" class="porte-link porte-link--dark">Le détail des audits →</a>
+        </div>
+      </div>
+
+      <div class="porte-panel" id="porte-pilotage" role="tabpanel">
+        <div class="pil-grid">
+          <div class="pil-left">
+            <div class="platform-tag-soon porte-badge">● Disponible dès maintenant</div>
+            <h3>Pilotage de flotte AEN</h3>
+            <p>Votre flotte, vue comme un inspecteur la verrait. L'outil centralise véhicules, contrats et justificatifs, et vérifie en continu la conformité technique et juridique de chaque situation.</p>
+            <ul class="pil-checks">
+              <li>Avantage en nature calculé pour chaque véhicule, au barème en vigueur</li>
+              <li>Écarts entre la paie et la DSN détectés et chiffrés</li>
+              <li>Pièces manquantes réclamées, par véhicule et par salarié</li>
+              <li>Veille du barème BOSS et historique opposable</li>
+            </ul>
+            <div class="porte-ctas porte-ctas--left">
+              <a href="/solution/#fondateurs" class="btn-primary"><span>Devenir entreprise fondatrice <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+              <a href="/outils/pilotage-flotte-tarifs/" class="porte-link">Voir l'outil et les tarifs →</a>
+            </div>
+          </div>
+          <div class="pil-right">
+            <div class="dash-window">
+              <div class="dash-window-bar">
+                <span class="dash-window-dots"><i></i><i></i><i></i></span>
+                <span class="dash-window-url">app.acompia.com</span>
+              </div>
+              <div class="dash-shot-clip">
+                <picture>
+                  <source srcset="assets/dashboard-acompia.webp" type="image/webp">
+                  <img src="assets/dashboard-acompia.png" alt="Tableau de bord ACOMPIA du pilotage de flotte" class="dash-shot" width="1760" height="1314" loading="lazy" decoding="async">
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pil-tiles">
+          <div class="pil-tile">
+            <div class="pil-tile-visu"><span class="pil-bar" style="height:34px"></span><span class="pil-bar" style="height:22px"></span><span class="pil-bar pil-bar--accent" style="height:44px"></span><span class="pil-bar" style="height:16px"></span><span class="pil-bar" style="height:28px"></span></div>
+            <b>Tableau de bord flotte</b>
+            <span>chaque véhicule, son AEN et son statut</span>
+          </div>
+          <div class="pil-tile">
+            <div class="pil-tile-visu"><span class="pil-row-doc"></span><span class="pil-row-doc pil-row-doc--miss"></span><span class="pil-row-doc"></span></div>
+            <b>Pièces manquantes</b>
+            <span>réclamées par véhicule et salarié, comme un inspecteur</span>
+          </div>
+          <div class="pil-tile">
+            <div class="pil-tile-visu"><span class="pil-pulse"></span><span class="pil-line"></span></div>
+            <b>Alertes barème</b>
+            <span>un taux change au BOSS, vous le savez</span>
+          </div>
+        </div>
+      </div>
+
+      
 
     </div>
     <p class="outils-hub-more reveal"><a href="/solution/">Toute la solution sur une page →</a></p>
