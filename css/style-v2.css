@@ -4767,8 +4767,8 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
 .o1-rows { width: 100%; max-width: 230px; display: flex; flex-direction: column; gap: 8px; }
 .o1-row { display: flex; align-items: center; gap: 9px; }
 .o1-dot { width: 8px; height: 8px; border-radius: 50%; background: #4F46E5; flex-shrink: 0; }
-.o1-dot-2 { background: #8B5CF6; }
-.o1-dot-3 { background: #22D3EE; }
+.o1-dot-2 { background: #6366F1; }
+.o1-dot-3 { background: #A5B4FC; }
 .o1-row b { height: 8px; border-radius: 4px; background: #DDE1F2; display: block; }
 .o1-calc { width: 196px; display: flex; flex-direction: column; gap: 12px; }
 .o1-calc-screen { display: flex; align-items: center; justify-content: space-between; background: #0F0F1E; border-radius: 10px; padding: 14px 16px; }
