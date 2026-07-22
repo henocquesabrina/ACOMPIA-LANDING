@@ -4823,8 +4823,10 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
 .porte-how .how-title { max-width: none; margin-left: auto; margin-right: auto; }
 .porte-how .how-sub { margin: 0 auto 10px; }
 
-/* Fiche pilotage mixte : dashboard réel + console en trois tuiles */
-.pil-grid { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: 44px; align-items: center; }
+/* Fiche pilotage : pitch + coches, la console en trois tuiles porte le visuel
+   (la capture du dashboard a été retirée le 22/07, elle doublonnait le héros) */
+.pil-grid { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: center; }
+.pil-left { max-width: 720px; margin: 0 auto; }
 .pil-left h3 { color: #F0F1F8; font-size: clamp(20px, 2.4vw, 26px); font-weight: 750; letter-spacing: -0.015em; margin: 0 0 10px; }
 .pil-left > p { color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.65; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
 .pil-checks { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
