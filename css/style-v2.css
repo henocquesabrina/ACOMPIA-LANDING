@@ -4,7 +4,6 @@
    Logo D4 (horizon + soleil), wordmark 01 mono caps
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
 /* === RESET === */
 *, *::before, *::after { box-sizing: border-box; }
@@ -1294,9 +1293,9 @@ section.stats::before {
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 .preview-mockup-pill.pill-eleve {
-  background: rgba(245, 158, 11, 0.12);
-  color: #D97706;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: #FEF2F2;
+  color: #DC2626;
+  border: 1px solid #FECACA;
 }
 .preview-mockup-pill.pill-moyen {
   background: rgba(245, 158, 11, 0.10);
@@ -2686,8 +2685,8 @@ section.platform h2 em {
 .platform-form input[type="email"]:focus { outline: none; }
 .platform-form button {
   white-space: nowrap;
-  background: white !important;
-  color: var(--ink) !important;
+  background: var(--accent) !important;
+  color: #fff !important;
   border: 0 !important;
   border-radius: 999px !important;
   padding: 12px 22px !important;
@@ -2698,8 +2697,8 @@ section.platform h2 em {
   transition: all .2s !important;
 }
 .platform-form button:hover {
-  background: var(--indigo-pale) !important;
-  color: var(--night) !important;
+  background: #4338CA !important;
+  color: #fff !important;
   transform: translateY(-1px);
 }
 
@@ -3385,7 +3384,8 @@ section.platform h2 em,
 .team-quote-mark,
 .contact-compact-inner h2 em,
 .preview-mockup-out .strong {
-  font-family: 'DM Sans', system-ui, sans-serif !important;
+  /* Geist partout : la charte interdit une deuxième famille (DM Sans n'est plus chargée) */
+  font-family: 'Geist', system-ui, sans-serif !important;
   font-style: normal !important;
   font-weight: 700 !important;
   letter-spacing: -0.01em !important;
@@ -4831,7 +4831,7 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
 .pil-left > p { color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.65; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
 .pil-checks { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .pil-checks li { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.5; padding-left: 26px; position: relative; }
-.pil-checks li::before { content: '✓'; position: absolute; left: 0; top: 0; color: #22D3EE; font-weight: 800; }
+.pil-checks li::before { content: '✓'; position: absolute; left: 0; top: 0; color: #A5B4FC; font-weight: 800; }
 .porte-ctas--left { justify-content: flex-start !important; }
 .pil-right .dash-window { margin: 0; }
 .pil-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
@@ -4888,3 +4888,7 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
   text-align: left !important;
 }
 .audits .pricing-note svg { color: var(--accent); }
+
+/* E5 — Finitions de la passe agents du 22/07 */
+.anv-tool-setup a { color: var(--accent); font-weight: 500; }
+.footer-legal-entity { white-space: nowrap; }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Le logiciel de conformité URSSAF, complet et rigoureux : pilotage de flotte disponible, audits sur devis, outils gratuits. Conçu par une avocate au Barreau de Paris.">
+  <meta name="description" content="Le logiciel de conformité URSSAF : pilotage de flotte, audits sur devis, outils gratuits. Conçu par une avocate au Barreau de Paris.">
   <meta name="author" content="ComplyDB SAS">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#FAFAF7">
@@ -43,6 +43,9 @@
   })();
   </script>
   <!-- Charge l'ancien style.css (pour questionnaire + rapport généré dynamiquement) puis style-v2.css qui override -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
@@ -484,11 +487,11 @@
               <animateMotion dur="9s" repeatCount="indefinite"><mpath href="#journeyPath"/></animateMotion>
               <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.5;0.95;1" dur="9s" repeatCount="indefinite"/>
             </circle>
-            <circle r="3" fill="#22D3EE">
+            <circle r="3" fill="#818CF8">
               <animateMotion dur="9s" repeatCount="indefinite" begin="3s"><mpath href="#journeyPath"/></animateMotion>
               <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.5;0.95;1" dur="9s" repeatCount="indefinite" begin="3s"/>
             </circle>
-            <circle r="2.5" fill="#8B5CF6">
+            <circle r="2.5" fill="#6366F1">
               <animateMotion dur="9s" repeatCount="indefinite" begin="6s"><mpath href="#journeyPath"/></animateMotion>
               <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.5;0.95;1" dur="9s" repeatCount="indefinite" begin="6s"/>
             </circle>
@@ -513,8 +516,8 @@
               </svg>
             </div>
             <div class="step-marker"></div>
-            <h3 class="step-name">Connexion</h3>
-            <p class="step-desc">Vous importez vos données de paie, DSN et documents RH. La connexion directe arrive.</p>
+            <h3 class="step-name">Import</h3>
+            <p class="step-desc">Vous importez vos fichiers de paie, DSN et documents RH. La connexion directe arrivera ensuite.</p>
           </div>
 
           <div class="step">
@@ -533,7 +536,7 @@
             </div>
             <div class="step-marker"></div>
             <h3 class="step-name">Analyse</h3>
-            <p class="step-desc">Le moteur juridique analyse vos données en continu, à la lumière des règles URSSAF.</p>
+            <p class="step-desc">Le moteur juridique analysera vos données en continu, à la lumière des règles URSSAF.</p>
           </div>
 
           <div class="step">
@@ -713,7 +716,6 @@
       
 
     </div>
-    <p class="outils-hub-more reveal"><a href="/solution/">Toute la solution sur une page →</a></p>
   </section>
   <script>
   (function () {

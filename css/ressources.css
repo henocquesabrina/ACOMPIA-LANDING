@@ -289,13 +289,15 @@ body.ress-page {
   z-index: 1;
 }
 .ress-cover-num {
+  white-space: nowrap;
   opacity: 0.92;
 }
 .ress-cover-theme {
   opacity: 0.65;
   text-align: right;
 }
-.ress-cover--cream .ress-cover-num { opacity: 1; color: #0A0A0A; }
+.ress-cover--cream .ress-cover-num {
+  white-space: nowrap; opacity: 1; color: #0A0A0A; }
 .ress-cover--cream .ress-cover-theme { opacity: 1; color: #767676; }
 
 .ress-cover-body {
@@ -1004,4 +1006,10 @@ body.ress-page header {
   background: rgba(251, 250, 246, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+}
+
+/* Bandeau d'article sur mobile : hauteur libre, contenu dans le flux (le ratio 21/9 tronquait le titre) */
+@media (max-width: 768px) {
+  .article-hero-banner { aspect-ratio: auto; min-height: 0; }
+  .article-hero-banner-content { position: static; padding: 26px 22px; }
 }

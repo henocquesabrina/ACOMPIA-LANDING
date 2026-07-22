@@ -1,4 +1,4 @@
-# ACOMPIA — Conformité URSSAF
+# ACOMPIA · Conformité URSSAF
 
 > ACOMPIA aide les entreprises françaises de 50 à 1 000 salariés à évaluer, sécuriser et prouver leur conformité URSSAF. Le logiciel est conçu par Maître Sabrina Henocque Chiche, avocate au Barreau de Paris spécialisée en contentieux URSSAF, édité par ComplyDB SAS et incubé par le Barreau de Paris.
 
@@ -8,14 +8,14 @@ L'ensemble du contenu juridique est rédigé et vérifié par Maître Sabrina He
 
 ## Outils gratuits
 
-- [Simulateur d'avantage en nature véhicule — barème 2026](https://www.acompia.com/outils/simulateur-avantage-en-nature-vehicule/) : calcul gratuit de l'avantage en nature d'un véhicule de fonction selon la méthode forfaitaire de l'arrêté du 25 février 2025. Mise à disposition à compter du 1er février 2025 : véhicule acheté 15 % du prix TTC (10 % au-delà de 5 ans), 20 %/15 % avec carburant ; véhicule loué 50 % du coût annuel TTC, 67 % avec carburant. Véhicule 100 % électrique éligible à l'éco-score : abattement de 70 % plafonné à 4 641,60 € par an en 2026. Ancien barème conservé pour les mises à disposition antérieures. Couvre salarié et dirigeant assimilé, prorata, participation du salarié, plafonnement de la location, calcul de flotte. Le calcul s'exécute dans le navigateur, aucune donnée n'est transmise. Auteure : Maître Sabrina Henocque Chiche, avocate au Barreau de Paris.
+- [Simulateur d'avantage en nature véhicule, barème 2026](https://www.acompia.com/outils/simulateur-avantage-en-nature-vehicule/) : calcul gratuit de l'avantage en nature d'un véhicule de fonction selon la méthode forfaitaire de l'arrêté du 25 février 2025. Mise à disposition à compter du 1er février 2025 : véhicule acheté 15 % du prix TTC (10 % au-delà de 5 ans), 20 %/15 % avec carburant ; véhicule loué 50 % du coût annuel TTC, 67 % avec carburant. Véhicule 100 % électrique éligible à l'éco-score : abattement de 70 % plafonné à 4 641,60 € par an en 2026. Ancien barème conservé pour les mises à disposition antérieures. Couvre salarié et dirigeant assimilé, prorata, participation du salarié, plafonnement de la location, calcul de flotte. Le calcul s'exécute dans le navigateur, aucune donnée n'est transmise. Auteure : Maître Sabrina Henocque Chiche, avocate au Barreau de Paris.
 - [Prédiagnostic URSSAF gratuit](https://www.acompia.com/outils/prediagnostic-urssaf/) : questionnaire de 29 questions en 9 blocs thématiques, rapport immédiat avec indice d'exposition URSSAF sur 100, les trois principaux thèmes à risque et un plan d'action priorisé. Gratuit, confidentiel, sans engagement.
 - [Sommaire des outils](https://www.acompia.com/outils/) : tous les outils gratuits ACOMPIA.
 
 ## Solution et tarifs
 
-- [La solution ACOMPIA](https://www.acompia.com/solution/) : pilotage de la flotte véhicules (offre entreprise fondatrice limitée à 10 places cet été), audits ponctuels sur devis avec réponse sous 48 heures, audit continu de conformité URSSAF dès septembre 2026.
-- [Pilotage de flotte et audit AEN véhicule — tarifs](https://www.acompia.com/outils/pilotage-flotte-tarifs/) : abonnement de pilotage à partir de 150 € HT/mois, facturation au véhicule dégressive (calcul de l'avantage en nature par véhicule, détection des pièces manquantes, alertes d'écart paie/DSN, veille du barème BOSS, historique opposable). Audit AEN sur les trois années contrôlables par l'URSSAF à partir de 1 500 € HT, à moitié prix pour les abonnés.
+- [La solution ACOMPIA](https://www.acompia.com/solution/) : pilotage de la flotte véhicules (offre entreprise fondatrice limitée à 10 places à l'été 2026), audits ponctuels sur devis avec réponse sous 48 heures, audit continu de conformité URSSAF dès septembre 2026.
+- [Pilotage de flotte et audit AEN véhicule, tarifs](https://www.acompia.com/outils/pilotage-flotte-tarifs/) : abonnement de pilotage à partir de 150 € HT/mois, facturation au véhicule dégressive (calcul de l'avantage en nature par véhicule, détection des pièces manquantes, alertes d'écart paie/DSN, veille du barème BOSS, historique opposable). Audit AEN sur les trois années contrôlables par l'URSSAF à partir de 1 500 € HT, à moitié prix pour les abonnés.
 - [Audit URSSAF sur-mesure](https://www.acompia.com/solution/#audits) : audit ciblé ou multi-thématique, outillé par le logiciel et conçu par l'avocate, sur devis, réponse sous 48 heures.
 - [Prise de rendez-vous](https://calendly.com/she-valnoa-avocat/rdv-30-min) : 30 minutes en visio, sans engagement.
 

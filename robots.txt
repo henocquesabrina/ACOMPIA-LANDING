@@ -53,6 +53,15 @@ Allow: /
 User-agent: DuckAssistBot
 Allow: /
 
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: Google-CloudVertexBot
+Allow: /
+
 User-agent: Bytespider
 Disallow: /
 
