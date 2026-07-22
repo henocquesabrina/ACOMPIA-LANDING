@@ -677,6 +677,18 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
 .statique-fold summary::after { content: '+'; font-size: 26px; font-weight: 300; color: #4F46E5; flex: 0 0 auto; transition: transform .2s ease; }
 .statique-fold[open] summary::after { transform: rotate(45deg); }
 .statique-fold-body { padding-top: 18px; }
+
+/* ---------- Bloc éditorial resserré (demande Sabrina 21/07) :
+   les six sections ne forment plus qu'un sommaire compact ---------- */
+.statique { padding: clamp(18px, 2.6vw, 30px) clamp(20px, 5vw, 56px); }
+.statique-eyebrow { margin-bottom: 4px; font-size: 10.5px; }
+.statique h2 { font-size: clamp(17px, 2vw, 21px); margin-bottom: 4px; }
+.statique-fold summary::after { font-size: 22px; }
+.statique-fold-body { padding-top: 12px; }
+.faq summary { padding: 11px 4px; font-size: 14px; }
+.faq details div { padding-bottom: 14px; font-size: 13.5px; }
+.statique > p, .geo-intro { font-size: 14px; }
+.statique.liens-croises p { margin-top: 4px; }
 </style>
 <style>
 
