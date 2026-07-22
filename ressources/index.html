@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Guides et analyses URSSAF par une avocate spécialisée.">
   <meta name="twitter:image" content="https://www.acompia.com/assets/og-image.png">
 
-  <title>Ressources URSSAF · ACOMPIA</title>
+  <title>Ressources URSSAF · ACOMPIA · Variante B (Bibliothèque dense)</title>
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="alternate icon" href="/favicon.svg">
@@ -80,6 +80,312 @@
       }
     ]
   }
+  </script>
+
+  <!-- ===== OVERRIDE VARIANTE B (maquette, ne pas indexer) ===== -->
+    <style id="hub-override">
+/* ================================================================
+   VARIANTE B · « Bibliothèque dense »
+   La barre de filtres devient le geste principal (pastilles avec
+   compteurs) et la liste passe en rangées type index, à la Silae.
+   ================================================================ */
+.is-hidden { display: none !important; }
+
+/* Barre de filtres : pastilles à compteur, bandeau blanc affirmé */
+.ress-filters {
+  top: 81px !important;
+  z-index: 60 !important;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 8px;
+  padding: 13px 48px;
+  background: #FFFFFF;
+  border-top: 1px solid #EFEDE6;
+  border-bottom: 1px solid #E4E2DA;
+  box-shadow: 0 6px 18px -14px rgba(20, 18, 30, 0.14);
+}
+.ress-filters::-webkit-scrollbar { display: none; }
+.ress-filter {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border: 1px solid #E4E2DA;
+  border-radius: 999px;
+  background: #FAFAF7;
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #3F3F3F;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.ress-filter:hover { border-color: #4F46E5; color: #0A0A0A; }
+.ress-filter--active,
+.ress-filter--active:hover {
+  background: #4F46E5;
+  border-color: #4F46E5;
+  color: #FFFFFF;
+}
+.ress-filter--active::after { display: none; }
+.ress-filter .cnt {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: #A3A094;
+  background: #FFFFFF;
+  border-radius: 999px;
+  padding: 2px 7px;
+  line-height: 1.3;
+}
+.ress-filter--active .cnt {
+  color: #4F46E5;
+  background: rgba(255, 255, 255, 0.92);
+}
+@media (max-width: 900px) {
+  .ress-filters { top: 64px !important; padding: 11px 24px; }
+}
+
+/* En-tête compact : on voit la bibliothèque dès le premier écran */
+.ress-page-header { padding: 156px 48px 6px; }
+.ress-page-title { font-size: clamp(30px, 3.4vw, 42px); margin-bottom: 10px; }
+.ress-page-subtitle { font-size: 15px; }
+.ress-rule { display: none; }
+.hubB-index-meta {
+  max-width: 1280px;
+  margin: 14px auto 0;
+  padding: 0 48px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #A3A094;
+}
+.hubB-index-meta b { color: #4F46E5; font-weight: 500; }
+
+/* ===== Index de bibliothèque ===== */
+.hubB-list {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 48px 110px;
+}
+.hubB-head,
+.hubB-row {
+  display: grid;
+  grid-template-columns: 34px 178px minmax(0, 1fr) 74px 62px 20px;
+  gap: 20px;
+  align-items: center;
+}
+.hubB-head {
+  padding: 14px 12px 10px;
+  border-bottom: 1px solid #0A0A0A;
+  font-family: 'Geist Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #A3A094;
+}
+.hubB-row {
+  padding: 14px 12px;
+  border-bottom: 1px solid #ECEAE2;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #0A0A0A;
+  transition: background 0.16s ease;
+}
+.hubB-row:hover { background: #F4F5FD; }
+.hubB-num {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10.5px;
+  color: #B5B2A6;
+}
+.hubB-capsule {
+  justify-self: start;
+  font-family: 'Geist Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #4F46E5;
+  background: #EEF1FB;
+  border-radius: 999px;
+  padding: 5px 11px;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hubB-main { min-width: 0; }
+.hubB-title {
+  display: block;
+  font-family: 'Geist', sans-serif;
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.008em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hubB-desc {
+  display: block;
+  margin-top: 3px;
+  font-size: 13px;
+  color: #6B6B66;
+  line-height: 1.45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hubB-date,
+.hubB-dur {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: #767676;
+  white-space: nowrap;
+}
+.hubB-arrow {
+  color: #C9C6BC;
+  font-size: 15px;
+  transition: color 0.16s ease, transform 0.16s ease;
+}
+.hubB-row:hover .hubB-arrow { color: #4F46E5; transform: translateX(3px); }
+.hubB-row--soon { opacity: 0.55; cursor: default; }
+.hubB-row--soon:hover { background: transparent; }
+.hubB-row--soon:hover .hubB-arrow { color: #C9C6BC; transform: none; }
+.hubB-row--soon .hubB-capsule { background: #F1F0EA; color: #767676; }
+
+/* ===== Responsive ===== */
+@media (max-width: 980px) {
+  .ress-page-header { padding: 148px 24px 4px; }
+  .hubB-index-meta { padding: 0 24px; }
+  .hubB-list { padding: 8px 24px 84px; }
+  .hubB-head,
+  .hubB-row { grid-template-columns: 34px 150px minmax(0, 1fr) 70px 56px 18px; gap: 14px; }
+}
+@media (max-width: 760px) {
+  .ress-page-header { padding: 132px 24px 2px; }
+  .hubB-head { display: none; }
+  .hubB-list { padding-top: 4px; }
+  .hubB-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    padding: 15px 4px;
+    border-radius: 0;
+  }
+  .hubB-num, .hubB-arrow { display: none; }
+  .hubB-capsule { order: 1; }
+  .hubB-date { order: 2; margin-left: auto; }
+  .hubB-dur { order: 3; }
+  .hubB-main { order: 4; width: 100%; }
+  .hubB-title { white-space: normal; }
+  .hubB-desc { display: none; }
+}
+
+/* Neutralise le sticky generique de style-v2 sur le header de page */
+.ress-page-header { position: static !important; }
+  .hubC-banner {
+  margin: 46px 0 4px;
+  background: #0A0A0A;
+  border-radius: 20px;
+  padding: 34px 40px;
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  color: #FAFAF7;
+  position: relative;
+  overflow: hidden;
+}
+.hubC-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 96% 0%, rgba(79, 70, 229, 0.35), transparent 52%);
+  pointer-events: none;
+}
+.hubC-banner-left { flex: 1; position: relative; z-index: 1; }
+.hubC-banner-eyebrow {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #A5B4FC;
+  margin-bottom: 10px;
+}
+.hubC-banner-title {
+  font-family: 'Geist', sans-serif;
+  font-size: 21px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  margin: 0 0 7px;
+  color: #FAFAF7;
+}
+.hubC-banner-sub {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(240, 241, 248, 0.72);
+  margin: 0;
+  max-width: 60ch;
+}
+.hubC-banner-cta {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  color: #0A0A0A;
+  border-radius: 999px;
+  padding: 13px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hubC-banner-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.18);
+}
+.hubC-banner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 24px; }
+</style>
+  <script id="hub-filtres">
+/* Filtrage par sujet : boutons .ress-filter[data-filter] / cartes [data-theme] */
+document.addEventListener('DOMContentLoaded', function () {
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.ress-filter'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('[data-theme]'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('[data-parcours]'));
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (b) { b.classList.remove('ress-filter--active'); });
+      btn.classList.add('ress-filter--active');
+      var f = btn.getAttribute('data-filter') || 'all';
+      items.forEach(function (it) {
+        var themes = (it.getAttribute('data-theme') || '').split(' ');
+        var show = f === 'all' || themes.indexOf(f) !== -1;
+        it.classList.toggle('is-hidden', !show);
+      });
+      sections.forEach(function (sec) {
+        var any = sec.querySelector('[data-theme]:not(.is-hidden)');
+        sec.classList.toggle('is-hidden', !any);
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-hide-on-filter]'), function (el) {
+        el.classList.toggle('is-hidden', f !== 'all');
+      });
+    });
+  });
+});
   </script>
 </head>
 <body class="ress-page">
@@ -191,204 +497,211 @@
         Guides, cas pratiques et analyses signés Maître Sabrina Henocque Chiche, avocate au Barreau de Paris, spécialisée en droit social et contentieux URSSAF.
       </p>
     </header>
-    <hr class="ress-rule">
 
     <nav class="ress-filters" aria-label="Filtres par thème">
-      <button class="ress-filter ress-filter--active" type="button">Tous les sujets</button>
-      <button class="ress-filter" type="button">Contrôle URSSAF</button>
-      <button class="ress-filter" type="button">Audit URSSAF</button>
-      <button class="ress-filter" type="button">AEN véhicule</button>
-      <button class="ress-filter" type="button">Frais professionnels</button>
-      <button class="ress-filter" type="button">Titres-restaurant</button>
-      <button class="ress-filter" type="button">Complémentaire santé</button>
-      <button class="ress-filter" type="button">Externalisation paie</button>
-      <button class="ress-filter" type="button">Temps de travail</button>
-      <button class="ress-filter" type="button">RGDU</button>
-      <button class="ress-filter" type="button">Ruptures</button>
-      <button class="ress-filter" type="button">Versement mobilité</button>
+      <button class="ress-filter ress-filter--active" type="button" data-filter="all">Tous les sujets <span class="cnt">14</span></button>
+      <button class="ress-filter" type="button" data-filter="controle">Contrôle URSSAF <span class="cnt">2</span></button>
+      <button class="ress-filter" type="button" data-filter="audit">Audit URSSAF <span class="cnt">2</span></button>
+      <button class="ress-filter" type="button" data-filter="charges">Charges et cotisations <span class="cnt">4</span></button>
+      <button class="ress-filter" type="button" data-filter="rgdu">RGDU <span class="cnt">3</span></button>
+      <button class="ress-filter" type="button" data-filter="aen">AEN véhicule <span class="cnt">1</span></button>
+      <button class="ress-filter" type="button" data-filter="frais">Frais professionnels <span class="cnt">1</span></button>
+      <button class="ress-filter" type="button" data-filter="psc">Complémentaire santé <span class="cnt">1</span></button>
+      <button class="ress-filter" type="button" data-filter="paie">Externalisation paie <span class="cnt">1</span></button>
+      <button class="ress-filter" type="button" data-filter="temps">Temps de travail <span class="cnt">1</span></button>
+      <button class="ress-filter" type="button" data-filter="actualites">Actualités <span class="cnt">1</span></button>
+      <button class="ress-filter" type="button" data-filter="ruptures">Ruptures <span class="cnt">1</span></button>
+      <button class="ress-filter" type="button" data-filter="mobilite">Versement mobilité <span class="cnt">1</span></button>
     </nav>
 
-    <section class="ress-grid" aria-label="Publications">
+    <p class="hubB-index-meta"><b>14 publications</b> · 12 en ligne · 2 à paraître · mise à jour juillet 2026</p>
 
-      <a class="ress-cover ress-cover--featured ress-cover--aurora" href="controle-urssaf/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 01</span>
-          <span class="ress-cover-theme">Contrôle URSSAF</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">À la une · Guide complet</div>
-          <h2 class="ress-cover-title">Contrôle URSSAF, déroulé, vos droits et comment réduire le risque de redressement</h2>
-          <p class="ress-cover-desc">Comment l'URSSAF choisit qui contrôler, le déroulé étape par étape, vos droits (charte du cotisant contrôlé), ce que le contrôleur cible vraiment, et comment réduire le risque par un audit préventif.</p>
-        </div>
-        <div class="ress-cover-meta">18 min · 18.06.26</div>
-      </a>
+    <section class="hubB-list" aria-label="Publications">
 
-      <a class="ress-cover ress-cover--indigo" href="reduire-charges-urssaf-sans-redressement/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 02</span>
-          <span class="ress-cover-theme">Charges et cotisations</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Guide complet</div>
-          <h2 class="ress-cover-title">Réduire ses charges URSSAF, les huit leviers d'optimisation et comment les sécuriser</h2>
-          <p class="ress-cover-desc">RGDU, taux AT/MP, exonérations ciblées, heures supplémentaires, épargne salariale, PPV, titres-restaurant, frais professionnels, et le verrou de formalisme qui sécurise chaque économie.</p>
-        </div>
-        <div class="ress-cover-meta">18 min · 09.07.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--cream" href="recuperer-trop-paye-cotisations-urssaf/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 03</span>
-          <span class="ress-cover-theme">Charges et cotisations</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Guide complet</div>
-          <h2 class="ress-cover-title">Trop-payé de cotisations URSSAF, comment le récupérer sans déclencher de redressement</h2>
-          <p class="ress-cover-desc">Le droit à remboursement (article L.243-6), la prescription de trois ans, la procédure et l'audit bidirectionnel qui permet de récupérer l'indu sans effet boomerang.</p>
-        </div>
-        <div class="ress-cover-meta">17 min · 07.07.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--ink" href="reduction-generale-cotisations-patronales/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 04</span>
-          <span class="ress-cover-theme">Charges et cotisations</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Guide complet</div>
-          <h2 class="ress-cover-title">Réduction générale des cotisations patronales, comprendre la RGDU 2026 sans se tromper</h2>
-          <p class="ress-cover-desc">Fusion des allègements en un dispositif unique, périmètre porté à moins de 3 SMIC, SMIC de référence gelé à 12,02 €, calcul du coefficient et erreurs d'assiette qui déclenchent un redressement URSSAF.</p>
-        </div>
-        <div class="ress-cover-meta">18 min · 30.06.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--indigo" href="audit-urssaf/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 05</span>
-          <span class="ress-cover-theme">Audit URSSAF</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Guide complet</div>
-          <h2 class="ress-cover-title">Audit URSSAF, les 8 zones à vérifier avant un contrôle</h2>
-          <p class="ress-cover-desc">La check-list des 8 zones les plus souvent redressées, ce que l'audit vérifie dans chacune, l'erreur fréquente à corriger et la méthode d'auto-évaluation préventive avant un contrôle.</p>
-        </div>
-        <div class="ress-cover-meta">15 min · 22.06.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--ink" href="charges-patronales-salariales-urssaf/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 06</span>
-          <span class="ress-cover-theme">Charges et cotisations</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Guide complet</div>
-          <h2 class="ress-cover-title">Charges patronales et salariales, assiette, taux et risques de redressement</h2>
-          <p class="ress-cover-desc">Distinction charges patronales et salariales, tableau complet des taux 2026 sourcés (Légifrance, URSSAF, Unédic, AGIRC-ARRCO), assiette L.242-1, RGDU, requalification des faux indépendants et prescription.</p>
-        </div>
-        <div class="ress-cover-meta">20 min · 08.06.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--cream" href="aen-vehicule-urssaf/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 07</span>
-          <span class="ress-cover-theme">AEN véhicule</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Guide complet</div>
-          <h2 class="ress-cover-title">Avantage en nature véhicule, guide complet 2026 pour ne pas être redressé</h2>
-          <p class="ress-cover-desc">La réforme de 2025 a profondément modifié l'évaluation de l'AEN véhicule. Méthode, barème, documentation et erreurs à éviter avant un contrôle URSSAF.</p>
-        </div>
-        <div class="ress-cover-meta">18 min · 18.05.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--ink" href="protection-sociale-complementaire-urssaf/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 08</span>
-          <span class="ress-cover-theme">Protection sociale complémentaire</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Guide complet</div>
-          <h2 class="ress-cover-title">Protection sociale complémentaire en entreprise, guide complet 2026</h2>
-        </div>
-        <div class="ress-cover-meta">19 min · 19.05.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--indigo" href="forfait-jours-cas-pratique-urssaf/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 09</span>
-          <span class="ress-cover-theme">Temps de travail</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Cas pratique</div>
-          <h2 class="ress-cover-title">Forfait jours sans suivi effectif, comment une ETI a fortement réduit son risque URSSAF</h2>
-        </div>
-        <div class="ress-cover-meta">8 min · 20.05.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--cream" href="indemnites-kilometriques-urssaf/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 10</span>
-          <span class="ress-cover-theme">Frais professionnels</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">FAQ</div>
-          <h2 class="ress-cover-title">Indemnités kilométriques, sont-elles soumises aux cotisations URSSAF en 2026 ?</h2>
-        </div>
-        <div class="ress-cover-meta">12 min · 20.05.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--dark" href="reformes-urssaf-2025-2026/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 11</span>
-          <span class="ress-cover-theme">Actualités URSSAF</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Actualité</div>
-          <h2 class="ress-cover-title">Réformes URSSAF 2025-2026, les évolutions que tout employeur doit connaître</h2>
-        </div>
-        <div class="ress-cover-meta">8 min · 22.05.26</div>
-      </a>
-
-      <a class="ress-cover ress-cover--indigo" href="externalisation-paie-audit-urssaf/">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 12</span>
-          <span class="ress-cover-theme">Externalisation paie</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Guide complet</div>
-          <h2 class="ress-cover-title">Externalisation de la paie, pourquoi faut-il tout de même auditer sa conformité URSSAF ?</h2>
-          <p class="ress-cover-desc">8 zones que la sous-traitance ne couvre pas, périmètre du prestataire, DSN de substitution juin 2026, méthode d'audit et 4 axes de défense en cas de contrôle.</p>
-        </div>
-        <div class="ress-cover-meta">16 min · 28.05.26</div>
-      </a>
-
-      <div class="ress-cover ress-cover--ink" aria-disabled="true" style="cursor:default">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 13</span>
-          <span class="ress-cover-theme">Ruptures</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Cas pratique</div>
-          <div class="ress-cover-title">Transaction post-rupture, éviter la requalification en salaire</div>
-        </div>
-        <div class="ress-cover-meta">À paraître</div>
+      <div class="hubB-head" aria-hidden="true">
+        <span>N°</span><span>Thème</span><span>Titre</span><span>Date</span><span>Lecture</span><span></span>
       </div>
 
-      <div class="ress-cover ress-cover--indigo" aria-disabled="true" style="cursor:default">
-        <div class="ress-cover-top">
-          <span class="ress-cover-num">№ 14</span>
-          <span class="ress-cover-theme">Versement mobilité</span>
-        </div>
-        <div class="ress-cover-body">
-          <div class="ress-cover-eyebrow">Guide</div>
-          <div class="ress-cover-title">Versement mobilité, périmètre, taux, exonérations en 2026</div>
-        </div>
-        <div class="ress-cover-meta">À paraître</div>
+      <a class="hubB-row" href="reduire-charges-urssaf-sans-redressement/" data-theme="charges rgdu">
+        <span class="hubB-num">01</span>
+        <span class="hubB-capsule">Charges et cotisations</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Réduire ses charges URSSAF, les huit leviers d'optimisation et comment les sécuriser</span>
+          <span class="hubB-desc">RGDU, taux AT/MP, exonérations, heures supplémentaires, PPV, titres-restaurant, frais professionnels, et le verrou de formalisme.</span>
+        </span>
+        <span class="hubB-date">09.07.26</span>
+        <span class="hubB-dur">18 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="recuperer-trop-paye-cotisations-urssaf/" data-theme="charges">
+        <span class="hubB-num">02</span>
+        <span class="hubB-capsule">Charges et cotisations</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Trop-payé de cotisations URSSAF, comment le récupérer sans déclencher de redressement</span>
+          <span class="hubB-desc">Le droit à remboursement, la prescription de trois ans, la procédure et l'audit bidirectionnel qui évite l'effet boomerang.</span>
+        </span>
+        <span class="hubB-date">07.07.26</span>
+        <span class="hubB-dur">17 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="reduction-generale-cotisations-patronales/" data-theme="charges rgdu">
+        <span class="hubB-num">03</span>
+        <span class="hubB-capsule">Charges et cotisations</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Réduction générale des cotisations patronales, comprendre la RGDU 2026 sans se tromper</span>
+          <span class="hubB-desc">Fusion des allègements, périmètre porté à moins de 3 SMIC, SMIC de référence gelé et erreurs d'assiette qui déclenchent un redressement.</span>
+        </span>
+        <span class="hubB-date">30.06.26</span>
+        <span class="hubB-dur">18 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="audit-urssaf/" data-theme="audit controle">
+        <span class="hubB-num">04</span>
+        <span class="hubB-capsule">Audit URSSAF</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Audit URSSAF, les 8 zones à vérifier avant un contrôle</span>
+          <span class="hubB-desc">La check-list des 8 zones les plus souvent redressées, l'erreur fréquente à corriger et la méthode d'auto-évaluation préventive.</span>
+        </span>
+        <span class="hubB-date">22.06.26</span>
+        <span class="hubB-dur">15 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="controle-urssaf/" data-theme="controle">
+        <span class="hubB-num">05</span>
+        <span class="hubB-capsule">Contrôle URSSAF</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Contrôle URSSAF, déroulé, vos droits et comment réduire le risque de redressement</span>
+          <span class="hubB-desc">Comment l'URSSAF choisit qui contrôler, vos droits, ce que le contrôleur cible vraiment, et l'audit préventif qui réduit le risque.</span>
+        </span>
+        <span class="hubB-date">18.06.26</span>
+        <span class="hubB-dur">18 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="charges-patronales-salariales-urssaf/" data-theme="charges rgdu">
+        <span class="hubB-num">06</span>
+        <span class="hubB-capsule">Charges et cotisations</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Charges patronales et salariales, assiette, taux et risques de redressement</span>
+          <span class="hubB-desc">Tableau complet des taux 2026 sourcés, assiette L.242-1, RGDU, requalification des faux indépendants et prescription.</span>
+        </span>
+        <span class="hubB-date">08.06.26</span>
+        <span class="hubB-dur">20 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="externalisation-paie-audit-urssaf/" data-theme="paie audit">
+        <span class="hubB-num">07</span>
+        <span class="hubB-capsule">Externalisation paie</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Externalisation de la paie, pourquoi faut-il tout de même auditer sa conformité URSSAF ?</span>
+          <span class="hubB-desc">8 zones que la sous-traitance ne couvre pas, périmètre du prestataire, DSN de substitution et 4 axes de défense en cas de contrôle.</span>
+        </span>
+        <span class="hubB-date">28.05.26</span>
+        <span class="hubB-dur">16 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="reformes-urssaf-2025-2026/" data-theme="actualites">
+        <span class="hubB-num">08</span>
+        <span class="hubB-capsule">Actualités URSSAF</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Réformes URSSAF 2025-2026, les évolutions que tout employeur doit connaître</span>
+          <span class="hubB-desc">AEN véhicule, RGDU, DSN de substitution, les cinq évolutions qui changent vos obligations.</span>
+        </span>
+        <span class="hubB-date">22.05.26</span>
+        <span class="hubB-dur">8 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="forfait-jours-cas-pratique-urssaf/" data-theme="temps">
+        <span class="hubB-num">09</span>
+        <span class="hubB-capsule">Temps de travail</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Forfait jours sans suivi effectif, comment une ETI a fortement réduit son risque URSSAF</span>
+          <span class="hubB-desc">Le suivi effectif de la charge de travail, ce que vérifie l'URSSAF et la mise en conformité pas à pas.</span>
+        </span>
+        <span class="hubB-date">20.05.26</span>
+        <span class="hubB-dur">8 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="indemnites-kilometriques-urssaf/" data-theme="frais">
+        <span class="hubB-num">10</span>
+        <span class="hubB-capsule">Frais professionnels</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Indemnités kilométriques, sont-elles soumises aux cotisations URSSAF en 2026 ?</span>
+          <span class="hubB-desc">Barème fiscal, justificatifs exigés et limites d'exonération pour rembourser les trajets sans risque.</span>
+        </span>
+        <span class="hubB-date">20.05.26</span>
+        <span class="hubB-dur">12 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="protection-sociale-complementaire-urssaf/" data-theme="psc">
+        <span class="hubB-num">11</span>
+        <span class="hubB-capsule">Complémentaire santé</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Protection sociale complémentaire en entreprise, guide complet 2026</span>
+          <span class="hubB-desc">Caractère collectif et obligatoire, cas de dispense, contrat responsable et points contrôlés par l'URSSAF.</span>
+        </span>
+        <span class="hubB-date">19.05.26</span>
+        <span class="hubB-dur">19 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="hubB-row" href="aen-vehicule-urssaf/" data-theme="aen">
+        <span class="hubB-num">12</span>
+        <span class="hubB-capsule">AEN véhicule</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Avantage en nature véhicule, guide complet 2026 pour ne pas être redressé</span>
+          <span class="hubB-desc">La réforme de 2025 a profondément modifié l'évaluation de l'AEN véhicule. Méthode, barème, documentation et erreurs à éviter.</span>
+        </span>
+        <span class="hubB-date">18.05.26</span>
+        <span class="hubB-dur">18 min</span>
+        <span class="hubB-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <div class="hubB-row hubB-row--soon" data-theme="ruptures" aria-disabled="true">
+        <span class="hubB-num">13</span>
+        <span class="hubB-capsule">Ruptures</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Transaction post-rupture, éviter la requalification en salaire</span>
+          <span class="hubB-desc">Indemnité transactionnelle et cotisations, les conditions pour éviter la requalification en salaire.</span>
+        </span>
+        <span class="hubB-date">À paraître</span>
+        <span class="hubB-dur"></span>
+        <span class="hubB-arrow" aria-hidden="true"></span>
+      </div>
+
+      <div class="hubB-row hubB-row--soon" data-theme="mobilite" aria-disabled="true">
+        <span class="hubB-num">14</span>
+        <span class="hubB-capsule">Versement mobilité</span>
+        <span class="hubB-main">
+          <span class="hubB-title">Versement mobilité, périmètre, taux, exonérations en 2026</span>
+          <span class="hubB-desc">Qui est assujetti, à quel taux, et quelles exonérations selon le périmètre de mobilité.</span>
+        </span>
+        <span class="hubB-date">À paraître</span>
+        <span class="hubB-dur"></span>
+        <span class="hubB-arrow" aria-hidden="true"></span>
       </div>
 
     </section>
 
   </main>
+
+  <aside class="hubC-banner">
+        <div class="hubC-banner-left">
+          <div class="hubC-banner-eyebrow">Par où commencer ?</div>
+          <h2 class="hubC-banner-title">Faites d'abord le prédiagnostic URSSAF gratuit</h2>
+          <p class="hubC-banner-sub">Cinq minutes, aucune donnée de paie à transmettre, un premier niveau de risque thème par thème pour savoir quel parcours ouvrir en premier.</p>
+        </div>
+        <a class="hubC-banner-cta" href="/outils/prediagnostic-urssaf/">Lancer le prédiagnostic <span aria-hidden="true">→</span></a>
+      </aside>
 
   <footer class="footer">
     <div class="footer-inner">
