@@ -108,6 +108,10 @@
   box-shadow: 0 6px 18px -14px rgba(20, 18, 30, 0.14);
 }
 .ress-filters::-webkit-scrollbar { display: none; }
+/* Desktop : tout tient à l'écran en 2 rangées si besoin, pas de chip coupé à droite */
+@media (min-width: 1024px) {
+  .ress-filters { flex-wrap: wrap; overflow-x: visible; }
+}
 .ress-filter {
   flex-shrink: 0;
   display: inline-flex;
