@@ -691,20 +691,6 @@
               <a href="/outils/pilotage-flotte-tarifs/" class="porte-link">Voir l'outil et les tarifs →</a>
             </div>
           </div>
-          <div class="pil-right">
-            <div class="dash-window">
-              <div class="dash-window-bar">
-                <span class="dash-window-dots"><i></i><i></i><i></i></span>
-                <span class="dash-window-url">app.acompia.com</span>
-              </div>
-              <div class="dash-shot-clip">
-                <picture>
-                  <source srcset="assets/dashboard-acompia.webp" type="image/webp">
-                  <img src="assets/dashboard-acompia.png" alt="Tableau de bord ACOMPIA du pilotage de flotte" class="dash-shot" width="1760" height="1314" loading="lazy" decoding="async">
-                </picture>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="pil-tiles">
           <div class="pil-tile">
@@ -953,73 +939,89 @@
   <script src="js/main.js"></script>
 
 
-<!-- ===== PANNEAU DE VARIANTES (page de travail, à supprimer après arbitrage) ===== -->
+<!-- ===== PANNEAU DE VARIANTES v2 (page de travail, à supprimer après arbitrage) ===== -->
 <style id="v-style">
 #v-panel { position: fixed; right: 16px; bottom: 16px; z-index: 99999; background: #07070F; color: #FAFAF7;
-  border-radius: 16px; padding: 18px 18px 14px; width: 300px; box-shadow: 0 18px 48px rgba(7,7,15,.45);
-  font-family: 'Geist', sans-serif; font-size: 13px; }
+  border-radius: 16px; padding: 18px 18px 12px; width: 320px; max-height: 82vh; overflow-y: auto;
+  box-shadow: 0 18px 48px rgba(7,7,15,.45); font-family: 'Geist', sans-serif; font-size: 13px; }
 #v-panel h5 { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
   color: #A5B4FC; margin: 0 0 10px; }
 #v-panel .v-groupe { margin-bottom: 12px; }
 #v-panel .v-groupe b { display: block; font-size: 12px; margin-bottom: 6px; color: rgba(250,250,247,.85); font-weight: 600; }
 #v-panel button { background: rgba(255,255,255,.07); color: #FAFAF7; border: 1px solid rgba(255,255,255,.14);
-  border-radius: 8px; padding: 6px 10px; font-size: 12px; cursor: pointer; margin: 0 6px 6px 0; font-family: inherit; }
+  border-radius: 8px; padding: 6px 10px; font-size: 12px; cursor: pointer; margin: 0 6px 6px 0; font-family: inherit; text-align: left; }
 #v-panel button.on { background: #4F46E5; border-color: #4F46E5; }
 #v-panel .v-close { position: absolute; top: 8px; right: 10px; background: none; border: none; color: rgba(255,255,255,.5);
   font-size: 16px; cursor: pointer; padding: 2px 6px; margin: 0; }
 
-/* B — mots-clés soulignés au lieu de l'indigo plein */
-html.v-souligne h1 em, html.v-souligne h2 em, html.v-souligne .section-header h2 em {
-  color: inherit !important;
-  -webkit-text-fill-color: currentColor !important;
-  background: none !important;
-  font-style: normal;
-  box-shadow: inset 0 -0.16em 0 0 rgba(79, 70, 229, .55);
+/* Styles de mots-clés : pistes sobres */
+html.v-em-encre h1 em, html.v-em-encre h2 em {
+  color: inherit !important; -webkit-text-fill-color: currentColor !important; background: none !important; font-style: normal;
 }
-
-/* V1 — hero aéré : preuve sous les boutons */
-html.v-hero-v1 .hero-content .trust-bar { order: 10; margin-top: 26px; margin-bottom: 0; opacity: .92; }
-html.v-hero-v1 .hero-content { display: flex; flex-direction: column; align-items: flex-start; }
-html.v-hero-v1 .hero-content .hero-subtitle { margin-bottom: 28px; }
-html.v-hero-v1 .hero-content h1 { margin-bottom: 22px; }
-html.v-hero-v1 #hero.hero-split { padding-top: 96px; padding-bottom: 84px; }
+html.v-em-surligneur h1 em, html.v-em-surligneur h2 em {
+  color: inherit !important; -webkit-text-fill-color: currentColor !important; font-style: normal;
+  background: rgba(79, 70, 229, .13) !important; border-radius: 4px; padding: 0 .12em;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+html.v-em-filet h1 em, html.v-em-filet h2 em {
+  color: inherit !important; -webkit-text-fill-color: currentColor !important; background: none !important; font-style: normal;
+  text-decoration: underline; text-decoration-color: #4F46E5; text-decoration-thickness: 2px; text-underline-offset: .16em;
+}
 </style>
 <div id="v-panel">
   <button class="v-close" onclick="this.parentNode.style.display='none'" aria-label="Fermer">×</button>
-  <h5>Variantes · passe DA 22/07</h5>
+  <h5>Variantes v2 · 22/07</h5>
+  <div class="v-groupe" data-g="h1">
+    <b>1 · Titre du hero (plus court, sous-titre inchangé)</b>
+    <button data-set="h1:actuel" class="on">Actuel (long, doublon)</button>
+    <button data-set="h1:b">B · Évitez le redressement URSSAF. Optimisez vos charges sociales.</button>
+    <button data-set="h1:c">C · Réduisez vos risques URSSAF. Optimisez vos charges sociales.</button>
+    <button data-set="h1:d">D · Évitez le redressement. Optimisez vos charges.</button>
+  </div>
+  <div class="v-groupe" data-g="st">
+    <b>2 · Titre de la section solution</b>
+    <button data-set="st:actuel" class="on">Actuel · « Un seul logiciel, trois façons de l'utiliser. »</button>
+    <button data-set="st:b">B · Trois portes d'entrée vers votre conformité.</button>
+    <button data-set="st:c">C · La conformité URSSAF, à votre rythme.</button>
+    <button data-set="st:d">D · Une solution, trois portes d'entrée.</button>
+  </div>
   <div class="v-groupe" data-g="em">
-    <b>1 · Mots-clés des titres</b>
-    <button data-set="em:plein" class="on">A · Indigo plein (actuel)</button>
-    <button data-set="em:souligne">B · Encre + souligné indigo</button>
-  </div>
-  <div class="v-groupe" data-g="hero">
-    <b>2 · Structure du hero</b>
-    <button data-set="hero:actuel" class="on">Actuel (preuve avant les boutons)</button>
-    <button data-set="hero:v1">V1 · Aération, preuve sous les boutons</button>
-  </div>
-  <div class="v-groupe" data-g="sub">
-    <b>3 · Sous-titre (doublon « récupérez »)</b>
-    <button data-set="sub:actuel" class="on">Actuel (avec doublon)</button>
-    <button data-set="sub:b">B · Court, sans 3e proposition</button>
-    <button data-set="sub:c">C · « reprenez ce qui vous revient »</button>
+    <b>3 · Mots-clés des titres (pistes sobres)</b>
+    <button data-set="em:actuel" class="on">Actuel · indigo plein</button>
+    <button data-set="em:encre">C · Tout encre, aucun artifice</button>
+    <button data-set="em:surligneur">D · Surligneur lavande discret</button>
+    <button data-set="em:filet">E · Filet fin indigo sous le mot</button>
   </div>
 </div>
 <script>
 (function () {
-  var SUBS = {
-    actuel: "L'URSSAF analyse déjà vos données par algorithme. Sachez ce qu'elle trouvera, corrigez avant elle, et récupérez ce que vous payez en trop.",
-    b: "L'URSSAF analyse déjà vos données par algorithme. Sachez ce qu'elle trouvera, corrigez avant elle.",
-    c: "L'URSSAF analyse déjà vos données par algorithme. Sachez ce qu'elle trouvera, corrigez avant elle, et reprenez ce qui vous revient."
+  var H1S = {
+    actuel: "Évitez le redressement URSSAF.<br>Récupérez vos <em>charges payées en trop</em>.",
+    b: "Évitez le redressement URSSAF.<br>Optimisez vos <em>charges sociales</em>.",
+    c: "Réduisez vos risques URSSAF.<br>Optimisez vos <em>charges sociales</em>.",
+    d: "Évitez le redressement.<br>Optimisez vos <em>charges</em>."
   };
+  var STS = {
+    actuel: { t: "Un seul logiciel, trois façons de <em>l'utiliser</em>.", s: "Choisissez votre porte d'entrée. La rigueur d'une avocate, la puissance d'un logiciel." },
+    b: { t: "Trois portes d'entrée vers votre <em>conformité</em>.", s: "La rigueur d'une avocate, la puissance d'un logiciel." },
+    c: { t: "La conformité URSSAF, <em>à votre rythme</em>.", s: "Choisissez votre porte d'entrée. La rigueur d'une avocate, la puissance d'un logiciel." },
+    d: { t: "Une solution, trois <em>portes d'entrée</em>.", s: "La rigueur d'une avocate, la puissance d'un logiciel." }
+  };
+  var h1 = document.querySelector('.hero-content h1');
+  var st = document.querySelector('#solution-home .section-header h2');
+  var ss = document.querySelector('#solution-home .section-header p');
   document.getElementById('v-panel').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-set]');
     if (!b) return;
     var kv = b.dataset.set.split(':'), g = kv[0], v = kv[1];
     b.closest('.v-groupe').querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
     b.classList.add('on');
-    if (g === 'em') document.documentElement.classList.toggle('v-souligne', v === 'souligne');
-    if (g === 'hero') document.documentElement.classList.toggle('v-hero-v1', v === 'v1');
-    if (g === 'sub') document.querySelector('.hero-subtitle').textContent = SUBS[v];
+    if (g === 'h1') h1.innerHTML = H1S[v];
+    if (g === 'st') { st.innerHTML = STS[v].t; ss.textContent = STS[v].s; }
+    if (g === 'em') {
+      document.documentElement.classList.remove('v-em-encre', 'v-em-surligneur', 'v-em-filet');
+      if (v !== 'actuel') document.documentElement.classList.add('v-em-' + v);
+    }
   });
 })();
 </script>
