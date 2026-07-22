@@ -4782,3 +4782,38 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
 .o1-keys i { height: 24px; border-radius: 6px; background: #E2E5F4; display: block; }
 .o1-key-accent { background: linear-gradient(135deg, #4338CA, #4F46E5) !important; }
 .o1-card { padding-top: 26px; }
+
+/* Fiches larges des trois portes (demande Sabrina 21/07 soir) */
+.portes-panels { max-width: 1240px !important; }
+.porte-panel--light {
+  background: #FFFFFF;
+  border-color: var(--line-a);
+  box-shadow: var(--shadow-lg);
+}
+.porte-panel--light .porte-head h3 { color: var(--ink, #171717); }
+.porte-panel--light .porte-head p { color: var(--ink-2, #52525B); }
+.porte-panel--light .themes-grid { margin-top: 26px; }
+.porte-note {
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--ink-2, #6B6B66);
+  margin-top: 22px;
+}
+.porte-link--dark { color: var(--accent); }
+.porte-link--dark:hover { color: #4338CA; }
+.porte-badge { display: inline-block; margin-bottom: 18px; }
+.porte-how { text-align: center; }
+.porte-how .how-title { margin-bottom: 12px; }
+.porte-how .how-sub { max-width: 60ch; margin-left: auto; margin-right: auto; }
+.porte-how .journey { margin-top: 8px; }
+@media (max-width: 760px) {
+  .porte-panel--light .themes-grid { grid-template-columns: 1fr; }
+}
+
+/* La fiche audit continu réutilise la classe .how pour hériter du parcours,
+   mais style.css peint .how en clair : à l'intérieur d'un panneau nuit,
+   le fond redevient transparent et le padding est neutralisé */
+.porte-panel .how {
+  background: transparent !important;
+  padding: 0 !important;
+}
