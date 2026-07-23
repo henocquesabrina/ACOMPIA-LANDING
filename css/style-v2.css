@@ -4907,3 +4907,15 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
      s'approche du premier écran */
   #outils .section-header { margin-bottom: 24px; }
 }
+
+/* E7 — Écrans peu hauts (laptop avec barre navigateur) : le hero se compresse
+   pour que le haut des grands chiffres reste visible au premier écran */
+@media (min-width: 901px) and (max-height: 860px) {
+  .hero.hero-split { padding-top: 44px; padding-bottom: 0; }
+  .hero.hero-split .hero-content h1 { font-size: 46px !important; line-height: 1.04 !important; margin-bottom: 16px; }
+  .hero.hero-split .hero-eyebrow { margin-bottom: 12px; }
+  .hero.hero-split .hero-subtitle { font-size: 16.5px; margin-bottom: 18px; }
+  .hero.hero-split .trust-bar { padding-top: 10px; padding-bottom: 10px; margin-bottom: 18px; }
+  .hero-split ~ #stats.stats { padding-top: 10px !important; }
+  .hero-split ~ #stats .stats-kicker { margin-bottom: 12px; }
+}
