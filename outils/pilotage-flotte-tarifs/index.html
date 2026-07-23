@@ -131,7 +131,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
         },
         "audience": {
           "@type": "BusinessAudience",
-          "name": "Entreprises de 50 à 500 salariés disposant d'une flotte de véhicules"
+          "name": "Entreprises de 50 à 1 000 salariés disposant d'une flotte de véhicules, au-delà sur devis"
         },
         "offers": [
           {
@@ -297,7 +297,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
       <h2 class="nom"><span class="grad">Pilotage de flotte</span></h2>
       <p class="pitch">L'outil de conformité URSSAF que <b>vous gardez en main</b> pendant un an : il calcule l'avantage en nature de chaque véhicule, signale les pièces manquantes, détecte les écarts paie / DSN et vous alerte dès qu'un barème change.</p>
       <div class="prix"><span class="n" id="p-abo">150 €</span><span class="u">HT / mois</span></div>
-      <p class="prix-note" id="p-abo-note">soit 1 800 € HT / an · contrat annuel</p>
+      <p class="prix-note" id="p-abo-note">soit 1 800 € HT / an · contrat annuel · essai sur demande</p>
 
       <p class="inclus-tt">Compris dans l'abonnement</p>
       <ul class="liste">
@@ -331,12 +331,12 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
       </article>
       <article>
         <h2>À qui s'adresse l'abonnement</h2>
-        <p>L'abonnement s'adresse aux entreprises de 50 à 500 salariés qui mettent des véhicules à la disposition de leurs salariés, et en pratique à leurs directions financières, paie ou ressources humaines. Il couvre l'ensemble de la flotte, quel que soit le mode de détention des véhicules, achat, location longue durée ou crédit-bail. Le prix de l'abonnement s'ajuste au nombre de véhicules, à partir de 150&nbsp;€ HT par mois, et l'audit AEN sur 3 ans passe à moitié prix pour les entreprises abonnées.</p>
+        <p>L'abonnement s'adresse aux entreprises de 50 à 1 000 salariés qui mettent des véhicules à la disposition de leurs salariés, et en pratique à leurs directions financières, paie ou ressources humaines. Il couvre l'ensemble de la flotte, quel que soit le mode de détention des véhicules, achat, location longue durée ou crédit-bail. Le prix de l'abonnement s'ajuste au nombre de véhicules, à partir de 150&nbsp;€ HT par mois, et l'audit AEN sur 3 ans passe à moitié prix pour les entreprises abonnées. Au-delà de 1 000 salariés, l'offre est établie sur devis.</p>
       </article>
     </div>
   </section>
 
-  <p class="note-bas" style="margin-top:44px">Tarifs hors taxes, conçus par une avocate au Barreau de Paris. Au-delà de 200 véhicules, ou pour une intégration à votre SIRH, tarif sur devis.</p>
+  <p class="note-bas" style="margin-top:44px">Tarifs hors taxes, conçus par une avocate au Barreau de Paris. Au-delà de 200 véhicules ou de 1 000 salariés, ou pour une intégration à votre SIRH, tarif sur devis.</p>
   <p class="note-bas" style="margin-top:14px"><a href="/outils/simulateur-avantage-en-nature-vehicule/" style="color:var(--indigo);font-weight:600">← Estimer l'avantage en nature de votre flotte avec le simulateur gratuit</a></p>
   <p class="note-bas" style="margin-top:14px">Besoin d'un audit complet ou par thématique (frais professionnels, protection sociale, rémunérations)&nbsp;? <a href="/solution/#devis" style="color:var(--indigo);font-weight:600">Demandez un devis →</a></p>
 </div>
@@ -395,7 +395,7 @@ function maj(){
   document.getElementById('p-audit').textContent = eur.format(audit) + ' €';
   document.getElementById('p-audit-note').textContent = 'pour une flotte de ' + (n===200?'200+':n) + ' véhicule' + (n>1?'s':'');
   document.getElementById('p-abo').textContent = eur.format(mens) + ' €';
-  document.getElementById('p-abo-note').textContent = 'soit ' + eur.format(annuel) + ' € HT / an · contrat annuel';
+  document.getElementById('p-abo-note').textContent = 'soit ' + eur.format(annuel) + ' € HT / an · contrat annuel · essai sur demande';
   document.getElementById('pont-txt').textContent = 'Il passe à moitié prix, ' + eur.format(Math.round(audit/2)) + ' € HT au lieu de ' + eur.format(audit) + ' €,';
 }
 slider.addEventListener('input', maj);
