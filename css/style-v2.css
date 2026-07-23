@@ -4892,3 +4892,18 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
 /* E5 — Finitions de la passe agents du 22/07 */
 .anv-tool-setup a { color: var(--accent); font-weight: 500; }
 .footer-legal-entity { white-space: nowrap; }
+
+/* E6 — Amorce de scroll (demande Sabrina 23/07) : la section suivante doit
+   pointer sous le fold au premier écran */
+@media (min-width: 901px) {
+  /* L'accueil : le hero plein écran finissait sur du blanc, la bande de
+     chiffres entre franchement dans le premier écran */
+  .hero.hero-split { min-height: calc(100vh - 250px); padding-top: 92px; padding-bottom: 14px; }
+  /* La bande de chiffres approche son kicker de la frontière : il pointe
+     sous le fold et donne la raison de descendre */
+  .hero-split ~ #stats.stats { padding-top: 30px !important; }
+  section#outils.prediag { padding-top: 48px !important; padding-bottom: 36px !important; }
+  /* Hub outils : moins d'air, les cartes remontent et la porte sombre
+     s'approche du premier écran */
+  #outils .section-header { margin-bottom: 24px; }
+}
