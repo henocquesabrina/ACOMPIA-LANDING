@@ -520,16 +520,16 @@ class Questionnaire {
 
         <form class="q-contact-form" id="q-contact-form">
           <div class="q-form-group">
-            <label>Adresse email professionnelle *</label>
-            <input type="email" name="email" required placeholder="votre@entreprise.com">
+            <label for="q-field-email">Adresse email professionnelle *</label>
+            <input type="email" id="q-field-email" name="email" required placeholder="votre@entreprise.com">
           </div>
           <div class="q-form-group">
-            <label>Nom et prénom *</label>
-            <input type="text" name="name" required placeholder="Jean Dupont">
+            <label for="q-field-name">Nom et prénom *</label>
+            <input type="text" id="q-field-name" name="name" required placeholder="Jean Dupont">
           </div>
           <div class="q-form-group">
-            <label>Votre fonction</label>
-            <select name="function">
+            <label for="q-field-function">Votre fonction</label>
+            <select id="q-field-function" name="function">
               <option value="">Sélectionnez...</option>
               <option value="dirigeant">Dirigeant(e)</option>
               <option value="drh">DRH / RRH</option>

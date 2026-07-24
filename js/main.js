@@ -41,23 +41,70 @@ document.addEventListener('DOMContentLoaded', () => {
   const burger = document.querySelector('.nav-burger');
   const navLinks = document.querySelector('.nav-links');
   if (burger) {
-    burger.addEventListener('click', () => {
-      navLinks.classList.toggle('nav-open');
-      burger.classList.toggle('active');
-      const isOpen = navLinks.classList.contains('nav-open');
+    // A11Y : état unique ouverture/fermeture du tiroir ; quand il est ouvert,
+    // le contenu principal et le footer deviennent inertes (inaccessibles au focus)
+    const setTiroir = (isOpen) => {
+      navLinks.classList.toggle('nav-open', isOpen);
+      burger.classList.toggle('active', isOpen);
       burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       document.body.style.overflow = isOpen ? 'hidden' : '';
+      document.querySelectorAll('main, footer').forEach((el) => { el.inert = isOpen; });
+    };
+
+    burger.addEventListener('click', () => {
+      setTiroir(!navLinks.classList.contains('nav-open'));
     });
 
     // Close menu on link click
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('nav-open');
-        burger.classList.remove('active');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', () => setTiroir(false));
+    });
+
+    // A11Y : Échap ferme le tiroir et rend le focus au burger
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+        setTiroir(false);
+        burger.focus();
+      }
     });
   }
+
+  // === A11Y : dropdowns nav — aria-expanded synchronisé + fermeture Échap ===
+  document.querySelectorAll('.nav-dropdown').forEach((dd) => {
+    const toggle = dd.querySelector('.nav-dropdown-toggle');
+    if (!toggle) return;
+    toggle.setAttribute('aria-expanded', 'false');
+    const estOuvert = () =>
+      (dd.matches(':hover') || dd.contains(document.activeElement)) &&
+      !dd.classList.contains('nav-dropdown--esc');
+    const majEtat = () => {
+      toggle.setAttribute('aria-expanded', estOuvert() ? 'true' : 'false');
+    };
+    dd.addEventListener('mouseenter', () => {
+      dd.classList.remove('nav-dropdown--esc');
+      majEtat();
+    });
+    dd.addEventListener('mouseleave', () => {
+      dd.classList.remove('nav-dropdown--esc');
+      majEtat();
+    });
+    dd.addEventListener('focusin', majEtat);
+    dd.addEventListener('focusout', () => {
+      // Le focus n'est posé sur la cible suivante qu'après le focusout
+      setTimeout(() => {
+        if (!dd.contains(document.activeElement)) dd.classList.remove('nav-dropdown--esc');
+        majEtat();
+      }, 0);
+    });
+    dd.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // Force la fermeture malgré :focus-within, puis rend le focus au toggle
+        dd.classList.add('nav-dropdown--esc');
+        toggle.focus();
+        majEtat();
+      }
+    });
+  });
 
   // === Stat counter animation ===
   const statNumbers = document.querySelectorAll('.stat-number[data-target]');

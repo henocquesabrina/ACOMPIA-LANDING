@@ -375,7 +375,8 @@
     <!-- Vitrine produit : capture réelle du tableau de bord ACOMPIA, à cheval sur la section suivante. -->
     <div class="hero-showcase">
       <div class="dash-window">
-        <div class="dash-window-bar">
+        <!-- A11Y : chrome de fausse fenêtre purement décoratif (contraste non requis) -->
+        <div class="dash-window-bar" aria-hidden="true">
           <span class="dash-window-dots"><i></i><i></i><i></i></span>
           <span class="dash-window-url">app.acompia.com</span>
         </div>

@@ -267,7 +267,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
 
   <div class="slider-box">
     <div class="slider-tt">
-      <span class="slider-lab">Nombre de véhicules dans votre flotte</span>
+      <label for="slider" class="slider-lab">Nombre de véhicules dans votre flotte</label>
       <span class="slider-val"><b id="v-nb">15</b> véhicules</span>
     </div>
     <input type="range" id="slider" min="1" max="200" value="15">
@@ -387,6 +387,8 @@ function maj(){
   const n = +slider.value;
   document.getElementById('v-nb').textContent = n === 200 ? '200+' : n;
   slider.style.setProperty('--pct', ((n-1)/199*100).toFixed(1) + '%');
+  // A11Y : annonce vocale de la valeur courante pour les lecteurs d'écran
+  slider.setAttribute('aria-valuetext', n + ' véhicules');
 
   const audit = auditPrix(n);
   const mens = Math.round(abonnementMensuel(n));
