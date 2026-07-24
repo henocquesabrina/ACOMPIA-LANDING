@@ -170,7 +170,7 @@
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #A3A094;
+  color: #6B6B66; /* A11Y : contraste 4.5:1 mini (ex-#A3A094) */
 }
 .hubB-index-meta b { color: #4F46E5; font-weight: 500; }
 
@@ -195,7 +195,7 @@
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #A3A094;
+  color: #6B6B66; /* A11Y : contraste 4.5:1 mini (ex-#A3A094) */
 }
 .hubB-row {
   padding: 14px 12px;
@@ -209,7 +209,7 @@
 .hubB-num {
   font-family: 'Geist Mono', monospace;
   font-size: 10.5px;
-  color: #B5B2A6;
+  color: #6B6B66; /* A11Y : contraste 4.5:1 mini (ex-#B5B2A6) */
 }
 .hubB-capsule {
   justify-self: start;
@@ -254,7 +254,7 @@
   font-family: 'Geist Mono', monospace;
   font-size: 10.5px;
   letter-spacing: 0.08em;
-  color: #767676;
+  color: #6E6E6E; /* A11Y : contraste 4.5:1 mini (ex-#767676) */
   white-space: nowrap;
 }
 .hubB-arrow {
@@ -263,10 +263,16 @@
   transition: color 0.16s ease, transform 0.16s ease;
 }
 .hubB-row:hover .hubB-arrow { color: #4F46E5; transform: translateX(3px); }
-.hubB-row--soon { opacity: 0.55; cursor: default; }
+/* A11Y : effet estompé sans opacity globale (contraste 4.5:1 conservé) */
+.hubB-row--soon { opacity: 1; cursor: default; }
+.hubB-row--soon .hubB-title { color: #3F3F3F; }
+.hubB-row--soon .hubB-num,
+.hubB-row--soon .hubB-desc,
+.hubB-row--soon .hubB-date,
+.hubB-row--soon .hubB-dur { color: #6B6B66; }
 .hubB-row--soon:hover { background: transparent; }
 .hubB-row--soon:hover .hubB-arrow { color: #C9C6BC; transform: none; }
-.hubB-row--soon .hubB-capsule { background: #F1F0EA; color: #767676; }
+.hubB-row--soon .hubB-capsule { background: #F1F0EA; color: #6B6B66; }
 
 /* ===== Responsive ===== */
 @media (max-width: 980px) {
