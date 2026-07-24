@@ -3121,7 +3121,8 @@ section.contact-compact {
   flex-direction: column !important;
   gap: 10px !important;
 }
-.footer-col h4 {
+.footer-col h4,
+.footer-col .footer-col-title {
   font-family: 'Geist Mono', monospace !important;
   font-size: 10px !important;
   letter-spacing: 0.20em !important;

@@ -1,6 +1,6 @@
 # ACOMPIA · Conformité URSSAF
 
-> ACOMPIA aide les entreprises françaises de 50 à 1 000 salariés à évaluer, sécuriser et prouver leur conformité URSSAF. Le logiciel est conçu par Maître Sabrina Henocque Chiche, avocate au Barreau de Paris spécialisée en contentieux URSSAF, édité par ComplyDB SAS et incubé par le Barreau de Paris.
+> ACOMPIA aide les entreprises françaises de 50 à 1 000 salariés à évaluer, sécuriser et prouver leur conformité URSSAF. Le logiciel est conçu par Maître Sabrina Henocque Chiche, avocate au Barreau de Paris spécialisée en contentieux URSSAF, édité par ComplyDB SAS, incubé par le Barreau de Paris et résident à Station F (Paris).
 
 ACOMPIA propose trois niveaux. Des outils gratuits (prédiagnostic URSSAF, simulateur d'avantage en nature véhicule), le pilotage par abonnement de la conformité de la flotte véhicules, et un audit continu de conformité URSSAF qui ouvrira en septembre 2026. Les audits ponctuels (flotte véhicules, frais professionnels, protection sociale complémentaire, rémunérations, réduction générale, ruptures de contrat) sont outillés par le logiciel, conçus par l'avocate et proposés sur devis. Formule maison : conçu par une avocate, exécuté par le logiciel.
 
