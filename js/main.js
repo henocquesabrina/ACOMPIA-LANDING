@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px 200px 0px' }); // audit 25/07 : l'animation part 200px avant l'entrée à l'écran
 
   reveals.forEach(el => observer.observe(el));
 
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         statObserver.unobserve(el);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.2, rootMargin: '0px 0px 100px 0px' });
 
   statNumbers.forEach(el => statObserver.observe(el));
 

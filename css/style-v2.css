@@ -4943,3 +4943,18 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
 @media (max-width: 900px) {
   .nav-links.nav-open .nav-cta { min-height: 44px !important; align-items: center !important; box-sizing: border-box; }
 }
+
+/* Frise du parcours nuit (audit 25/07) : la courbe cesse de brouiller le texte des étapes.
+   Le halo large passe en retrait et les textes reçoivent un liséré sombre qui les détache. */
+.journey-curve use[stroke-width="10"] { opacity: 0.32; }
+.how .steps h4,
+.how .steps p,
+.how .steps h3 {
+  text-shadow:
+    0 0 3px rgba(7, 7, 15, 1), 0 0 6px rgba(7, 7, 15, 1),
+    0 0 10px rgba(7, 7, 15, 0.95), 0 0 18px rgba(7, 7, 15, 0.85);
+}
+/* Le titre final Sérénité est en dégradé (background-clip: text) : il ne supporte pas l'ombre */
+.how .step.final .step-name {
+  text-shadow: none;
+}
