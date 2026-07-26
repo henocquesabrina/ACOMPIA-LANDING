@@ -232,6 +232,12 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
   </style>
 </head>
 <body>
+<style>
+/* A11Y : lien d'évitement (pattern du site, page autonome) */
+.skip-link{position:absolute;top:-100px;left:0;background:#0A0A0A;color:#fff;padding:12px 18px;z-index:999;text-decoration:none;font-size:14px}
+.skip-link:focus{top:8px}
+</style>
+<a class="skip-link" href="#main">Aller au contenu principal</a>
 <header class="coquille-nav">
   <a class="coquille-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
     <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
@@ -260,7 +266,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
 <nav class="coquille-ariane" aria-label="Fil d'ariane">
   <a href="/">Accueil</a> / <a href="/outils/">Outils</a> / Tarifs pilotage de flotte
 </nav>
-<div class="wrap">
+<main class="wrap" id="main">
   <p class="eyebrow">ACOMPIA · avantage en nature véhicule</p>
   <h1>Combien pour <span class="grad">sécuriser votre flotte</span> ?</h1>
   <p class="sub">Déplacez le curseur sur votre nombre de véhicules : le prix de l'audit et de l'abonnement s'ajuste à votre flotte.</p>
@@ -339,7 +345,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
   <p class="note-bas" style="margin-top:44px">Tarifs hors taxes, conçus par une avocate au Barreau de Paris. Au-delà de 200 véhicules ou de 1 000 salariés, ou pour une intégration à votre SIRH, tarif sur devis.</p>
   <p class="note-bas" style="margin-top:14px"><a href="/outils/simulateur-avantage-en-nature-vehicule/" style="color:var(--indigo);font-weight:600">← Estimer l'avantage en nature de votre flotte avec le simulateur gratuit</a></p>
   <p class="note-bas" style="margin-top:14px">Besoin d'un audit complet ou par thématique (frais professionnels, protection sociale, rémunérations)&nbsp;? <a href="/solution/#devis" style="color:var(--indigo);font-weight:600">Demandez un devis →</a></p>
-</div>
+</main>
 
 <footer class="coquille-footer">
   <div class="coquille-footer-inner">

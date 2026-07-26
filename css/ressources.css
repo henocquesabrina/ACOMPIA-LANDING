@@ -106,7 +106,7 @@ body.ress-page {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: #888;
+  color: #6E6E6E; /* A11Y : contraste 4.5:1 mini (ex-#888) */
 }
 .ress-rule {
   border: none;
@@ -1027,3 +1027,20 @@ body.ress-page header {
   .article-hero-banner { aspect-ratio: auto; min-height: 0; }
   .article-hero-banner-content { position: static; padding: 26px 22px; }
 }
+
+/* ===== Segment A11Y (dernière passe 24/07) ===== */
+/* Covers sombres : les textes atténués repassent au-dessus de 4.5:1 */
+.ress-cover--indigo .ress-cover-theme,
+.ress-cover--indigo .ress-cover-meta,
+.ress-cover--indigo .ress-cover-desc,
+.ress-cover--indigo .ress-cover-eyebrow,
+.ress-cover--aurora .ress-cover-theme,
+.ress-cover--aurora .ress-cover-meta,
+.ress-cover--aurora .ress-cover-desc,
+.ress-cover--ink .ress-cover-theme,
+.ress-cover--ink .ress-cover-meta,
+.ress-cover--ink .ress-cover-desc {
+  opacity: 0.9;
+}
+/* Cibles tactiles : liens LinkedIn / rendez-vous de la carte auteur */
+.article-author-card-link { display: inline-block; padding: 6px 2px; }

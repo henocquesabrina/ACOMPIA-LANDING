@@ -4920,3 +4920,26 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
   .hero-split ~ #stats.stats { padding-top: 10px !important; }
   .hero-split ~ #stats .stats-kicker { margin-bottom: 12px; }
 }
+
+/* ===== Segment A11Y (dernière passe 24/07, complément) ===== */
+/* 1.4.1 : les liens dans du texte gris se distinguent autrement que par la couleur */
+.stats-sources a,
+.faq-more a {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent, #4F46E5) 45%, transparent);
+  text-underline-offset: 2px;
+}
+.stats-sources a:hover,
+.faq-more a:hover { text-decoration-color: var(--accent, #4F46E5); }
+/* Prédiag, bloc « Réponses de référence » : liens indiscernables du texte */
+.geo-intro a {
+  color: var(--accent, #4F46E5);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent, #4F46E5) 45%, transparent);
+  text-underline-offset: 2px;
+}
+
+/* Cible tactile : le CTA du tiroir mobile atteint au moins 44px de haut */
+@media (max-width: 900px) {
+  .nav-links.nav-open .nav-cta { min-height: 44px !important; align-items: center !important; box-sizing: border-box; }
+}

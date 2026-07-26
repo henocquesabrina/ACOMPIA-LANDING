@@ -412,6 +412,8 @@ const QUESTIONS = [
 class Questionnaire {
   constructor(containerId, progressBarId, progressTextId) {
     this.container    = document.getElementById(containerId);
+    /* A11Y : chaque nouvelle question est annoncée aux lecteurs d'écran */
+    if (this.container) this.container.setAttribute('aria-live', 'polite');
     this.progressBar  = document.getElementById(progressBarId);
     this.progressText = document.getElementById(progressTextId);
     this.answers      = {};
@@ -487,6 +489,9 @@ class Questionnaire {
     this.updateProgress();
     this.bindEvents(q);
     if (typeof lucide !== 'undefined') lucide.createIcons();
+    /* A11Y : le focus suit la question affichée */
+    const qt = this.container.querySelector('.q-text');
+    if (qt) { qt.setAttribute('tabindex', '-1'); qt.focus(); }
   }
 
   bindEvents(q) {

@@ -912,6 +912,12 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
   </script>
 </head>
 <body>
+<style>
+/* A11Y : lien d'évitement (pattern du site, page autonome) */
+.skip-link{position:absolute;top:-100px;left:0;background:#0A0A0A;color:#fff;padding:12px 18px;z-index:999;text-decoration:none;font-size:14px}
+.skip-link:focus{top:8px}
+</style>
+<a class="skip-link" href="#main">Aller au contenu principal</a>
 
 <nav class="nav">
   <a class="nav-brand" href="/" aria-label="Retour à l'accueil ACOMPIA" style="text-decoration:none;color:inherit">
@@ -928,7 +934,7 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
   <span class="nav-crumb"><a href="/" style="color:inherit">Accueil</a> / <a href="/outils/" style="color:inherit">Outils</a> / Simulateur AEN véhicule</span>
 </nav>
 
-<header class="hero">
+<header class="hero" id="main">
   <p class="hero-eyebrow">Outil gratuit · Avantage en nature véhicule</p>
   <h1>Avantage en nature véhicule : <span class="grad">sécurisez</span> votre calcul et votre paie</h1>
   <p class="hero-lead">
@@ -1414,8 +1420,26 @@ let dernierResultat = null, dernierEtat = null, dernierForfait = null, dernierRe
 
 function etapesApplicables(){ return STEPS.filter(st=>st.applies(etat)); }
 
-function ouvrirModale(){ neuf(); parcours=[]; dernierReel=null; overlay.classList.add('open'); document.body.style.overflow='hidden'; aller(STEPS[0]); }
-function fermerModale(){ overlay.classList.remove('open'); document.body.style.overflow=''; }
+function ouvrirModale(){ neuf(); parcours=[]; dernierReel=null; overlay.classList.add('open'); document.body.style.overflow='hidden'; aller(STEPS[0]);
+  /* A11Y : le focus entre dans le dialogue */
+  document.getElementById('fermer').focus(); }
+function fermerModale(){ overlay.classList.remove('open'); document.body.style.overflow='';
+  /* A11Y : le focus revient au déclencheur */
+  var o = document.getElementById('ouvrir'); if (o) o.focus(); }
+/* A11Y : le focus reste piégé dans la modale tant qu'elle est ouverte (aria-modal ne bloque pas le clavier).
+   Garde focusin : tout focus qui sort du dialogue y est ramené, quel que soit l'ordre DOM des étapes. */
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Tab' || !overlay.classList.contains('open')) return;
+  var focusables = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  var vis = Array.prototype.filter.call(focusables, function (el) { return el.offsetWidth > 0 || el.offsetHeight > 0; });
+  if (!vis.length) return;
+  e.preventDefault();
+  var i = vis.indexOf(document.activeElement);
+  var n = e.shiftKey ? i - 1 : i + 1;
+  if (n < 0) n = vis.length - 1;
+  if (n >= vis.length || i === -1) n = e.shiftKey ? vis.length - 1 : 0;
+  vis[n].focus();
+});
 
 function aller(step){
   etapeActuelle = step;
