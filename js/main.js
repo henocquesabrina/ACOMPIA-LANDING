@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0, rootMargin: '0px 0px 200px 0px' }); // audit 25/07 : l'animation part 200px avant l'entrée à l'écran
+  }, { threshold: 0, rootMargin: '0px 0px 900px 0px' }); // un coup de molette rapide saute ~1000px : la marge doit couvrir ce saut pour ne jamais montrer d'écran blanc
 
   reveals.forEach(el => observer.observe(el));
 
@@ -250,4 +250,31 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('click', function (e) {
   var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"]') : null;
   if (a && window.posthog) { posthog.capture('rdv_click', { source: location.pathname }); }
+});
+
+/* Cas-types : repli mobile (audit du 04/08). Sans JS, tout reste visible. */
+document.addEventListener('DOMContentLoaded', function () {
+  var cartes = document.querySelectorAll('.cas-card');
+  cartes.forEach(function (carte, i) {
+    var premier = carte.querySelector('.cas-expo-tt');
+    if (!premier) return;
+    var detail = document.createElement('div');
+    detail.className = 'cas-detail';
+    detail.id = 'cas-detail-' + (i + 1);
+    while (premier.nextSibling) { detail.appendChild(premier.nextSibling); }
+    premier.replaceWith(detail);
+    detail.insertBefore(premier, detail.firstChild);
+    var bouton = document.createElement('button');
+    bouton.type = 'button';
+    bouton.className = 'cas-toggle';
+    bouton.setAttribute('aria-expanded', 'false');
+    bouton.setAttribute('aria-controls', detail.id);
+    bouton.textContent = "Voir l'exposition chiffrée";
+    bouton.addEventListener('click', function () {
+      var ouvert = carte.classList.toggle('cas-card--ouverte');
+      bouton.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+      bouton.textContent = ouvert ? "Replier le détail" : "Voir l'exposition chiffrée";
+    });
+    carte.insertBefore(bouton, detail);
+  });
 });

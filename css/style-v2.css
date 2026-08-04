@@ -5012,3 +5012,35 @@ ul.cas-expo b { font-weight: 750; color: #0A0A0A; font-variant-numeric: tabular-
 @media (max-width: 700px) {
   .cas-types { padding: 60px 20px; }
 }
+
+/* ===== CTA FINAL de l'accueil (audit du 04/08) — segment réversible ===== */
+.cta-final { padding: 84px 24px 104px; text-align: center; }
+.cta-final .section-header { margin-bottom: 26px; }
+.cta-final .section-header h2 { margin-bottom: 0; }
+.cta-final-actions {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px;
+}
+.cta-final-actions .cas-cta-note { width: 100%; margin: 12px 0 0; }
+@media (max-width: 700px) {
+  .cta-final { padding: 56px 20px 72px; }
+  .cta-final-actions { flex-direction: column; }
+  .cta-final-actions .btn-primary { width: 100%; justify-content: center; }
+}
+
+/* ===== Cas-types : repli mobile (audit du 04/08) — segment réversible ===== */
+/* Le wrapper .cas-detail créé par main.js reprend le rôle de colonne flex
+   pour que .cas-chute (margin-top:auto) reste calé en bas des cartes en desktop. */
+.cas-detail { display: flex; flex-direction: column; flex: 1; }
+.cas-toggle { display: none; }
+@media (max-width: 700px) {
+  .cas-toggle {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 14px; padding: 10px 16px; min-height: 44px;
+    background: none; border: 1px solid var(--accent, #4F46E5); border-radius: 999px;
+    font-family: inherit; font-size: 13.5px; font-weight: 600; color: var(--accent, #4F46E5);
+    cursor: pointer;
+  }
+  .cas-toggle::after { content: '+'; font-weight: 500; }
+  .cas-card--ouverte .cas-toggle::after { content: '−'; }
+  .cas-card:not(.cas-card--ouverte) .cas-detail { display: none; }
+}
