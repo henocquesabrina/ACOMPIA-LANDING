@@ -48,8 +48,12 @@
   --glow-indigo: rgba(67,56,202,0.15);
 
   /* Typography */
-  --font-display: 'Outfit', -apple-system, sans-serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  /* 'Geist' est la seule famille chargée (css/fonts.css) depuis la migration
+     typographique. Ces tokens pointaient encore sur Outfit/Inter, jamais
+     chargées : les 24 sélecteurs de style.css qui les utilisent — dont tout
+     le rapport de prédiagnostic — s'affichaient en police système. */
+  --font-display: 'Geist', system-ui, sans-serif;
+  --font-body: 'Geist', system-ui, sans-serif;
   --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
 
   /* Spacing */
