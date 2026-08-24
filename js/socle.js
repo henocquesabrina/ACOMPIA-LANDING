@@ -134,8 +134,36 @@ function observerCTA() {
   });
 }
 
+/* Les 13 articles n'ont aucune <section id> : `section_vue` n'y produirait rien,
+   alors qu'ils sont le moteur d'acquisition. Les paliers de scroll couvrent toutes
+   les pages, quelle que soit leur structure, et se comparent d'une page à l'autre. */
+const PALIERS_SCROLL = [25, 50, 75, 100];
+
+function observerScroll() {
+  const atteints = new Set();
+
+  const mesurer = () => {
+    const hauteurLisible = document.documentElement.scrollHeight - window.innerHeight;
+    if (hauteurLisible <= 0) return;
+    const pourcentage = ((window.scrollY / hauteurLisible) * 100);
+
+    PALIERS_SCROLL.forEach((palier) => {
+      if (pourcentage < palier || atteints.has(palier)) return;
+      atteints.add(palier);
+      capturerEvenement('scroll_atteint', { palier });
+    });
+    if (atteints.size === PALIERS_SCROLL.length) {
+      window.removeEventListener('scroll', mesurer);
+    }
+  };
+
+  window.addEventListener('scroll', mesurer, { passive: true });
+  mesurer(); // page courte entièrement visible d'emblée
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   observerSections();
+  observerScroll();
   observerCTA();
 });
 
