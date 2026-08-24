@@ -142,7 +142,7 @@ const QUESTIONS = [
     type: 'single',
     condition: (a) => a['Q1bis.1'] === 'oui' || a['Q1bis.1'] === 'nsp',
     options: [
-      { value: 'oui-2-cond',   label: 'Oui, ces deux conditions sont respectées' },
+      { value: 'oui-2-cond',   label: 'Oui, ces trois conditions sont respectées' },
       { value: 'taux-seulement', label: 'Taux respecté mais attribution non toujours vérifiée' },
       { value: 'taux-incertain', label: 'Je ne suis pas certain(e) du taux de participation' },
       { value: 'non',          label: 'Non' },
@@ -430,12 +430,19 @@ class Questionnaire {
   getTotalActive()     { return this.activeQuestions.length; }
   getCurrentQuestion() { return this.activeQuestions[this.currentIndex]; }
 
+  /* Ne compte que les réponses aux questions ENCORE actives : un retour arrière
+     suivi d'un changement de branche laisse dans `answers` des réponses à des
+     questions désormais masquées, qui gonfleraient la progression. */
+  countAnswered() {
+    return this.activeQuestions.filter(q => this.answers[q.id] !== undefined).length;
+  }
+
   updateProgress() {
     const total = this.getTotalActive();
-    const answered = Object.keys(this.answers).length;
+    const answered = this.countAnswered();
     const pct = total === 0 ? 0 : Math.round((answered / total) * 100);
     if (this.progressBar)  this.progressBar.style.setProperty('--progress', pct + '%');
-    if (this.progressText) this.progressText.textContent = `${Math.min(answered, total)} / ${total}`;
+    if (this.progressText) this.progressText.textContent = `${answered} / ${total}`;
   }
 
   start() {
@@ -513,8 +520,109 @@ class Questionnaire {
   }
 
   renderContactForm() {
-    // Formulaire coordonnées + 2 cases RGPD optionnelles (arbitrage #2)
-    const html = `
+    // Formulaire coordonnées + case RGPD optionnelle (arbitrage #2)
+    this.container.innerHTML = contactFormHTML();
+    this.updateProgress();
+
+    // Gardes : si le gabarit change, le parcours ne doit pas casser en silence
+    // juste avant la capture du lead.
+    const retour = document.getElementById('q-back-final');
+    if (retour) retour.addEventListener('click', () => {
+      this.currentIndex = this.activeQuestions.length - 1;
+      this.render();
+    });
+
+    const formulaire = document.getElementById('q-contact-form');
+    if (formulaire) formulaire.addEventListener('submit', (e) => this.handleContactSubmit(e));
+  }
+
+  handleContactSubmit(e) {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+
+    // Anti-bot honeypot
+    if (fd.get('website')) {
+      this.container.innerHTML = '<div style="text-align:center;padding:40px"><p>Merci.</p></div>';
+      return;
+    }
+
+    const contact = {
+      email: fd.get('email'),
+      name: fd.get('name'),
+      function: fd.get('function') || '',
+      optin_contact: fd.get('optin_contact') === 'on'
+    };
+
+    // Moteur de scoring (scoring.js)
+    const scoring = computeScoring(this.answers);
+    const themesParNiveau = grouperThemesParNiveau(scoring.themes);
+
+    // Analytics PostHog — aucune donnée personnelle (ni nom, ni email)
+    capturerEvenement('prediag_termine', {
+      indice: scoring.indice,
+      nb_critique: themesParNiveau.CRITIQUE.length,
+      nb_eleve: themesParNiveau.ELEVE.length,
+      nb_moyen: themesParNiveau.MOYEN.length,
+      nb_reduit: themesParNiveau.REDUIT.length
+    });
+
+    envoyerAuWorker('prediag', {
+      name: contact.name,
+      email: contact.email,
+      function: contact.function,
+      optin: contact.optin_contact, // 'optin' = recontact commercial
+      scoring: resumerScoringPourNotion(scoring.indice, themesParNiveau)
+    }).catch(() => signalerEchecEnvoi(this.container));
+
+    this.afficherRapport(scoring, contact);
+  }
+
+  afficherRapport(scoring, contact) {
+    // On sort du container prediag (bg/padding hérités qui cassent la lisibilité)
+    // en basculant la section entière en "mode rapport".
+    const section = document.getElementById('prediag');
+    if (section) section.classList.add('section-report-mode');
+    document.body.classList.add('report-mode');
+
+    const progress = document.querySelector('.prediag-progress');
+    if (progress) progress.style.display = 'none';
+
+    this.container.innerHTML = generateReportHTML(scoring, contact);
+
+    // Scroll doux vers le haut du rapport, une fois le DOM peint
+    setTimeout(() => {
+      const el = document.getElementById('acompia-report');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, DELAI_SCROLL_RAPPORT_MS);
+  }
+}
+
+const DELAI_SCROLL_RAPPORT_MS = 80;
+
+const NIVEAUX_ORDONNES = ['CRITIQUE', 'ELEVE', 'MOYEN', 'REDUIT'];
+const LIBELLE_NIVEAU = { CRITIQUE: 'CRITIQUE', ELEVE: 'ÉLEVÉ', MOYEN: 'MOYEN', REDUIT: 'RÉDUIT' };
+
+function grouperThemesParNiveau(themes) {
+  const parNiveau = { CRITIQUE: [], ELEVE: [], MOYEN: [], REDUIT: [] };
+  themes.forEach(t => {
+    if (parNiveau[t.level]) parNiveau[t.level].push(t.name);
+  });
+  return parNiveau;
+}
+
+/* Chaîne destinée à la colonne Notes de Notion.
+   Format : "Indice: 67 | CRITIQUE: ... | ÉLEVÉ: ... | MOYEN: ... | RÉDUIT: ..." */
+function resumerScoringPourNotion(indice, themesParNiveau) {
+  const parts = [`Indice: ${indice}`];
+  NIVEAUX_ORDONNES.forEach(niveau => {
+    const noms = themesParNiveau[niveau];
+    if (noms.length) parts.push(`${LIBELLE_NIVEAU[niveau]}: ${noms.join(', ')}`);
+  });
+  return parts.join(' | ');
+}
+
+function contactFormHTML() {
+  return `
       <div class="q-card q-card-final">
         <div class="q-section-header">
           <span class="q-section-icon">📧</span>
@@ -563,98 +671,7 @@ class Questionnaire {
           <div></div>
         </div>
       </div>
-    `;
-
-    this.container.innerHTML = html;
-    this.updateProgress();
-
-    document.getElementById('q-back-final').addEventListener('click', () => {
-      this.currentIndex = this.activeQuestions.length - 1;
-      this.render();
-    });
-
-    document.getElementById('q-contact-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const fd = new FormData(e.target);
-
-      // Anti-bot honeypot
-      if (fd.get('website')) {
-        this.container.innerHTML = '<div style="text-align:center;padding:40px"><p>Merci.</p></div>';
-        return;
-      }
-
-      const contact = {
-        email: fd.get('email'),
-        name: fd.get('name'),
-        function: fd.get('function') || '',
-        optin_contact: fd.get('optin_contact') === 'on'
-      };
-
-      // Moteur de scoring (scoring.js)
-      const scoring    = computeScoring(this.answers);
-      const reportHTML = generateReportHTML(scoring, contact);
-
-      // Construction de la chaîne `scoring` pour la colonne Notes Notion
-      // Format : "Indice: 67 | CRITIQUE: ... | ÉLEVÉ: ... | MOYEN: ... | RÉDUIT: ..."
-      const byLevel = { CRITIQUE: [], ELEVE: [], MOYEN: [], REDUIT: [] };
-      scoring.themes.forEach(t => {
-        if (byLevel[t.level]) byLevel[t.level].push(t.name);
-      });
-      const parts = [`Indice: ${scoring.indice}`];
-      if (byLevel.CRITIQUE.length) parts.push(`CRITIQUE: ${byLevel.CRITIQUE.join(', ')}`);
-      if (byLevel.ELEVE.length)    parts.push(`ÉLEVÉ: ${byLevel.ELEVE.join(', ')}`);
-      if (byLevel.MOYEN.length)    parts.push(`MOYEN: ${byLevel.MOYEN.join(', ')}`);
-      if (byLevel.REDUIT.length)   parts.push(`RÉDUIT: ${byLevel.REDUIT.join(', ')}`);
-      const scoringString = parts.join(' | ');
-
-      // Analytics PostHog — aucune donnée personnelle (ni nom, ni email)
-      if (window.posthog) posthog.capture('prediag_termine', {
-        indice: scoring.indice,
-        nb_critique: byLevel.CRITIQUE.length,
-        nb_eleve: byLevel.ELEVE.length,
-        nb_moyen: byLevel.MOYEN.length,
-        nb_reduit: byLevel.REDUIT.length
-      });
-
-      // Envoi au Cloudflare Worker (Notion)
-      // Le worker reçoit { type:'prediag', data:{ name, email, function, optin, scoring } }
-      const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
-      fetch(WORKER_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'prediag',
-          data: {
-            name: contact.name,
-            email: contact.email,
-            function: contact.function,
-            // champ 'optin' = recontact commercial
-            optin: contact.optin_contact,
-            scoring: scoringString
-          }
-        })
-      })
-      .then(r => r.json())
-      .catch(() => {});
-
-      // Injection du rapport dans le DOM
-      // On sort du container prediag (bg/padding hérités qui cassent la lisibilité)
-      // en basculant la section entière en "mode rapport".
-      const section = document.getElementById('prediag');
-      if (section) section.classList.add('section-report-mode');
-      document.body.classList.add('report-mode');
-      // Masque la barre de progression
-      const progress = document.querySelector('.prediag-progress');
-      if (progress) progress.style.display = 'none';
-
-      this.container.innerHTML = reportHTML;
-      // Scroll doux vers le haut du rapport
-      setTimeout(() => {
-        const el = document.getElementById('acompia-report');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 80);
-    });
-  }
+  `;
 }
 
 /* ============================================================
@@ -683,7 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="rgpd-content">
             <p>Le responsable de traitement est ComplyDB SAS, éditrice d'ACOMPIA. Les données renseignées (identité, coordonnées professionnelles, fonction, réponses au questionnaire) sont traitées afin de générer votre rapport de prédiagnostic. La base légale du traitement diagnostique est l'exécution de mesures précontractuelles demandées par la personne concernée (art. 6 §1 b RGPD).</p>
             <p>La case « recontact » proposée en fin de parcours relève de votre consentement distinct (art. 6 §1 a RGPD) et ne conditionne pas la remise du rapport. Vos coordonnées sont conservées pendant une durée proportionnée à la finalité, puis archivées ou supprimées selon notre politique applicable.</p>
-            <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et, lorsque les conditions sont réunies, de portabilité. Vous pouvez également introduire une réclamation auprès de la CNIL. Contact : <a href="mailto:she@acompia.com" style="color:#4338CA">she@acompia.com</a>.</p>
+            <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et, lorsque les conditions sont réunies, de portabilité. Vous pouvez également introduire une réclamation auprès de la CNIL. Contact : <a href="mailto:${ACOMPIA_CONFIG.contactEmail}" style="color:#4338CA">${ACOMPIA_CONFIG.contactEmail}</a>.</p>
           </div>
         </details>
       </div>
@@ -693,10 +710,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('click', (e) => {
     if (e.target.closest('#start-prediag')) {
-      if (window.posthog) posthog.capture('prediag_intro_vue');
+      capturerEvenement('prediag_intro_vue');
       form.innerHTML = INTRO_HTML;
     } else if (e.target.closest('#prediag-go')) {
-      if (window.posthog) posthog.capture('prediag_lance');
+      capturerEvenement('prediag_lance');
       q.start();
     }
   });

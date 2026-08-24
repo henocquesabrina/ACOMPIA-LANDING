@@ -25,10 +25,15 @@ const LEVEL_LABEL = {
   MOYEN:    'MOYEN',
   REDUIT:   'RÉDUIT'
 };
+
+/* Du plus grave au moins grave. Sert au tri des thèmes et au calcul du
+   niveau d'un thème à partir de ses verdicts. */
+const NIVEAUX_PAR_GRAVITE = ['CRITIQUE', 'ELEVE', 'MOYEN', 'REDUIT'];
+
 const LEVEL_COLOR = {
   CRITIQUE: '#EF4444',
   ELEVE:    '#F59E0B',
-  MOYEN:    '#F59E0B',
+  MOYEN:    '#FBBF24', // ambre clair : MOYEN doit se distinguer d'ÉLEVÉ à l'œil
   REDUIT:   '#10B981'
 };
 
@@ -305,10 +310,8 @@ function buildThemes(a) {
     if (v15) verdicts.push(v15);
     if (verdicts.length) {
       themes.push({
-        key: 'frais-pro', name: 'Bloc 1 — Frais professionnels', icon: '',
-        verdicts, chiffrageType: 'qualitatif',
-        // thème potentiellement à fort enjeu si CRITIQUE → chiffrage fourchette
-        majorEnjeu: false
+        key: 'frais-pro', name: 'Bloc 1 — Frais professionnels',
+        verdicts
       });
     }
   }
@@ -317,8 +320,8 @@ function buildThemes(a) {
   if (a['Q1bis.1'] === 'oui' || a['Q1bis.1'] === 'nsp') {
     const v = verdictQ1bis_2(a['Q1bis.2']);
     if (v) themes.push({
-      key: 'titres-resto', name: 'Bloc 1bis — Titres-restaurant', icon: '',
-      verdicts: [v], chiffrageType: 'qualitatif', majorEnjeu: false
+      key: 'titres-resto', name: 'Bloc 1bis — Titres-restaurant',
+      verdicts: [v]
     });
   }
 
@@ -334,8 +337,8 @@ function buildThemes(a) {
     const v23 = verdictQ2_3(a['Q2.3']);
     if (v23) verdicts.push(v23);
     if (verdicts.length) themes.push({
-      key: 'compl-sante', name: 'Bloc 2 — Complémentaire santé — acte fondateur et dispenses', icon: '',
-      verdicts, chiffrageType: 'qualitatif', majorEnjeu: false,
+      key: 'compl-sante', name: 'Bloc 2 — Complémentaire santé — acte fondateur et dispenses',
+      verdicts,
       // indicateur pour afficher l'encart dispenses si Q2.3 a un verdict ELEVE ou CRITIQUE
       showDispensesBox: v23 && (v23.level === 'ELEVE' || v23.level === 'CRITIQUE')
     });
@@ -351,8 +354,8 @@ function buildThemes(a) {
     const v34 = verdictQ3_4(a['Q3.4']); if (v34) verdicts.push(v34);
     const v35 = verdictQ3_5(a['Q3.5']); if (v35) verdicts.push(v35);
     if (verdicts.length) themes.push({
-      key: 'temps-travail', name: 'Bloc 3 — Temps de travail et rémunérations', icon: '',
-      verdicts, chiffrageType: 'fourchette', majorEnjeu: true
+      key: 'temps-travail', name: 'Bloc 3 — Temps de travail et rémunérations',
+      verdicts
     });
   }
 
@@ -360,8 +363,8 @@ function buildThemes(a) {
   if (a['Q4.1'] && a['Q4.1'] !== 'aucun') {
     const v = verdictQ4_2(a['Q4.2']);
     if (v) themes.push({
-      key: 'rgdu', name: 'Bloc 4 — Réduction générale dégressive unique (RGDU)', icon: '',
-      verdicts: [v], chiffrageType: 'qualitatif', majorEnjeu: false
+      key: 'rgdu', name: 'Bloc 4 — Réduction générale dégressive unique (RGDU)',
+      verdicts: [v]
     });
   }
 
@@ -369,8 +372,8 @@ function buildThemes(a) {
   {
     const v = verdictBloc5(a);
     if (v) themes.push({
-      key: 'aen-vehicule', name: 'Bloc 5 — AEN véhicule', icon: '',
-      verdicts: [v], chiffrageType: 'fourchette', majorEnjeu: true,
+      key: 'aen-vehicule', name: 'Bloc 5 — AEN véhicule',
+      verdicts: [v],
       fleet: a['Q5.fleet'] || null
     });
   }
@@ -379,8 +382,8 @@ function buildThemes(a) {
   if (a['Q6.1'] === 'oui' || a['Q6.1'] === 'nsp') {
     const v = verdictQ6_2(a['Q6.2']);
     if (v) themes.push({
-      key: 'ruptures', name: 'Bloc 6 — Ruptures et transactions', icon: '',
-      verdicts: [v], chiffrageType: 'fourchette', majorEnjeu: true
+      key: 'ruptures', name: 'Bloc 6 — Ruptures et transactions',
+      verdicts: [v]
     });
   }
 
@@ -388,17 +391,16 @@ function buildThemes(a) {
   {
     const v = verdictBloc7(a);
     if (v) themes.push({
-      key: 'vm', name: 'Bloc 7 — Versement mobilité', icon: '',
-      verdicts: [v], chiffrageType: 'qualitatif', majorEnjeu: false
+      key: 'vm', name: 'Bloc 7 — Versement mobilité',
+      verdicts: [v]
     });
   }
 
   // Détermination du niveau max de chaque thème (priorité CRITIQUE > ELEVE > MOYEN > REDUIT)
-  const prio = ['CRITIQUE', 'ELEVE', 'MOYEN', 'REDUIT'];
   themes.forEach(t => {
     t.level = 'REDUIT';
     t.verdicts.forEach(v => {
-      if (prio.indexOf(v.level) < prio.indexOf(t.level)) t.level = v.level;
+      if (NIVEAUX_PAR_GRAVITE.indexOf(v.level) < NIVEAUX_PAR_GRAVITE.indexOf(t.level)) t.level = v.level;
     });
   });
 
@@ -420,10 +422,10 @@ function computeScoring(answers) {
   const maxPossible = themes.length * LEVEL_MAX;
   const indice = maxPossible === 0 ? 0 : Math.round((brut / maxPossible) * 100);
 
-  let seuil, seuilLabel, seuilColor, seuilEmoji;
-  if (indice <= 29)      { seuil = 'maitrisee'; seuilLabel = 'Exposition maîtrisée'; seuilColor = '#059669'; seuilEmoji = ''; }
-  else if (indice <= 59) { seuil = 'moderee';   seuilLabel = 'Exposition modérée';   seuilColor = '#D97706'; seuilEmoji = ''; }
-  else                   { seuil = 'forte';     seuilLabel = 'Exposition forte';     seuilColor = '#DC2626'; seuilEmoji = ''; }
+  let seuil, seuilLabel, seuilColor;
+  if (indice <= 29)      { seuil = 'maitrisee'; seuilLabel = 'Exposition maîtrisée'; seuilColor = '#059669'; }
+  else if (indice <= 59) { seuil = 'moderee';   seuilLabel = 'Exposition modérée';   seuilColor = '#D97706'; }
+  else                   { seuil = 'forte';     seuilLabel = 'Exposition forte';     seuilColor = '#DC2626'; }
 
   // Méta : aggravants transversaux
   const meta = {
@@ -433,66 +435,7 @@ function computeScoring(answers) {
     secteur:     answers['Q0.3'] || null
   };
 
-  return { indice, seuil, seuilLabel, seuilColor, seuilEmoji, themes, answers, meta };
-}
-
-
-/* ============================================================
-   Fourchette d'exposition pour un thème à fort enjeu
-   Règle Sabrina : effectif × SMIC annuel brut 2026 (~22 000 €) ×
-   42 % cotisations × 5 ans. Fourchette large pour rester honnête.
-   ============================================================ */
-
-function effectifMedian(eff) {
-  switch (eff) {
-    case '1-10':   return 5;
-    case '11-49':  return 25;
-    case '50-249': return 120;
-    case '250+':   return 400;
-    default:       return 10;
-  }
-}
-
-function formatEUR(n) {
-  return n.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' €';
-}
-
-// Renvoie une chaîne "entre X € et Y €" adaptée au niveau et à l'effectif
-function computeFourchette(theme, meta) {
-  const n = effectifMedian(meta.effectif);
-  const SMIC = 22000;
-  const COT  = 0.42;
-  // Intensités typiques (part de la masse touchée par le risque)
-  const intensite = { CRITIQUE: [0.05, 0.25], ELEVE: [0.02, 0.12], MOYEN: [0.005, 0.04], REDUIT: [0, 0.01] };
-  const range = intensite[theme.level] || [0, 0.01];
-  // 5 ans = prescription TD ; 3 ans pour les autres — on prend 3 ans pour la borne basse, 5 ans pour la haute
-  const lo = n * SMIC * COT * range[0] * 3;
-  const hi = n * SMIC * COT * range[1] * 5;
-  // Arrondis "commerciaux"
-  const roundTo = (x, step) => Math.round(x / step) * step;
-  const step = hi > 50000 ? 5000 : 1000;
-  return 'entre ' + formatEUR(Math.max(roundTo(lo, step), 1000)) +
-         ' et ' + formatEUR(roundTo(hi, step)) + ' selon l\'ampleur réelle';
-}
-
-// Fourchette agrégée (somme des bornes basses/hautes des thèmes à fourchette ELEVE ou CRITIQUE)
-function computeFourchetteAgregee(scoring) {
-  const thèmes = scoring.themes.filter(t =>
-    t.chiffrageType === 'fourchette' &&
-    (t.level === 'ELEVE' || t.level === 'CRITIQUE')
-  );
-  if (!thèmes.length) return null;
-  const n = effectifMedian(scoring.meta.effectif);
-  const SMIC = 22000, COT = 0.42;
-  let lo = 0, hi = 0;
-  thèmes.forEach(t => {
-    const r = (t.level === 'CRITIQUE') ? [0.05, 0.25] : [0.02, 0.12];
-    lo += n * SMIC * COT * r[0] * 3;
-    hi += n * SMIC * COT * r[1] * 5;
-  });
-  const step = hi > 100000 ? 10000 : 5000;
-  const rnd = (x) => Math.round(x / step) * step;
-  return 'entre ' + formatEUR(Math.max(rnd(lo), 5000)) + ' et ' + formatEUR(rnd(hi));
+  return { indice, seuil, seuilLabel, seuilColor, themes, answers, meta };
 }
 
 
@@ -537,20 +480,23 @@ function disclaimerFinal() {
   return `
     <div class="rpt-disclaimer">
       <p><strong>Prédiagnostic non contractuel.</strong> Ce rapport est établi sur la base exclusive de vos réponses déclaratives. Il ne constitue ni un audit au sens de l'art. R. 243-59 CSS, ni une consultation juridique au sens de la loi n° 71-1130 du 31 décembre 1971. Il n'est pas opposable à l'URSSAF ni devant une juridiction.</p>
-      <p>Responsable de traitement : ComplyDB SAS (ACOMPIA). Les données de diagnostic sont anonymisées et conservées 36 mois ; les coordonnées sont conservées 3 ans après le dernier contact. Vous disposez des droits d'accès, de rectification, d'effacement, de limitation, d'opposition et, le cas échéant, de portabilité. Contact : <a href="mailto:she@acompia.com">she@acompia.com</a>.</p>
+      <p>Responsable de traitement : ComplyDB SAS (ACOMPIA). Les données de diagnostic sont anonymisées et conservées 36 mois ; les coordonnées sont conservées 3 ans après le dernier contact. Vous disposez des droits d'accès, de rectification, d'effacement, de limitation, d'opposition et, le cas échéant, de portabilité. Contact : <a href="mailto:${ACOMPIA_CONFIG.contactEmail}">${ACOMPIA_CONFIG.contactEmail}</a>.</p>
     </div>
   `;
 }
 
-function generateReportHTML(scoring, contact) {
-  const { indice, seuilLabel, seuilColor, seuilEmoji, themes, meta } = scoring;
+/* --- Bloc A — Couverture : jauge d'exposition et cadrage --- */
+function renderCouverture(scoring, contact) {
+  const { indice, seuilLabel, seuilColor } = scoring;
   const dateStr = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
-
-  // ========== Bloc A — Couverture ==========
   // Jauge visuelle : barre horizontale 0 -> 100 avec marqueur
   const gaugePct = Math.max(0, Math.min(100, indice));
-  const gaugeColor = seuilColor;
-  const blocA = `
+  // Nom saisi par le visiteur : échappé avant concaténation dans du HTML
+  const destinataire = contact && contact.name
+    ? 'Préparé pour ' + echapperHTML(contact.name) + ' · '
+    : '';
+
+  return `
     <section class="rpt-block rpt-blockA">
       <div class="rpt-cover">
         <div class="rpt-cover-top">
@@ -558,12 +504,12 @@ function generateReportHTML(scoring, contact) {
           <div class="rpt-cover-date">${dateStr}</div>
         </div>
         <h2 class="rpt-cover-title">Prédiagnostic URSSAF</h2>
-        <p class="rpt-cover-sub">${contact && contact.name ? 'Préparé pour ' + contact.name : ''}${contact && contact.name ? ' · ' : ''}Confidentiel — non contractuel</p>
+        <p class="rpt-cover-sub">${destinataire}Confidentiel — non contractuel</p>
 
         <div class="rpt-gauge">
           <div class="rpt-gauge-label">Indice d'exposition URSSAF</div>
           <div class="rpt-gauge-track">
-            <div class="rpt-gauge-fill" style="width:${gaugePct}%;background:${gaugeColor}"></div>
+            <div class="rpt-gauge-fill" style="width:${gaugePct}%;background:${seuilColor}"></div>
             <div class="rpt-gauge-marker" style="left:calc(${gaugePct}% - 2px)"></div>
           </div>
           <div class="rpt-gauge-scale">
@@ -571,7 +517,7 @@ function generateReportHTML(scoring, contact) {
             <span>30 – 59 · Modérée</span>
             <span>60 – 100 · Forte</span>
           </div>
-          <div class="rpt-gauge-value" style="color:${gaugeColor}">
+          <div class="rpt-gauge-value" style="color:${seuilColor}">
             <span class="rpt-gauge-number">${indice}</span><span class="rpt-gauge-denom">/100</span>
             <span class="rpt-gauge-seuil">${seuilLabel}</span>
           </div>
@@ -583,38 +529,66 @@ function generateReportHTML(scoring, contact) {
       </div>
     </section>
   `;
+}
 
-  // ========== Bloc B — Synthèse dirigeant ==========
-  // Trie les thèmes par priorité de niveau
-  const prio = ['CRITIQUE', 'ELEVE', 'MOYEN', 'REDUIT'];
-  const themesSorted = [...themes].sort((x, y) => prio.indexOf(x.level) - prio.indexOf(y.level));
-  const top3 = themesSorted.filter(t => t.level === 'CRITIQUE' || t.level === 'ELEVE').slice(0, 3);
+const ACCROCHE_PAR_SEUIL = {
+  forte:     "Plusieurs signaux à fort enjeu ressortent de votre prédiagnostic. Une revue approfondie est recommandée avant tout contrôle.",
+  moderee:   "Votre exposition est modérée mais plusieurs points de vigilance nécessitent une vérification ciblée.",
+  maitrisee: "Votre exposition paraît maîtrisée. Nous recommandons tout de même un test de robustesse ponctuel sur les thèmes activés."
+};
 
-  let accroche = "";
-  if (scoring.seuil === 'forte')    accroche = "Plusieurs signaux à fort enjeu ressortent de votre prédiagnostic. Une revue approfondie est recommandée avant tout contrôle.";
-  else if (scoring.seuil === 'moderee') accroche = "Votre exposition est modérée mais plusieurs points de vigilance nécessitent une vérification ciblée.";
-  else                                    accroche = "Votre exposition paraît maîtrisée. Nous recommandons tout de même un test de robustesse ponctuel sur les thèmes activés.";
+/* Trie les thèmes du plus risqué au moins risqué. */
+function trierParNiveau(themes) {
+  return [...themes].sort((x, y) =>
+    NIVEAUX_PAR_GRAVITE.indexOf(x.level) - NIVEAUX_PAR_GRAVITE.indexOf(y.level));
+}
 
-  const fourchetteAgr = computeFourchetteAgregee(scoring);
+function estThemeAlerte(theme) {
+  return theme.level === 'CRITIQUE' || theme.level === 'ELEVE';
+}
 
-  let top3HTML = '';
-  if (top3.length) {
-    top3HTML = '<ol class="rpt-top3">' + top3.map(t => {
-      // On prend le premier verdict dont le niveau correspond au niveau max du thème
-      // (sinon on tombait sur un verdict RÉDUIT contradictoire avec le pill CRITIQUE)
-      const v = t.verdicts.find(v => v.level === t.level) || t.verdicts[0];
-      return `
+/* Abréviations juridiques fréquentes dans les verdicts : un point qui les suit
+   ne termine pas une phrase. Sans cette liste, « exigées par l'art. L. 3121-65
+   C. trav. Les conventions… » se coupait après « l'art. ». */
+const ABREVIATIONS = ['art', 'L', 'R', 'D', 'C', 'trav', 'ex', 'etc', 'al', 'n°', 'CSS', 'CDD'];
+
+/* Première phrase complète du verdict, pour le résumé du Top 3. */
+function premierePhrase(texte) {
+  const finDePhrase = /[.!?]\s+(?=[A-ZÀ-Ý])/g;
+  let occurrence;
+  while ((occurrence = finDePhrase.exec(texte)) !== null) {
+    const motPrecedent = (texte.slice(0, occurrence.index).match(/([\wÀ-ÿ°]+)$/) || [])[1] || '';
+    if (ABREVIATIONS.includes(motPrecedent)) continue;
+    return texte.slice(0, occurrence.index + 1);
+  }
+  return texte;
+}
+
+function renderTop3(themesTries) {
+  const top3 = themesTries.filter(estThemeAlerte).slice(0, 3);
+  if (!top3.length) {
+    return '<p class="rpt-muted">Aucun thème ne ressort à un niveau ÉLEVÉ ou CRITIQUE à ce stade.</p>';
+  }
+  return '<ol class="rpt-top3">' + top3.map(t => {
+    // On prend le premier verdict dont le niveau correspond au niveau max du thème
+    // (sinon on tombait sur un verdict RÉDUIT contradictoire avec le pill CRITIQUE)
+    const v = t.verdicts.find(v => v.level === t.level) || t.verdicts[0];
+    return `
       <li>
         <div class="rpt-top3-title">${t.name} ${levelPill(t.level)}</div>
-        <p>${v.text.split('.')[0]}.</p>
+        <p>${premierePhrase(v.text)}</p>
       </li>
     `;
-    }).join('') + '</ol>';
-  } else {
-    top3HTML = '<p class="rpt-muted">Aucun thème ne ressort à un niveau ÉLEVÉ ou CRITIQUE à ce stade.</p>';
-  }
+  }).join('') + '</ol>';
+}
 
-  const blocB = `
+/* --- Bloc B — Synthèse dirigeant : accroche, aggravants, top 3 --- */
+function renderSyntheseDirigeant(scoring, themesTries) {
+  const { meta } = scoring;
+  const accroche = ACCROCHE_PAR_SEUIL[scoring.seuil];
+  const aUneAlerte = themesTries.some(estThemeAlerte);
+
+  return `
     <section class="rpt-block rpt-blockB">
       <h3 class="rpt-block-title">Synthèse dirigeant</h3>
       <p class="rpt-accroche">${accroche}</p>
@@ -623,88 +597,97 @@ function generateReportHTML(scoring, contact) {
       ${meta.multiSite ? `<div class="rpt-aggrav"><strong>Multi-sites.</strong> Plusieurs lieux d'affectation peuvent fausser un taux unique de versement mobilité. Vérification dédiée recommandée.</div>` : ''}
 
       <h4 class="rpt-sub">Top 3 des thèmes à plus fort risque</h4>
-      ${top3HTML}
-      ${top3.length ? `<p class="rpt-muted rpt-see-detail">Le détail de chaque thème et les éléments justificatifs figurent dans l'analyse détaillée ci-dessous.</p>` : ''}
+      ${renderTop3(themesTries)}
+      ${aUneAlerte ? `<p class="rpt-muted rpt-see-detail">Le détail de chaque thème et les éléments justificatifs figurent dans l'analyse détaillée ci-dessous.</p>` : ''}
     </section>
   `;
+}
 
-  // ========== Bloc C — Analyse détaillée ==========
-  // RÈGLE : pour chaque thème, on n'affiche que les verdicts du niveau max du thème.
-  // Un thème CRITIQUE n'affiche pas ses sous-réponses RÉDUIT ou MOYEN (incohérence visuelle
-  // + bruit pour le dirigeant). Exception : si le thème est RÉDUIT, on affiche le verdict
-  // rassurant pour montrer que c'est maîtrisé.
-  let blocCInner = '';
-  themesSorted.forEach(t => {
-    const verdictsFiltres = t.verdicts.filter(v => v.level === t.level);
-    const verdictsHTML = verdictsFiltres.map(v => `
-      <p class="rpt-verdict rpt-verdict-${v.level.toLowerCase()}">${v.text}</p>
-    `).join('');
+const MENTION_NON_CHIFFRABLE = `<p class="rpt-chiffrage rpt-chiffrage-qual"><em>Exposition non chiffrable à ce stade — un audit ciblé permet de quantifier précisément l'enjeu à partir de vos données réelles (montants, volumes, effectifs concernés).</em></p>`;
 
-    let chiffrageHTML = '';
-    if (t.level !== 'REDUIT') {
-      chiffrageHTML = `<p class="rpt-chiffrage rpt-chiffrage-qual"><em>Exposition non chiffrable à ce stade — un audit ciblé permet de quantifier précisément l'enjeu à partir de vos données réelles (montants, volumes, effectifs concernés).</em></p>`;
-    }
+/* RÈGLE : pour chaque thème, on n'affiche que les verdicts du niveau max du thème.
+   Un thème CRITIQUE n'affiche pas ses sous-réponses RÉDUIT ou MOYEN (incohérence
+   visuelle + bruit pour le dirigeant). Exception : si le thème est RÉDUIT, on affiche
+   le verdict rassurant pour montrer que c'est maîtrisé. */
+function renderTheme(theme) {
+  const verdictsHTML = theme.verdicts
+    .filter(v => v.level === theme.level)
+    .map(v => `<p class="rpt-verdict rpt-verdict-${v.level.toLowerCase()}">${v.text}</p>`)
+    .join('');
 
-    // Encart dispenses si thème complémentaire santé ressort avec alerte sur les dispenses
-    const extra = (t.key === 'compl-sante' && t.showDispensesBox) ? encartDispenses() : '';
+  const chiffrageHTML = theme.level !== 'REDUIT' ? MENTION_NON_CHIFFRABLE : '';
+  // Encart dispenses si le thème complémentaire santé ressort avec alerte sur les dispenses
+  const extra = (theme.key === 'compl-sante' && theme.showDispensesBox) ? encartDispenses() : '';
 
-    blocCInner += `
-      <article class="rpt-theme">
-        <header class="rpt-theme-header">
-          <h4>${t.name}</h4>
-          ${levelPill(t.level)}
-        </header>
-        <div class="rpt-theme-body">
-          ${verdictsHTML}
-          ${chiffrageHTML}
-          ${extra}
-        </div>
-      </article>
-    `;
-  });
+  return `
+    <article class="rpt-theme">
+      <header class="rpt-theme-header">
+        <h4>${theme.name}</h4>
+        ${levelPill(theme.level)}
+      </header>
+      <div class="rpt-theme-body">
+        ${verdictsHTML}
+        ${chiffrageHTML}
+        ${extra}
+      </div>
+    </article>
+  `;
+}
 
-  const blocC = `
+/* --- Bloc C — Analyse détaillée par thème --- */
+function renderAnalyseDetaillee(themesTries) {
+  const corps = themesTries.length
+    ? themesTries.map(renderTheme).join('')
+    : '<p class="rpt-muted">Aucun thème activé.</p>';
+
+  return `
     <section class="rpt-block rpt-blockC">
       <h3 class="rpt-block-title">Analyse détaillée par thème</h3>
-      ${themesSorted.length ? blocCInner : '<p class="rpt-muted">Aucun thème activé.</p>'}
+      ${corps}
     </section>
   `;
+}
 
-  // ========== Bloc D — Passage à l'action ==========
-  const aenTheme = themes.find(t => t.key === 'aen-vehicule');
-  const showANV = aenTheme && (aenTheme.level === 'ELEVE' || aenTheme.level === 'CRITIQUE');
+// Recos pratiques personnalisées selon les thèmes CRITIQUE/ÉLEVÉ du prospect
+const RECO_PAR_THEME = {
+  'frais-pro':     "<strong>Frais professionnels.</strong> Reconstituer les justificatifs (cartes grises, relevés kilométriques, notes de frais) sur 3 ans, vérifier l'usage des barèmes URSSAF et tracer la DFS si applicable.",
+  'titres-resto':  "<strong>Titres-restaurant.</strong> Auditer le paramétrage paie : participation employeur 50–60 %, un titre par repas dans l'horaire journalier, part patronale ≤ 7,32 € (2026). Rectifier si dépassement.",
+  'compl-sante':   "<strong>Complémentaire santé — dispenses.</strong> Vérifier l'existence d'un acte fondateur valide (DUE, accord, référendum) couvrant chaque cas, collecter les demandes signées à jour et leurs justificatifs, confirmer l'éligibilité aux dispenses d'ordre public.",
+  'temps-travail': "<strong>Temps de travail et rémunérations.</strong> Sécuriser les forfaits jours (conventions individuelles, suivi charge, entretiens annuels), documenter les heures supplémentaires et basculer toute rémunération hors paie dans le circuit DSN.",
+  'rgdu':          "<strong>RGDU / Réduction générale.</strong> Faire recalculer la réduction sur 3 ans (paramétrage, SMIC, primes, absences) et documenter les écarts par rapport à la DSN.",
+  'aen-vehicule':  "<strong>Avantage en nature véhicule.</strong> Recenser la flotte, qualifier l'usage (professionnel strict vs mixte), choisir le mode d'évaluation (réel ou forfait) et produire des attestations d'usage signées.",
+  'ruptures':      "<strong>Ruptures et transactions.</strong> Reconstituer les protocoles transactionnels, vérifier la ventilation indemnités imposables / non imposables et justifier le caractère indemnitaire des sommes versées.",
+  'vm':            "<strong>Versement mobilité.</strong> Contrôler le taux applicable par commune d'affectation réelle des salariés et, en multi-sites, ventiler les déclarations DSN en conséquence."
+};
 
-  // Recos pratiques personnalisées selon les thèmes CRITIQUE/ÉLEVÉ du prospect
-  const recosParTheme = {
-    'frais-pro':     "<strong>Frais professionnels.</strong> Reconstituer les justificatifs (cartes grises, relevés kilométriques, notes de frais) sur 3 ans, vérifier l'usage des barèmes URSSAF et tracer la DFS si applicable.",
-    'titres-resto':  "<strong>Titres-restaurant.</strong> Auditer le paramétrage paie : participation employeur 50–60 %, un titre par repas dans l'horaire journalier, part patronale ≤ 7,32 € (2026). Rectifier si dépassement.",
-    'compl-sante':   "<strong>Complémentaire santé — dispenses.</strong> Vérifier l'existence d'un acte fondateur valide (DUE, accord, référendum) couvrant chaque cas, collecter les demandes signées à jour et leurs justificatifs, confirmer l'éligibilité aux dispenses d'ordre public.",
-    'temps-travail': "<strong>Temps de travail et rémunérations.</strong> Sécuriser les forfaits jours (conventions individuelles, suivi charge, entretiens annuels), documenter les heures supplémentaires et basculer toute rémunération hors paie dans le circuit DSN.",
-    'rgdu':          "<strong>RGDU / Réduction générale.</strong> Faire recalculer la réduction sur 3 ans (paramétrage, SMIC, primes, absences) et documenter les écarts par rapport à la DSN.",
-    'aen-vehicule':  "<strong>Avantage en nature véhicule.</strong> Recenser la flotte, qualifier l'usage (professionnel strict vs mixte), choisir le mode d'évaluation (réel ou forfait) et produire des attestations d'usage signées.",
-    'ruptures':      "<strong>Ruptures et transactions.</strong> Reconstituer les protocoles transactionnels, vérifier la ventilation indemnités imposables / non imposables et justifier le caractère indemnitaire des sommes versées.",
-    'vm':            "<strong>Versement mobilité.</strong> Contrôler le taux applicable par commune d'affectation réelle des salariés et, en multi-sites, ventiler les déclarations DSN en conséquence."
-  };
+const NB_MAX_RECOS = 4;
 
-  const themesActifs = themesSorted.filter(t => t.level === 'CRITIQUE' || t.level === 'ELEVE');
-  const recosHTML = themesActifs
-    .slice(0, 4)
-    .map(t => recosParTheme[t.key])
+function renderPremiereEtape(themesAlerte) {
+  if (!themesAlerte.length) {
+    return `<li><strong>Maintenir la vigilance.</strong> Aucun thème ne ressort en ÉLEVÉ ou CRITIQUE — un test de robustesse annuel reste recommandé pour confirmer la maîtrise documentaire.</li>`;
+  }
+  const recosHTML = themesAlerte
+    .slice(0, NB_MAX_RECOS)
+    .map(t => RECO_PAR_THEME[t.key])
     .filter(Boolean)
     .map(txt => `<li>${txt}</li>`)
     .join('');
 
-  const stepsIntro = themesActifs.length
-    ? `<li><strong>Actions prioritaires sur vos thèmes à risque.</strong> Voici, <em>à titre non exhaustif</em>, quelques chantiers concrets à engager en priorité. Un audit permettra notamment d'affiner ces recommandations en fonction de votre situation précise et de votre documentation réelle :<ul class="rpt-substeps">${recosHTML}</ul><p class="rpt-substeps-note">Cette liste est indicative. D'autres axes peuvent émerger selon le contexte opérationnel, conventionnel et documentaire propre à votre entreprise — c'est l'objet de l'audit ciblé.</p></li>`
-    : `<li><strong>Maintenir la vigilance.</strong> Aucun thème ne ressort en ÉLEVÉ ou CRITIQUE — un test de robustesse annuel reste recommandé pour confirmer la maîtrise documentaire.</li>`;
+  return `<li><strong>Actions prioritaires sur vos thèmes à risque.</strong> Voici, <em>à titre non exhaustif</em>, quelques chantiers concrets à engager en priorité. Un audit permettra notamment d'affiner ces recommandations en fonction de votre situation précise et de votre documentation réelle :<ul class="rpt-substeps">${recosHTML}</ul><p class="rpt-substeps-note">Cette liste est indicative. D'autres axes peuvent émerger selon le contexte opérationnel, conventionnel et documentaire propre à votre entreprise — c'est l'objet de l'audit ciblé.</p></li>`;
+}
 
-  const blocD = `
+/* --- Bloc D — Passage à l'action : étapes, offre ANV, prise de rendez-vous --- */
+function renderPassageAction(themes, themesTries) {
+  const aenTheme = themes.find(t => t.key === 'aen-vehicule');
+  const showANV = aenTheme && estThemeAlerte(aenTheme);
+
+  return `
     <section class="rpt-block rpt-blockD">
       <h3 class="rpt-block-title">Passage à l'action</h3>
 
       <h4 class="rpt-sub">Prochaines étapes recommandées</h4>
       <ol class="rpt-steps">
-        ${stepsIntro}
+        ${renderPremiereEtape(themesTries.filter(estThemeAlerte))}
         <li><strong>Échanger avec ACOMPIA.</strong> 30 minutes de cadrage sans engagement pour affiner votre exposition réelle, hiérarchiser les chantiers et choisir le bon niveau d'intervention.</li>
         <li><strong>Planifier l'audit adapté.</strong> Revue flash (1 thème), audit ciblé (par exemple AEN véhicule) ou accompagnement global selon les enjeux identifiés ensemble.</li>
       </ol>
@@ -714,7 +697,7 @@ function generateReportHTML(scoring, contact) {
       <div class="rpt-cta-main">
         <h4>Discuter de votre prédiagnostic avec ACOMPIA</h4>
         <p>Échange de 30 minutes, sans engagement, pour prioriser vos actions.</p>
-        <a href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener" class="btn-primary">Prendre rendez-vous →</a>
+        <a href="${ACOMPIA_CONFIG.rdvURL}" target="_blank" rel="noopener" class="btn-primary">Prendre rendez-vous →</a>
       </div>
 
       ${disclaimerFinal()}
@@ -724,27 +707,33 @@ function generateReportHTML(scoring, contact) {
       </div>
     </section>
   `;
+}
 
-  // ========== CTA Calendly sticky mobile-friendly ==========
-  const sticky = `
+/* CTA Calendly sticky mobile-friendly */
+function renderCTASticky() {
+  return `
     <div class="rpt-sticky-cta">
-      <a href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">
+      <a href="${ACOMPIA_CONFIG.rdvURL}" target="_blank" rel="noopener">
         Prendre rendez-vous — échange de 30 minutes
       </a>
     </div>
   `;
+}
+
+function generateReportHTML(scoring, contact) {
+  const themesTries = trierParNiveau(scoring.themes);
 
   return `
     <div class="acompia-report" id="acompia-report">
-      ${blocA}
-      ${blocB}
-      ${blocC}
-      ${blocD}
+      ${renderCouverture(scoring, contact)}
+      ${renderSyntheseDirigeant(scoring, themesTries)}
+      ${renderAnalyseDetaillee(themesTries)}
+      ${renderPassageAction(scoring.themes, themesTries)}
     </div>
-    ${sticky}
+    ${renderCTASticky()}
   `;
 }
 
 // Exposition globale — le script s'exécute en global scope.
-window.computeScoring = computeScoring;
-window.generateReportHTML = generateReportHTML;
+/* Les déclarations `function` de premier niveau d'un script classique sont
+   déjà exposées globalement : aucune réaffectation sur `window` n'est utile. */
