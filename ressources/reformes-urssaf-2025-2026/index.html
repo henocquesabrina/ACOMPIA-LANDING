@@ -31,11 +31,11 @@
 
   <title>Réformes URSSAF 2025-2026, les évolutions à connaître · ACOMPIA</title>
 
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="alternate icon" href="/favicon.svg">
-  <link rel="mask-icon" href="/favicon.svg" color="#4F46E5">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="alternate icon" href="../../favicon.svg">
+  <link rel="mask-icon" href="../../favicon.svg" color="#4F46E5">
 
-  <link href="/css/fonts.css" rel="stylesheet">
+  <link href="../../css/fonts.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/variables.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/animations.css">
@@ -131,20 +131,7 @@
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
 
   <!-- Analytics · PostHog EU (sans cookie : persistence memory, IP écartées côté projet, pas de session recording) -->
-  <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Ni qi init Xi rn Rr tn sn Ki capture calculateEventProperties dn register register_once register_for_session unregister unregister_for_session fn getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync pn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty cn un createPersonProfile setInternalOrTestUser vn Qi yn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing an debug Or Rt getPageViewId captureTraceFeedback captureTraceMetric Wi".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_tzcr2EPAnKEJNFC3w9rsfwkjJB7zQFJ8NuDziAGZJ8qq', {
-      api_host: 'https://eu.i.posthog.com',
-      defaults: '2026-05-30',
-      persistence: 'memory',
-      person_profiles: 'identified_only',
-      respect_dnt: true,
-      capture_pageview: true,
-      capture_pageleave: true,
-      autocapture: true,
-      disable_session_recording: true
-    });
-  </script>
+  <script src="../../js/analytics.js"></script>
 </head>
 <body class="ress-page">
 
@@ -267,7 +254,7 @@
 
       <div class="article-meta-bar">
         <div class="article-author-mini">
-          <img class="article-author-mini-photo" src="/assets/images/sabrina-portrait.jpg" alt="Maître Sabrina Henocque Chiche, avocate au Barreau de Paris spécialisée en droit social" width="44" height="44" loading="eager">
+          <img class="article-author-mini-photo" src="../../assets/images/sabrina-portrait.jpg" alt="Maître Sabrina Henocque Chiche, avocate au Barreau de Paris spécialisée en droit social" width="44" height="44" loading="eager">
           <div>
             <div><strong>Sabrina Henocque Chiche</strong></div>
             <div style="font-size:12.5px; color:#888;">Avocate au Barreau de Paris</div>
@@ -486,7 +473,7 @@
         </div>
 
         <section class="article-author-card" aria-labelledby="author-name">
-          <img class="article-author-card-img" src="/assets/images/sabrina-portrait.jpg" alt="Portrait de Maître Sabrina Henocque Chiche, avocate au Barreau de Paris" width="130" height="130" loading="lazy">
+          <img class="article-author-card-img" src="../../assets/images/sabrina-portrait.jpg" alt="Portrait de Maître Sabrina Henocque Chiche, avocate au Barreau de Paris" width="130" height="130" loading="lazy">
           <div class="article-author-card-content">
             <div class="article-author-card-eyebrow">L'auteure</div>
             <h3 class="article-author-card-name" id="author-name">Sabrina Henocque Chiche</h3>
@@ -601,6 +588,8 @@
     </div>
   </footer>
 
-  <script src="/js/main.js" defer></script>
+  <script src="../../js/config.js" defer></script>
+  <script src="../../js/socle.js" defer></script>
+  <script src="../../js/main.js" defer></script>
 </body>
 </html>

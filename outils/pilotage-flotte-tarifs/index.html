@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="Tarifs Pilotage de flotte et Audit AEN véhicule · ACOMPIA">
 <meta name="twitter:description" content="Abonnement de pilotage dès 150 € HT/mois, audit AEN 3 ans dès 1 500 € HT (à moitié prix pour les abonnés).">
 <meta name="twitter:image" content="https://www.acompia.com/assets/og-image.png">
-<link href="/css/fonts.css" rel="stylesheet">
+<link href="../../css/fonts.css" rel="stylesheet">
 <style>
 :root{
   --pierre:#FAFAF7; --carte:#fff; --ink:#0A0A0A; --ink-2:#3F3F3F; --ink-3:#6B6B6B;
@@ -83,27 +83,8 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
 
   <!-- Analytics · PostHog EU (sans cookie : persistence memory, IP écartées côté projet, pas de session recording) -->
-  <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Ni qi init Xi rn Rr tn sn Ki capture calculateEventProperties dn register register_once register_for_session unregister unregister_for_session fn getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync pn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty cn un createPersonProfile setInternalOrTestUser vn Qi yn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing an debug Or Rt getPageViewId captureTraceFeedback captureTraceMetric Wi".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_tzcr2EPAnKEJNFC3w9rsfwkjJB7zQFJ8NuDziAGZJ8qq', {
-      api_host: 'https://eu.i.posthog.com',
-      defaults: '2026-05-30',
-      persistence: 'memory',
-      person_profiles: 'identified_only',
-      respect_dnt: true,
-      capture_pageview: true,
-      capture_pageleave: true,
-      autocapture: true,
-      disable_session_recording: true
-    });
-  </script>
+  <script src="../../js/analytics.js"></script>
   <!-- Mesure des clics rendez-vous (aucune donnée personnelle) -->
-  <script>
-    document.addEventListener('click', function (e) {
-      var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"]') : null;
-      if (a && window.posthog) { posthog.capture('rdv_click', { source: location.pathname }); }
-    });
-  </script>
 
   <!-- Données structurées schema.org -->
   <script type="application/ld+json">
@@ -373,41 +354,9 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
   </div>
 </footer>
 
-<script>
-const eur = new Intl.NumberFormat('fr-FR');
-function abonnementMensuel(n){
-  let t = 0;
-  t += Math.min(n,25) * 8;
-  if(n>25) t += Math.min(n-25,50) * 6;
-  if(n>75) t += Math.min(n-75,75) * 4.5;
-  if(n>150) t += Math.min(n-150,50) * 3.5;
-  return Math.max(150, t);
-}
-function auditPrix(n){
-  if(n<=50) return 1500;
-  if(n<=100) return 2500;
-  return 3500;
-}
-const slider = document.getElementById('slider');
-function maj(){
-  const n = +slider.value;
-  document.getElementById('v-nb').textContent = n === 200 ? '200+' : n;
-  slider.style.setProperty('--pct', ((n-1)/199*100).toFixed(1) + '%');
-  // A11Y : annonce vocale de la valeur courante pour les lecteurs d'écran
-  slider.setAttribute('aria-valuetext', n + ' véhicules');
-
-  const audit = auditPrix(n);
-  const mens = Math.round(abonnementMensuel(n));
-  const annuel = mens * 12;
-
-  document.getElementById('p-audit').textContent = eur.format(audit) + ' €';
-  document.getElementById('p-audit-note').textContent = 'pour une flotte de ' + (n===200?'200+':n) + ' véhicule' + (n>1?'s':'');
-  document.getElementById('p-abo').textContent = eur.format(mens) + ' €';
-  document.getElementById('p-abo-note').textContent = 'soit ' + eur.format(annuel) + ' € HT / an · contrat annuel · essai sur demande';
-  document.getElementById('pont-txt').textContent = 'Il passe à moitié prix, ' + eur.format(Math.round(audit/2)) + ' € HT au lieu de ' + eur.format(audit) + ' €,';
-}
-slider.addEventListener('input', maj);
-maj();
-</script>
+  <script src="../../js/config.js" defer></script>
+  <script src="../../js/socle.js" defer></script>
+  <script src="../../js/tarifs-flotte.js" defer></script>
+  <script src="../../js/tarifs-flotte-ui.js" defer></script>
 </body>
 </html>
