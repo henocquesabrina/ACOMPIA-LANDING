@@ -1,85 +1,115 @@
 /* ============================================
    ACOMPIA — Main JS
+   Dépend de js/config.js et js/socle.js.
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  activerScrollReveal();
+  activerSmoothScroll();
+  activerOmbreNav();
+  activerMenuMobile();
+  activerDropdownsNav();
+  animerCompteursStat();
+  activerFormulaireDevis();
+  activerFormulaireNotify();
+});
 
-  // === Scroll Reveal ===
-  const reveals = document.querySelectorAll('.reveal');
+/* === Scroll Reveal === */
+function activerScrollReveal() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0, rootMargin: '0px 0px 900px 0px' }); // un coup de molette rapide saute ~1000px : la marge doit couvrir ce saut pour ne jamais montrer d'écran blanc
+    // un coup de molette rapide saute ~1000px : la marge doit couvrir ce saut
+    // pour ne jamais montrer d'écran blanc
+  }, { threshold: 0, rootMargin: '0px 0px 900px 0px' });
 
-  reveals.forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
 
-  // === Smooth scroll for anchor links ===
+/* === Smooth scroll for anchor links === */
+function activerSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (e) => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      const href = a.getAttribute('href');
+      // `querySelector('#')` lèverait une SyntaxError : on ignore les ancres vides
+      if (href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+}
 
-  // === Nav scroll effect ===
+/* === Nav scroll effect ===
+   Bascule une classe au franchissement du seuil, au lieu de réécrire un style
+   inline à chaque événement de scroll (~60 Hz sur les 20 pages). */
+const SEUIL_OMBRE_NAV_PX = 50;
+
+function activerOmbreNav() {
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      nav.style.boxShadow = '0 2px 12px rgba(17,24,54,0.08)';
-    } else {
-      nav.style.boxShadow = '0 1px 4px rgba(17,24,54,0.03)';
-    }
-  });
+  if (!nav) return;
 
-  // === Mobile menu toggle ===
+  let ombreVisible = null;
+  const majOmbre = () => {
+    const doitEtreVisible = window.scrollY > SEUIL_OMBRE_NAV_PX;
+    if (doitEtreVisible === ombreVisible) return; // rien à écrire hors franchissement
+    ombreVisible = doitEtreVisible;
+    nav.classList.toggle('nav--scrolled', doitEtreVisible);
+  };
+
+  window.addEventListener('scroll', majOmbre, { passive: true });
+  majOmbre();
+}
+
+/* === Mobile menu toggle ===
+   A11Y : état unique ouverture/fermeture du tiroir ; quand il est ouvert,
+   le contenu principal et le footer deviennent inertes (inaccessibles au focus) */
+function activerMenuMobile() {
   const burger = document.querySelector('.nav-burger');
   const navLinks = document.querySelector('.nav-links');
-  if (burger) {
-    // A11Y : état unique ouverture/fermeture du tiroir ; quand il est ouvert,
-    // le contenu principal et le footer deviennent inertes (inaccessibles au focus)
-    const setTiroir = (isOpen) => {
-      navLinks.classList.toggle('nav-open', isOpen);
-      burger.classList.toggle('active', isOpen);
-      burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-      document.querySelectorAll('main, footer').forEach((el) => { el.inert = isOpen; });
-    };
+  if (!burger || !navLinks) return;
 
-    burger.addEventListener('click', () => {
-      setTiroir(!navLinks.classList.contains('nav-open'));
-    });
+  const setTiroir = (isOpen) => {
+    navLinks.classList.toggle('nav-open', isOpen);
+    burger.classList.toggle('active', isOpen);
+    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    document.querySelectorAll('main, footer').forEach((el) => { el.inert = isOpen; });
+  };
 
-    // Close menu on link click
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => setTiroir(false));
-    });
+  burger.addEventListener('click', () => {
+    setTiroir(!navLinks.classList.contains('nav-open'));
+  });
 
-    // A11Y : Échap ferme le tiroir et rend le focus au burger
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
-        setTiroir(false);
-        burger.focus();
-      }
-    });
-  }
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setTiroir(false));
+  });
 
-  // === A11Y : dropdowns nav — aria-expanded synchronisé + fermeture Échap ===
+  // A11Y : Échap ferme le tiroir et rend le focus au burger
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      setTiroir(false);
+      burger.focus();
+    }
+  });
+}
+
+/* === A11Y : dropdowns nav — aria-expanded synchronisé + fermeture Échap === */
+function activerDropdownsNav() {
   document.querySelectorAll('.nav-dropdown').forEach((dd) => {
     const toggle = dd.querySelector('.nav-dropdown-toggle');
     if (!toggle) return;
     toggle.setAttribute('aria-expanded', 'false');
+
     const estOuvert = () =>
       (dd.matches(':hover') || dd.contains(document.activeElement)) &&
       !dd.classList.contains('nav-dropdown--esc');
     const majEtat = () => {
       toggle.setAttribute('aria-expanded', estOuvert() ? 'true' : 'false');
     };
+
     dd.addEventListener('mouseenter', () => {
       dd.classList.remove('nav-dropdown--esc');
       majEtat();
@@ -97,184 +127,157 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 0);
     });
     dd.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        // Force la fermeture malgré :focus-within, puis rend le focus au toggle
-        dd.classList.add('nav-dropdown--esc');
-        toggle.focus();
-        majEtat();
-      }
+      if (e.key !== 'Escape') return;
+      // Force la fermeture malgré :focus-within, puis rend le focus au toggle
+      dd.classList.add('nav-dropdown--esc');
+      toggle.focus();
+      majEtat();
     });
   });
+}
 
-  // === Stat counter animation ===
-  const statNumbers = document.querySelectorAll('.stat-number[data-target]');
-  const statObserver = new IntersectionObserver((entries) => {
+/* === Stat counter animation === */
+const DUREE_ANIMATION_STAT_MS = 1500;
+
+function animerCompteurVersCible(el, cible) {
+  const estDecimal = cible % 1 !== 0;
+  const debut = performance.now();
+
+  function animer(maintenant) {
+    const progression = Math.min((maintenant - debut) / DUREE_ANIMATION_STAT_MS, 1);
+    const adouci = 1 - Math.pow(1 - progression, 3); // ease-out cubic
+    const courant = cible * adouci;
+
+    el.textContent = estDecimal
+      ? courant.toFixed(1).replace('.', ',')
+      : Math.round(courant);
+
+    if (progression < 1) requestAnimationFrame(animer);
+  }
+
+  requestAnimationFrame(animer);
+}
+
+function animerCompteursStat() {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseFloat(el.dataset.target);
-        const isDecimal = target % 1 !== 0;
-        const duration = 1500;
-        const startTime = performance.now();
-
-        function animate(now) {
-          const elapsed = now - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-          const current = target * eased;
-
-          if (isDecimal) {
-            el.textContent = current.toFixed(1).replace('.', ',');
-          } else {
-            el.textContent = Math.round(current);
-          }
-
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          }
-        }
-
-        requestAnimationFrame(animate);
-        statObserver.unobserve(el);
-      }
+      if (!entry.isIntersecting) return;
+      animerCompteurVersCible(entry.target, parseFloat(entry.target.dataset.target));
+      observer.unobserve(entry.target);
     });
   }, { threshold: 0.2, rootMargin: '0px 0px 100px 0px' });
 
-  statNumbers.forEach(el => statObserver.observe(el));
+  document.querySelectorAll('.stat-number[data-target]').forEach(el => observer.observe(el));
+}
 
-  // === Devis form ===
+/* === Devis form === */
+function activerFormulaireDevis() {
   const devisForm = document.getElementById('devis-form');
-  if (devisForm) {
-    devisForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        company: formData.get('company'),
-        employees: formData.get('employees'),
-        audit_type: formData.get('audit_type'),
-        vehicles: formData.get('vehicles'),
-        message: formData.get('message'),
-        website: formData.get('website')
-      };
+  if (!devisForm) return;
 
-      // Anti-bot honeypot : si "website" est rempli, c'est un bot
-      if (data.website) {
-        devisForm.parentElement.innerHTML = '<div class="devis-success"><h3>Demande envoyee !</h3></div>';
-        return;
-      }
+  devisForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const champ = (nom) => formData.get(nom) || '';
+    const conteneur = devisForm.parentElement;
 
-      // Analytics PostHog — aucune donnée personnelle (type d'audit et tranche d'effectif seulement)
-      if (window.posthog) posthog.capture('devis_envoye', {
-        audit_type: data.audit_type || '',
-        effectif: data.employees || ''
-      });
+    // Anti-bot honeypot : si "website" est rempli, c'est un bot
+    if (champ('website')) {
+      conteneur.innerHTML = '<div class="devis-success"><h3>Demande envoyée !</h3></div>';
+      return;
+    }
 
-      // Send to Notion via Cloudflare Worker
-      const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
-      fetch(WORKER_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'devis',
-          data: {
-            name: data.name,
-            email: data.email,
-            audit_type: data.audit_type || '',
-            message: `Entreprise: ${data.company || ''} | Salaries: ${data.employees || ''} | Vehicules: ${data.vehicles || 'N/A'} | ${data.message || ''}`
-          }
-        })
-      })
-      .then(r => r.json())
-      .catch(() => {});
-
-      devisForm.parentElement.innerHTML = `
-        <div class="devis-success">
-          <div class="devis-success-icon">✓</div>
-          <h3>Demande envoyée !</h3>
-          <p>Merci <span class="js-name"></span>. Notre équipe vous recontactera à <strong class="js-email"></strong> sous 48h avec un devis adapté à votre entreprise.</p>
-        </div>
-      `;
-      devisForm.parentElement.querySelector('.js-name').textContent = (data.name || '').split(' ')[0];
-      devisForm.parentElement.querySelector('.js-email').textContent = data.email || '';
+    // Analytics PostHog — aucune donnée personnelle (type d'audit et tranche d'effectif seulement)
+    capturerEvenement('devis_envoye', {
+      audit_type: champ('audit_type'),
+      effectif: champ('employees')
     });
-  }
 
-  // === Platform notify form ===
+    const recapitulatif = `Entreprise: ${champ('company')} | Salaries: ${champ('employees')}`
+      + ` | Vehicules: ${formData.get('vehicles') || 'N/A'} | ${champ('message')}`;
+
+    envoyerAuWorker('devis', {
+      name: champ('name'),
+      email: champ('email'),
+      audit_type: champ('audit_type'),
+      message: recapitulatif
+    }).catch(() => signalerEchecEnvoi(conteneur));
+
+    conteneur.innerHTML = `
+      <div class="devis-success">
+        <div class="devis-success-icon">✓</div>
+        <h3>Demande envoyée !</h3>
+        <p>Merci <span class="js-name"></span>. Notre équipe vous recontactera à <strong class="js-email"></strong> sous 48h avec un devis adapté à votre entreprise.</p>
+      </div>
+    `;
+    // Données visiteur injectées via textContent : aucune interprétation HTML possible
+    conteneur.querySelector('.js-name').textContent = champ('name').split(' ')[0];
+    conteneur.querySelector('.js-email').textContent = champ('email');
+  });
+}
+
+/* === Platform notify form === */
+function activerFormulaireNotify() {
   const notifyForm = document.getElementById('notify-form');
-  if (notifyForm) {
-    notifyForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const fd = new FormData(notifyForm);
-      const email = fd.get('email') || notifyForm.querySelector('input[type="email"]').value;
-      const honeypot = fd.get('website');
+  if (!notifyForm) return;
 
-      // Anti-bot honeypot
-      if (honeypot) {
-        notifyForm.innerHTML = '<div style="text-align:center;padding:16px 0"><p>Merci.</p></div>';
-        return;
-      }
+  notifyForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(notifyForm);
+    const email = fd.get('email') || notifyForm.querySelector('input[type="email"]').value;
 
-      // Analytics PostHog — aucune donnée personnelle
-      if (window.posthog) posthog.capture('notify_inscrit');
+    // Anti-bot honeypot
+    if (fd.get('website')) {
+      notifyForm.innerHTML = '<div style="text-align:center;padding:16px 0"><p>Merci.</p></div>';
+      return;
+    }
 
-      // Send to Notion via Cloudflare Worker
-      const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
-      fetch(WORKER_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'newsletter',
-          data: { email }
-        })
-      })
-      .then(r => r.json())
-      .catch(() => {});
+    // Analytics PostHog — aucune donnée personnelle
+    capturerEvenement('notify_inscrit');
 
-      // Replace form with confirmation (email injected safely via textContent)
-      notifyForm.innerHTML = `
-        <div style="text-align:center;padding:16px 0">
-          <p style="color:var(--accent-cyan);font-weight:700;font-size:16px">✓ Merci !</p>
-          <p style="color:var(--text-dark-sec);font-size:14px;margin-top:6px">Vous serez informé(e) du lancement à <strong class="js-email" style="color:var(--text-dark)"></strong></p>
-        </div>
-      `;
-      notifyForm.querySelector('.js-email').textContent = email;
-    });
-  }
+    envoyerAuWorker('newsletter', { email })
+      .catch(() => signalerEchecEnvoi(notifyForm));
 
-});
-
-
-/* Mesure des clics rendez-vous (Calendly) · aucune donnée personnelle */
-document.addEventListener('click', function (e) {
-  var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"]') : null;
-  if (a && window.posthog) { posthog.capture('rdv_click', { source: location.pathname }); }
-});
+    notifyForm.innerHTML = `
+      <div style="text-align:center;padding:16px 0">
+        <p style="color:var(--accent-cyan);font-weight:700;font-size:16px">✓ Merci !</p>
+        <p style="color:var(--text-dark-sec);font-size:14px;margin-top:6px">Vous serez informé(e) du lancement à <strong class="js-email" style="color:var(--text-dark)"></strong></p>
+      </div>
+    `;
+    // Email injecté via textContent : aucune interprétation HTML possible
+    notifyForm.querySelector('.js-email').textContent = email;
+  });
+}
 
 /* Cas-types : repli mobile (audit du 04/08). Sans JS, tout reste visible. */
-document.addEventListener('DOMContentLoaded', function () {
-  var cartes = document.querySelectorAll('.cas-card');
-  cartes.forEach(function (carte, i) {
-    var premier = carte.querySelector('.cas-expo-tt');
-    if (!premier) return;
-    var detail = document.createElement('div');
-    detail.className = 'cas-detail';
-    detail.id = 'cas-detail-' + (i + 1);
-    while (premier.nextSibling) { detail.appendChild(premier.nextSibling); }
-    premier.replaceWith(detail);
-    detail.insertBefore(premier, detail.firstChild);
-    var bouton = document.createElement('button');
-    bouton.type = 'button';
-    bouton.className = 'cas-toggle';
-    bouton.setAttribute('aria-expanded', 'false');
-    bouton.setAttribute('aria-controls', detail.id);
-    bouton.textContent = "Voir l'exposition chiffrée";
-    bouton.addEventListener('click', function () {
-      var ouvert = carte.classList.toggle('cas-card--ouverte');
-      bouton.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
-      bouton.textContent = ouvert ? "Replier le détail" : "Voir l'exposition chiffrée";
-    });
-    carte.insertBefore(bouton, detail);
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.cas-card').forEach(replierCarteCasType);
 });
+
+function replierCarteCasType(carte, index) {
+  const premier = carte.querySelector('.cas-expo-tt');
+  if (!premier) return;
+
+  const detail = document.createElement('div');
+  detail.className = 'cas-detail';
+  detail.id = 'cas-detail-' + (index + 1);
+  while (premier.nextSibling) { detail.appendChild(premier.nextSibling); }
+  premier.replaceWith(detail);
+  detail.insertBefore(premier, detail.firstChild);
+
+  const LIBELLE_REPLIE = "Voir l'exposition chiffrée";
+  const LIBELLE_OUVERT = 'Replier le détail';
+
+  const bouton = document.createElement('button');
+  bouton.type = 'button';
+  bouton.className = 'cas-toggle';
+  bouton.setAttribute('aria-expanded', 'false');
+  bouton.setAttribute('aria-controls', detail.id);
+  bouton.textContent = LIBELLE_REPLIE;
+  bouton.addEventListener('click', () => {
+    const ouvert = carte.classList.toggle('cas-card--ouverte');
+    bouton.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+    bouton.textContent = ouvert ? LIBELLE_OUVERT : LIBELLE_REPLIE;
+  });
+  carte.insertBefore(bouton, detail);
+}

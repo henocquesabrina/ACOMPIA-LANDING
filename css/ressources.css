@@ -41,72 +41,8 @@ body.ress-page {
 /* ==================================================
    HERO ÉDITORIAL (legacy) — conservé pour compatibilité
    ================================================== */
-.ress-masthead {
-  padding: 152px 48px 0;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-.ress-masthead-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 48px;
-}
-.ress-masthead-left { flex: 1; }
-.ress-wordmark {
-  font-family: 'Geist Mono', monospace;
-  font-size: clamp(56px, 10vw, 132px);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  margin: 0 0 22px;
-  color: #0A0A0A;
-}
-.ress-wordmark-dot {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  background: #4F46E5;
-  border-radius: 50%;
-  margin-left: 8px;
-  transform: translateY(-12px);
-}
 @media (max-width: 600px) {
   .ress-wordmark-dot { width: 9px; height: 9px; transform: translateY(-6px); }
-}
-.ress-byline {
-  font-family: 'Geist', sans-serif;
-  font-size: 15px;
-  color: #3F3F3F;
-  margin: 0;
-  line-height: 1.5;
-  max-width: 540px;
-}
-.ress-byline strong {
-  color: #0A0A0A;
-  font-weight: 600;
-}
-.ress-masthead-right {
-  text-align: right;
-  flex-shrink: 0;
-  padding-bottom: 4px;
-}
-.ress-edition {
-  font-family: 'Geist Mono', monospace;
-  font-size: 11.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: #0A0A0A;
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-.ress-count {
-  font-family: 'Geist Mono', monospace;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: #6E6E6E; /* A11Y : contraste 4.5:1 mini (ex-#888) */
 }
 .ress-rule {
   border: none;
@@ -178,14 +114,6 @@ body.ress-page {
 /* ==================================================
    GRID DE COVERS — 1 featured + 7 standards
    ================================================== */
-.ress-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 48px 48px 120px;
-}
 @media (max-width: 980px) {
   .ress-grid {
     grid-template-columns: 1fr 1fr;
@@ -332,19 +260,6 @@ body.ress-page {
   letter-spacing: -0.022em;
   max-width: 80%;
 }
-.ress-cover-desc {
-  font-family: 'Geist', sans-serif;
-  font-size: 14.5px;
-  line-height: 1.55;
-  margin: 0;
-  opacity: 0.72;
-  max-width: 92%;
-}
-.ress-cover--featured .ress-cover-desc {
-  font-size: 16px;
-  max-width: 72%;
-  margin-bottom: 8px;
-}
 .ress-cover-meta {
   font-family: 'Geist Mono', monospace;
   font-size: 10px;
@@ -475,19 +390,6 @@ body.ress-page {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-.article-author-mini-img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #4F46E5 0%, #818CF8 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Geist', sans-serif;
-  font-weight: 600;
-  color: white;
-  font-size: 14px;
 }
 .article-author-mini-photo {
   width: 44px;

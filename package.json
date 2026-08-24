@@ -1,0 +1,12 @@
+{
+  "name": "acompia-landing",
+  "private": true,
+  "description": "Site vitrine ACOMPIA — statique, sans build.",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "verifier": "node tools/verifier-liens.js",
+    "verifier:tout": "node tools/verifier-liens.js --externes",
+    "controle": "npm test && npm run verifier",
+    "servir": "python3 -m http.server 8000"
+  }
+}
