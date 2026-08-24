@@ -418,6 +418,7 @@ class Questionnaire {
     this.progressText = document.getElementById(progressTextId);
     this.answers      = {};
     this.currentIndex = 0;
+    this.questionsVues = new Set();
     this.activeQuestions = [];
     this.computeActiveQuestions();
   }
@@ -448,6 +449,7 @@ class Questionnaire {
   start() {
     this.currentIndex = 0;
     this.answers = {};
+    this.questionsVues = new Set();
     this.computeActiveQuestions();
     this.render();
   }
@@ -495,6 +497,17 @@ class Questionnaire {
     this.container.innerHTML = html;
     this.updateProgress();
     this.bindEvents(q);
+    // Sans cet événement, on ne sait pas laquelle des 29 questions fait abandonner.
+    // Émis à l'affichage, une seule fois par question et par parcours.
+    if (!this.questionsVues.has(q.id)) {
+      this.questionsVues.add(q.id);
+      capturerEvenement('prediag_question_vue', {
+        question: q.id,
+        rang: this.currentIndex + 1,
+        total: this.getTotalActive(),
+        bloc: q.section
+      });
+    }
     if (typeof lucide !== 'undefined') lucide.createIcons();
     /* A11Y : le focus suit la question affichée */
     const qt = this.container.querySelector('.q-text');
@@ -520,6 +533,10 @@ class Questionnaire {
   }
 
   renderContactForm() {
+    // Dernière marche du tunnel : on mesure combien y arrivent, pour distinguer
+    // « abandon dans le questionnaire » de « refus de donner ses coordonnées ».
+    capturerEvenement('prediag_contact_vu', { questions_repondues: this.countAnswered() });
+
     // Formulaire coordonnées + case RGPD optionnelle (arbitrage #2)
     this.container.innerHTML = contactFormHTML();
     this.updateProgress();
@@ -560,6 +577,13 @@ class Questionnaire {
     // Analytics PostHog — aucune donnée personnelle (ni nom, ni email)
     capturerEvenement('prediag_termine', {
       indice: scoring.indice,
+      seuil: scoring.seuil,
+      // Tranches, pas de donnée personnelle : disent si le site attire la bonne cible
+      effectif: scoring.meta.effectif,
+      secteur: scoring.meta.secteur,
+      // Quels thèmes ressortent, pas seulement combien : oriente l'audit à proposer
+      themes_critiques: themesParNiveau.CRITIQUE.join(', ') || undefined,
+      themes_eleves: themesParNiveau.ELEVE.join(', ') || undefined,
       nb_critique: themesParNiveau.CRITIQUE.length,
       nb_eleve: themesParNiveau.ELEVE.length,
       nb_moyen: themesParNiveau.MOYEN.length,

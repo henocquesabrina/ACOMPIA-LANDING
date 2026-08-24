@@ -14,9 +14,26 @@ function echapperHTML(valeur) {
   }[caractere]));
 }
 
+/* Provenance du visiteur. PostHog tourne sans cookie (persistence 'memory') : chaque
+   chargement de page est une personne neuve, donc l'attribution ne peut pas être
+   reconstruite après coup. On l'attache à chaque événement, sinon elle est perdue. */
+function proprietesAttribution() {
+  const params = new URLSearchParams(location.search);
+  const utm = {};
+  ['source', 'medium', 'campaign', 'content', 'term'].forEach((cle) => {
+    const valeur = params.get('utm_' + cle);
+    if (valeur) utm['utm_' + cle] = valeur;
+  });
+  return {
+    page: location.pathname,
+    referrer: document.referrer || undefined,
+    ...utm
+  };
+}
+
 /* Mesure d'audience — sans effet si PostHog n'est pas chargé (bloqueur, mode local). */
 function capturerEvenement(nom, proprietes) {
-  if (window.posthog) window.posthog.capture(nom, proprietes);
+  if (window.posthog) window.posthog.capture(nom, { ...proprietesAttribution(), ...proprietes });
 }
 
 /* Envoie un lead au Worker Cloudflare (qui alimente Notion).
@@ -45,8 +62,114 @@ function signalerEchecEnvoi(conteneur) {
   conteneur.appendChild(avis);
 }
 
+/* ============================================
+   Mesure de parcours en page
+
+   Sans cookie, aucun tunnel entre deux pages n'est calculable : chaque chargement
+   crée une personne distincte. Tout ce qui suit mesure donc ce qui se passe à
+   l'intérieur d'un même chargement, où l'identifiant reste stable.
+   ============================================ */
+
+const SEUIL_SECTION_VUE = 0.4; // 40 % visible = section réellement vue
+
+/* Émet `section_vue` une fois par section, à son entrée dans le viewport.
+   Donne la profondeur de scroll : quelle section est le mur de la page. */
+function observerSections() {
+  const sections = [...document.querySelectorAll('section[id], main > [id]')];
+  if (!sections.length || typeof IntersectionObserver === 'undefined') return;
+
+  const observateur = new IntersectionObserver((entrees) => {
+    entrees.forEach((entree) => {
+      if (!entree.isIntersecting) return;
+      observateur.unobserve(entree.target);
+      capturerEvenement('section_vue', {
+        section: entree.target.id,
+        rang: sections.indexOf(entree.target),
+        total: sections.length
+      });
+    });
+  }, { threshold: SEUIL_SECTION_VUE });
+
+  sections.forEach((section) => observateur.observe(section));
+}
+
+/* Nature de la destination d'un CTA, pour comparer des boutons entre eux
+   sans dépendre de leur libellé. */
+function typeDeDestination(href) {
+  if (!href) return 'autre';
+  if (href.includes('calendly.com')) return 'rendez-vous';
+  if (href.includes('prediagnostic')) return 'prediagnostic';
+  if (href.includes('simulateur')) return 'simulateur';
+  if (href.includes('tarifs')) return 'tarifs';
+  if (href.includes('#devis')) return 'devis';
+  if (href.includes('#fondateurs')) return 'fondateurs';
+  if (href.includes('#platform')) return 'notification-lancement';
+  if (href.startsWith('mailto:')) return 'email';
+  if (href.startsWith('tel:')) return 'telephone';
+  return 'autre';
+}
+
+/* Émet `cta_clique` sur tout élément stylé en bouton, où qu'il soit.
+   Aucun attribut à poser dans le HTML : l'emplacement est déduit de la section
+   qui contient le bouton. */
+function observerCTA() {
+  document.addEventListener('click', (evenement) => {
+    const cible = evenement.target;
+    if (!cible || !cible.closest) return;
+    const bouton = cible.closest('a[class*="btn"], button[class*="btn"]');
+    if (!bouton) return;
+
+    const href = bouton.getAttribute('href');
+    const section = bouton.closest('section[id]');
+    const emplacement = section ? section.id
+      : bouton.closest('nav') ? 'nav'
+      : bouton.closest('footer') ? 'footer'
+      : 'hors-section';
+
+    capturerEvenement('cta_clique', {
+      libelle: (bouton.textContent || '').trim().slice(0, 60),
+      emplacement,
+      destination: typeDeDestination(href)
+    });
+  });
+}
+
+/* Les 13 articles n'ont aucune <section id> : `section_vue` n'y produirait rien,
+   alors qu'ils sont le moteur d'acquisition. Les paliers de scroll couvrent toutes
+   les pages, quelle que soit leur structure, et se comparent d'une page à l'autre. */
+const PALIERS_SCROLL = [25, 50, 75, 100];
+
+function observerScroll() {
+  const atteints = new Set();
+
+  const mesurer = () => {
+    const hauteurLisible = document.documentElement.scrollHeight - window.innerHeight;
+    if (hauteurLisible <= 0) return;
+    const pourcentage = ((window.scrollY / hauteurLisible) * 100);
+
+    PALIERS_SCROLL.forEach((palier) => {
+      if (pourcentage < palier || atteints.has(palier)) return;
+      atteints.add(palier);
+      capturerEvenement('scroll_atteint', { palier });
+    });
+    if (atteints.size === PALIERS_SCROLL.length) {
+      window.removeEventListener('scroll', mesurer);
+    }
+  };
+
+  window.addEventListener('scroll', mesurer, { passive: true });
+  mesurer(); // page courte entièrement visible d'emblée
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  observerSections();
+  observerScroll();
+  observerCTA();
+});
+
 /* Mesure des clics rendez-vous (Calendly) · aucune donnée personnelle.
-   Posé ici plutôt que dans main.js : les pages outils n'ont pas main.js. */
+   Conservé pour la continuité de l'historique : les boutons Calendly émettent
+   donc aussi `cta_clique`, avec destination « rendez-vous ». */
 document.addEventListener('click', (evenement) => {
   const cible = evenement.target;
   if (cible && cible.closest && cible.closest('a[href*="calendly.com"]')) {

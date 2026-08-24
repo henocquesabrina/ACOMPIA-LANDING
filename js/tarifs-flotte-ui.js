@@ -30,7 +30,33 @@ function majAffichageTarifs() {
     + ' € HT au lieu de ' + euros.format(audit) + ' €,';
 }
 
+/* Le curseur est un signal d'intention d'achat direct : la taille de flotte simulée
+   dit à qui la grille s'adresse vraiment. On n'émet qu'après la fin du geste, pour
+   ne pas envoyer un événement à chaque pixel. */
+const DELAI_FIN_DE_GESTE_MS = 700;
+
+function trancheDeFlotte(nbVehicules) {
+  if (nbVehicules <= 4) return '1-4';
+  if (nbVehicules <= 15) return '5-15';
+  if (nbVehicules <= 40) return '16-40';
+  if (nbVehicules <= 100) return '41-100';
+  return '100+';
+}
+
 if (curseur) {
-  curseur.addEventListener('input', majAffichageTarifs);
+  let minuteur = null;
+  curseur.addEventListener('input', () => {
+    majAffichageTarifs();
+    clearTimeout(minuteur);
+    minuteur = setTimeout(() => {
+      const nbVehicules = Number(curseur.value);
+      capturerEvenement('tarifs_flotte_simule', {
+        nb_vehicules: nbVehicules,
+        tranche: trancheDeFlotte(nbVehicules),
+        abonnement_mensuel_eur: Math.round(abonnementMensuel(nbVehicules)),
+        audit_eur: auditPrix(nbVehicules)
+      });
+    }, DELAI_FIN_DE_GESTE_MS);
+  });
   majAffichageTarifs();
 }

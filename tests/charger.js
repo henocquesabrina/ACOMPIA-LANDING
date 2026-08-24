@@ -20,8 +20,15 @@ function chargerScripts(...cheminsRelatifs) {
   const contexte = vm.createContext({
     window: {},
     console,
-    document: { addEventListener() {} },
-    location: { pathname: '/' }
+    document: {
+      addEventListener() {},
+      querySelectorAll: () => [],
+      getElementById: () => null,
+      referrer: ''
+    },
+    location: { pathname: '/', search: '' },
+    URLSearchParams,
+    IntersectionObserver: undefined
   });
   vm.runInContext(source, contexte, { filename: cheminsRelatifs.join('+') });
   // Les `const` de portée script ne deviennent pas propriétés du contexte :
