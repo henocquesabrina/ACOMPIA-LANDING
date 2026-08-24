@@ -80,7 +80,9 @@ let dernierResultat = null, dernierEtat = null, dernierForfait = null, dernierRe
 
 function etapesApplicables(){ return STEPS.filter(st=>st.applies(etat)); }
 
-function ouvrirModale(){ neuf(); parcours=[]; dernierReel=null; overlay.classList.add('open'); document.body.style.overflow='hidden'; aller(STEPS[0]);
+function ouvrirModale(){ neuf(); parcours=[]; etapesVues=new Set(); dernierReel=null;
+  capturerEvenement('aen_ouvert');
+  overlay.classList.add('open'); document.body.style.overflow='hidden'; aller(STEPS[0]);
   /* A11Y : le focus entre dans le dialogue */
   document.getElementById('fermer').focus(); }
 function fermerModale(){ overlay.classList.remove('open'); document.body.style.overflow='';
@@ -101,9 +103,21 @@ document.addEventListener('keydown', function (e) {
   vis[n].focus();
 });
 
+/* Le parcours fait 10 étapes et tient en un seul chargement de page : son tunnel
+   est donc entièrement mesurable, contrairement à tout ce qui traverse deux pages. */
+let etapesVues = new Set();
+
 function aller(step){
   etapeActuelle = step;
   if(!parcours.includes(step.id)) parcours.push(step.id);
+  if(!etapesVues.has(step.id)){
+    etapesVues.add(step.id);
+    capturerEvenement('aen_etape_vue', {
+      etape: step.id,
+      rang: etapesApplicables().findIndex(s=>s.id===step.id) + 1,
+      total: etapesApplicables().length
+    });
+  }
   majProgress();
   rendre(step);
   pied.style.display='';
@@ -236,6 +250,9 @@ const FAIRE = {
 };
 
 function rendreAnalyse(r){
+  // Cas écarté par le moteur (utilitaire, deux-roues, TNS, électrique pré-2025) :
+  // le visiteur se heurte à un mur. En mesurer la part dit s'il faut élargir l'outil.
+  capturerEvenement('aen_hors_perimetre', { genre: r.genre, etapes_faites: parcours.length });
   finProgress(); btnSuivant.hidden=true;
   const titres = {
     aucun: "A priori, pas d'avantage en nature à déclarer",
@@ -270,6 +287,12 @@ function rendreAnalyse(r){
 
 /* ===== Résultat chiffré ===== */
 function rendreResultat(r){
+  capturerEvenement('aen_resultat', {
+    mode: etat.mode,
+    energie: etat.energie,
+    periode: etat.periode,
+    etapes_faites: parcours.length
+  });
   finProgress(); btnSuivant.hidden=true;
   btnSuivant.onclick = repondre; btnRetour.onclick = retourWizard; btnRetour.disabled = false;
   dernierResultat = r; dernierEtat = {...etat}; dernierReel = null;
@@ -342,7 +365,10 @@ function rendreResultat(r){
 
   /* Réel : ouverture + recalcul en direct */
   const hook = document.getElementById('reel-hook');
-  document.getElementById('reel-toggle').addEventListener('click',()=>hook.classList.toggle('open'));
+  document.getElementById('reel-toggle').addEventListener('click',()=>{
+    const ouvert = hook.classList.toggle('open');
+    if(ouvert) capturerEvenement('aen_comparateur_ouvert');
+  });
   ['km-total','km-prive','cout-reel','carb-prive'].forEach(id=>{
     document.getElementById(id).addEventListener('input', majComparateur);
   });
