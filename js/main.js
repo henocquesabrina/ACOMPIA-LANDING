@@ -139,6 +139,11 @@ function activerDropdownsNav() {
 /* === Stat counter animation === */
 const DUREE_ANIMATION_STAT_MS = 1500;
 
+/* Groupe les milliers comme le fait le reste du site (48 000, pas 48000).
+   Intl pose une espace insécable étroite : c'est la convention typographique
+   française et cela évite qu'un nombre se coupe en fin de ligne. */
+const FORMAT_ENTIER = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
+
 function animerCompteurVersCible(el, cible) {
   const estDecimal = cible % 1 !== 0;
   const debut = performance.now();
@@ -150,7 +155,7 @@ function animerCompteurVersCible(el, cible) {
 
     el.textContent = estDecimal
       ? courant.toFixed(1).replace('.', ',')
-      : Math.round(courant);
+      : FORMAT_ENTIER.format(Math.round(courant));
 
     if (progression < 1) requestAnimationFrame(animer);
   }
@@ -247,37 +252,4 @@ function activerFormulaireNotify() {
     // Email injecté via textContent : aucune interprétation HTML possible
     notifyForm.querySelector('.js-email').textContent = email;
   });
-}
-
-/* Cas-types : repli mobile (audit du 04/08). Sans JS, tout reste visible. */
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.cas-card').forEach(replierCarteCasType);
-});
-
-function replierCarteCasType(carte, index) {
-  const premier = carte.querySelector('.cas-expo-tt');
-  if (!premier) return;
-
-  const detail = document.createElement('div');
-  detail.className = 'cas-detail';
-  detail.id = 'cas-detail-' + (index + 1);
-  while (premier.nextSibling) { detail.appendChild(premier.nextSibling); }
-  premier.replaceWith(detail);
-  detail.insertBefore(premier, detail.firstChild);
-
-  const LIBELLE_REPLIE = "Voir l'exposition chiffrée";
-  const LIBELLE_OUVERT = 'Replier le détail';
-
-  const bouton = document.createElement('button');
-  bouton.type = 'button';
-  bouton.className = 'cas-toggle';
-  bouton.setAttribute('aria-expanded', 'false');
-  bouton.setAttribute('aria-controls', detail.id);
-  bouton.textContent = LIBELLE_REPLIE;
-  bouton.addEventListener('click', () => {
-    const ouvert = carte.classList.toggle('cas-card--ouverte');
-    bouton.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
-    bouton.textContent = ouvert ? LIBELLE_OUVERT : LIBELLE_REPLIE;
-  });
-  carte.insertBefore(bouton, detail);
 }
