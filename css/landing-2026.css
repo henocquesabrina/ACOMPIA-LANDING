@@ -66,20 +66,31 @@ body.landing-2026 {
   text-wrap: balance;
 }
 
-/* La carte de page englobe la navigation et le contenu : dans le prototype,
-   la barre de navigation est posée sur le blanc, pas sur le fond « bureau ». */
+/* La carte de page englobe la navigation et le contenu, et flotte sur le fond
+   « bureau » : c'est la marge qui laisse celui-ci visible sur tout le pourtour.
+   Le lissage antialiased est celui du prototype ; sans lui la graisse du texte
+   paraît sensiblement plus lourde. */
 .l26-carte {
+  margin: clamp(8px, 1vw, 16px);
   background: var(--l26-page);
   border-radius: var(--l26-r-carte);
-  margin: 0 auto;
+  position: relative;
   overflow: hidden; /* garde les biseaux dans la carte */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .landing-2026 main { background: transparent; }
 
 .l26-large { max-width: 1440px; margin: 0 auto; padding-inline: var(--l26-gouttiere); }
 .l26-etroit { max-width: 1280px; margin: 0 auto; padding-inline: var(--l26-gouttiere); }
 
-.l26-section { padding-top: var(--l26-section-haut); padding-bottom: var(--l26-section-bas); }
+.l26-section {
+  padding: clamp(48px, 6vw, 88px) clamp(24px, 4vw, 56px) clamp(56px, 6vw, 96px);
+}
+/* Les en-têtes de section sont centrés sur une colonne courte. */
+.l26-entete { max-width: 900px; margin: 0 auto; text-align: center; }
+.landing-2026 #solution-home .l26-entete { max-width: 1120px; }
+.l26-entete .l26-chapeau { margin-inline: auto; }
 
 /* Un biseau est un calque décoratif : jamais de clip-path sur un ancêtre,
    sinon les panneaux de détail des cas-types sont rognés. */
@@ -103,22 +114,28 @@ body.landing-2026 {
   margin: 0;
 }
 
+/* Chaque section a sa propre échelle de titre dans le prototype ; le README
+   les résumait en une seule valeur, ce qui aplatissait la hiérarchie. */
 .landing-2026 .l26-h2 {
   margin: 14px 0 0;
   font-size: clamp(32px, 4vw, 58px);
-  line-height: 1.05;
+  line-height: 1.02;
   letter-spacing: -0.04em;
   font-weight: 600;
   color: var(--l26-encre);
 }
+.landing-2026 #cas-types .l26-h2 { font-size: clamp(38px, 4.6vw, 68px); letter-spacing: -0.045em; line-height: 0.96; }
+.landing-2026 #solution-home .l26-h2 { font-size: clamp(34px, 4.2vw, 60px); }
+.landing-2026 #faq .l26-h2 { font-size: clamp(32px, 3.8vw, 56px); letter-spacing: -0.045em; line-height: 1.0; }
+.landing-2026 #cta-final .l26-h2 { font-size: clamp(32px, 4.4vw, 64px); letter-spacing: -0.045em; line-height: 1.0; }
 .l26-h2 em { font-style: normal; color: var(--l26-mauve); }
 
 .l26-chapeau {
   margin: 18px 0 0;
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.55;
   color: var(--l26-texte-2);
-  max-width: 640px;
+  max-width: 620px;
   text-wrap: pretty;
 }
 
@@ -157,7 +174,13 @@ body.landing-2026 {
   z-index: 30;
 }
 .landing-2026 #nav.nav--scrolled { box-shadow: none; }
-.landing-2026 .nav-inner { max-width: 1560px; padding-inline: var(--l26-gouttiere); }
+.landing-2026 #nav {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px clamp(20px, 3vw, 56px);
+}
+.landing-2026 .nav-inner { max-width: none; padding-inline: 0; }
+.landing-2026 .nav-links { gap: clamp(12px, 1.7vw, 32px); }
 .landing-2026 .nav-logo-text {
   font-size: 17px;
   font-weight: 600;
@@ -352,21 +375,26 @@ body.landing-2026 {
 
 /* ---------- Statistiques ---------- */
 
+.l26-stats-zone { position: relative; z-index: 2; }
 .l26-stats-grille {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 56px clamp(24px, 4vw, 56px) 72px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 20px;
 }
 .l26-stat {
-  /* Le prototype pose les chiffres à même le fond : pas d'encadré, pas de
-     bordure. Une carte visible les enfermerait et casserait la respiration. */
-  background: transparent;
+  /* Fond blanc et arrondi comme le prototype, mais sans bordure : c'est elle
+     qui enfermait les chiffres et cassait la respiration de la bande. */
+  background: #FFFFFF;
   border: 0;
-  padding: 8px 12px;
+  border-radius: 24px;
+  padding: 28px 24px 32px;
   text-align: center;
 }
 .l26-stat-chiffre {
-  font-size: clamp(40px, 4.4vw, 56px);
+  font-size: 56px;
   font-weight: 600;
   letter-spacing: -0.045em;
   line-height: 1;
@@ -392,7 +420,11 @@ body.landing-2026 {
 
 /* ---------- Cas-types ---------- */
 
-.l26-cas-zone { position: relative; padding-block: calc(var(--l26-section-haut) + 40px) calc(var(--l26-section-bas) + 220px); }
+.l26-cas-zone {
+  position: relative;
+  z-index: 9;
+  padding: clamp(88px, 8vw, 132px) clamp(24px, 4vw, 64px) clamp(96px, 9vw, 144px);
+}
 .l26-cas-zone > .l26-biseau-fond {
   clip-path: polygon(0 var(--l26-biseau), 100% 0, 100% 100%, 0 calc(100% - var(--l26-biseau)));
 }
@@ -403,9 +435,11 @@ body.landing-2026 {
   margin: 0 auto;
   background: #FFFFFF;
   border-radius: var(--l26-r-panneau);
-  padding: clamp(32px, 4vw, 64px) clamp(24px, 3vw, 48px);
-  box-shadow: 0 30px 70px -40px rgba(16, 16, 20, 0.18);
+  /* Le bas est très ample : c'est lui qui laisse la place aux panneaux de
+     détail des cas, qui s'ouvrent sous les cartes. */
+  padding: clamp(56px, 6vw, 96px) clamp(24px, 4vw, 64px) clamp(96px, 9vw, 144px);
 }
+.l26-slab > header { max-width: 780px; }
 
 /* Subgrid : les lignes d'une carte s'alignent d'une carte à l'autre. */
 .l26-cas-grille {
@@ -420,11 +454,11 @@ body.landing-2026 {
   grid-row: span 7;
   display: grid;
   grid-template-rows: subgrid;
-  gap: 12px;
+  gap: 18px;
   background: var(--l26-surface);
-  border: 1px solid var(--l26-bord-2);
+  border: 0;
   border-radius: 24px;
-  padding: 26px 24px;
+  padding: 28px 26px 24px;
   transition: transform .32s cubic-bezier(.2, .7, .3, 1), box-shadow .32s ease, background-color .32s ease;
 }
 @supports not (grid-template-rows: subgrid) {
@@ -825,9 +859,21 @@ body.landing-2026 {
 
 /* ---------- FAQ ---------- */
 
-.l26-faq-zone { position: relative; padding-block: calc(var(--l26-section-haut) + 40px) var(--l26-section-bas); }
-.l26-faq-zone > .l26-biseau-fond { clip-path: polygon(0 88px, 100% 0, 100% 100%, 0 100%); }
-.l26-faq-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 4vw, 64px); align-items: start; }
+.l26-faq-zone {
+  position: relative;
+  z-index: 2;
+  padding: clamp(96px, 9vw, 148px) clamp(24px, 4vw, 56px) clamp(56px, 6vw, 96px);
+  background: var(--l26-bande);
+  clip-path: polygon(0 88px, 100% 0, 100% 100%, 0 100%);
+}
+.l26-faq-duo {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: clamp(32px, 4vw, 80px);
+  align-items: start;
+}
 
 .landing-2026 .l26-faq details {
   border-top: 1px solid rgba(16, 16, 20, 0.1);
@@ -864,18 +910,22 @@ body.landing-2026 {
 
 /* ---------- CTA final ---------- */
 
-.l26-final { padding-bottom: var(--l26-section-bas); }
+.l26-final {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(12px, 2vw, 28px) clamp(28px, 3vw, 44px);
+}
 .l26-final-slab {
-  max-width: 1280px;
+  max-width: 1560px;
   margin: 0 auto;
   background: #FFFFFF;
-  border: 1px solid var(--l26-bord-2);
+  border: 0;
   border-radius: var(--l26-r-panneau);
-  padding: clamp(40px, 5vw, 76px) clamp(24px, 4vw, 56px);
+  padding: clamp(56px, 7vw, 104px) clamp(24px, 4vw, 64px);
   text-align: center;
 }
 .l26-final-slab .l26-h2 { margin: 0 auto; max-width: 20ch; }
-.l26-final-ctas { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
+.l26-final-ctas { margin-top: 34px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; }
 
 /* ---------- Accessibilité et impression ---------- */
 
@@ -931,6 +981,14 @@ body.landing-2026 {
 /* style-v2 applique à l'élément `header` le traitement de la barre de
    navigation : fond opaque, flou, filet, et surtout `position: sticky`.
    Les en-têtes de section en héritaient et se collaient en haut au scroll. */
+/* Le header de la navigation garde de style-v2 un fond blanc cassé qui se
+   détache du blanc de la carte ; la carte fournit déjà le fond. */
+.landing-2026 .l26-carte > header {
+  background: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
 .landing-2026 main header {
   position: static;
   z-index: auto;
@@ -939,4 +997,34 @@ body.landing-2026 {
   box-shadow: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+}
+
+/* Logo du rafraîchissement : carré mauve dégradé et point central.
+   Il ne vaut que sur la landing ; les autres pages gardent l'ancien tant que
+   la marque n'a pas tranché la propagation. */
+.l26-logo-marque {
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  background: linear-gradient(150deg, #6E5BFF, #3B2BD6);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 22px rgba(74, 52, 245, 0.32);
+  flex: none;
+}
+.l26-logo-point { width: 9px; height: 9px; border-radius: 50%; background: #FFFFFF; }
+.landing-2026 .nav-logo { display: flex; align-items: center; gap: 12px; }
+
+/* Texte réservé aux lecteurs d'écran. La classe n'existait pas dans le site :
+   le résumé des partenaires s'affichait et gonflait la bande. */
+.landing-2026 .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
