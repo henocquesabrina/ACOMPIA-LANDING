@@ -120,6 +120,7 @@ function activerCasTypes() {
       const ouvert = carte.dataset.ouvert !== 'true';
       carte.dataset.ouvert = ouvert ? 'true' : 'false';
       bouton.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+
       if (ouvert) {
         capturerEvenement('cas_type_ouvert', {
           cas: (carte.querySelector('.l26-cas-meta') || {}).textContent || ''

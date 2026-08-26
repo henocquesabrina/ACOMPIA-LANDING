@@ -428,7 +428,7 @@ body.landing-2026 {
 .l26-cas-zone {
   position: relative;
   z-index: 9;
-  padding: clamp(88px, 8vw, 132px) clamp(24px, 4vw, 64px) clamp(96px, 9vw, 144px);
+  padding: clamp(88px, 8vw, 132px) clamp(24px, 4vw, 64px) clamp(72px, 7vw, 108px);
 }
 .l26-cas-zone > .l26-biseau-fond {
   clip-path: polygon(0 var(--l26-biseau), 100% 0, 100% 100%, 0 calc(100% - var(--l26-biseau)));
@@ -440,9 +440,7 @@ body.landing-2026 {
   margin: 0 auto;
   background: #FFFFFF;
   border-radius: var(--l26-r-panneau);
-  /* Le bas est très ample : c'est lui qui laisse la place aux panneaux de
-     détail des cas, qui s'ouvrent sous les cartes. */
-  padding: clamp(56px, 6vw, 96px) clamp(24px, 4vw, 64px) clamp(96px, 9vw, 144px);
+  padding: clamp(56px, 6vw, 96px) clamp(24px, 4vw, 64px) clamp(56px, 6vw, 88px);
 }
 .l26-slab > header { max-width: 780px; }
 
@@ -451,24 +449,19 @@ body.landing-2026 {
   margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-rows: repeat(7, auto);
   gap: 20px;
+  align-items: start; /* chaque carte grandit pour elle seule */
 }
 .l26-cas {
   position: relative;
-  grid-row: span 7;
-  display: grid;
-  grid-template-rows: subgrid;
+  display: flex;
+  flex-direction: column;
   gap: 18px;
   background: var(--l26-surface);
   border: 0;
   border-radius: 24px;
   padding: 28px 26px 24px;
   transition: transform .32s cubic-bezier(.2, .7, .3, 1), box-shadow .32s ease, background-color .32s ease;
-}
-@supports not (grid-template-rows: subgrid) {
-  .l26-cas-grille { grid-template-rows: none; }
-  .l26-cas { grid-row: auto; grid-template-rows: none; }
 }
 .l26-cas-meta {
   font-family: var(--l26-mono);
@@ -505,6 +498,9 @@ body.landing-2026 {
 /* Le détail s'ouvre au survol sur pointeur fin, et au clic partout :
    le prototype n'ouvrait qu'au survol, inaccessible au clavier et au tactile. */
 .l26-cas-bouton {
+  margin-top: auto; /* reste en pied de carte quelle que soit la longueur du texte */
+  padding-top: 14px;
+  border-top: 1px solid var(--l26-bord-2);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -524,38 +520,40 @@ body.landing-2026 {
 .l26-cas-bouton .l26-plus { transition: transform .25s ease; display: inline-block; font-size: 18px; line-height: 1; }
 .l26-cas[data-ouvert="true"] .l26-plus { transform: rotate(45deg); }
 
-.l26-cas-detail {
-  position: absolute;
-  top: calc(100% - 12px);
-  left: 0;
-  right: 0;
-  z-index: 13;
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  pointer-events: none;
-  transition: grid-template-rows .38s cubic-bezier(.2, .7, .3, 1), opacity .28s ease;
+/* Le détail est simplement retiré du flux tant qu'il est fermé, et la carte
+   grandit quand il y entre. Animer sa hauteur s'est révélé impraticable ici :
+   sur cet enfant flex, ni `grid-template-rows: 1fr`, ni `max-height`, ni même
+   une hauteur en style inline ne sortaient de zéro. Une apparition en fondu
+   suffit à adoucir l'ouverture. */
+.l26-cas-detail { display: none; }
+.l26-cas[data-ouvert="true"] .l26-cas-detail {
+  display: block;
+  animation: l26DetailEntre .32s cubic-bezier(.2, .7, .3, 1) both;
 }
-.l26-cas-detail > div { overflow: hidden; }
+@keyframes l26DetailEntre {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .l26-cas[data-ouvert="true"] .l26-cas-detail { animation: none; }
+}
+/* Le détail fait corps avec la carte : un simple filet le sépare du reste,
+   sans encadré ni ombre qui le feraient lire comme une seconde tuile. */
 .l26-cas-detail-inner {
-  background: #FFFFFF;
-  border: 1px solid var(--l26-bord-2);
-  border-radius: 20px;
-  padding: 22px 24px;
-  box-shadow: 0 34px 60px -30px rgba(16, 16, 20, 0.28);
+  border-top: 1px solid var(--l26-bord-2);
+  padding-top: 18px;
 }
 .l26-cas[data-ouvert="true"] {
   background: #FFFFFF;
-  transform: scale(1.02);
   box-shadow: var(--l26-ombre-survol);
   z-index: 12;
 }
-.l26-cas[data-ouvert="true"] .l26-cas-detail { grid-template-rows: 1fr; opacity: 1; pointer-events: auto; }
 
+/* Le survol n'ouvre plus le détail : sur une carte qui s'agrandit dans le flux,
+   l'ouverture au passage de la souris ferait sauter la mise en page sous le
+   curseur. L'ouverture se fait au clic, sur les trois cartes de la même façon. */
 @media (hover: hover) and (pointer: fine) {
-  .l26-cas:hover { background: #FFFFFF; transform: scale(1.02); box-shadow: var(--l26-ombre-survol); z-index: 12; }
-  .l26-cas:hover .l26-cas-detail { grid-template-rows: 1fr; opacity: 1; pointer-events: auto; }
-  .l26-cas:hover .l26-plus { transform: rotate(45deg); }
+  .l26-cas:hover { background: #FFFFFF; }
 }
 .l26-cas:focus-within { background: #FFFFFF; }
 
@@ -954,7 +952,17 @@ body.landing-2026 {
   padding: clamp(56px, 7vw, 104px) clamp(24px, 4vw, 64px);
   text-align: center;
 }
-.l26-final-slab .l26-h2 { margin: 0 auto; max-width: 20ch; }
+/* Une seule ligne : la largeur bridée cassait la phrase en deux. Le mauve
+   porte l'accent à la place de la graisse, qui redescend en 500. */
+.l26-final-slab .l26-h2 {
+  margin: 0 auto;
+  max-width: none;
+  font-weight: 500;
+  text-wrap: nowrap;
+}
+@media (max-width: 1100px) {
+  .l26-final-slab .l26-h2 { text-wrap: balance; }
+}
 .l26-final-ctas { margin-top: 34px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; }
 
 /* ---------- Accessibilité et impression ---------- */
@@ -967,7 +975,7 @@ body.landing-2026 {
 
 @media print {
   .l26-hero-fond, .l26-hero-halo, .l26-biseau-fond, .l26-marquee { display: none !important; }
-  .l26-cas-detail { position: static; grid-template-rows: 1fr; opacity: 1; }
+  .l26-cas-detail { display: block !important; }
   .landing-2026 main { border-radius: 0; }
 }
 
@@ -1137,3 +1145,18 @@ body.landing-2026 {
   border-radius: 0;
   color: inherit;
 }
+
+/* style-v2 pose `h2 em { color: var(--accent) !important }` — l'ancien indigo.
+   Le `!important` ne se bat qu'avec un `!important`, quelle que soit la spécificité. */
+.landing-2026 .l26-h2 em,
+.landing-2026 .l26-hero-titre span,
+.landing-2026 .l26-panneau-titre em,
+.landing-2026 h2 em,
+.landing-2026 h3 em {
+  color: var(--l26-mauve) !important;
+  font-style: normal;
+  font-weight: inherit !important;   /* l'accent est la couleur, pas la graisse */
+}
+.landing-2026 .l26-panneau--sombre .l26-h2 em,
+.landing-2026 .l26-panneau--sombre .l26-panneau-titre em,
+.landing-2026 .l26-panneau--audit .how-title em { color: var(--l26-mauve-clair) !important; }
