@@ -217,6 +217,8 @@ body.landing-2026 {
 /* ---------- Hero ---------- */
 
 .l26-hero-zone { position: relative; }
+/* Seul ce bloc porte le calque : il s'arrête avant la bande partenaires. */
+.l26-hero-bloc { position: relative; }
 
 /* Calque de fond : diagonale blanc → mauve clair, débordant sous le hero.
    Le halo mauve est posé par-dessus, en haut à droite. */
@@ -337,6 +339,9 @@ body.landing-2026 {
 /* ---------- Bande partenaires ---------- */
 
 .l26-partenaires {
+  /* Écart mesuré dans le prototype : il place la bande assez bas pour que le
+     débordement du calque du hero meure dans son premier tiers. */
+  margin-top: 96px;
   border-top: 1px solid var(--l26-bord-2);
   padding-block: 26px;
   display: grid;
