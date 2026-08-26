@@ -51,12 +51,18 @@ function activerOmbreNav() {
   const nav = document.getElementById('nav');
   if (!nav) return;
 
+  // Le fond de la barre collante est porté par le `header` qui l'enveloppe :
+  // le viser depuis le `nav` demanderait un `:has()`, dont l'invalidation
+  // laissait ici la transition figée sur sa valeur de départ.
+  const entete = nav.closest('header');
+
   let ombreVisible = null;
   const majOmbre = () => {
     const doitEtreVisible = window.scrollY > SEUIL_OMBRE_NAV_PX;
     if (doitEtreVisible === ombreVisible) return; // rien à écrire hors franchissement
     ombreVisible = doitEtreVisible;
     nav.classList.toggle('nav--scrolled', doitEtreVisible);
+    if (entete) entete.classList.toggle('nav--scrolled', doitEtreVisible);
   };
 
   window.addEventListener('scroll', majOmbre, { passive: true });

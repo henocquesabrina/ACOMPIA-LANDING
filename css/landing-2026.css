@@ -75,7 +75,10 @@ body.landing-2026 {
   background: var(--l26-page);
   border-radius: var(--l26-r-carte);
   position: relative;
-  overflow: hidden; /* garde les biseaux dans la carte */
+  /* `clip` et non `hidden` : les deux rognent pareil, mais `hidden` fait de
+     la carte un conteneur de défilement, ce qui neutralise le `sticky` de la
+     barre de navigation qu'elle contient. `clip` n'en crée pas. */
+  overflow: clip; /* garde les biseaux dans la carte */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1020,12 +1023,27 @@ body.landing-2026 {
    navigation : fond opaque, flou, filet, et surtout `position: sticky`.
    Les en-têtes de section en héritaient et se collaient en haut au scroll. */
 /* Le header de la navigation garde de style-v2 un fond blanc cassé qui se
-   détache du blanc de la carte ; la carte fournit déjà le fond. */
+   détache du blanc de la carte ; en haut de page, la carte fournit déjà le
+   fond. Il ne reprend le sien qu'une fois le contenu passé dessous. */
 .landing-2026 .l26-carte > header {
-  background: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background-color: transparent;
   border-bottom: 0;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  /* `background-color` et non le raccourci `background` : animer le
+     raccourci laissait ici la couleur figée sur sa valeur de départ. */
+  transition: background-color .25s ease, box-shadow .25s ease;
+}
+/* `nav--scrolled` est basculée par main.js au-delà de 50 px, sur le `nav`
+   comme sur son `header`. */
+.landing-2026 .l26-carte > header.nav--scrolled {
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  box-shadow: 0 1px 0 rgba(12, 12, 20, 0.06), 0 8px 24px rgba(12, 12, 20, 0.05);
 }
 .landing-2026 main header {
   position: static;
