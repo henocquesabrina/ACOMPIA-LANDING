@@ -25,6 +25,7 @@ function activerOnglets() {
       onglet.tabIndex = actif ? 0 : -1;
       if (panneaux[i]) panneaux[i].hidden = !actif;
     });
+    alignerCourbeParcours();
     capturerEvenement('solution_onglet', { onglet: onglets[index].textContent.trim().slice(0, 40) });
   };
 
@@ -109,6 +110,116 @@ function activerConfigurateur() {
   majSynthese();
 }
 
+/* ---------- Courbe du parcours ---------- */
+
+/* La courbe était tracée sur des abscisses fixes (100, 300, 500…) tandis que
+   les pastilles se posent au fil du texte, à gauche de chaque colonne : les
+   deux ne se rencontraient nulle part. Plutôt que de rattraper l'écart à la
+   main — il rebouge à chaque largeur de fenêtre, chaque retour à la ligne —
+   on inverse la dépendance : on relève la position réelle des pastilles et
+   on trace la courbe à travers elles. */
+
+/* Catmull-Rom converti en cubiques de Bézier : la seule interpolation lisse
+   qui passe *exactement* par chaque point, ce qui est tout l'objet ici.
+
+   Paramétrage centripète (α = 0,5) et non uniforme : le segment d'amorce ne
+   fait qu'une vingtaine d'unités contre deux cents pour les suivants, et la
+   version uniforme y calculait une tangente plus longue que le segment —
+   son point de contrôle partait en abscisse négative et la courbe faisait
+   un crochet vers l'arrière avant la première pastille. Le centripète borne
+   les tangentes à la longueur des cordes, ce qui interdit ces boucles. */
+function courbeParPoints(points) {
+  const corde = (u, v) => Math.sqrt(Math.hypot(v.x - u.x, v.y - u.y));
+  const tiers = (de, vers, axe) => de[axe] + (vers[axe] - de[axe]) / 3;
+
+  let d = `M ${points[0].x.toFixed(1)},${points[0].y.toFixed(1)}`;
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p0 = points[i - 1];
+    const p3 = points[i + 2];
+    const d2 = corde(p1, p2);
+
+    // Aux deux bouts il n'y a pas de voisin pour donner la tangente : on
+    // retombe sur le tiers de segment, qui laisse la courbe partir droit.
+    const controle = (axe) => {
+      const c1 = p0
+        ? (() => {
+            const d1 = corde(p0, p1);
+            return (d1 * d1 * p2[axe] - d2 * d2 * p0[axe]
+              + (2 * d1 * d1 + 3 * d1 * d2 + d2 * d2) * p1[axe]) / (3 * d1 * (d1 + d2));
+          })()
+        : tiers(p1, p2, axe);
+      const c2 = p3
+        ? (() => {
+            const d3 = corde(p2, p3);
+            return (d3 * d3 * p1[axe] - d2 * d2 * p3[axe]
+              + (2 * d3 * d3 + 3 * d3 * d2 + d2 * d2) * p2[axe]) / (3 * d3 * (d3 + d2));
+          })()
+        : tiers(p2, p1, axe);
+      return [c1, c2];
+    };
+
+    const [c1x, c2x] = controle('x');
+    const [c1y, c2y] = controle('y');
+    d += ` C ${c1x.toFixed(1)},${c1y.toFixed(1)}`
+      + ` ${c2x.toFixed(1)},${c2y.toFixed(1)}`
+      + ` ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+  }
+  return d;
+}
+
+function alignerCourbeParcours() {
+  const parcours = document.querySelector('.journey');
+  if (!parcours) return;
+
+  const calque = parcours.querySelector('.journey-curve');
+  const trace = parcours.querySelector('#journeyPath');
+  const svg = calque && calque.querySelector('svg');
+  if (!calque || !trace || !svg) return;
+  // Sous le point de rupture, la courbe et les pastilles sont masquées.
+  if (getComputedStyle(calque).display === 'none') return;
+
+  const cadre = svg.getBoundingClientRect();
+  if (!cadre.width || !cadre.height) return; // panneau d'onglet masqué
+
+  // `preserveAspectRatio="none"` : le viewBox est étiré indépendamment sur
+  // chaque axe, donc la conversion est une simple règle de trois par axe.
+  const [, , largeurVue, hauteurVue] = svg.getAttribute('viewBox').split(/[\s,]+/).map(Number);
+
+  const points = [];
+  for (const pastille of parcours.querySelectorAll('.step-marker')) {
+    const r = pastille.getBoundingClientRect();
+    if (!r.width) return; // pastilles masquées : on laisse le tracé d'origine
+    points.push({
+      x: ((r.left + r.width / 2) - cadre.left) / cadre.width * largeurVue,
+      y: ((r.top + r.height / 2) - cadre.top) / cadre.height * hauteurVue
+    });
+  }
+  if (points.length < 2) return;
+
+  // La courbe court d'un bord à l'autre du cadre, comme dans la maquette ;
+  // ces deux points d'appui la prolongent à plat au-delà des pastilles.
+  points.unshift({ x: 0, y: points[0].y });
+  points.push({ x: largeurVue, y: points[points.length - 1].y });
+
+  trace.setAttribute('d', courbeParPoints(points));
+}
+
+function surveillerCourbeParcours() {
+  alignerCourbeParcours();
+  // Les polices changent la hauteur des textes, donc celle des pastilles.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(alignerCourbeParcours);
+  }
+  let attente;
+  addEventListener('resize', () => {
+    clearTimeout(attente);
+    attente = setTimeout(alignerCourbeParcours, 120);
+  });
+}
+
 /* ---------- Cas-types ---------- */
 
 function activerCasTypes() {
@@ -134,4 +245,5 @@ document.addEventListener('DOMContentLoaded', () => {
   activerOnglets();
   activerConfigurateur();
   activerCasTypes();
+  surveillerCourbeParcours();
 });

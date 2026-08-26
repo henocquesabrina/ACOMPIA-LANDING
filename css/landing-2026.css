@@ -1160,3 +1160,8 @@ body.landing-2026 {
 .landing-2026 .l26-panneau--sombre .l26-h2 em,
 .landing-2026 .l26-panneau--sombre .l26-panneau-titre em,
 .landing-2026 .l26-panneau--audit .how-title em { color: var(--l26-mauve-clair) !important; }
+
+/* Les colonnes du parcours étaient centrées verticalement : une description
+   plus courte remontait sa pastille, et l'ondulation devenait accidentelle.
+   Calées en haut, seules les translations voulues creusent la vague. */
+.l26-panneau--audit .steps { align-items: start; }
