@@ -66,12 +66,15 @@ body.landing-2026 {
   text-wrap: balance;
 }
 
-.landing-2026 main {
+/* La carte de page englobe la navigation et le contenu : dans le prototype,
+   la barre de navigation est posée sur le blanc, pas sur le fond « bureau ». */
+.l26-carte {
   background: var(--l26-page);
   border-radius: var(--l26-r-carte);
   margin: 0 auto;
-  overflow: hidden; /* garde les biseaux dans la carte de page */
+  overflow: hidden; /* garde les biseaux dans la carte */
 }
+.landing-2026 main { background: transparent; }
 
 .l26-large { max-width: 1440px; margin: 0 auto; padding-inline: var(--l26-gouttiere); }
 .l26-etroit { max-width: 1280px; margin: 0 auto; padding-inline: var(--l26-gouttiere); }
@@ -170,17 +173,23 @@ body.landing-2026 {
 }
 .landing-2026 .nav-links a:hover,
 .landing-2026 .nav-dropdown-toggle:hover { color: #0C0C14; }
-.landing-2026 .nav-cta {
-  font-size: 15px;
-  font-weight: 600;
-  color: #FFFFFF;
-  background: #0C0C14;
-  padding: 11px 20px;
-  border-radius: 999px;
+/* `.nav-cta` de style.css marque `!important` sur chacune de ses propriétés :
+   aucune spécificité ne peut lui répondre, seul un `!important` le peut. C'est
+   la dette CSS décrite dans le README ; elle se paiera au chantier prévu, pas
+   ici. Le ::before de style-v2 porte un dégradé qu'il faut aussi éteindre. */
+.landing-2026 .nav-links a.nav-cta {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #FFFFFF !important;
+  background: #0C0C14 !important;
+  padding: 11px 20px !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
   white-space: nowrap;
   transition: background-color .2s ease;
 }
-.landing-2026 .nav-cta:hover { background: var(--l26-mauve); color: #FFFFFF; }
+.landing-2026 .nav-links a.nav-cta::before { display: none; }
+.landing-2026 .nav-links a.nav-cta:hover { background: var(--l26-mauve) !important; }
 
 /* ---------- Hero ---------- */
 
@@ -304,8 +313,18 @@ body.landing-2026 {
 
 /* ---------- Bande partenaires ---------- */
 
-.l26-partenaires { border-top: 1px solid var(--l26-bord-1); padding-block: 28px; }
-.l26-partenaires-label { font-size: 15px; color: var(--l26-texte-3); margin: 0 0 18px; }
+.l26-partenaires {
+  border-top: 1px solid var(--l26-bord-2);
+  padding-block: 26px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 48px;
+}
+@media (max-width: 620px) {
+  .l26-partenaires { grid-template-columns: 1fr; gap: 16px; }
+}
+.l26-partenaires-label { font-size: 15px; color: var(--l26-texte-3); margin: 0; white-space: nowrap; }
 .l26-marquee {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -339,10 +358,11 @@ body.landing-2026 {
   gap: 20px;
 }
 .l26-stat {
-  background: #FFFFFF;
-  border: 1px solid var(--l26-bord-2);
-  border-radius: 24px;
-  padding: 34px 26px;
+  /* Le prototype pose les chiffres à même le fond : pas d'encadré, pas de
+     bordure. Une carte visible les enfermerait et casserait la respiration. */
+  background: transparent;
+  border: 0;
+  padding: 8px 12px;
   text-align: center;
 }
 .l26-stat-chiffre {
@@ -511,10 +531,11 @@ body.landing-2026 {
 /* ---------- Solution : onglets ---------- */
 
 .l26-onglets {
-  margin-top: 36px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  margin: 34px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 .l26-onglet {
   padding: 18px 26px;
@@ -534,7 +555,16 @@ body.landing-2026 {
 }
 .l26-onglet[aria-selected="true"] .l26-onglet-titre { color: var(--l26-mauve); }
 
-.l26-panneau { margin-top: 24px; border-radius: var(--l26-r-panneau); padding: clamp(32px, 4vw, 56px); }
+.l26-panneau {
+  max-width: 1560px;
+  margin: clamp(36px, 4vw, 56px) auto 0;
+  border-radius: var(--l26-r-panneau);
+  padding: clamp(44px, 5vw, 76px) clamp(24px, 4vw, 64px);
+}
+/* Le panneau déborde volontairement la colonne de texte qui le précède. */
+.l26-panneau-centre { max-width: 900px; margin: 0 auto; text-align: center; }
+.l26-panneau-centre .l26-chapeau { max-width: 680px; margin-inline: auto; }
+.l26-panneau-centre .l26-panneau-ctas { justify-content: center; }
 .l26-panneau[hidden] { display: none; }
 .l26-panneau--sombre { background: var(--l26-sombre); color: #FFFFFF; }
 .l26-panneau--sombre .l26-h2,
@@ -556,19 +586,34 @@ body.landing-2026 {
 .l26-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start; }
 
 /* Parcours en 6 étapes */
-.l26-parcours { margin: 36px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
-.l26-etape { display: flex; gap: 14px; align-items: flex-start; }
+.l26-parcours {
+  margin: clamp(40px, 4.5vw, 64px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: clamp(24px, 2.6vw, 40px);
+  text-align: left;
+}
+.l26-etape-rang { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
 .l26-etape-num {
   flex: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 11px;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
   display: grid;
   place-items: center;
   font-family: var(--l26-mono);
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+/* Le filet relie visuellement les étapes sans les enfermer dans un tableau. */
+.l26-etape-fil {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
 }
 .l26-etape--finale .l26-etape-num { background: var(--l26-mauve); border-color: var(--l26-mauve); color: #FFFFFF; }
 .l26-etape-titre { font-size: 15.5px; font-weight: 600; letter-spacing: -0.02em; color: #FFFFFF; }
@@ -852,10 +897,19 @@ body.landing-2026 {
    déjà alignées à droite : la chasse fixe n'y apporte rien. */
 .l26-hero-visuel [style*="tabular-nums"] { font-variant-numeric: normal !important; }
 
-/* Les compteurs animés héritaient de l'indigo de style-v2 ; le handoff les
-   veut à l'encre, l'accent restant réservé aux titres et aux liens. */
+/* `.stat-number` de style.css peint son texte avec un dégradé clippé
+   (background-clip: text + text-fill-color: transparent) : une déclaration
+   `color` reste sans effet tant que le remplissage n'est pas rendu à la
+   couleur courante. Le handoff veut ces chiffres à l'encre. */
 .landing-2026 .l26-stat-chiffre,
-.landing-2026 .l26-stat-chiffre .stat-number { color: var(--l26-encre); }
+.landing-2026 .l26-stat-chiffre .stat-number {
+  color: var(--l26-encre);
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+}
 
 /* Titres et sous-titres empilés : ces libellés sont des <span> imbriqués,
    inline par défaut, donc collés sur une même ligne sans cette règle. */
@@ -867,3 +921,22 @@ body.landing-2026 {
 .l26-axe-sous,
 .l26-ligne-titre,
 .l26-ligne-sous { display: block; }
+
+/* Le rang d'étape est un <span> : sans display il resterait inline et le filet
+   ne pourrait pas s'étirer. */
+.l26-etape-rang { display: flex; }
+.l26-panneau--sombre .l26-eyebrow { color: var(--l26-mauve-clair); }
+.l26-panneau--sombre .l26-chapeau strong { color: #FFFFFF; }
+
+/* style-v2 applique à l'élément `header` le traitement de la barre de
+   navigation : fond opaque, flou, filet, et surtout `position: sticky`.
+   Les en-têtes de section en héritaient et se collaient en haut au scroll. */
+.landing-2026 main header {
+  position: static;
+  z-index: auto;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
