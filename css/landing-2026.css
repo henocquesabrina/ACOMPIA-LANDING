@@ -1058,3 +1058,82 @@ body.landing-2026 {
   white-space: nowrap;
   border: 0;
 }
+
+
+/* ---------- Panneau « Audit continu » : tuile d'origine et son animation ----------
+   Le parcours animé (courbe SVG, particules en mouvement, illustrations par
+   étape) vient de la version précédente du site. Il est conservé tel quel :
+   le prototype le remplaçait par six colonnes statiques, nettement moins
+   parlantes pour un produit qui n'est pas encore ouvert.
+   Seules les couleurs sont reprises à la nouvelle charte. */
+
+.l26-panneau--audit .porte-badge,
+.l26-panneau--audit .platform-tag-soon {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--l26-mauve-clair);
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.landing-2026 .l26-panneau--audit .how-title {
+  margin: 14px 0 0;
+  font-size: clamp(30px, 3.6vw, 54px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-align: center;
+}
+.l26-panneau--audit .how-title em { font-style: normal; color: var(--l26-mauve-clair); }
+.l26-panneau--audit .how-sub {
+  margin: 18px auto 0;
+  max-width: 680px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.62);
+  text-align: center;
+  text-wrap: pretty;
+}
+.l26-panneau--audit .how-sub strong { color: #FFFFFF; font-weight: 600; }
+/* Le texte d'introduction reste sur une colonne courte ; le parcours animé,
+   lui, doit occuper toute la largeur du panneau pour que la courbe respire. */
+.l26-panneau--audit .porte-badge,
+.l26-panneau--audit .platform-tag-soon,
+.landing-2026 .l26-panneau--audit .how-title,
+.l26-panneau--audit .how-sub { max-width: 900px; margin-inline: auto; }
+.l26-panneau--audit .journey { max-width: none; }
+
+/* La courbe et les particules gardent leur dessin ; les teintes suivent la charte. */
+.l26-panneau--audit .journey { margin-top: clamp(32px, 4vw, 56px); }
+.l26-panneau--audit .step-name,
+.l26-panneau--audit .step h3 {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+.l26-panneau--audit .step p {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+.l26-panneau--audit .step-illustration { color: var(--l26-mauve-clair); }
+.l26-panneau--audit .l26-panneau-ctas {
+  margin-top: clamp(40px, 4.5vw, 64px);
+  justify-content: center;
+  gap: 26px;
+}
+
+/* La tuile d'origine vivait sur une section claire ; ici elle est posée dans le
+   panneau sombre, dont elle doit laisser voir le fond. */
+.landing-2026 .l26-panneau--audit .porte-how,
+.landing-2026 .l26-panneau--audit .how {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0;
+  color: inherit;
+}
