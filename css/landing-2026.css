@@ -1055,20 +1055,6 @@ body.landing-2026 {
   -webkit-backdrop-filter: none;
 }
 
-/* Logo du rafraîchissement : carré mauve dégradé et point central.
-   Il ne vaut que sur la landing ; les autres pages gardent l'ancien tant que
-   la marque n'a pas tranché la propagation. */
-.l26-logo-marque {
-  width: 28px;
-  height: 28px;
-  border-radius: 9px;
-  background: linear-gradient(150deg, #6E5BFF, #3B2BD6);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 8px 22px rgba(74, 52, 245, 0.32);
-  flex: none;
-}
-.l26-logo-point { width: 9px; height: 9px; border-radius: 50%; background: #FFFFFF; }
 .landing-2026 .nav-logo { display: flex; align-items: center; gap: 12px; }
 
 /* Texte réservé aux lecteurs d'écran. La classe n'existait pas dans le site :
