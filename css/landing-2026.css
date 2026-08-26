@@ -604,6 +604,9 @@ body.landing-2026 {
 /* Le panneau déborde volontairement la colonne de texte qui le précède. */
 .l26-panneau-centre { max-width: 900px; margin: 0 auto; text-align: center; }
 .l26-panneau-centre .l26-chapeau { max-width: 680px; margin-inline: auto; }
+/* Dans les panneaux, le chapeau est d'un cran plus petit et plus aéré que
+   celui des en-têtes de section. */
+.l26-panneau .l26-chapeau { font-size: 17px; line-height: 1.6; }
 .l26-panneau-centre .l26-panneau-ctas { justify-content: center; }
 .l26-panneau[hidden] { display: none; }
 .l26-panneau--sombre { background: var(--l26-sombre); color: #FFFFFF; }
@@ -616,9 +619,9 @@ body.landing-2026 {
 
 .landing-2026 .l26-panneau-titre {
   margin: 0;
-  font-size: clamp(26px, 2.8vw, 40px);
-  line-height: 1.1;
-  letter-spacing: -0.035em;
+  font-size: clamp(26px, 3vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.04em;
   font-weight: 600;
 }
 .l26-panneau-titre em { font-style: normal; color: var(--l26-mauve); }
@@ -718,8 +721,8 @@ body.landing-2026 {
 }
 .l26-ligne:hover { background: rgba(140, 123, 255, 0.10); transform: translateX(6px); }
 .l26-ligne-num { font-family: var(--l26-mono); font-size: 11px; letter-spacing: .1em; color: var(--l26-mauve-clair); padding-top: 3px; }
-.l26-ligne-titre { font-size: 15.5px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em; }
-.l26-ligne-sous { margin-top: 3px; font-size: 13.5px; color: rgba(255, 255, 255, 0.55); line-height: 1.5; }
+.l26-ligne-titre { font-size: 21px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.025em; }
+.l26-ligne-sous { margin-top: 5px; font-size: 15px; color: rgba(255, 255, 255, 0.55); line-height: 1.55; }
 
 /* ---------- Outils gratuits ---------- */
 
