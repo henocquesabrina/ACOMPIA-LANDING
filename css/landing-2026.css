@@ -34,7 +34,7 @@
   --l26-bord-2: rgba(16, 16, 20, 0.08);
   --l26-bord-3: rgba(16, 16, 20, 0.16);
 
-  --l26-r-carte: clamp(20px, 2vw, 34px);
+  --l26-r-carte: 0px;
   --l26-r-panneau: clamp(28px, 3vw, 44px);
   --l26-r-interne: 18px;
 
@@ -71,7 +71,10 @@ body.landing-2026 {
    Le lissage antialiased est celui du prototype ; sans lui la graisse du texte
    paraît sensiblement plus lourde. */
 .l26-carte {
-  margin: clamp(8px, 1vw, 16px);
+  /* Essai : la carte occupe toute la fenêtre, sans marge ni coins arrondis.
+     Pour revenir au bloc flottant : `margin: clamp(8px, 1vw, 16px)` ici et
+     `--l26-r-carte: clamp(20px, 2vw, 34px)` plus haut. */
+  margin: 0;
   background: var(--l26-page);
   border-radius: var(--l26-r-carte);
   position: relative;
