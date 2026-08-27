@@ -338,6 +338,27 @@ body.landing-2026 {
 
 /* ---------- Bande partenaires ---------- */
 
+/* ---------- Amorce de scroll, écrans peu hauts ---------- */
+
+/* Sur un 13 pouces (~780 px utiles), le hero occupait tout le premier écran et
+   rien n'indiquait qu'il y avait une suite. La bande partenaires affleure
+   désormais sous le pli : une vingtaine de pixels suffisent à donner envie de
+   défiler. Au-delà de 900 px de hauteur, le hero garde ses proportions.
+
+   Le levier est le mockup, pas la gouttière : sa hauteur vient de son contenu,
+   pas de sa largeur — le rétrécir en colonne ne l'aurait pas raccourci d'un
+   pixel. D'où le `zoom`, qui réduit la hauteur occupée dans le flux, ce que
+   `transform: scale()` ne fait pas.
+
+   Le débord du calque passe de 128 à 40 px pour rester au-dessus de la bande :
+   sinon les logos défilent sur l'oblique mauve. Marge vérifiée : 8 px. */
+@media (max-height: 900px) {
+  .l26-hero { padding-top: 32px; }
+  .l26-hero-fond { inset: 0 0 -40px 0; }
+  .l26-hero-visuel { zoom: 0.8; }
+  .l26-partenaires { margin-top: 48px; }
+}
+
 .l26-partenaires {
   /* Le calque du hero déborde de 128 px ; la bande démarre en dessous pour que
      les logos défilent sur le blanc et non sur l'oblique mauve. */
