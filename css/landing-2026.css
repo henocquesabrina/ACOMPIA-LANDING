@@ -23,7 +23,6 @@
   --l26-mauve-clair: #8C7BFF;
   --l26-mauve-bouton: #6E5BFF;
   --l26-page: #FFFFFF;
-  --l26-bureau: #D9D4EE;
   --l26-bande: #EFEDF8;
   --l26-surface: #F7F6FC;
   --l26-sombre: #0E0E1A;
@@ -34,7 +33,6 @@
   --l26-bord-2: rgba(16, 16, 20, 0.08);
   --l26-bord-3: rgba(16, 16, 20, 0.16);
 
-  --l26-r-carte: 0px;
   --l26-r-panneau: clamp(28px, 3vw, 44px);
   --l26-r-interne: 18px;
 
@@ -53,7 +51,7 @@
 /* ---------- Ossature ---------- */
 
 body.landing-2026 {
-  background: var(--l26-bureau);
+  background: var(--l26-page);
   color: var(--l26-encre);
   font-family: var(--l26-police);
 }
@@ -66,17 +64,13 @@ body.landing-2026 {
   text-wrap: balance;
 }
 
-/* La carte de page englobe la navigation et le contenu, et flotte sur le fond
-   « bureau » : c'est la marge qui laisse celui-ci visible sur tout le pourtour.
+/* Le conteneur de page englobe la navigation et le contenu, et occupe toute la
+   fenêtre : ni marge, ni coins arrondis, ni fond « bureau » derrière lui.
    Le lissage antialiased est celui du prototype ; sans lui la graisse du texte
    paraît sensiblement plus lourde. */
 .l26-carte {
-  /* Essai : la carte occupe toute la fenêtre, sans marge ni coins arrondis.
-     Pour revenir au bloc flottant : `margin: clamp(8px, 1vw, 16px)` ici et
-     `--l26-r-carte: clamp(20px, 2vw, 34px)` plus haut. */
   margin: 0;
   background: var(--l26-page);
-  border-radius: var(--l26-r-carte);
   position: relative;
   /* `clip` et non `hidden` : les deux rognent pareil, mais `hidden` fait de
      la carte un conteneur de défilement, ce qui neutralise le `sticky` de la
