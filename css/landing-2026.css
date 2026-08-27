@@ -574,19 +574,23 @@ body.landing-2026 {
   gap: 14px;
   flex-wrap: wrap;
 }
+/* Le pourtour de la page est passé au blanc : un fond blanc bordé à 8 % ne se
+   détachait plus de rien. La tuile reprend une surface et une bordure visibles. */
 .l26-onglet {
   padding: 18px 26px;
   border-radius: var(--l26-r-interne);
-  background: #FFFFFF;
-  border: 1px solid var(--l26-bord-2);
+  background: var(--l26-surface);
+  border: 1px solid var(--l26-bord-3);
   text-align: center;
   cursor: pointer;
   font: inherit;
-  transition: border-color .2s ease, box-shadow .2s ease;
+  transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
+.l26-onglet:hover { background: #FFFFFF; }
 .l26-onglet-titre { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; color: var(--l26-encre); }
 .l26-onglet-sous { margin-top: 4px; font-size: 13px; color: var(--l26-texte-3); }
 .l26-onglet[aria-selected="true"] {
+  background: #FFFFFF;
   border-color: var(--l26-mauve);
   box-shadow: 0 12px 30px -18px rgba(74, 52, 245, 0.55);
 }
