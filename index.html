@@ -47,7 +47,6 @@
   <!-- Charge l'ancien style.css (pour questionnaire + rapport généré dynamiquement) puis style-v2.css qui override -->
   <link href="css/fonts.css" rel="stylesheet">
   <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/style-v2.css">
   <!-- Rafraîchissement de la landing (handoff 08/2026) : surcharge les deux feuilles ci-dessus -->
@@ -326,7 +325,12 @@
             corrigez avant elle, et récupérez ce que vous payez en trop.
           </p>
 
-          <!-- Ordre fixé par le handoff : rendez-vous en primaire, prédiagnostic en secondaire. -->
+          <!-- Rendez-vous en primaire, prédiagnostic en contour. Cet ordre inverse
+               l'arbitrage du 26/07 (option C, commit edcc0ea) qui mettait le
+               prédiagnostic devant : Sabrina l'a retourné le 28/08 pour que le CTA
+               primaire soit le même aux quatre emplacements — barre, héros, cas-types,
+               CTA final. La réassurance « 5 min, sans inscription » reste accrochée au
+               prédiagnostic, à qui elle appartient, et non au bouton rendez-vous. -->
           <div class="l26-hero-ctas">
             <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener" class="btn-primary l26-pill l26-pill--noire">
               Prendre rendez-vous
@@ -337,7 +341,7 @@
           </div>
 
           <ul class="l26-preuves">
-            <li>Sans inscription</li>
+            <li>Prédiagnostic sans inscription</li>
             <li>Rapport immédiat</li>
             <li>Données hébergées en France</li>
           </ul>
@@ -499,13 +503,13 @@
           <p class="l26-partenaires-label">Soutenu par</p>
           <div class="l26-marquee" aria-hidden="true">
             <div class="l26-marquee-piste">
-              <span>BPI France</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
-              <span>BPI France</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
-              <span>BPI France</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
-              <span>BPI France</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
+              <span>Bpifrance</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
+              <span>Bpifrance</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
+              <span>Bpifrance</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
+              <span>Bpifrance</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
             </div>
           </div>
-          <p class="sr-only">Soutenu par BPI France, le Barreau de Paris, STATION F et CEGID.</p>
+          <p class="sr-only">Soutenu par Bpifrance, le Barreau de Paris, STATION F et CEGID.</p>
         </div>
       </div>
     </section>
@@ -514,27 +518,28 @@
     <!-- Chiffres et source conservés du site : dossier de presse Urssaf du 25 juin 2026.
          Le prototype proposait « x2 sur cinq ans » et « 180 j de délai », non sourcés. -->
     <section id="stats" class="l26-stats-zone">
+      <p class="l26-eyebrow l26-stats-titre">Le contrôle URSSAF a changé d'échelle</p>
       <div class="l26-stats-grille">
         <div class="l26-stat reveal">
-          <div class="l26-stat-chiffre"><span class="stat-number" data-target="48000">48&nbsp;000</span></div>
+          <div class="l26-stat-chiffre">48&nbsp;000</div>
           <p class="l26-stat-libelle">contrôles comptables d'assiette menés par l'URSSAF en 2025</p>
         </div>
         <div class="l26-stat reveal">
-          <div class="l26-stat-chiffre">3<span class="l26-stat-unite"> sur 4</span></div>
-          <p class="l26-stat-libelle">des contrôles aboutissent à une régularisation, redressement ou restitution (78,7&nbsp;% en 2025)</p>
+          <div class="l26-stat-chiffre">90<span class="l26-stat-unite">&nbsp;%</span></div>
+          <p class="l26-stat-libelle">des contrôles sont ciblés, un ciblage affiné par le croisement de données</p>
         </div>
         <div class="l26-stat reveal">
-          <div class="l26-stat-chiffre"><span class="stat-number" data-target="667">667</span><span class="l26-stat-unite">&nbsp;M€</span></div>
-          <p class="l26-stat-libelle">de redressements dus par les entreprises en 2025, au titre des contrôles comptables d'assiette</p>
+          <div class="l26-stat-chiffre">667<span class="l26-stat-unite">&nbsp;M€</span></div>
+          <p class="l26-stat-libelle">de redressements dus par les entreprises en 2025, au titre de ces contrôles</p>
         </div>
         <div class="l26-stat reveal">
-          <div class="l26-stat-chiffre"><span class="stat-number" data-target="180">180</span><span class="l26-stat-unite">&nbsp;M€</span></div>
+          <div class="l26-stat-chiffre">180<span class="l26-stat-unite">&nbsp;M€</span></div>
           <p class="l26-stat-libelle">restitués aux entreprises en cas de trop-versé</p>
         </div>
       </div>
 
       <p class="l26-source">
-        90&nbsp;% des contrôles comptables d'assiette sont ciblés, un ciblage affiné par le croisement de données.
+        3 contrôles sur 4 aboutissent à une régularisation (78,7&nbsp;% en 2025).
         Source&nbsp;: <a href="https://www.urssaf.org/accueil/espace-medias/communiques-de-presse/dossier-de-presse-le-controle.html" target="_blank" rel="noopener noreferrer">Urssaf Caisse nationale, dossier de presse «&nbsp;Le contrôle à l'Urssaf&nbsp;», 25 juin 2026</a>.
       </p>
     </section>
@@ -561,9 +566,9 @@
             <p class="l26-cas-montant">≈&nbsp;35&nbsp;600&nbsp;€</p>
             <p class="l26-cas-sous">de cotisations exposées, hors majorations</p>
             <p class="l26-cas-constat">
-              Une entreprise loue 40 véhicules à 550&nbsp;€ TTC par mois. La paie applique encore
-              le forfait de 30&nbsp;%, alors que pour tout véhicule attribué depuis le 1<sup>er</sup> février 2025,
-              la règle est passée à 50&nbsp;%.
+              Une entreprise loue 40 véhicules à 550&nbsp;€ TTC par mois, location, entretien
+              et assurance compris. La paie applique encore le forfait de 30&nbsp;%. Pour tout
+              véhicule attribué depuis le 1<sup>er</sup> février 2025, la règle est passée à 50&nbsp;%.
             </p>
             <p class="l26-cas-cle">Chaque mois non corrigé ajoute 4&nbsp;400&nbsp;€ à l'assiette redressable.</p>
             <button type="button" class="l26-cas-bouton" aria-expanded="false" aria-controls="cas-detail-1">
@@ -653,10 +658,10 @@
         <div class="l26-cas-pied">
           <p class="l26-cas-mention">
             Estimations établies aux barèmes en vigueur. Taux de cotisations indicatif de 40 à 50&nbsp;%
-            selon l'entreprise (rémunérations, allègements, versement mobilité, taux AT/MP), hors majorations
+            selon l'entreprise (rémunérations, allégements, versement mobilité, taux AT/MP), hors majorations
             de retard. Cas-types illustratifs.
           </p>
-          <a href="outils/prediagnostic-urssaf/" class="btn-primary l26-pill l26-pill--noire">Évaluer mon exposition en 5 minutes</a>
+          <a href="outils/prediagnostic-urssaf/" class="btn-primary l26-pill l26-pill--noire">Évaluer mon exposition en 5&nbsp;minutes</a>
         </div>
       </div>
     </section>
@@ -851,8 +856,9 @@
       <div class="l26-panneau l26-panneau--blanc" id="panneau-1" role="tabpanel" aria-labelledby="onglet-1" tabindex="0" hidden>
         <div class="l26-duo">
           <div>
+            <p class="l26-eyebrow">Sur devis · réponse sous 48&nbsp;h</p>
             <h3 class="l26-panneau-titre">Composez votre audit, <em>axe par axe.</em></h3>
-            <p class="l26-chapeau">Six thématiques, auditées séparément ou ensemble. Vous choisissez le périmètre, nous chiffrons sous 48&nbsp;heures.</p>
+            <p class="l26-chapeau">Un audit croisé couvrant plusieurs axes de conformité, adapté à votre profil de risque. Chaque audit inclut un plan d'action détaillé avec les corrections concrètes à mettre en œuvre.</p>
             <p class="l26-compteur" style="margin-top:32px"><span id="l26-compteur-n">2</span></p>
             <p class="l26-compteur-libelle" id="l26-compteur-libelle">axes sélectionnés · devis sous 48&nbsp;h</p>
             <div class="l26-jauge"><div class="l26-jauge-barre" id="l26-jauge-barre" style="width:33%"></div></div>
@@ -860,7 +866,7 @@
               <a href="solution/#devis" class="btn-primary l26-pill l26-pill--noire">Demander un devis</a>
               <a href="solution/#audits" class="l26-lien-souligne">Le détail des audits</a>
             </div>
-            <p class="l26-outil-mention" style="margin-top:18px">Devis établi sur la base du périmètre retenu et de la taille de votre entreprise.</p>
+            <p class="l26-outil-mention" style="margin-top:18px">Chaque audit est sur-mesure. Contactez-nous pour recevoir un devis adapté, réponse sous 48&nbsp;h, sans engagement.</p>
           </div>
           <ul class="l26-axes" id="l26-axes"></ul>
         </div>
@@ -870,18 +876,19 @@
       <div class="l26-panneau l26-panneau--sombre" id="panneau-2" role="tabpanel" aria-labelledby="onglet-2" tabindex="0" hidden>
         <div class="l26-duo">
           <div>
+            <p class="l26-eyebrow">Disponible dès maintenant</p>
             <h3 class="l26-panneau-titre">Votre flotte, vue comme <em>un inspecteur la verrait.</em></h3>
-            <p class="l26-chapeau">L'outil centralise véhicules, contrats et justificatifs, et vérifie en continu la conformité technique et juridique de chaque situation.</p>
+            <p class="l26-chapeau">Véhicules, contrats et justificatifs centralisés, conformité vérifiée en continu.</p>
             <div class="l26-panneau-ctas">
               <a href="solution/#fondateurs" class="btn-primary l26-pill l26-pill--mauve">Devenir entreprise fondatrice</a>
               <a href="outils/pilotage-flotte-tarifs/" class="l26-lien-souligne">Voir l'outil et les tarifs</a>
             </div>
           </div>
           <ul class="l26-lignes">
-            <li class="l26-ligne"><span class="l26-ligne-num">01</span><span><span class="l26-ligne-titre">Tableau de bord flotte</span><span class="l26-ligne-sous">Avantage en nature calculé pour chaque véhicule, au barème en vigueur.</span></span></li>
-            <li class="l26-ligne"><span class="l26-ligne-num">02</span><span><span class="l26-ligne-titre">Écarts paie · DSN</span><span class="l26-ligne-sous">Détectés et chiffrés, mois par mois.</span></span></li>
-            <li class="l26-ligne"><span class="l26-ligne-num">03</span><span><span class="l26-ligne-titre">Pièces manquantes</span><span class="l26-ligne-sous">Réclamées par véhicule et par salarié.</span></span></li>
-            <li class="l26-ligne"><span class="l26-ligne-num">04</span><span><span class="l26-ligne-titre">Veille barème BOSS</span><span class="l26-ligne-sous">Historique opposable à chaque évolution de règle.</span></span></li>
+            <li class="l26-ligne"><span class="l26-ligne-num">01</span><span><span class="l26-ligne-titre">Tableau de bord flotte</span><span class="l26-ligne-sous">Chaque véhicule, son avantage en nature calculé au barème en vigueur, son statut de conformité.</span></span></li>
+            <li class="l26-ligne"><span class="l26-ligne-num">02</span><span><span class="l26-ligne-titre">Écarts paie · DSN</span><span class="l26-ligne-sous">Détectés et chiffrés, avant que l'inspecteur ne les trouve.</span></span></li>
+            <li class="l26-ligne"><span class="l26-ligne-num">03</span><span><span class="l26-ligne-titre">Pièces manquantes</span><span class="l26-ligne-sous">Réclamées par véhicule et par salarié, comme un inspecteur le ferait.</span></span></li>
+            <li class="l26-ligne"><span class="l26-ligne-num">04</span><span><span class="l26-ligne-titre">Veille barème BOSS</span><span class="l26-ligne-sous">Un taux change, vous le savez, et l'historique reste opposable.</span></span></li>
           </ul>
         </div>
       </div>
@@ -1036,17 +1043,29 @@
       </div>
     </section>
 
+    <!-- Barre d'action collante, mobile uniquement (masquée au-delà de 860 px et
+         à l'impression). Elle porte le même libellé que le hero et le CTA final :
+         le visiteur n'a jamais à revérifier qu'il s'agit de la même action.
+         `aria-hidden` non : le lien doit rester atteignable au clavier. -->
+    <div class="l26-barre-collante">
+      <a href="outils/prediagnostic-urssaf/" class="btn-primary l26-pill l26-pill--noire">
+        Faire mon prédiagnostic gratuit <span class="l26-pill-note">5&nbsp;min</span>
+      </a>
+    </div>
+
     <!-- ==================== CTA FINAL ==================== -->
     <section id="cta-final" class="l26-final">
       <div class="l26-final-slab">
         <h2 class="l26-h2">Sachez ce que l'URSSAF verra. <em>Avant elle.</em></h2>
         <div class="l26-final-ctas">
-          <a href="outils/prediagnostic-urssaf/" class="btn-primary l26-pill l26-pill--noire">
+          <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener" class="btn-primary l26-pill l26-pill--noire">
+            Prendre rendez-vous
+          </a>
+          <a href="outils/prediagnostic-urssaf/" class="btn-secondary l26-pill l26-pill--ghost">
             Faire mon prédiagnostic gratuit <span class="l26-pill-note">5&nbsp;min</span>
           </a>
-          <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener" class="btn-secondary l26-pill l26-pill--ghost">Prendre rendez-vous</a>
         </div>
-        <p class="l26-outil-mention" style="margin-top:20px">Gratuit · Confidentiel · Sans inscription</p>
+        <p class="l26-outil-mention" style="margin-top:20px">Prédiagnostic&nbsp;: gratuit · confidentiel · sans inscription</p>
       </div>
     </section>
 

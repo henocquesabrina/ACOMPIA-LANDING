@@ -48,6 +48,40 @@
   --l26-biseau: 96px;
 }
 
+/* ---------- Reprise de style.css ----------
+
+   `css/style.css` n'est plus chargée par l'accueil : mesuré, 13 % de ses règles
+   seulement trouvaient une cible ici, et la géométrie de la page ne bougeait que
+   de six valeurs sans elle. Ces six-là tenaient aux déclarations ci-dessous, qui
+   sont donc reprises telles quelles. 53 Ko de moins sur le premier rendu.
+
+   `style-v2.css` reste chargée, elle : sans elle le document passe de 7 932 à
+   14 660 px et la barre de navigation casse. Elle porte encore la nav, le pied de
+   page et le bloc « parcours » du panneau Audit continu. */
+
+*, *::before, *::after { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img { display: block; }
+ul { list-style: none; }
+
+/* Lien d'évitement : hors écran, il revient au premier Tab. */
+.skip-link {
+  position: absolute; top: -100px; left: 16px; z-index: 9999;
+  background: var(--l26-encre); color: #FFFFFF;
+  padding: 12px 18px; border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  transition: top .2s;
+}
+.skip-link:focus { top: 16px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+*:focus-visible { outline: 2px solid var(--l26-mauve); outline-offset: 2px; }
+
 /* ---------- Ossature ---------- */
 
 body.landing-2026 {
@@ -194,6 +228,21 @@ body.landing-2026 {
   font-weight: 400;
   white-space: nowrap;
 }
+
+/* 44 px de haut minimum : les libellés ne faisaient que 23 px, sous le seuil
+   tactile. La hauteur est prise sur la zone cliquable, pas sur le texte.
+
+   Le sélecteur ne vise QUE les entrées de premier niveau. `.nav-links a` seul
+   attrapait aussi les liens à l'intérieur des menus déroulants, dont chaque
+   entrée empile un badge et un titre : les passer en `inline-flex` les mettait
+   côte à côte, badge collé au titre, et rabotait le filet de séparation du
+   pied de menu à la largeur de son texte. */
+.landing-2026 .nav-links > a,
+.landing-2026 .nav-dropdown > .nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 .landing-2026 .nav-links a:hover,
 .landing-2026 .nav-dropdown-toggle:hover { color: #0C0C14; }
 /* `.nav-cta` de style.css marque `!important` sur chacune de ses propriétés :
@@ -337,6 +386,111 @@ body.landing-2026 {
 }
 
 /* ---------- Bande partenaires ---------- */
+
+/* ---------- Barre d'action collante, mobile ---------- */
+
+/* Sur mobile le CTA du hero sort de l'écran dès le premier défilement et le
+   suivant n'arrive qu'au pied de page. Cette barre garde l'action à portée de
+   pouce tout du long. Elle ne s'affiche qu'en dessous de 860 px : sur desktop
+   les CTA restent visibles assez longtemps pour ne pas la justifier. */
+.l26-barre-collante { display: none; }
+
+@media (max-width: 860px) {
+  .l26-barre-collante {
+    display: block;
+    position: sticky;
+    bottom: 0;
+    z-index: 40;
+    padding: 12px var(--l26-gouttiere) calc(12px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--l26-bord-2);
+  }
+  .l26-barre-collante .l26-pill {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media print { .l26-barre-collante { display: none; } }
+
+/* ---------- Menus déroulants de la navigation ---------- */
+
+/* Réglages propres à la landing : `style-v2.css` sert encore les 19 autres
+   pages, on ne touche pas à sa version. Trois corrections.
+
+   1. Courbe d'ouverture. Le menu entrait en `ease`, l'easing par défaut. Il
+      prend la courbe du reste de la page, et une amorce un peu plus franche
+      (10 px au lieu de 6) pour que le mouvement se lise.
+
+   2. Rayon imbriqué. Le menu est à 14 px et ses entrées sont séparées de son
+      bord par 10 px de padding : le rayon intérieur vaut donc 14 − 10 = 4 px,
+      pas 9. Une entrée survolée dessinait un arrondi plus rond que la carte
+      qui la contient.
+
+   3. Le filet du pied de menu partait du bord de la zone cliquable, en retrait
+      de 14 px par rapport aux entrées. Il court maintenant sur toute la
+      largeur intérieure, comme une vraie séparation. */
+
+/* Seul écart avec la barre héritée : elle fait 93 px de haut au lieu de 81. */
+.landing-2026 .nav-dropdown-menu { --nav-menu-ecart: 33px; }
+
+.landing-2026 .nav-dropdown-menu a {
+  border-radius: 4px;
+  padding: 10px 12px;
+  transition:
+    background-color .2s cubic-bezier(0.32, 0.72, 0, 1),
+    color .2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.landing-2026 .nav-dropdown-menu a:hover { background: var(--l26-surface); }
+
+/* La hiérarchie des entrées (titre devant, libellé dessous) est désormais
+   posée dans `style-v2.css` : les menus sont identiques sur les 20 pages, et
+   ils changeaient d'apparence dès qu'on quittait l'accueil. Ne reste ici que
+   ce qui est propre à la landing : la police. */
+
+/* La flèche du sélecteur suit la même courbe que le menu qu'elle annonce. */
+.landing-2026 .nav-dropdown-arrow {
+  transition: transform .34s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ---------- Une seule police sur la page ---------- */
+
+/* `style-v2.css` réimpose Geist sur une partie de la page : mesuré au navigateur,
+   46 éléments en héritaient encore. Le plus visible : les mots accentués en mauve
+   à l'intérieur des titres, qui changeaient de dessin au milieu d'une phrase.
+
+   Geist Mono n'est pas concerné et reste en place sur les 32 éléments qui s'en
+   servent : eyebrows, montants, libellés de données. Le chasse fixe y est
+   fonctionnel, pas décoratif.
+
+   Deux niveaux de force sont nécessaires. La nav et les pilules cèdent à la
+   spécificité seule ; les `em` des titres sont posés en `!important` par
+   `style-v2.css` et ne cèdent qu'à un `!important`. */
+
+.landing-2026 .nav-dropdown-toggle,
+.landing-2026 .nav-dropdown-arrow,
+.landing-2026 .nav-dropdown-title,
+.landing-2026 .nav-links a,
+.landing-2026 .btn-primary,
+.landing-2026 .btn-secondary,
+.landing-2026 .l26-pill,
+.landing-2026 .l26-pill-note,
+.landing-2026 .how .step-name {
+  font-family: var(--l26-police);
+}
+
+.landing-2026 h1 em,
+.landing-2026 h2 em,
+.landing-2026 h3 em,
+.landing-2026 h4 em,
+.landing-2026 .l26-h2 em,
+.landing-2026 .l26-panneau-titre em,
+.landing-2026 .how-title em,
+.landing-2026 .how .step.final .step-name {
+  font-family: var(--l26-police) !important;
+}
 
 /* ---------- Amorce de scroll, écrans peu hauts ---------- */
 
@@ -537,6 +691,7 @@ body.landing-2026 {
   color: var(--l26-mauve);
   cursor: pointer;
   text-align: left;
+  min-height: 44px; /* seuil tactile : le libellé seul ne faisait que 21 px */
 }
 .l26-cas-bouton .l26-plus { transition: transform .25s ease; display: inline-block; font-size: 18px; line-height: 1; }
 .l26-cas[data-ouvert="true"] .l26-plus { transform: rotate(45deg); }
@@ -1211,3 +1366,18 @@ body.landing-2026 {
    plus courte remontait sa pastille, et l'ondulation devenait accidentelle.
    Calées en haut, seules les translations voulues creusent la vague. */
 .l26-panneau--audit .steps { align-items: start; }
+
+/* ---------- Retours Sabrina du 28/08 ---------- */
+
+/* La bande de chiffres arrivait sans énoncé : quatre nombres posés là, à charge
+   du lecteur de deviner ce qu'ils comptent. Le titre les rassemble. */
+.landing-2026 .l26-stats-titre {
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+/* Le titre de panneau est calé à `margin: 0` ; l'eyebrow qui le précède doit
+   donc porter lui-même l'écart, que `.l26-h2` réserve ailleurs en marge haute. */
+.landing-2026 .l26-panneau .l26-eyebrow {
+  margin: 0 0 14px;
+}

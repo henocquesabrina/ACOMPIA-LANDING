@@ -280,6 +280,84 @@ a.nav-logo:hover { opacity: 0.75; }
 }
 .nav-dropdown-all:hover { background: transparent !important; opacity: 0.75; }
 
+/* --- Hiérarchie des entrées de menu (28/08) ---
+
+   Le motif « libellé mono au-dessus du titre » vient des sections de page, où
+   l'eyebrow surmonte un titre de 32 à 56 px : le rapport de taille dit assez
+   qui est secondaire. Réduit à 14 px dans un menu, le titre ne faisait plus le
+   poids contre un libellé mauve en majuscules interlettrées, et l'œil lisait
+   « SEPTEMBRE 2026 » avant la destination.
+
+   Le titre repasse donc devant, et le libellé devient ce qu'il est : une
+   précision. L'inversion se fait en `column-reverse` pour ne pas toucher au
+   HTML, ce qui garde l'ordre de lecture correct pour un lecteur d'écran. */
+
+.nav-dropdown-menu a {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 4px; /* rayon imbriqué : 14px du menu moins ses 10px de padding */
+  transition:
+    background-color .2s cubic-bezier(0.32, 0.72, 0, 1),
+    color .2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.nav-dropdown-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+/* Le mauve quitte le libellé, où il ne faisait que du bruit, et revient sur le
+   titre au survol : c'est là qu'il signale quelque chose d'utile. */
+.nav-dropdown-menu a:hover .nav-dropdown-title { color: var(--accent); }
+.nav-dropdown-theme {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--ink-3);
+  margin: 0;
+}
+.nav-dropdown-all {
+  margin-top: 8px;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+/* Le menu était ancré sous le LIBELLÉ (`top: 100%` du conteneur du lien),
+   alors que la barre de navigation continue en dessous sur toute sa marge
+   basse. Résultat : il démarrait 15 à 16 px avant la fin de la barre et
+   semblait sortir de son milieu, au lieu de pendre sous elle.
+
+   La marge le repousse sous la barre, avec 8 px de respiration. La valeur
+   dépend de la hauteur de la barre, qui n'est pas la même sur l'accueil
+   refondu et sur les 19 autres pages : elle passe donc par une variable, que
+   `landing-2026.css` redéfinit pour sa propre barre. */
+.nav-dropdown-menu {
+  margin-top: var(--nav-menu-ecart, 30px);
+  /* Amorce d'entrée. Elle vit ici et non dans `landing-2026.css` : l'état
+     ouvert est défini dans ce fichier, et séparer les deux laissait le
+     décalage de 10 px appliqué au menu ouvert. */
+  transform: translateX(-50%) translateY(10px);
+  transition:
+    opacity .28s cubic-bezier(0.32, 0.72, 0, 1),
+    transform .34s cubic-bezier(0.32, 0.72, 0, 1),
+    visibility 0s .28s;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  transition:
+    opacity .28s cubic-bezier(0.32, 0.72, 0, 1),
+    transform .34s cubic-bezier(0.32, 0.72, 0, 1),
+    visibility 0s 0s;
+}
+.nav-dropdown-arrow { transition: transform .34s cubic-bezier(0.32, 0.72, 0, 1); }
+
 /* Mobile : dropdown en accordion permanent dans le burger menu */
 @media (max-width: 768px) {
   .nav-dropdown { width: 100%; }
