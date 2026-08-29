@@ -823,6 +823,40 @@ section.stats::before {
   }
 }
 
+/* ===== Prédiagnostic court V définitive ===== */
+.prediag-container .q-data-note {
+  margin: 12px 0 0;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--t3, #6E6E6E);
+}
+.prediag-container .q-data-note a { color: var(--accent, #4F46E5); }
+.rpt-vigilance {
+  margin: 34px 0 24px;
+  padding: 28px;
+  border: 1px solid;
+  border-radius: 18px;
+  background: #fff;
+}
+.rpt-vigilance-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #6E6E6E;
+}
+.rpt-vigilance-value {
+  margin-top: 8px;
+  font-size: clamp(30px, 5vw, 52px);
+  font-weight: 760;
+  letter-spacing: -.035em;
+  line-height: 1.05;
+}
+.rpt-vigilance p { margin: 12px 0 0; color: #525252; }
+@media (max-width: 700px) {
+  .rpt-vigilance { padding: 22px 18px; }
+}
+
 /* Override des styles V1 pour matcher la DA V2 */
 .prediag-container .q-card {
   max-width: 720px;

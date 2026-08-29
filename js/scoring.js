@@ -4,26 +4,17 @@
    ============================================
 
    DEUX EXPORTS :
-     - computeScoring(answers)  -> { indice, seuil, themes, meta }
+     - computeScoring(answers)  -> { seuil, themes, meta }
      - generateReportHTML(scoring, contact) -> HTML long format du rapport
 
-   Seuils "Indice d'exposition URSSAF" /100 — INVERSÉ (haut = risque élevé)
-     0-29   : Exposition maîtrisée    🟢
-     30-59  : Exposition modérée      🟠
-     60-100 : Exposition forte        🔴
-
-   Coefficients par niveau :
-     CRITIQUE = 4 · ÉLEVÉ = 2 · MOYEN = 1 · RÉDUIT = 0
-     SIGNAL / FILTRE / CALIBRAGE = 0 (ne contribuent pas au score)
+   Le résultat global suit le niveau le plus élevé détecté.
+   Aucun score sur 100 n'est affiché ni calculé dans la version courte.
 */
-
-const LEVEL_COEF = { CRITIQUE: 4, ELEVE: 2, MOYEN: 1, REDUIT: 0 };
-const LEVEL_MAX = 4; // max atteignable par thème
 const LEVEL_LABEL = {
-  CRITIQUE: 'CRITIQUE',
-  ELEVE:    'ÉLEVÉ',
-  MOYEN:    'MOYEN',
-  REDUIT:   'RÉDUIT'
+  CRITIQUE: 'VIGILANCE FORTE',
+  ELEVE:    'VIGILANCE ÉLEVÉE',
+  MOYEN:    'VIGILANCE MODÉRÉE',
+  REDUIT:   'VIGILANCE RÉDUITE'
 };
 const LEVEL_COLOR = {
   CRITIQUE: '#EF4444',
@@ -57,11 +48,11 @@ function verdictQ1_2(v) {
 function verdictQ1_4(v) {
   switch (v) {
     case 'oui-tous': return { level: 'REDUIT',
-      text: "La justification des frais remboursés et indemnités versées paraît assurée pour l'ensemble des situations. Sous réserve que les pièces permettent d'établir la dépense engagée ou la situation ouvrant droit. ACOMPIA peut effectuer une revue de cohérence sur échantillon." };
+      text: "Les éléments déclarés paraissent permettre de justifier les frais remboursés. Selon la nature du remboursement, il faut pouvoir établir la dépense réelle ou les circonstances de fait ouvrant droit à l'allocation forfaitaire." };
     case 'certains': return { level: 'ELEVE',
       text: "La justification des frais apparaît partielle. Pour les remboursements ou indemnités qui ne peuvent pas être rattachés à une dépense identifiable ou à une situation ouvrant droit clairement établie, l'exclusion d'assiette est fragilisée. ACOMPIA propose une cartographie des flux de frais par nature et par salarié." };
     case 'non': return { level: 'CRITIQUE',
-      text: "Aucune justification exploitable des frais remboursés ou indemnisés n'est disponible. L'exclusion d'assiette des sommes versées est fortement compromise. ACOMPIA recommande un audit immédiat du poste avec reconstitution des justificatifs." };
+      text: "L'absence déclarée d'éléments permettant d'établir la dépense ou les circonstances ouvrant droit constitue un signal de vigilance forte. La nature des remboursements et les pièces disponibles doivent être examinées avant de conclure sur leur traitement social." };
     case 'nsp': return { level: 'ELEVE',
       text: "L'incertitude sur la disponibilité des justificatifs est en elle-même un facteur d'exposition. ACOMPIA recommande une cartographie immédiate des justificatifs disponibles par nature de frais." };
     default: return null;
@@ -119,7 +110,7 @@ function verdictQ2_1b(v) {
     case 'certains': return { level: 'ELEVE',
       text: "La preuve de remise individuelle de la DUE apparaît partielle. Pour les salariés dont la remise ne peut pas être établie, la sécurisation du caractère obligatoire du régime est fragilisée. ACOMPIA recommande une reconstitution documentaire salarié par salarié." };
     case 'non': return { level: 'CRITIQUE',
-      text: "Aucune preuve exploitable de remise individuelle de la DUE n'est disponible. La sécurisation du régime est fortement compromise, même si un texte de DUE existe matériellement. ACOMPIA recommande une revue immédiate du dossier." };
+      text: "L'absence déclarée de preuve de remise de la DUE constitue un signal de vigilance forte. Il faut vérifier l'acte, les modalités d'information des salariés et la situation de chaque salarié concerné avant de conclure sur le régime social des contributions patronales." };
     case 'nsp': return { level: 'ELEVE',
       text: "L'incertitude sur la disponibilité des preuves de remise constitue un signal d'exposition direct." };
     default: return null;
@@ -148,7 +139,7 @@ function verdictQ3_2(v) {
     case 'decl-decompte-partiel': return { level: 'ELEVE',
       text: "Les heures apparaissent déclarées en paie, mais le décompte individuel est insuffisant pour les étayer de manière probante en contrôle. Sans décompte fiable, la défense repose uniquement sur les bulletins de paie — potentiellement insuffisant. ACOMPIA recommande une reconstitution du décompte sur les exercices contrôlables." };
     case 'pas-toujours-decl': return { level: 'CRITIQUE',
-      text: "Des heures effectuées au-delà de la durée habituelle ne sont pas systématiquement déclarées en paie ni en DSN. Cette situation expose l'entreprise à un redressement sur les cotisations non déclarées, et potentiellement à une qualification en travail dissimulé par dissimulation d'heures (prescription portée à 5 ans, majoration 25 %)." };
+      text: "Des heures effectuées au-delà de la durée habituelle ne sont pas systématiquement déclarées en paie ni en DSN. Cette situation peut appeler une régularisation de cotisations. Une éventuelle qualification de travail dissimulé suppose en outre de caractériser l'élément intentionnel." };
     case 'nsp': return { level: 'ELEVE',
       text: "L'incertitude sur la déclaration et le décompte des heures constitue un signal d'exposition direct." };
     default: return null;
@@ -158,11 +149,11 @@ function verdictQ3_2(v) {
 function verdictQ3_3(v) {
   switch (v) {
     case 'oui-tous': return { level: 'REDUIT',
-      text: "Le dispositif forfait jours paraît sécurisé sur ses trois conditions cumulatives pour l'ensemble des salariés concernés. Sous réserve que les documents de suivi soient effectivement tenus à jour et que les entretiens annuels soient formalisés." };
+      text: "Les trois éléments interrogés paraissent présents. Cette réponse ne suffit pas à vérifier l'accord collectif, l'éligibilité de chaque salarié ni l'effectivité du suivi de la charge de travail." };
     case 'partiel': return { level: 'ELEVE',
       text: "Le dispositif forfait jours n'est pas intégralement sécurisé. Pour les salariés dont la convention individuelle est absente, dont le suivi est insuffisant ou dont l'entretien annuel n'est pas formalisé, la convention est fragilisée et peut être déclarée inopposable." };
     case 'non': return { level: 'CRITIQUE',
-      text: "Le dispositif forfait jours ne repose pas sur les trois conditions cumulatives exigées par l'art. L. 3121-65 C. trav. Les conventions sont inopposables aux salariés et à l'URSSAF ; les heures effectuées au-delà de 35 h/semaine peuvent être requalifiées en heures supplémentaires (risque URSSAF + prud'homal cumulé)." };
+      text: "L'absence déclarée de convention écrite, de suivi des jours ou d'entretien sur la charge de travail constitue un signal de vigilance forte. La validité de chaque forfait doit être appréciée au regard de l'accord collectif et des articles L. 3121-55, L. 3121-60, L. 3121-64 et L. 3121-65 du Code du travail. Si le forfait est privé d'effet, un rappel d'heures supplémentaires peut en résulter." };
     case 'pas-fj': return null; // sous-bloc masqué
     case 'nsp': return { level: 'ELEVE',
       text: "L'incertitude sur la complétude du dispositif forfait jours couvre potentiellement les trois conditions cumulatives." };
@@ -187,9 +178,9 @@ function verdictQ3_5(v) {
     case 'oui-sans-exc': return { level: 'REDUIT',
       text: "L'ensemble des sommes versées aux salariés transite par la paie et figure en DSN. ACOMPIA peut réaliser un rapprochement comptabilité/paie sur un exercice pour confirmer l'exhaustivité du circuit déclaratif." };
     case 'principalement': return { level: 'ELEVE',
-      text: "Certaines sommes versées aux salariés ne transitent pas systématiquement par la paie ni la DSN. Ces sommes sont présumées constituer des éléments de rémunération soumis à cotisations sociales. Selon leur nature et leur volume, elles peuvent exposer à une qualification en travail dissimulé par dissimulation de rémunérations." };
+      text: "Certaines sommes déclarées comme versées hors paie ou DSN doivent être qualifiées selon leur nature et leur objet. Elles peuvent appeler une régularisation de cotisations. Une éventuelle qualification de travail dissimulé suppose en outre d'établir l'élément intentionnel." };
     case 'non-hors': return { level: 'CRITIQUE',
-      text: "Des sommes sont versées aux salariés en dehors du circuit paie et DSN. Cette situation expose directement à un redressement sur cotisations non déclarées, et potentiellement à une qualification en travail dissimulé (prescription 5 ans, majoration 25 %). ACOMPIA recommande une intervention immédiate et confidentielle." };
+      text: "Le versement déclaré de sommes hors paie et DSN constitue un signal de vigilance forte. Leur nature, leur assujettissement et leur déclaration doivent être vérifiés. Une éventuelle qualification de travail dissimulé ne peut être retenue sans caractériser l'élément intentionnel." };
     case 'nsp': return { level: 'ELEVE',
       text: "L'incertitude sur le caractère exhaustif du circuit déclaratif est en elle-même un signal d'exposition. Un rapprochement entre comptabilité générale, paie et DSN est indispensable." };
     default: return null;
@@ -203,7 +194,7 @@ function verdictQ4_2(v) {
     case 'ponctuel': return { level: 'ELEVE',
       text: "Le calcul de la RGDU n'est revu qu'occasionnellement. Un contrôle ponctuel est souvent insuffisant : les erreurs de paramétrage ou d'assiette peuvent se cumuler silencieusement, surtout depuis l'entrée en vigueur de la RGDU en 2026. ACOMPIA propose un audit rétrospectif ciblé." };
     case 'non-auto': return { level: 'CRITIQUE',
-      text: "Le calcul de la RGDU repose exclusivement sur un paramétrage automatique non revu. L'entreprise est exposée à des erreurs systémiques depuis la mise en place du nouveau régime applicable en 2026. ACOMPIA recommande un audit immédiat du paramétrage, des cas atypiques et de la méthode de régularisation." };
+      text: "L'absence déclarée de contrôle du paramétrage de la RGDU constitue un signal de vigilance forte. Le calcul, la rémunération retenue, le Smic de référence, les ajustements et la régularisation doivent être vérifiés sur les données 2026." };
     case 'nsp': return { level: 'ELEVE',
       text: "L'entreprise n'a pas de visibilité claire sur le niveau réel de contrôle du calcul de la RGDU. Cette absence de maîtrise ne permet pas d'exclure des erreurs silencieuses." };
     default: return null;
@@ -221,7 +212,7 @@ function verdictBloc5(a) {
       case 'certains': return { level: 'ELEVE',
         text: "Les éléments probants ne sont disponibles que pour une partie des véhicules. Pour les véhicules non suffisamment documentés, la qualification d'usage exclusivement professionnel est fragilisée et l'existence d'un avantage en nature peut être retenue. ACOMPIA propose une revue véhicule par véhicule." };
       case 'non': return { level: 'CRITIQUE',
-        text: "Aucun élément probant permettant d'établir l'usage exclusivement professionnel n'est disponible. La position de l'entreprise est très difficile à soutenir en contrôle et un avantage en nature véhicule est susceptible d'être retenu. ACOMPIA recommande un audit immédiat de la flotte." };
+        text: "L'absence déclarée d'éléments établissant l'usage exclusivement professionnel constitue un signal de vigilance forte. L'usage réel de chaque véhicule doit être vérifié avant de déterminer si un avantage en nature doit être évalué." };
       case 'nsp': return { level: 'ELEVE',
         text: "L'entreprise n'a pas de visibilité claire sur les éléments permettant d'établir l'usage exclusivement professionnel. L'incertitude documentaire fragilise directement la défense en contrôle." };
       default: return null;
@@ -236,7 +227,7 @@ function verdictBloc5(a) {
       case 'non-revue': return { level: 'ELEVE',
         text: "L'évaluation de l'AEN véhicule n'a pas été revue depuis la réforme du 1er février 2025. Le risque d'erreur de méthode est réel, particulièrement si la flotte comprend des véhicules antérieurs et postérieurs à cette date. ACOMPIA propose une revue véhicule par véhicule." };
       case 'aucune-eval': return { level: 'CRITIQUE',
-        text: "Aucune évaluation d'AEN n'a été réalisée pour les véhicules dont l'usage personnel n'est pas exclu. L'assiette de cotisations est très probablement sous-évaluée. ACOMPIA recommande un audit immédiat de la flotte et une régularisation prioritaire." };
+        text: "L'absence déclarée d'évaluation pour des véhicules dont l'usage personnel n'est pas exclu constitue un signal de vigilance forte. Il faut vérifier les usages, les dates de mise à disposition et la méthode applicable avant de déterminer l'assiette et une éventuelle régularisation." };
       case 'nsp': return { level: 'ELEVE',
         text: "L'entreprise n'a pas de visibilité claire sur la conformité de l'évaluation des AEN véhicule. Cette incertitude couvre potentiellement la méthode retenue, la prise en compte de la date de mise à disposition et le traitement des cas particuliers." };
       default: return null;
@@ -248,11 +239,11 @@ function verdictBloc5(a) {
 function verdictQ6_2(v) {
   switch (v) {
     case 'revue-complete': return { level: 'REDUIT',
-      text: "Le traitement social des ruptures et transactions paraît avoir fait l'objet d'une revue complète intégrant les règles applicables à chaque date de versement, y compris le taux de 40 % applicable depuis le 31 décembre 2025 sur ruptures conventionnelles et mises à la retraite à l'initiative de l'employeur." };
+      text: "Le traitement social des sommes paraît avoir été revu selon leur nature et leur date de versement. Pour les ruptures conventionnelles et mises à la retraite concernées, la contribution patronale de 40 % porte sur la part exclue de l'assiette des cotisations selon l'article L. 137-12 du Code de la sécurité sociale." };
     case 'revue-ant': return { level: 'MOYEN',
       text: "Une revue du traitement social a été effectuée, mais elle est antérieure à l'entrée en vigueur des règles applicables depuis le 31 décembre 2025 sur certaines indemnités relevant de l'art. L. 137-12 CSS. ACOMPIA recommande une revue ciblée des dossiers postérieurs au 31 décembre 2025." };
     case 'non-revue': return { level: 'CRITIQUE',
-      text: "Le traitement social des sommes versées à l'occasion des ruptures et transactions n'a pas fait l'objet d'une revue spécifique. Le risque est élevé dossier par dossier, renforcé pour les dossiers postérieurs au 31 décembre 2025 relevant de l'art. L. 137-12 CSS. ACOMPIA recommande un audit dossier par dossier sur les 3 dernières années." };
+      text: "L'absence déclarée de revue du traitement social des ruptures et transactions constitue un signal de vigilance forte. Chaque dossier doit être examiné selon la nature des sommes, leur régime fiscal et social et la date de versement. L'article L. 137-12 du Code de la sécurité sociale doit être vérifié pour les ruptures conventionnelles et mises à la retraite concernées." };
     case 'nsp': return { level: 'ELEVE',
       text: "L'entreprise n'a pas de visibilité claire sur la qualité et l'actualité de la revue du traitement social appliqué aux ruptures et transactions. Sur ce thème techniquement complexe, cette incertitude fragilise directement la position en contrôle." };
     default: return null;
@@ -262,26 +253,18 @@ function verdictQ6_2(v) {
 // Bloc 7 — VM : logique ternaire (Q7.0 × Q7.0bis × Q7.1)
 function verdictBloc7(a) {
   if (!a['Q0.1'] || a['Q0.1'] === '1-10') return null;
-  if (!a['Q7.0'] || a['Q7.0'] === 'non')  return null;
-  if (a['Q7.0bis'] === 'non')             return null;
-
-  // Assujettissement confirmé si Q7.0 = oui-seuil-long ET Q7.0bis = oui
-  const assujetti = (a['Q7.0'] === 'oui-seuil-long' && a['Q7.0bis'] === 'oui');
+  if (!a['Q7.0bis'] || a['Q7.0bis'] === 'non') return null;
 
   switch (a['Q7.1']) {
     case 'oui':
-      if (assujetti) return { level: 'REDUIT',
-        text: "Votre entreprise verse le versement mobilité. Rassurant sur la prise en compte du sujet, sans suffire à établir la conformité du paramétrage. Vigilance sur le rattachement des salariés à la bonne zone, le bon taux selon le lieu d'affectation réel, et la mise à jour des taux." };
-      return { level: 'MOYEN',
-        text: "Votre entreprise verse le versement mobilité, alors même que l'assujettissement n'est pas encore clairement établi. ACOMPIA recommande de vérifier la date exacte d'assujettissement et la zone de rattachement des salariés." };
+      return { level: 'REDUIT',
+        text: "Le taux et la déclaration du versement mobilité font l'objet d'un contrôle selon le lieu d'affectation déclaré. Ce point paraît maîtrisé, sous réserve de vérifier la zone, le taux et la date d'effet sur les données réelles." };
     case 'non':
-      if (assujetti) return { level: 'ELEVE',
-        text: "Votre entreprise ne verse pas le versement mobilité alors que les deux conditions d'assujettissement paraissent réunies. Les sommes non versées depuis la date d'exigibilité sont susceptibles d'être réclamées dans la limite de la prescription. ACOMPIA recommande une reconstitution immédiate de la date d'assujettissement, du périmètre et des taux." };
-      return { level: 'MOYEN',
-        text: "Votre entreprise ne verse pas le versement mobilité, mais l'assujettissement n'est pas encore établi avec certitude. ACOMPIA recommande de reconstituer l'effectif annuel, la date éventuelle de franchissement du seuil et l'existence de salariés affectés dans une zone couverte." };
+      return { level: 'ELEVE',
+        text: "L'absence de contrôle du taux et de la déclaration selon le lieu d'affectation constitue un signal de vigilance élevé. Une revue des zones, des taux et de la DSN est nécessaire pour confirmer l'exposition." };
     case 'nsp':
       return { level: 'ELEVE',
-        text: "L'entreprise n'a pas de visibilité claire sur le versement effectif du VM. Cette absence de maîtrise peut révéler soit un assujettissement non identifié, soit un paramétrage non vérifié." };
+        text: "L'entreprise n'a pas de visibilité claire sur le contrôle du versement mobilité. Une revue des lieux d'affectation, des taux et de la DSN est nécessaire pour déterminer la situation réelle." };
     default: return null;
   }
 }
@@ -357,7 +340,7 @@ function buildThemes(a) {
   }
 
   // --- BLOC 4 — RGDU
-  if (a['Q4.1'] && a['Q4.1'] !== 'aucun') {
+  if (a['Q4.2']) {
     const v = verdictQ4_2(a['Q4.2']);
     if (v) themes.push({
       key: 'rgdu', name: 'Bloc 4 — Réduction générale dégressive unique (RGDU)', icon: '',
@@ -407,23 +390,21 @@ function buildThemes(a) {
 
 
 /* ============================================================
-   Scoring principal — indice d'exposition /100 (HAUT = risque)
+   Résultat principal — niveau de vigilance global
    ============================================================ */
 
 function computeScoring(answers) {
   const themes = buildThemes(answers);
 
-  // Somme des coefficients selon le niveau de chaque thème activé
-  let brut = 0;
-  themes.forEach(t => { brut += (LEVEL_COEF[t.level] ?? 0); });
-
-  const maxPossible = themes.length * LEVEL_MAX;
-  const indice = maxPossible === 0 ? 0 : Math.round((brut / maxPossible) * 100);
-
+  const levels = themes.map(t => t.level);
   let seuil, seuilLabel, seuilColor, seuilEmoji;
-  if (indice <= 29)      { seuil = 'maitrisee'; seuilLabel = 'Exposition maîtrisée'; seuilColor = '#059669'; seuilEmoji = ''; }
-  else if (indice <= 59) { seuil = 'moderee';   seuilLabel = 'Exposition modérée';   seuilColor = '#D97706'; seuilEmoji = ''; }
-  else                   { seuil = 'forte';     seuilLabel = 'Exposition forte';     seuilColor = '#DC2626'; seuilEmoji = ''; }
+  if (levels.includes('CRITIQUE')) {
+    seuil = 'forte'; seuilLabel = 'Vigilance forte'; seuilColor = '#DC2626'; seuilEmoji = '';
+  } else if (levels.includes('ELEVE') || levels.includes('MOYEN')) {
+    seuil = 'moderee'; seuilLabel = 'Vigilance modérée'; seuilColor = '#D97706'; seuilEmoji = '';
+  } else {
+    seuil = 'reduite'; seuilLabel = 'Vigilance réduite'; seuilColor = '#059669'; seuilEmoji = '';
+  }
 
   // Méta : aggravants transversaux
   const meta = {
@@ -433,7 +414,7 @@ function computeScoring(answers) {
     secteur:     answers['Q0.3'] || null
   };
 
-  return { indice, seuil, seuilLabel, seuilColor, seuilEmoji, themes, answers, meta };
+  return { seuil, seuilLabel, seuilColor, seuilEmoji, themes, answers, meta };
 }
 
 
@@ -528,7 +509,7 @@ function grilleANV(fleetAnswer) {
     <div class="rpt-anv">
       <h4>Le module Avantage en nature véhicule</h4>
       <p class="rpt-anv-mention">Surveillance continue de la conformité de votre flotte, à partir de 89 € HT/mois (tarif au véhicule, dégressif). Ouverture en septembre 2026. Les entreprises fondatrices bénéficient de la mise en route offerte et de leur diagnostic livré avant la rentrée.</p>
-      <a href="#fondateurs" class="btn-primary rpt-anv-cta">Découvrir l'offre fondatrice →</a>
+      <a href="/solution/#fondateurs" class="btn-primary rpt-anv-cta">Découvrir l'offre fondatrice →</a>
     </div>
   `;
 }
@@ -536,20 +517,17 @@ function grilleANV(fleetAnswer) {
 function disclaimerFinal() {
   return `
     <div class="rpt-disclaimer">
-      <p><strong>Prédiagnostic non contractuel.</strong> Ce rapport est établi sur la base exclusive de vos réponses déclaratives. Il ne constitue ni un audit au sens de l'art. R. 243-59 CSS, ni une consultation juridique au sens de la loi n° 71-1130 du 31 décembre 1971. Il n'est pas opposable à l'URSSAF ni devant une juridiction.</p>
-      <p>Responsable de traitement : ComplyDB SAS (ACOMPIA). Les données de diagnostic sont anonymisées et conservées 36 mois ; les coordonnées sont conservées 3 ans après le dernier contact. Vous disposez des droits d'accès, de rectification, d'effacement, de limitation, d'opposition et, le cas échéant, de portabilité. Contact : <a href="mailto:she@acompia.com">she@acompia.com</a>.</p>
+      <p><strong>Prédiagnostic indicatif et non contractuel.</strong> Ce rapport repose exclusivement sur vos réponses déclaratives. Aucun document, bulletin de paie, DSN ou paramétrage n'a été vérifié. Il identifie des signaux de vigilance, sans constater l'existence ni déterminer le montant d'un éventuel redressement. Il n'est opposable ni à l'Urssaf ni à une juridiction.</p>
+      <p>Responsable de traitement : ComplyDB SAS (ACOMPIA). Les données du prédiagnostic sont conservées 24 mois. Les données de prospection, lorsque vous acceptez d'être recontacté, sont conservées 36 mois après le dernier contact. Vous disposez des droits d'accès, de rectification, d'effacement, de limitation, d'opposition et, le cas échéant, de portabilité. Contact : <a href="mailto:she@acompia.com">she@acompia.com</a>.</p>
     </div>
   `;
 }
 
 function generateReportHTML(scoring, contact) {
-  const { indice, seuilLabel, seuilColor, seuilEmoji, themes, meta } = scoring;
+  const { seuilLabel, seuilColor, themes, meta } = scoring;
   const dateStr = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
 
   // ========== Bloc A — Couverture ==========
-  // Jauge visuelle : barre horizontale 0 -> 100 avec marqueur
-  const gaugePct = Math.max(0, Math.min(100, indice));
-  const gaugeColor = seuilColor;
   const blocA = `
     <section class="rpt-block rpt-blockA">
       <div class="rpt-cover">
@@ -560,25 +538,14 @@ function generateReportHTML(scoring, contact) {
         <h2 class="rpt-cover-title">Prédiagnostic URSSAF</h2>
         <p class="rpt-cover-sub">${contact && contact.name ? 'Préparé pour ' + contact.name : ''}${contact && contact.name ? ' · ' : ''}Confidentiel — non contractuel</p>
 
-        <div class="rpt-gauge">
-          <div class="rpt-gauge-label">Indice d'exposition URSSAF</div>
-          <div class="rpt-gauge-track">
-            <div class="rpt-gauge-fill" style="width:${gaugePct}%;background:${gaugeColor}"></div>
-            <div class="rpt-gauge-marker" style="left:calc(${gaugePct}% - 2px)"></div>
-          </div>
-          <div class="rpt-gauge-scale">
-            <span>0 – 29 · Maîtrisée</span>
-            <span>30 – 59 · Modérée</span>
-            <span>60 – 100 · Forte</span>
-          </div>
-          <div class="rpt-gauge-value" style="color:${gaugeColor}">
-            <span class="rpt-gauge-number">${indice}</span><span class="rpt-gauge-denom">/100</span>
-            <span class="rpt-gauge-seuil">${seuilLabel}</span>
-          </div>
+        <div class="rpt-vigilance" style="border-color:${seuilColor}">
+          <div class="rpt-vigilance-label">Votre résultat</div>
+          <div class="rpt-vigilance-value" style="color:${seuilColor}">${seuilLabel}</div>
+          <p>${themes.length} thème${themes.length > 1 ? 's' : ''} évalué${themes.length > 1 ? 's' : ''} à partir de vos réponses.</p>
         </div>
 
         <div class="rpt-cover-intro">
-          <p>Ce rapport synthétise votre exposition aux principaux risques de redressement URSSAF, sur la base de vos réponses déclaratives. Il vise à identifier rapidement vos zones de vigilance. Il ne constitue ni un audit, ni une consultation juridique et n'est pas opposable à l'URSSAF.</p>
+          <p>Ce résultat identifie des signaux de vigilance à partir de vos réponses. Une revue des documents et des DSN est nécessaire pour confirmer l'exposition réelle.</p>
         </div>
       </div>
     </section>
@@ -591,11 +558,9 @@ function generateReportHTML(scoring, contact) {
   const top3 = themesSorted.filter(t => t.level === 'CRITIQUE' || t.level === 'ELEVE').slice(0, 3);
 
   let accroche = "";
-  if (scoring.seuil === 'forte')    accroche = "Plusieurs signaux à fort enjeu ressortent de votre prédiagnostic. Une revue approfondie est recommandée avant tout contrôle.";
-  else if (scoring.seuil === 'moderee') accroche = "Votre exposition est modérée mais plusieurs points de vigilance nécessitent une vérification ciblée.";
-  else                                    accroche = "Votre exposition paraît maîtrisée. Nous recommandons tout de même un test de robustesse ponctuel sur les thèmes activés.";
-
-  const fourchetteAgr = computeFourchetteAgregee(scoring);
+  if (scoring.seuil === 'forte') accroche = "Un signal de vigilance forte ressort de vos réponses. Une vérification ciblée est recommandée.";
+  else if (scoring.seuil === 'moderee') accroche = "Plusieurs points nécessitent une vérification ciblée avant de conclure.";
+  else accroche = "Aucun signal élevé ne ressort des thèmes examinés. Une vérification documentaire reste nécessaire pour confirmer ce résultat.";
 
   let top3HTML = '';
   if (top3.length) {
@@ -606,7 +571,7 @@ function generateReportHTML(scoring, contact) {
       return `
       <li>
         <div class="rpt-top3-title">${t.name} ${levelPill(t.level)}</div>
-        <p>${v.text.split('.')[0]}.</p>
+        <p>${v.text}</p>
       </li>
     `;
     }).join('') + '</ol>';
@@ -622,9 +587,9 @@ function generateReportHTML(scoring, contact) {
       ${meta.reiteration ? `<div class="rpt-aggrav"><strong>Aggravant transversal — Réitération.</strong> Un contrôle URSSAF antérieur a donné lieu à observation ou redressement. En cas de persistance d'une pratique déjà observée, une majoration de 10 % peut s'appliquer (art. L. 243-7-6 CSS).</div>` : ''}
       ${meta.multiSite ? `<div class="rpt-aggrav"><strong>Multi-sites.</strong> Plusieurs lieux d'affectation peuvent fausser un taux unique de versement mobilité. Vérification dédiée recommandée.</div>` : ''}
 
-      <h4 class="rpt-sub">Top 3 des thèmes à plus fort risque</h4>
+      <h4 class="rpt-sub">Vos principaux signaux</h4>
       ${top3HTML}
-      ${top3.length ? `<p class="rpt-muted rpt-see-detail">Le détail de chaque thème et les éléments justificatifs figurent dans l'analyse détaillée ci-dessous.</p>` : ''}
+      ${top3.length ? `<p class="rpt-muted rpt-see-detail">Ces signaux reposent sur vos réponses déclaratives. Ils doivent être confirmés à partir de vos documents et de vos DSN.</p>` : ''}
     </section>
   `;
 
@@ -700,21 +665,10 @@ function generateReportHTML(scoring, contact) {
 
   const blocD = `
     <section class="rpt-block rpt-blockD">
-      <h3 class="rpt-block-title">Passage à l'action</h3>
-
-      <h4 class="rpt-sub">Prochaines étapes recommandées</h4>
-      <ol class="rpt-steps">
-        ${stepsIntro}
-        <li><strong>Échanger avec ACOMPIA.</strong> 30 minutes de cadrage sans engagement pour affiner votre exposition réelle, hiérarchiser les chantiers et choisir le bon niveau d'intervention.</li>
-        <li><strong>Planifier l'audit adapté.</strong> Revue flash (1 thème), audit ciblé (par exemple AEN véhicule) ou accompagnement global selon les enjeux identifiés ensemble.</li>
-      </ol>
-
-      ${showANV ? grilleANV(aenTheme.fleet) : ''}
-
       <div class="rpt-cta-main">
-        <h4>Discuter de votre prédiagnostic avec ACOMPIA</h4>
-        <p>Échange de 30 minutes, sans engagement, pour prioriser vos actions.</p>
-        <a href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener" class="btn-primary">Prendre rendez-vous →</a>
+        <h3>Comprendre vos signaux de vigilance</h3>
+        <p>Un échange de 30 minutes permet de vérifier les faits déterminants et de décider si un audit est utile.</p>
+        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener" class="btn-primary">Échanger sur mes résultats →</a>
       </div>
 
       ${disclaimerFinal()}
@@ -728,7 +682,7 @@ function generateReportHTML(scoring, contact) {
   // ========== CTA Calendly sticky mobile-friendly ==========
   const sticky = `
     <div class="rpt-sticky-cta">
-      <a href="https://calendly.com/she-valnoa-avocat/rdv-30-min" target="_blank" rel="noopener">
+      <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">
         Prendre rendez-vous — échange de 30 minutes
       </a>
     </div>
@@ -738,7 +692,6 @@ function generateReportHTML(scoring, contact) {
     <div class="acompia-report" id="acompia-report">
       ${blocA}
       ${blocB}
-      ${blocC}
       ${blocD}
     </div>
     ${sticky}
