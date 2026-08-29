@@ -1,6 +1,6 @@
 /* ============================================
    ACOMPIA — Questionnaire Prédiagnostic URSSAF
-   Version consolidée 15/04/2026 · 29 questions / 9 blocs
+   Version courte acquisition 28/08/2026 · 10 questions principales
    Refonte complète : matrice Sabrina + arbitrages clients
    ============================================ */
 
@@ -101,7 +101,7 @@ const QUESTIONS = [
   },
   {
     id: 'Q1.4', section: 'Frais professionnels', sectionIcon: 'wallet',
-    text: 'Pourriez-vous justifier, pour chaque frais remboursé ou indemnisé, la dépense engagée ou la situation ouvrant droit à l\'indemnité ?',
+    text: 'Pour chaque frais remboursé, pouvez-vous établir la dépense engagée ou la situation ouvrant droit à l’indemnité ?',
     type: 'single',
     condition: (a) => a['Q1.1'] === 'oui',
     options: [
@@ -142,7 +142,7 @@ const QUESTIONS = [
     type: 'single',
     condition: (a) => a['Q1bis.1'] === 'oui' || a['Q1bis.1'] === 'nsp',
     options: [
-      { value: 'oui-2-cond',   label: 'Oui, ces trois conditions sont respectées' },
+      { value: 'oui-2-cond',   label: 'Oui, ces deux conditions sont respectées' },
       { value: 'taux-seulement', label: 'Taux respecté mais attribution non toujours vérifiée' },
       { value: 'taux-incertain', label: 'Je ne suis pas certain(e) du taux de participation' },
       { value: 'non',          label: 'Non' },
@@ -180,8 +180,9 @@ const QUESTIONS = [
   },
   {
     id: 'Q2.3', section: 'Complémentaire santé — acte fondateur et dispenses', sectionIcon: 'heart-pulse',
-    text: 'Pour les salariés dispensés d\'adhésion, disposez-vous d\'une demande de dispense écrite et signée, et ces cas de dispense sont-ils bien prévus par l\'acte mettant en place le régime ?',
+    text: 'Les dispenses d’adhésion sont-elles toutes écrites, signées et prévues par votre régime santé ?',
     type: 'single',
+    condition: (a) => Boolean(a['Q2.1a']) && a['Q2.1a'] !== 'aucune',
     options: [
       { value: 'oui-tous',  label: 'Oui, pour tous les dispensés' },
       { value: 'certains',  label: 'Pour certains seulement' },
@@ -219,7 +220,7 @@ const QUESTIONS = [
   },
   {
     id: 'Q3.3', section: 'Temps de travail et rémunérations', sectionIcon: 'clock',
-    text: 'Pour les salariés au forfait jours, disposez-vous d\'une convention individuelle écrite, d\'un document de suivi des journées ou demi-journées travaillées et d\'un entretien annuel portant notamment sur la charge de travail ?',
+    text: 'Pour chaque forfait jours, disposez-vous d’une convention écrite, d’un suivi des jours et d’un entretien annuel ?',
     type: 'single',
     options: [
       { value: 'oui-tous', label: 'Oui, pour tous' },
@@ -242,7 +243,7 @@ const QUESTIONS = [
   },
   {
     id: 'Q3.5', section: 'Temps de travail et rémunérations', sectionIcon: 'clock',
-    text: 'Toutes les sommes versées à vos salariés (primes, gratifications, avantages, remboursements) transitent-elles par la paie et figurent-elles sur les bulletins et dans les DSN ?',
+    text: 'Toutes les sommes versées aux salariés figurent-elles dans la paie et les DSN ?',
     type: 'single',
     options: [
       { value: 'oui-sans-exc',   label: 'Oui, sans exception' },
@@ -269,9 +270,8 @@ const QUESTIONS = [
   },
   {
     id: 'Q4.2', section: 'Réduction générale dégressive unique (RGDU)', sectionIcon: 'trending-down',
-    text: 'Le calcul de la RGDU fait-il l\'objet d\'un contrôle humain régulier, notamment pour les situations complexes (absences, entrées/sorties, temps partiel, éléments variables) ?',
+    text: 'Le calcul de la réduction générale est-il contrôlé régulièrement, notamment pour les cas complexes ?',
     type: 'single',
-    condition: (a) => a['Q4.1'] && a['Q4.1'] !== 'aucun',
     options: [
       { value: 'oui-regulier', label: 'Oui, contrôle régulier' },
       { value: 'ponctuel',     label: 'Ponctuellement seulement' },
@@ -285,7 +285,7 @@ const QUESTIONS = [
      ========================================================== */
   {
     id: 'Q5.1', section: 'AEN véhicule', sectionIcon: 'car',
-    text: 'Pour les véhicules mis à disposition par l\'entreprise à des salariés ou dirigeants, l\'usage est-il considéré comme strictement professionnel ou un usage personnel est-il possible ?',
+    text: 'Des salariés ou dirigeants peuvent-ils utiliser un véhicule de l’entreprise à titre personnel ?',
     type: 'single',
     options: [
       { value: 'strict-pro',     label: 'Usage strictement professionnel' },
@@ -308,7 +308,7 @@ const QUESTIONS = [
   },
   {
     id: 'Q5.2', section: 'AEN véhicule', sectionIcon: 'car',
-    text: 'Lorsqu\'un usage personnel existe ou ne peut pas être exclu, la méthode d\'évaluation retenue a-t-elle été revue au regard des règles applicables depuis le 1er février 2025, en tenant compte de la date de première mise à disposition de chaque véhicule ?',
+    text: 'La méthode d’évaluation de cet avantage a-t-elle été revue depuis février 2025 ?',
     type: 'single',
     condition: (a) => a['Q5.1'] === 'perso-possible' || a['Q5.1'] === 'nsp',
     options: [
@@ -349,7 +349,7 @@ const QUESTIONS = [
   },
   {
     id: 'Q6.2', section: 'Ruptures et transactions', sectionIcon: 'handshake',
-    text: 'Pour ces ruptures et transactions, le traitement social des sommes versées a-t-il fait l\'objet d\'une revue intégrant les règles applicables à la date de chaque versement, y compris la contribution patronale applicable depuis le 31 décembre 2025 sur les ruptures conventionnelles et mises à la retraite à l\'initiative de l\'employeur ?',
+    text: 'Le traitement social de ces sommes a-t-il été revu selon les règles applicables à chaque versement ?',
     type: 'single',
     condition: (a) => a['Q6.1'] === 'oui' || a['Q6.1'] === 'nsp',
     options: [
@@ -377,9 +377,9 @@ const QUESTIONS = [
   },
   {
     id: 'Q7.0bis', section: 'Versement mobilité', sectionIcon: 'bus',
-    text: 'Avez-vous des salariés affectés dans une zone où un versement mobilité est institué ?',
+    text: 'Savez-vous si des salariés sont rattachés à une zone où un versement mobilité est institué ?',
     type: 'single',
-    condition: (a) => a['Q0.1'] && a['Q0.1'] !== '1-10' && a['Q7.0'] && a['Q7.0'] !== 'non',
+    condition: (a) => a['Q0.1'] && a['Q0.1'] !== '1-10',
     options: [
       { value: 'oui', label: 'Oui' },
       { value: 'non', label: 'Non' },
@@ -388,12 +388,9 @@ const QUESTIONS = [
   },
   {
     id: 'Q7.1', section: 'Versement mobilité', sectionIcon: 'bus',
-    text: 'Votre entreprise verse-t-elle aujourd\'hui une cotisation au titre du versement mobilité ?',
+    text: 'Le taux et la déclaration sont-ils contrôlés selon le lieu d’affectation des salariés ?',
     type: 'single',
-    hint: 'Depuis 2026, un versement mobilité régional et rural (VMRR) peut s\'ajouter au VM dans certaines régions. Son moteur de calcul est distinct.',
-    condition: (a) => a['Q0.1'] && a['Q0.1'] !== '1-10' &&
-                      a['Q7.0'] && a['Q7.0'] !== 'non' &&
-                      a['Q7.0bis'] && a['Q7.0bis'] !== 'non',
+    condition: (a) => a['Q7.0bis'] === 'oui' || a['Q7.0bis'] === 'nsp',
     options: [
       { value: 'oui', label: 'Oui' },
       { value: 'non', label: 'Non' },
@@ -401,6 +398,20 @@ const QUESTIONS = [
     ]
   }
 ];
+
+// Le prédiagnostic commercial reste un filtre rapide. Les questions détaillées
+// sont réservées à l'audit. Les identifiants sont conservés pour ne pas casser
+// le moteur de scoring existant.
+const SHORT_QUESTION_IDS = new Set([
+  'Q0.1', 'Q0.4',
+  'Q1.1', 'Q1.4',
+  'Q2.1a', 'Q2.1b', 'Q2.3',
+  'Q3.3', 'Q3.5',
+  'Q4.2',
+  'Q5.1', 'Q5.1b', 'Q5.2', 'Q5.fleet',
+  'Q6.1', 'Q6.2',
+  'Q7.0bis', 'Q7.1'
+]);
 
 
 /* ============================================================
@@ -418,38 +429,33 @@ class Questionnaire {
     this.progressText = document.getElementById(progressTextId);
     this.answers      = {};
     this.currentIndex = 0;
-    this.questionsVues = new Set();
     this.activeQuestions = [];
+    this.seenQuestions = new Set();
+    this.answeredQuestions = new Set();
     this.computeActiveQuestions();
   }
 
   // Recalcule la liste des questions effectivement affichées selon les réponses
   computeActiveQuestions() {
-    this.activeQuestions = QUESTIONS.filter(q => !q.condition || q.condition(this.answers));
+    this.activeQuestions = QUESTIONS.filter(q =>
+      SHORT_QUESTION_IDS.has(q.id) && (!q.condition || q.condition(this.answers))
+    );
   }
 
   getTotalActive()     { return this.activeQuestions.length; }
   getCurrentQuestion() { return this.activeQuestions[this.currentIndex]; }
 
-  /* Ne compte que les réponses aux questions ENCORE actives : un retour arrière
-     suivi d'un changement de branche laisse dans `answers` des réponses à des
-     questions désormais masquées, qui gonfleraient la progression. */
-  countAnswered() {
-    return this.activeQuestions.filter(q => this.answers[q.id] !== undefined).length;
-  }
-
   updateProgress() {
     const total = this.getTotalActive();
-    const answered = this.countAnswered();
+    const answered = Object.keys(this.answers).length;
     const pct = total === 0 ? 0 : Math.round((answered / total) * 100);
     if (this.progressBar)  this.progressBar.style.setProperty('--progress', pct + '%');
-    if (this.progressText) this.progressText.textContent = `${answered} / ${total}`;
+    if (this.progressText) this.progressText.textContent = `${Math.min(answered, total)} / ${total}`;
   }
 
   start() {
     this.currentIndex = 0;
     this.answers = {};
-    this.questionsVues = new Set();
     this.computeActiveQuestions();
     this.render();
   }
@@ -460,6 +466,15 @@ class Questionnaire {
 
     const prevSection = this.currentIndex > 0 ? this.activeQuestions[this.currentIndex - 1].section : null;
     const showSectionHeader = q.section !== prevSection;
+
+    if (!this.seenQuestions.has(q.id)) {
+      this.seenQuestions.add(q.id);
+      if (window.posthog) posthog.capture('prediag_question_vue', {
+        question_id: q.id,
+        position: this.currentIndex + 1,
+        total_affiche: this.getTotalActive()
+      });
+    }
 
     let html = '';
     if (showSectionHeader) {
@@ -497,17 +512,6 @@ class Questionnaire {
     this.container.innerHTML = html;
     this.updateProgress();
     this.bindEvents(q);
-    // Sans cet événement, on ne sait pas laquelle des 29 questions fait abandonner.
-    // Émis à l'affichage, une seule fois par question et par parcours.
-    if (!this.questionsVues.has(q.id)) {
-      this.questionsVues.add(q.id);
-      capturerEvenement('prediag_question_vue', {
-        question: q.id,
-        rang: this.currentIndex + 1,
-        total: this.getTotalActive(),
-        bloc: q.section
-      });
-    }
     if (typeof lucide !== 'undefined') lucide.createIcons();
     /* A11Y : le focus suit la question affichée */
     const qt = this.container.querySelector('.q-text');
@@ -518,6 +522,14 @@ class Questionnaire {
     this.container.querySelectorAll('.q-option').forEach(btn => {
       btn.addEventListener('click', () => {
         this.answers[q.id] = btn.dataset.value;
+        if (!this.answeredQuestions.has(q.id)) {
+          this.answeredQuestions.add(q.id);
+          if (window.posthog) posthog.capture('prediag_question_reponse', {
+            question_id: q.id,
+            position: this.currentIndex + 1,
+            total_affiche: this.getTotalActive()
+          });
+        }
         this.computeActiveQuestions();
         const newIds = this.activeQuestions.map(x => x.id);
         const idx = newIds.indexOf(q.id);
@@ -533,126 +545,17 @@ class Questionnaire {
   }
 
   renderContactForm() {
-    // Dernière marche du tunnel : on mesure combien y arrivent, pour distinguer
-    // « abandon dans le questionnaire » de « refus de donner ses coordonnées ».
-    capturerEvenement('prediag_contact_vu', { questions_repondues: this.countAnswered() });
-
-    // Formulaire coordonnées + case RGPD optionnelle (arbitrage #2)
-    this.container.innerHTML = contactFormHTML();
-    this.updateProgress();
-
-    // Gardes : si le gabarit change, le parcours ne doit pas casser en silence
-    // juste avant la capture du lead.
-    const retour = document.getElementById('q-back-final');
-    if (retour) retour.addEventListener('click', () => {
-      this.currentIndex = this.activeQuestions.length - 1;
-      this.render();
+    if (window.posthog) posthog.capture('prediag_contact_vu', {
+      questions_affichees: this.getTotalActive()
     });
-
-    const formulaire = document.getElementById('q-contact-form');
-    if (formulaire) formulaire.addEventListener('submit', (e) => this.handleContactSubmit(e));
-  }
-
-  handleContactSubmit(e) {
-    e.preventDefault();
-    const fd = new FormData(e.target);
-
-    // Anti-bot honeypot
-    if (fd.get('website')) {
-      this.container.innerHTML = '<div style="text-align:center;padding:40px"><p>Merci.</p></div>';
-      return;
-    }
-
-    const contact = {
-      email: fd.get('email'),
-      name: fd.get('name'),
-      function: fd.get('function') || '',
-      optin_contact: fd.get('optin_contact') === 'on'
-    };
-
-    // Moteur de scoring (scoring.js)
-    const scoring = computeScoring(this.answers);
-    const themesParNiveau = grouperThemesParNiveau(scoring.themes);
-
-    // Analytics PostHog — aucune donnée personnelle (ni nom, ni email)
-    capturerEvenement('prediag_termine', {
-      indice: scoring.indice,
-      seuil: scoring.seuil,
-      // Tranches, pas de donnée personnelle : disent si le site attire la bonne cible
-      effectif: scoring.meta.effectif,
-      secteur: scoring.meta.secteur,
-      // Quels thèmes ressortent, pas seulement combien : oriente l'audit à proposer
-      themes_critiques: themesParNiveau.CRITIQUE.join(', ') || undefined,
-      themes_eleves: themesParNiveau.ELEVE.join(', ') || undefined,
-      nb_critique: themesParNiveau.CRITIQUE.length,
-      nb_eleve: themesParNiveau.ELEVE.length,
-      nb_moyen: themesParNiveau.MOYEN.length,
-      nb_reduit: themesParNiveau.REDUIT.length
-    });
-
-    envoyerAuWorker('prediag', {
-      name: contact.name,
-      email: contact.email,
-      function: contact.function,
-      optin: contact.optin_contact, // 'optin' = recontact commercial
-      scoring: resumerScoringPourNotion(scoring.indice, themesParNiveau)
-    }).catch(() => signalerEchecEnvoi(this.container));
-
-    this.afficherRapport(scoring, contact);
-  }
-
-  afficherRapport(scoring, contact) {
-    // On sort du container prediag (bg/padding hérités qui cassent la lisibilité)
-    // en basculant la section entière en "mode rapport".
-    const section = document.getElementById('prediag');
-    if (section) section.classList.add('section-report-mode');
-    document.body.classList.add('report-mode');
-
-    const progress = document.querySelector('.prediag-progress');
-    if (progress) progress.style.display = 'none';
-
-    this.container.innerHTML = generateReportHTML(scoring, contact);
-
-    // Scroll doux vers le haut du rapport, une fois le DOM peint
-    setTimeout(() => {
-      const el = document.getElementById('acompia-report');
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, DELAI_SCROLL_RAPPORT_MS);
-  }
-}
-
-const DELAI_SCROLL_RAPPORT_MS = 80;
-
-const NIVEAUX_ORDONNES = ['CRITIQUE', 'ELEVE', 'MOYEN', 'REDUIT'];
-const LIBELLE_NIVEAU = { CRITIQUE: 'CRITIQUE', ELEVE: 'ÉLEVÉ', MOYEN: 'MOYEN', REDUIT: 'RÉDUIT' };
-
-function grouperThemesParNiveau(themes) {
-  const parNiveau = { CRITIQUE: [], ELEVE: [], MOYEN: [], REDUIT: [] };
-  themes.forEach(t => {
-    if (parNiveau[t.level]) parNiveau[t.level].push(t.name);
-  });
-  return parNiveau;
-}
-
-/* Chaîne destinée à la colonne Notes de Notion.
-   Format : "Indice: 67 | CRITIQUE: ... | ÉLEVÉ: ... | MOYEN: ... | RÉDUIT: ..." */
-function resumerScoringPourNotion(indice, themesParNiveau) {
-  const parts = [`Indice: ${indice}`];
-  NIVEAUX_ORDONNES.forEach(niveau => {
-    const noms = themesParNiveau[niveau];
-    if (noms.length) parts.push(`${LIBELLE_NIVEAU[niveau]}: ${noms.join(', ')}`);
-  });
-  return parts.join(' | ');
-}
-
-function contactFormHTML() {
-  return `
+    // Formulaire coordonnées + 2 cases RGPD optionnelles (arbitrage #2)
+    const html = `
       <div class="q-card q-card-final">
         <div class="q-section-header">
           <span class="q-section-icon">📧</span>
           <span class="q-section-name">Recevoir votre rapport</span>
         </div>
-        <h3 class="q-text">Parfait — encore quelques informations.</h3>
+        <h3 class="q-text">Votre résultat est prêt.</h3>
         <p class="q-hint">Votre rapport personnalisé s'affichera à l'écran dès validation. Vous pourrez aussi l'imprimer ou le sauvegarder en PDF depuis votre navigateur.</p>
 
         <form class="q-contact-form" id="q-contact-form">
@@ -661,11 +564,11 @@ function contactFormHTML() {
             <input type="email" id="q-field-email" name="email" required placeholder="votre@entreprise.com">
           </div>
           <div class="q-form-group">
-            <label for="q-field-name">Nom et prénom *</label>
-            <input type="text" id="q-field-name" name="name" required placeholder="Jean Dupont">
+            <label for="q-field-name">Nom et prénom <span aria-hidden="true">(facultatif)</span></label>
+            <input type="text" id="q-field-name" name="name" placeholder="Jean Dupont">
           </div>
           <div class="q-form-group">
-            <label for="q-field-function">Votre fonction</label>
+            <label for="q-field-function">Fonction <span aria-hidden="true">(facultatif)</span></label>
             <select id="q-field-function" name="function">
               <option value="">Sélectionnez...</option>
               <option value="dirigeant">Dirigeant(e)</option>
@@ -673,6 +576,21 @@ function contactFormHTML() {
               <option value="daf">DAF / RAF</option>
               <option value="paie">Responsable paie</option>
               <option value="ec">Expert-comptable</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="q-form-group">
+            <label for="q-field-sector">Secteur <span aria-hidden="true">(facultatif)</span></label>
+            <select id="q-field-sector" name="sector">
+              <option value="">Sélectionnez...</option>
+              <option value="btp">BTP</option>
+              <option value="transport">Transport / logistique</option>
+              <option value="hcr">Hôtellerie / restauration</option>
+              <option value="commerce">Commerce / distribution</option>
+              <option value="services">Services / conseil</option>
+              <option value="industrie">Industrie</option>
+              <option value="sante">Santé / médico-social</option>
+              <option value="tech">Tech / numérique</option>
               <option value="autre">Autre</option>
             </select>
           </div>
@@ -687,7 +605,8 @@ function contactFormHTML() {
             <label for="q-website">Site web (à ne pas remplir)</label>
             <input type="text" id="q-website" name="website" tabindex="-1" autocomplete="off">
           </div>
-          <button type="submit" class="btn-primary q-submit">Afficher mon rapport →</button>
+          <button type="submit" class="btn-primary q-submit">Voir mon résultat →</button>
+          <p class="q-data-note">Vos données sont utilisées pour générer votre résultat et enregistrer votre demande. <a href="/politique-confidentialite.html" target="_blank" rel="noopener">Politique de confidentialité</a>.</p>
         </form>
 
         <div class="q-nav">
@@ -695,7 +614,125 @@ function contactFormHTML() {
           <div></div>
         </div>
       </div>
-  `;
+    `;
+
+    this.container.innerHTML = html;
+    this.updateProgress();
+
+    document.getElementById('q-back-final').addEventListener('click', () => {
+      this.currentIndex = this.activeQuestions.length - 1;
+      this.render();
+    });
+
+    document.getElementById('q-contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+
+      // Anti-bot honeypot
+      if (fd.get('website')) {
+        this.container.innerHTML = '<div style="text-align:center;padding:40px"><p>Merci.</p></div>';
+        return;
+      }
+
+      const contact = {
+        email: fd.get('email'),
+        name: fd.get('name'),
+        function: fd.get('function') || '',
+        sector: fd.get('sector') || '',
+        optin_contact: fd.get('optin_contact') === 'on'
+      };
+
+      // Moteur de scoring (scoring.js)
+      const scoring    = computeScoring(this.answers);
+      const reportHTML = generateReportHTML(scoring, contact);
+
+      // Construction de la synthèse destinée à la colonne Notes Notion.
+      const byLevel = { CRITIQUE: [], ELEVE: [], MOYEN: [], REDUIT: [] };
+      scoring.themes.forEach(t => {
+        if (byLevel[t.level]) byLevel[t.level].push(t.name);
+      });
+      const submissionId = (window.crypto && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : `prediag-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      const parts = [
+        `Soumission: ${submissionId}`,
+        `Effectif: ${this.answers['Q0.1'] || 'non-renseigne'}`,
+        `Secteur: ${contact.sector || 'non-renseigne'}`,
+        `Fonction: ${contact.function || 'non-renseignee'}`,
+        `Controle passe: ${this.answers['Q0.4'] || 'non-renseigne'}`,
+        `Flotte: ${this.answers['Q5.fleet'] || 'non-concernee'}`,
+        `Vigilance: ${scoring.seuilLabel}`
+      ];
+      if (byLevel.CRITIQUE.length) parts.push(`CRITIQUE: ${byLevel.CRITIQUE.join(', ')}`);
+      if (byLevel.ELEVE.length)    parts.push(`ÉLEVÉ: ${byLevel.ELEVE.join(', ')}`);
+      if (byLevel.MOYEN.length)    parts.push(`MOYEN: ${byLevel.MOYEN.join(', ')}`);
+      if (byLevel.REDUIT.length)   parts.push(`RÉDUIT: ${byLevel.REDUIT.join(', ')}`);
+      const scoringString = parts.join(' | ');
+
+      // Analytics PostHog — aucune donnée personnelle (ni nom, ni email)
+      if (window.posthog) posthog.capture('prediag_termine', {
+        vigilance: scoring.seuil,
+        nb_critique: byLevel.CRITIQUE.length,
+        nb_eleve: byLevel.ELEVE.length,
+        nb_moyen: byLevel.MOYEN.length,
+        nb_reduit: byLevel.REDUIT.length,
+        nb_questions: this.getTotalActive()
+      });
+
+      // Envoi au Cloudflare Worker (Notion)
+      // Le worker reçoit { type:'prediag', data:{ name, email, function, optin, scoring } }
+      const WORKER_URL = 'https://acompia-worker.she-aa1.workers.dev';
+      const pendingLead = {
+        type: 'prediag',
+        data: {
+          name: contact.name,
+          email: contact.email,
+          function: contact.function,
+          optin: contact.optin_contact,
+          scoring: scoringString
+        }
+      };
+      localStorage.setItem('acompia_prediag_pending', JSON.stringify({
+        payload: pendingLead,
+        stored_at: Date.now()
+      }));
+
+      fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pendingLead)
+      })
+      .then(r => {
+        if (!r.ok) throw new Error('Worker indisponible');
+        return r.json();
+      })
+      .then(result => {
+        if (!result || result.success !== true) throw new Error('Enregistrement refusé');
+        localStorage.removeItem('acompia_prediag_pending');
+        if (window.posthog) posthog.capture('prediag_enregistre');
+      })
+      .catch(() => {
+        if (window.posthog) posthog.capture('prediag_envoi_echec');
+      });
+
+      // Injection du rapport dans le DOM
+      // On sort du container prediag (bg/padding hérités qui cassent la lisibilité)
+      // en basculant la section entière en "mode rapport".
+      const section = document.getElementById('prediag');
+      if (section) section.classList.add('section-report-mode');
+      document.body.classList.add('report-mode');
+      // Masque la barre de progression
+      const progress = document.querySelector('.prediag-progress');
+      if (progress) progress.style.display = 'none';
+
+      this.container.innerHTML = reportHTML;
+      // Scroll doux vers le haut du rapport
+      setTimeout(() => {
+        const el = document.getElementById('acompia-report');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    });
+  }
 }
 
 /* ============================================================
@@ -705,39 +742,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('prediag-form');
   if (!form) return;
 
+  // Retente automatiquement un envoi qui n'a pas été confirmé lors de la
+  // visite précédente. La copie n'est supprimée qu'après confirmation.
+  const pendingRaw = localStorage.getItem('acompia_prediag_pending');
+  if (pendingRaw) {
+    try {
+      const stored = JSON.parse(pendingRaw);
+      const pendingLead = stored.payload || stored;
+      const storedAt = stored.stored_at || 0;
+      const MAX_PENDING_AGE = 7 * 24 * 60 * 60 * 1000;
+      if (storedAt && Date.now() - storedAt > MAX_PENDING_AGE) {
+        localStorage.removeItem('acompia_prediag_pending');
+        throw new Error('Sauvegarde expirée');
+      }
+      fetch('https://acompia-worker.she-aa1.workers.dev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pendingLead)
+      })
+      .then(r => {
+        if (!r.ok) throw new Error('Worker indisponible');
+        return r.json();
+      })
+      .then(result => {
+        if (!result || result.success !== true) throw new Error('Enregistrement refusé');
+        localStorage.removeItem('acompia_prediag_pending');
+        if (window.posthog) posthog.capture('prediag_enregistre', { reprise: true });
+      })
+      .catch(() => {
+        if (window.posthog) posthog.capture('prediag_envoi_echec', { reprise: true });
+      });
+    } catch (_) {
+      localStorage.removeItem('acompia_prediag_pending');
+    }
+  }
+
   const q = new Questionnaire('prediag-form', 'progress-bar', 'progress-text');
-
-  /* La vitrine (aperçu du rapport, benefits, CTA) écrite en dur dans index.html
-     reste affichée au chargement : on ne l'écrase plus.
-     Clic 1 (#start-prediag, dans la vitrine) : cadre juridique condensé.
-     Clic 2 (#prediag-go) : lancement du questionnaire. */
-  const INTRO_HTML = `
-    <div class="prediag-placeholder">
-      <div class="prediag-intro">
-        <h3>Avant de commencer</h3>
-        <p>Ce questionnaire évalue votre exposition aux principaux risques de redressement URSSAF à partir de vos réponses déclaratives.</p>
-        <p>Le résultat est indicatif. Il identifie des zones d'attention, il ne constitue ni un audit ni une conclusion juridique. Seul un audit portant sur les documents, les données de paie et les DSN permet de confirmer les risques identifiés.</p>
-        <p class="q-hint">Durée estimée : 4 à 6 minutes.</p>
-
-        <details class="rgpd-toggle">
-          <summary>Protection des données personnelles</summary>
-          <div class="rgpd-content">
-            <p>Le responsable de traitement est ComplyDB SAS, éditrice d'ACOMPIA. Les données renseignées (identité, coordonnées professionnelles, fonction, réponses au questionnaire) sont traitées afin de générer votre rapport de prédiagnostic. La base légale du traitement diagnostique est l'exécution de mesures précontractuelles demandées par la personne concernée (art. 6 §1 b RGPD).</p>
-            <p>La case « recontact » proposée en fin de parcours relève de votre consentement distinct (art. 6 §1 a RGPD) et ne conditionne pas la remise du rapport. Vos coordonnées sont conservées pendant une durée proportionnée à la finalité, puis archivées ou supprimées selon notre politique applicable.</p>
-            <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et, lorsque les conditions sont réunies, de portabilité. Vous pouvez également introduire une réclamation auprès de la CNIL. Contact : <a href="mailto:${ACOMPIA_CONFIG.contactEmail}" style="color:#4338CA">${ACOMPIA_CONFIG.contactEmail}</a>.</p>
-          </div>
-        </details>
-      </div>
-      <button class="btn-primary" id="prediag-go">J'ai compris, commencer →</button>
-    </div>
-  `;
 
   form.addEventListener('click', (e) => {
     if (e.target.closest('#start-prediag')) {
-      capturerEvenement('prediag_intro_vue');
-      form.innerHTML = INTRO_HTML;
-    } else if (e.target.closest('#prediag-go')) {
-      capturerEvenement('prediag_lance');
+      if (window.posthog) posthog.capture('prediag_lance');
       q.start();
     }
   });

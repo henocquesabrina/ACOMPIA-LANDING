@@ -9,7 +9,7 @@ L'ensemble du contenu juridique est rédigé et vérifié par Maître Sabrina He
 ## Outils gratuits
 
 - [Simulateur d'avantage en nature véhicule, barème 2026](https://www.acompia.com/outils/simulateur-avantage-en-nature-vehicule/) : calcul gratuit de l'avantage en nature d'un véhicule de fonction selon la méthode forfaitaire de l'arrêté du 25 février 2025. Mise à disposition à compter du 1er février 2025 : véhicule acheté 15 % du prix TTC (10 % au-delà de 5 ans), 20 %/15 % avec carburant ; véhicule loué 50 % du coût annuel TTC, 67 % avec carburant. Véhicule 100 % électrique éligible à l'éco-score : abattement de 70 % plafonné à 4 641,60 € par an en 2026. Ancien barème conservé pour les mises à disposition antérieures. Couvre salarié et dirigeant assimilé, prorata, participation du salarié, plafonnement de la location, calcul de flotte. Le calcul s'exécute dans le navigateur, aucune donnée n'est transmise. Auteure : Maître Sabrina Henocque Chiche, avocate au Barreau de Paris.
-- [Prédiagnostic URSSAF gratuit](https://www.acompia.com/outils/prediagnostic-urssaf/) : questionnaire de 29 questions en 9 blocs thématiques, rapport immédiat avec indice d'exposition URSSAF sur 100, les trois principaux thèmes à risque et un plan d'action priorisé. Gratuit, confidentiel, sans engagement.
+- [Prédiagnostic URSSAF gratuit](https://www.acompia.com/outils/prediagnostic-urssaf/) : questionnaire court de 3 minutes, résultat immédiat avec niveau de vigilance, principaux signaux et thèmes examinés. Gratuit, confidentiel, sans engagement.
 - [Sommaire des outils](https://www.acompia.com/outils/) : tous les outils gratuits ACOMPIA.
 
 ## Solution et tarifs
