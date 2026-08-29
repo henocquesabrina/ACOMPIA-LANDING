@@ -523,6 +523,15 @@ function disclaimerFinal() {
   `;
 }
 
+function echapperHTML(valeur) {
+  return String(valeur ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
 function generateReportHTML(scoring, contact) {
   const { seuilLabel, seuilColor, themes, meta } = scoring;
   const dateStr = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
@@ -536,7 +545,7 @@ function generateReportHTML(scoring, contact) {
           <div class="rpt-cover-date">${dateStr}</div>
         </div>
         <h2 class="rpt-cover-title">Prédiagnostic URSSAF</h2>
-        <p class="rpt-cover-sub">${contact && contact.name ? 'Préparé pour ' + contact.name : ''}${contact && contact.name ? ' · ' : ''}Confidentiel — non contractuel</p>
+        <p class="rpt-cover-sub">${contact && contact.name ? 'Préparé pour ' + echapperHTML(contact.name) : ''}${contact && contact.name ? ' · ' : ''}Confidentiel — non contractuel</p>
 
         <div class="rpt-vigilance" style="border-color:${seuilColor}">
           <div class="rpt-vigilance-label">Votre résultat</div>
