@@ -2,176 +2,226 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { chargerScripts } = require('./charger.js');
 
-const { computeScoring, generateReportHTML, premierePhrase, levelPill, ACOMPIA_CONFIG } =
+const { computeScoring, generateReportHTML, ACOMPIA_CONFIG } =
   chargerScripts('js/config.js', 'js/socle.js', 'js/scoring.js');
 
-const clesDe = (scoring) => scoring.themes.map(t => `${t.key}:${t.level}`).join(' ');
+const themeDe = (scoring, key) => scoring.themes.find(theme => theme.key === key);
+const nombreDe = (texte, motif) => (texte.match(motif) || []).length;
 
-test('sans aucune réponse, aucun thème n\'est activé et l\'indice est nul', () => {
-  const s = computeScoring({});
-  assert.equal(s.themes.length, 0);
-  assert.equal(s.indice, 0);
-  assert.equal(s.seuil, 'maitrisee');
+test('sans réponse, le résultat reste réduit et aucun thème artificiel n’est créé', () => {
+  const scoring = computeScoring({});
+
+  assert.equal(scoring.themes.length, 0);
+  assert.equal(scoring.seuil, 'reduite');
+  assert.equal(scoring.seuilLabel, 'Vigilance réduite');
 });
 
-test('un thème retient le niveau le plus élevé de ses verdicts', () => {
-  const s = computeScoring({
+test('le résultat global suit toujours le pire signal', () => {
+  const critiqueSeul = computeScoring({ 'Q1bis.1': 'oui', 'Q1bis.2': 'non' });
+  const critiqueEntoureDeSignauxReduits = computeScoring({
+    'Q1bis.1': 'oui', 'Q1bis.2': 'non',
+    'Q2.1a': 'accord',
+    'Q6.1': 'oui', 'Q6.2': 'revue-complete',
+    'Q4.2': 'oui-regulier',
+    'Q1.1': 'oui', 'Q1.4': 'oui-tous'
+  });
+
+  assert.equal(critiqueSeul.seuil, 'forte');
+  assert.equal(critiqueEntoureDeSignauxReduits.seuil, 'forte');
+  assert.equal(themeDe(critiqueEntoureDeSignauxReduits, 'titres-resto').level, 'CRITIQUE');
+});
+
+test('un thème retient le niveau le plus élevé de ses réponses', () => {
+  const scoring = computeScoring({
     'Q3.1': 'oui-reg',
-    'Q3.2': 'pas-toujours-decl', // CRITIQUE
-    'Q3.3': 'oui-tous',          // REDUIT
-    'Q3.5': 'oui-sans-exc'       // REDUIT
+    'Q3.2': 'pas-toujours-decl',
+    'Q3.3': 'oui-tous',
+    'Q3.5': 'oui-sans-exc'
   });
-  const bloc3 = s.themes.find(t => t.key === 'temps-travail');
-  assert.equal(bloc3.level, 'CRITIQUE');
-  assert.equal(bloc3.verdicts.length, 3);
+
+  const tempsTravail = themeDe(scoring, 'temps-travail');
+  assert.equal(tempsTravail.level, 'CRITIQUE');
+  assert.equal(tempsTravail.verdicts.length, 3);
 });
 
-test('les questions de filtre masquent les thèmes non concernés', () => {
+test('les questions de filtre ne créent pas de thème non concerné', () => {
   const sansTitres = computeScoring({ 'Q1bis.1': 'non', 'Q1bis.2': 'non' });
-  assert.ok(!sansTitres.themes.some(t => t.key === 'titres-resto'));
-
-  const sansVM = computeScoring({ 'Q0.1': '1-10', 'Q7.0': 'oui-seuil-long', 'Q7.1': 'non' });
-  assert.ok(!sansVM.themes.some(t => t.key === 'vm'));
-});
-
-test('versement mobilité : l\'assujettissement combine seuil d\'effectif et zone', () => {
-  const commun = { 'Q0.1': '50-249', 'Q7.1': 'non' };
-  const assujetti = computeScoring({ ...commun, 'Q7.0': 'oui-seuil-long', 'Q7.0bis': 'oui' });
-  const incertain = computeScoring({ ...commun, 'Q7.0': 'oui-recent', 'Q7.0bis': 'oui' });
-
-  assert.equal(assujetti.themes.find(t => t.key === 'vm').level, 'ELEVE');
-  assert.equal(incertain.themes.find(t => t.key === 'vm').level, 'MOYEN');
-});
-
-test('les seuils d\'exposition suivent les bornes documentées', () => {
-  const bandeDe = (indice) =>
-    indice <= 29 ? 'maitrisee' : indice <= 59 ? 'moderee' : 'forte';
-
-  const profils = [
-    { 'Q1bis.1': 'oui', 'Q1bis.2': 'non' },                                   // CRITIQUE seul
-    { 'Q1bis.1': 'oui', 'Q1bis.2': 'non', 'Q6.1': 'oui', 'Q6.2': 'revue-complete' },
-    { 'Q1bis.1': 'oui', 'Q1bis.2': 'nsp', 'Q6.1': 'oui', 'Q6.2': 'revue-complete' }
-  ];
-  profils.forEach((profil) => {
-    const s = computeScoring(profil);
-    assert.equal(s.seuil, bandeDe(s.indice));
+  const petiteEntreprise = computeScoring({
+    'Q0.1': '1-10', 'Q7.0bis': 'oui', 'Q7.1': 'non'
   });
-});
-
-test('les aggravants transversaux sont remontés dans meta', () => {
-  const s = computeScoring({ 'Q0.4': 'oui-redress', 'Q0.3bis': 'multi', 'Q0.1': '11-49', 'Q0.3': 'btp' });
-  assert.equal(s.meta.reiteration, true);
-  assert.equal(s.meta.multiSite, true);
-  assert.equal(s.meta.effectif, '11-49');
-  assert.equal(s.meta.secteur, 'btp');
-});
-
-/* CARACTÉRISATION — comportement actuel, volontairement figé pour rendre
-   visible une règle métier discutable : l'indice est normalisé par le nombre
-   de thèmes activés, si bien qu'un thème CRITIQUE isolé vaut 100/100 alors
-   que le même thème entouré de thèmes sains redescend sous le seuil
-   « Exposition maîtrisée ». À arbitrer côté métier. */
-test('CARACTÉRISATION : l\'indice est dilué par les thèmes sans risque', () => {
-  const seul = computeScoring({ 'Q1bis.1': 'oui', 'Q1bis.2': 'non' });
-  assert.equal(seul.indice, 100);
-  assert.equal(seul.seuil, 'forte');
-
-  const dilue = computeScoring({
-    'Q1bis.1': 'oui', 'Q1bis.2': 'non',        // CRITIQUE
-    'Q2.1a': 'accord',                          // REDUIT
-    'Q6.1': 'oui', 'Q6.2': 'revue-complete',    // REDUIT
-    'Q4.1': 'majorite', 'Q4.2': 'oui-regulier', // REDUIT
-    'Q1.1': 'oui', 'Q1.2': 'oui-tous', 'Q1.4': 'oui-tous' // REDUIT
+  const horsZoneOuSeuil = computeScoring({
+    'Q0.1': '50-249', 'Q7.0bis': 'non', 'Q7.1': 'non'
   });
-  assert.equal(clesDe(dilue).split(' ').filter(c => c.endsWith('CRITIQUE')).join(''), 'titres-resto:CRITIQUE');
-  assert.equal(dilue.indice, 20);
-  assert.equal(dilue.seuil, 'maitrisee'); // même thème CRITIQUE, verdict rassurant
+
+  assert.equal(themeDe(sansTitres, 'titres-resto'), undefined);
+  assert.equal(themeDe(petiteEntreprise, 'vm'), undefined);
+  assert.equal(themeDe(horsZoneOuSeuil, 'vm'), undefined);
 });
 
-test('le rapport reprend l\'indice, le seuil et l\'URL de rendez-vous configurée', () => {
-  const s = computeScoring({ 'Q1bis.1': 'oui', 'Q1bis.2': 'non' });
-  const html = generateReportHTML(s, { name: 'Jean Dupont' });
+test('le versement mobilité combine effectif, zone, durée du seuil et contrôle du taux', () => {
+  const expose = computeScoring({
+    'Q0.1': '50-249', 'Q7.0bis': 'oui', 'Q7.1': 'non'
+  });
+  const controle = computeScoring({
+    'Q0.1': '50-249', 'Q7.0bis': 'oui', 'Q7.1': 'oui'
+  });
+  const incertain = computeScoring({
+    'Q0.1': '50-249', 'Q7.0bis': 'nsp', 'Q7.1': 'nsp'
+  });
 
-  assert.ok(html.includes('id="acompia-report"'));
-  assert.ok(html.includes('>100<'));
-  assert.ok(html.includes('Exposition forte'));
+  assert.equal(themeDe(expose, 'vm').level, 'ELEVE');
+  assert.equal(themeDe(controle, 'vm').level, 'REDUIT');
+  assert.equal(themeDe(incertain, 'vm').level, 'ELEVE');
+});
+
+test('l’usage strictement professionnel du véhicule dépend de la preuve disponible', () => {
+  const prouve = computeScoring({ 'Q5.1': 'strict-pro', 'Q5.1b': 'oui-tous' });
+  const partiel = computeScoring({ 'Q5.1': 'strict-pro', 'Q5.1b': 'certains' });
+  const nonProuve = computeScoring({ 'Q5.1': 'strict-pro', 'Q5.1b': 'non' });
+
+  assert.equal(themeDe(prouve, 'aen-vehicule').level, 'REDUIT');
+  assert.equal(themeDe(partiel, 'aen-vehicule').level, 'ELEVE');
+  assert.equal(themeDe(nonProuve, 'aen-vehicule').level, 'CRITIQUE');
+});
+
+test('une DUE est évaluée sur l’écrit et sa remise individuelle', () => {
+  const complet = computeScoring({ 'Q2.1a': 'due', 'Q2.1b': 'oui-tous' });
+  const partiel = computeScoring({ 'Q2.1a': 'due', 'Q2.1b': 'certains' });
+  const absent = computeScoring({ 'Q2.1a': 'due', 'Q2.1b': 'non' });
+
+  assert.equal(themeDe(complet, 'compl-sante').level, 'REDUIT');
+  assert.equal(themeDe(partiel, 'compl-sante').level, 'ELEVE');
+  assert.equal(themeDe(absent, 'compl-sante').level, 'CRITIQUE');
+});
+
+test('les éléments de contexte sont conservés séparément du niveau de vigilance', () => {
+  const scoring = computeScoring({
+    'Q0.4': 'oui-redress', 'Q0.3bis': 'multi', 'Q0.1': '11-49', 'Q0.3': 'btp'
+  });
+
+  assert.equal(scoring.meta.reiteration, true);
+  assert.equal(scoring.meta.multiSite, true);
+  assert.equal(scoring.meta.effectif, '11-49');
+  assert.equal(scoring.meta.secteur, 'btp');
+});
+
+test('le rapport V2 fournit une décision, trois priorités et les huit thèmes', () => {
+  const scoring = computeScoring({
+    'Q0.1': '11-49', 'Q0.4': 'oui-obs',
+    'Q1.1': 'oui', 'Q1.4': 'certains',
+    'Q2.1a': 'due', 'Q2.1b': 'non', 'Q2.3': 'certains',
+    'Q3.3': 'partiel', 'Q3.5': 'principalement',
+    'Q4.2': 'ponctuel',
+    'Q5.1': 'strict-pro', 'Q5.1b': 'certains', 'Q5.fleet': '16-40',
+    'Q6.1': 'oui', 'Q6.2': 'revue-ant',
+    'Q7.0bis': 'oui', 'Q7.1': 'non'
+  });
+  const html = generateReportHTML(scoring, { name: 'Sophie Martin' });
+
+  assert.ok(html.includes('class="acompia-report rpt-v2"'));
+  assert.ok(html.includes('Votre ordre de vérification'));
+  assert.ok(html.includes('Vigilance forte'));
+  assert.ok(html.includes('<strong>1</strong><span>priorité forte</span>'));
+  assert.ok(html.includes('<strong>6</strong><span>à vérifier</span>'));
+  assert.ok(html.includes('<strong>1</strong><span>sans alerte haute</span>'));
+  assert.equal(nombreDe(html, /class="rpt-priority"/g), 3);
+  assert.equal(nombreDe(html, /<th scope="row">/g), 8);
+  assert.ok(html.includes('Plan d\'action sur 30 jours'));
+  assert.ok(html.includes('Ce que ce prédiagnostic ne vérifie pas'));
+  assert.ok(html.includes('Préparé pour Sophie Martin'));
+});
+
+test('les priorités sont classées par gravité puis par ordre métier', () => {
+  const scoring = computeScoring({
+    'Q1.1': 'oui', 'Q1.4': 'certains',
+    'Q2.1a': 'due', 'Q2.1b': 'non',
+    'Q3.3': 'partiel', 'Q3.5': 'oui-sans-exc',
+    'Q4.2': 'ponctuel'
+  });
+  const html = generateReportHTML(scoring, null);
+
+  const sante = html.indexOf('<h4>Complémentaire santé</h4>');
+  const frais = html.indexOf('<h4>Frais professionnels</h4>');
+  const temps = html.indexOf('<h4>Temps de travail et rémunérations</h4>');
+
+  assert.ok(sante !== -1 && frais !== -1 && temps !== -1);
+  assert.ok(sante < frais && frais < temps);
+  assert.equal(nombreDe(html, /class="rpt-priority"/g), 3);
+  assert.ok(!html.includes('<h4>Réduction générale dégressive unique</h4>'));
+});
+
+test('chaque priorité affiche sa règle, ses preuves, son action et sa fiabilité', () => {
+  const scoring = computeScoring({
+    'Q2.1a': 'due', 'Q2.1b': 'non', 'Q2.3': 'certains'
+  });
+  const html = generateReportHTML(scoring, null);
+
+  assert.ok(html.includes('Règle de contrôle'));
+  assert.ok(html.includes('Pièces à réunir'));
+  assert.ok(html.includes('Prochaine action'));
+  assert.ok(html.includes('Fiabilité du signal : Déclarative'));
+  assert.ok(html.includes('LEGIARTI000006745463'));
+  assert.ok(html.includes('LEGIARTI000029217401'));
+});
+
+test('une réponse incertaine produit une fiabilité faible', () => {
+  const scoring = computeScoring({ 'Q4.2': 'nsp' });
+  const html = generateReportHTML(scoring, null);
+
+  assert.ok(html.includes('Fiabilité du signal : Faible'));
+  assert.ok(html.includes('Une ou plusieurs réponses sont incertaines'));
+});
+
+test('le rapport ne réintroduit ni score sur 100 ni conclusion de conformité', () => {
+  const scoring = computeScoring({ 'Q2.1a': 'accord', 'Q2.3': 'oui-tous' });
+  const html = generateReportHTML(scoring, null);
+
+  assert.ok(!html.includes('rpt-gauge'));
+  assert.ok(!html.includes('/100'));
+  assert.ok(html.includes('ne signifie pas « conforme »'));
+  assert.ok(html.includes('ne constitue donc ni une validation de conformité'));
+});
+
+test('les recommandations des verdicts restent neutres et sans autopromotion répétée', () => {
+  const scoring = computeScoring({
+    'Q1.1': 'oui', 'Q1.4': 'certains',
+    'Q4.2': 'ponctuel'
+  });
+  const html = generateReportHTML(scoring, null);
+
+  assert.ok(!html.includes('ACOMPIA propose'));
+  assert.ok(!html.includes('ACOMPIA recommande'));
+});
+
+test('le rapport utilise les coordonnées partagées et reste valide sans contact', () => {
+  const html = generateReportHTML(computeScoring({}), null);
+
   assert.ok(html.includes(ACOMPIA_CONFIG.rdvURL));
   assert.ok(html.includes(ACOMPIA_CONFIG.contactEmail));
-  assert.ok(html.includes('Préparé pour Jean Dupont'));
+  assert.ok(html.includes('Aucune priorité forte détectée'));
+  assert.ok(html.includes('Confirmer votre résultat avec vos données'));
+  assert.ok(!html.includes('Préparé pour'));
 });
 
-test('le rapport échappe le nom saisi par le visiteur', () => {
-  const s = computeScoring({ 'Q1bis.1': 'oui', 'Q1bis.2': 'non' });
-  const html = generateReportHTML(s, { name: '<img src=x onerror=alert(1)>' });
+test('le nom du visiteur est toujours échappé dans le rapport', () => {
+  const scoring = computeScoring({ 'Q1bis.1': 'oui', 'Q1bis.2': 'non' });
+  const html = generateReportHTML(scoring, { name: '<img src=x onerror=alert(1)>' });
 
   assert.ok(!html.includes('<img src=x'));
   assert.ok(html.includes('&lt;img src=x onerror=alert(1)&gt;'));
 });
 
-test('le rapport reste valide sans coordonnées', () => {
-  const html = generateReportHTML(computeScoring({}), null);
-  assert.ok(html.includes('Aucun thème activé.'));
-  assert.ok(!html.includes('Préparé pour'));
-});
-
-test('un thème n\'affiche que les verdicts de son niveau maximum', () => {
-  const s = computeScoring({
-    'Q3.1': 'oui-reg', 'Q3.2': 'pas-toujours-decl', 'Q3.3': 'oui-tous'
+test('les sources officielles des priorités principales restent présentes', () => {
+  const scoring = computeScoring({
+    'Q1.1': 'oui', 'Q1.4': 'certains',
+    'Q2.1a': 'due', 'Q2.1b': 'non',
+    'Q3.3': 'partiel', 'Q3.5': 'principalement'
   });
-  const html = generateReportHTML(s, null);
-  assert.ok(html.includes('rpt-verdict-critique'));
-  assert.ok(!html.includes('rpt-verdict-reduit'));
-});
+  const html = generateReportHTML(scoring, null);
 
-test('l\'encart dispenses n\'apparaît que si les dispenses sont en alerte', () => {
-  const enAlerte = computeScoring({ 'Q2.1a': 'accord', 'Q2.3': 'non' });
-  const conforme = computeScoring({ 'Q2.1a': 'accord', 'Q2.3': 'oui-tous' });
-
-  assert.ok(generateReportHTML(enAlerte, null).includes('rpt-encart-law'));
-  assert.ok(!generateReportHTML(conforme, null).includes('rpt-encart-law'));
-});
-
-/* --- Résumé du Top 3 (F03) --- */
-
-test('le résumé s\'arrête à une vraie fin de phrase, pas sur une abréviation', () => {
-  const verdict = "Le dispositif forfait jours ne repose pas sur les trois conditions "
-    + "cumulatives exigées par l'art. L. 3121-65 C. trav. Les conventions sont inopposables.";
-  const resume = premierePhrase(verdict);
-
-  assert.ok(!resume.endsWith("l'art."), 'ne doit pas couper après « l\'art. »');
-  assert.ok(resume.includes('L. 3121-65'));
-});
-
-test('le résumé coupe bien sur une phrase ordinaire', () => {
-  assert.equal(
-    premierePhrase('Première phrase. Seconde phrase qui ne doit pas apparaître.'),
-    'Première phrase.'
-  );
-});
-
-test('un verdict d\'une seule phrase est rendu intégralement', () => {
-  const texte = 'Une seule phrase sans suite.';
-  assert.equal(premierePhrase(texte), texte);
-});
-
-test('aucun verdict de la matrice ne produit un résumé tronqué sur abréviation', () => {
-  const source = require('node:fs').readFileSync(
-    require('node:path').join(__dirname, '..', 'js', 'scoring.js'), 'utf8');
-  const textes = [...source.matchAll(/text: "((?:[^"\\]|\\.)*)"/g)].map(m => m[1]);
-
-  assert.ok(textes.length > 50, 'la matrice doit être lue correctement');
-  textes.forEach((texte) => {
-    assert.ok(!/\b(art|L|R|D|C|trav|ex|etc|al)\.$/.test(premierePhrase(texte)),
-      `résumé tronqué : ${premierePhrase(texte).slice(-60)}`);
-  });
-});
-
-/* --- Lisibilité des niveaux (F05) --- */
-
-test('chaque niveau de gravité a sa propre couleur de pastille', () => {
-  // La pastille est le seul indice visuel de gravité dans le rapport :
-  // deux niveaux de même couleur sont indiscernables pour le lecteur.
-  const couleurs = ['CRITIQUE', 'ELEVE', 'MOYEN', 'REDUIT']
-    .map(niveau => levelPill(niveau).match(/color:(#[0-9A-Fa-f]{6})/)[1]);
-  assert.equal(new Set(couleurs).size, 4, `couleurs partagées : ${couleurs.join(' ')}`);
+  assert.ok(html.includes('https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html'));
+  assert.ok(html.includes('LEGIARTI000006745463'));
+  assert.ok(html.includes('LEGIARTI000029217401'));
+  assert.ok(html.includes('LEGIARTI000036262805'));
+  assert.ok(html.includes('LEGIARTI000038836902'));
 });

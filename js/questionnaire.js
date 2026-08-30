@@ -377,11 +377,11 @@ const QUESTIONS = [
   },
   {
     id: 'Q7.0bis', section: 'Versement mobilité', sectionIcon: 'bus',
-    text: 'Savez-vous si des salariés sont rattachés à une zone où un versement mobilité est institué ?',
+    text: 'Dans une même zone, votre effectif moyen annuel a-t-il atteint au moins 11 salariés pendant cinq années civiles consécutives ?',
     type: 'single',
     condition: (a) => a['Q0.1'] && a['Q0.1'] !== '1-10',
     options: [
-      { value: 'oui', label: 'Oui' },
+      { value: 'oui', label: 'Oui, dans au moins une zone' },
       { value: 'non', label: 'Non' },
       { value: 'nsp', label: 'Je ne suis pas sûr(e)' }
     ]
@@ -432,6 +432,8 @@ class Questionnaire {
     this.activeQuestions = [];
     this.seenQuestions = new Set();
     this.answeredQuestions = new Set();
+    this.contactViewed = false;
+    this.progressPct = 0;
     this.computeActiveQuestions();
   }
 
@@ -448,14 +450,19 @@ class Questionnaire {
   updateProgress() {
     const total = this.getTotalActive();
     const answered = Object.keys(this.answers).length;
-    const pct = total === 0 ? 0 : Math.round((answered / total) * 100);
-    if (this.progressBar)  this.progressBar.style.setProperty('--progress', pct + '%');
-    if (this.progressText) this.progressText.textContent = `${Math.min(answered, total)} / ${total}`;
+    const rawPct = total === 0 ? 0 : Math.round((answered / total) * 100);
+    this.progressPct = Math.max(this.progressPct, Math.min(rawPct, 99));
+    if (this.progressBar)  this.progressBar.style.setProperty('--progress', this.progressPct + '%');
+    if (this.progressText) this.progressText.textContent = `${this.progressPct}%`;
   }
 
   start() {
     this.currentIndex = 0;
     this.answers = {};
+    this.seenQuestions = new Set();
+    this.answeredQuestions = new Set();
+    this.contactViewed = false;
+    this.progressPct = 0;
     this.computeActiveQuestions();
     this.render();
   }
@@ -485,7 +492,7 @@ class Questionnaire {
     }
 
     html += `<div class="q-card">
-      <div class="q-number">Question ${this.currentIndex + 1} / ${this.getTotalActive()}</div>
+      <div class="q-number">Question ${this.currentIndex + 1}</div>
       <h3 class="q-text">${q.text}</h3>`;
 
     if (q.hint) html += `<p class="q-hint">${q.hint}</p>`;
@@ -545,9 +552,13 @@ class Questionnaire {
   }
 
   renderContactForm() {
-    if (window.posthog) posthog.capture('prediag_contact_vu', {
-      questions_affichees: this.getTotalActive()
-    });
+    if (!this.contactViewed) {
+      this.contactViewed = true;
+      if (window.posthog) posthog.capture('prediag_contact_vu', {
+        questions_affichees: this.getTotalActive()
+      });
+    }
+    this.progressPct = 100;
     // Formulaire coordonnées + 2 cases RGPD optionnelles (arbitrage #2)
     const html = `
       <div class="q-card q-card-final">
@@ -741,6 +752,10 @@ class Questionnaire {
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('prediag-form');
   if (!form) return;
+
+  if (window.posthog) posthog.capture('prediag_intro_vue', {
+    version: 'prediag_decision_v2'
+  });
 
   // Retente automatiquement un envoi qui n'a pas été confirmé lors de la
   // visite précédente. La copie n'est supprimée qu'après confirmation.

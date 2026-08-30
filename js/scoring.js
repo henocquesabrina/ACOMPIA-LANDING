@@ -250,7 +250,7 @@ function verdictQ6_2(v) {
   }
 }
 
-// Bloc 7 — VM : logique ternaire (Q7.0 × Q7.0bis × Q7.1)
+// Bloc 7 : Q7.0bis combine le seuil dans une zone et sa durée de franchissement.
 function verdictBloc7(a) {
   if (!a['Q0.1'] || a['Q0.1'] === '1-10') return null;
   if (!a['Q7.0bis'] || a['Q7.0bis'] === 'non') return null;
@@ -532,176 +532,360 @@ function echapperHTML(valeur) {
     .replaceAll("'", '&#039;');
 }
 
+const REPORT_THEME_META = {
+  'frais-pro': {
+    title: 'Frais professionnels',
+    rule: "Les remboursements au réel supposent des justificatifs. Les allocations forfaitaires restent liées à des circonstances professionnelles établies et aux limites applicables.",
+    documents: 'Notes de frais, justificatifs, cartes grises, relevés kilométriques, politique de remboursement.',
+    action: 'Tester un échantillon de remboursements et rapprocher les pièces de la paie.',
+    reducedAction: 'Conserver un échantillon probant et actualiser la politique de frais.',
+    sourceLabel: 'Urssaf, frais professionnels',
+    sourceUrl: 'https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html',
+    questions: ['Q1.1', 'Q1.2', 'Q1.4', 'Q1.5']
+  },
+  'titres-resto': {
+    title: 'Titres-restaurant',
+    rule: "L'exonération suppose notamment une participation patronale comprise entre 50 % et 60 %, plafonnée à 7,32 € par titre en 2026, et un repas compris dans l'horaire journalier.",
+    documents: "Paramétrage paie, factures de l'émetteur, données de présence, règles d'attribution.",
+    action: "Rapprocher un mois d'attributions des jours réellement travaillés et du paramétrage paie.",
+    reducedAction: "Conserver le contrôle mensuel des absences et du plafond d'exonération.",
+    sourceLabel: 'Urssaf, titres-restaurant 2026',
+    sourceUrl: 'https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html',
+    questions: ['Q1bis.1', 'Q1bis.2']
+  },
+  'compl-sante': {
+    title: 'Complémentaire santé',
+    rule: "Une décision unilatérale doit être constatée par écrit et remise à chaque intéressé. Chaque dispense doit entrer dans un cas autorisé et l'employeur doit pouvoir produire la demande du salarié.",
+    documents: 'Acte fondateur, contrat assureur, notices, preuves de remise, demandes de dispense et justificatifs.',
+    action: 'Reconstituer le dossier du régime et vérifier un dossier complet par type de dispense.',
+    reducedAction: "Archiver l'acte, les preuves de remise et les demandes de dispense à jour.",
+    sourceLabel: 'Code de la sécurité sociale, art. L. 911-1',
+    sourceUrl: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006745463',
+    sourceLabel2: 'Code de la sécurité sociale, art. R. 242-1-6',
+    sourceUrl2: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029217401',
+    questions: ['Q2.1a', 'Q2.1b', 'Q2.3']
+  },
+  'temps-travail': {
+    title: 'Temps de travail et rémunérations',
+    rule: "Le forfait jours exige un fondement collectif, une convention individuelle et un suivi effectif de la charge. Les éléments de rémunération doivent être traités dans le circuit déclaratif approprié.",
+    documents: 'Accord collectif, conventions individuelles, suivis de charge, entretiens, relevés horaires, bulletins et DSN.',
+    action: 'Sélectionner un échantillon de salariés et vérifier la chaîne accord, contrat, suivi, paie et DSN.',
+    reducedAction: 'Maintenir un contrôle annuel du suivi de charge et du rapprochement paie comptabilité.',
+    sourceLabel: 'Code du travail, art. L. 3121-64',
+    sourceUrl: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262805',
+    sourceLabel2: 'Code de la sécurité sociale, art. L. 242-1',
+    sourceUrl2: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038836902',
+    questions: ['Q3.1', 'Q3.2', 'Q3.3', 'Q3.4', 'Q3.5']
+  },
+  'rgdu': {
+    title: 'Réduction générale dégressive unique',
+    rule: "Le calcul est annuel et dépend notamment de la rémunération éligible, du Smic de référence, du temps de travail, des absences et des règles de cumul.",
+    documents: 'Fichier de calcul, paramétrage paie, bulletins, temps de travail, absences et DSN.',
+    action: 'Recalculer trois dossiers contrastés et documenter chaque écart avec la DSN.',
+    reducedAction: 'Conserver un recalcul annuel indépendant sur un échantillon documenté.',
+    sourceLabel: 'Urssaf, RGDU 2026',
+    sourceUrl: 'https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html',
+    questions: ['Q4.2']
+  },
+  'aen-vehicule': {
+    title: 'Avantage en nature véhicule',
+    rule: "L'usage privé d'un véhicule mis à disposition constitue un avantage en nature. Son évaluation dépend notamment de la date d'attribution, du mode réel ou forfaitaire et de la prise en charge du carburant.",
+    documents: "Liste de flotte, dates d'attribution, contrats, factures, cartes carburant, règles d'usage et preuves d'interdiction d'usage privé.",
+    action: "Qualifier l'usage de chaque véhicule et recalculer un véhicule représentatif par régime applicable.",
+    reducedAction: "Conserver des éléments probants sur l'usage professionnel et les revoir à chaque attribution.",
+    sourceLabel: 'Urssaf, avantage en nature véhicule',
+    sourceUrl: 'https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html',
+    questions: ['Q5.1', 'Q5.1b', 'Q5.2', 'Q5.fleet']
+  },
+  'ruptures': {
+    title: 'Ruptures et transactions',
+    rule: "Le traitement social dépend de la nature de l'indemnité et de ses plafonds. En 2026, la part exonérée de cotisations d'une indemnité de rupture conventionnelle supporte une contribution patronale de 40 %.",
+    documents: 'Convention de rupture, protocole transactionnel, calculs, bulletins, DSN et justificatifs du préjudice invoqué.',
+    action: 'Rejouer le calcul social et fiscal de chaque dossier récent à partir des pièces signées.',
+    reducedAction: 'Conserver une fiche de calcul validée pour chaque rupture ou transaction.',
+    sourceLabel: 'Code de la sécurité sociale, art. L. 137-12',
+    sourceUrl: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053282399',
+    questions: ['Q6.1', 'Q6.2']
+  },
+  'vm': {
+    title: 'Versement mobilité',
+    rule: "L'assujettissement dépend notamment de l'effectif dans la zone, du lieu de travail et du franchissement du seuil pendant cinq années civiles consécutives. Le taux varie selon la zone.",
+    documents: "Effectifs par zone, lieux d'affectation, registre du personnel, historique du seuil, taux appliqués et DSN.",
+    action: "Comparer les lieux d'affectation et les taux déclarés avec le moteur officiel Urssaf.",
+    reducedAction: "Recontrôler les taux à chaque évolution de zone, d'effectif ou d'affectation.",
+    sourceLabel: 'Urssaf, versement mobilité',
+    sourceUrl: 'https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/versement-mobilite.html',
+    questions: ['Q7.0bis', 'Q7.1']
+  }
+};
+
+const REPORT_THEME_ORDER = [
+  'frais-pro', 'titres-resto', 'compl-sante', 'temps-travail',
+  'rgdu', 'aen-vehicule', 'ruptures', 'vm'
+];
+
+function reportLevelPill(level) {
+  const labels = {
+    CRITIQUE: 'Priorité forte',
+    ELEVE: 'À vérifier',
+    MOYEN: 'À surveiller',
+    REDUIT: 'Signal réduit'
+  };
+  return `<span class="rpt-pill rpt-pill-${level.toLowerCase()}">${labels[level] || 'Non classé'}</span>`;
+}
+
+function reportCleanVerdict(text) {
+  return String(text || '')
+    .replace(/\s*ACOMPIA (?:propose|recommande|peut réaliser)[^.]*\./g, '')
+    .trim();
+}
+
+function reportConfidence(theme, answers) {
+  const meta = REPORT_THEME_META[theme.key];
+  const hasUnknown = meta && meta.questions.some(id => answers && answers[id] === 'nsp');
+  return hasUnknown
+    ? { label: 'Faible', detail: "Une ou plusieurs réponses sont incertaines. Les pièces doivent être retrouvées avant de conclure." }
+    : { label: 'Déclarative', detail: "Le signal repose sur vos réponses. Aucun document n'a encore été contrôlé." };
+}
+
 function generateReportHTML(scoring, contact) {
-  const { seuilLabel, seuilColor, themes, meta } = scoring;
+  const { seuilLabel, themes, meta, answers } = scoring;
+  const rdvURL = window.ACOMPIA_CONFIG && window.ACOMPIA_CONFIG.rdvURL
+    ? window.ACOMPIA_CONFIG.rdvURL
+    : 'https://calendly.com/she-acompia/30min';
   const dateStr = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
-
-  // ========== Bloc A — Couverture ==========
-  const blocA = `
-    <section class="rpt-block rpt-blockA">
-      <div class="rpt-cover">
-        <div class="rpt-cover-top">
-          <div class="rpt-cover-brand">ACOMPIA</div>
-          <div class="rpt-cover-date">${dateStr}</div>
-        </div>
-        <h2 class="rpt-cover-title">Prédiagnostic URSSAF</h2>
-        <p class="rpt-cover-sub">${contact && contact.name ? 'Préparé pour ' + echapperHTML(contact.name) : ''}${contact && contact.name ? ' · ' : ''}Confidentiel — non contractuel</p>
-
-        <div class="rpt-vigilance" style="border-color:${seuilColor}">
-          <div class="rpt-vigilance-label">Votre résultat</div>
-          <div class="rpt-vigilance-value" style="color:${seuilColor}">${seuilLabel}</div>
-          <p>${themes.length} thème${themes.length > 1 ? 's' : ''} évalué${themes.length > 1 ? 's' : ''} à partir de vos réponses.</p>
-        </div>
-
-        <div class="rpt-cover-intro">
-          <p>Ce résultat identifie des signaux de vigilance à partir de vos réponses. Une revue des documents et des DSN est nécessaire pour confirmer l'exposition réelle.</p>
-        </div>
-      </div>
-    </section>
-  `;
-
-  // ========== Bloc B — Synthèse dirigeant ==========
-  // Trie les thèmes par priorité de niveau
   const prio = ['CRITIQUE', 'ELEVE', 'MOYEN', 'REDUIT'];
   const themesSorted = [...themes].sort((x, y) => prio.indexOf(x.level) - prio.indexOf(y.level));
-  const top3 = themesSorted.filter(t => t.level === 'CRITIQUE' || t.level === 'ELEVE').slice(0, 3);
+  const priorityThemes = themesSorted.filter(t => t.level !== 'REDUIT').slice(0, 3);
+  const criticalCount = themes.filter(t => t.level === 'CRITIQUE').length;
+  const checkCount = themes.filter(t => t.level === 'ELEVE' || t.level === 'MOYEN').length;
+  const noHighAlertCount = Math.max(0, REPORT_THEME_ORDER.length - criticalCount - checkCount);
 
-  let accroche = "";
-  if (scoring.seuil === 'forte') accroche = "Un signal de vigilance forte ressort de vos réponses. Une vérification ciblée est recommandée.";
-  else if (scoring.seuil === 'moderee') accroche = "Plusieurs points nécessitent une vérification ciblée avant de conclure.";
-  else accroche = "Aucun signal élevé ne ressort des thèmes examinés. Une vérification documentaire reste nécessaire pour confirmer ce résultat.";
-
-  let top3HTML = '';
-  if (top3.length) {
-    top3HTML = '<ol class="rpt-top3">' + top3.map(t => {
-      // On prend le premier verdict dont le niveau correspond au niveau max du thème
-      // (sinon on tombait sur un verdict RÉDUIT contradictoire avec le pill CRITIQUE)
-      const v = t.verdicts.find(v => v.level === t.level) || t.verdicts[0];
-      return `
-      <li>
-        <div class="rpt-top3-title">${t.name} ${levelPill(t.level)}</div>
-        <p>${v.text}</p>
-      </li>
-    `;
-    }).join('') + '</ol>';
-  } else {
-    top3HTML = '<p class="rpt-muted">Aucun thème ne ressort à un niveau ÉLEVÉ ou CRITIQUE à ce stade.</p>';
+  let decisionText = "Aucun signal élevé ne ressort de vos réponses. Ce résultat reste à confirmer par un contrôle documentaire ciblé.";
+  if (scoring.seuil === 'forte') {
+    decisionText = "Au moins un signal de vigilance forte ressort. Commencez par vérifier les faits et les pièces de la première priorité.";
+  } else if (scoring.seuil === 'moderee') {
+    decisionText = "Des points nécessitent une vérification ciblée. Leur existence et leur portée doivent être confirmées avant toute décision.";
   }
 
-  const blocB = `
-    <section class="rpt-block rpt-blockB">
-      <h3 class="rpt-block-title">Synthèse dirigeant</h3>
-      <p class="rpt-accroche">${accroche}</p>
+  const header = `
+    <section class="rpt-block rpt-report-head">
+      <div class="rpt-cover-top">
+        <div class="rpt-cover-brand">ACOMPIA</div>
+        <div class="rpt-cover-date">${dateStr}</div>
+      </div>
+      <p class="rpt-eyebrow">Prédiagnostic URSSAF</p>
+      <h2 class="rpt-cover-title">Votre ordre de vérification</h2>
+      <p class="rpt-cover-sub">${contact && contact.name ? 'Préparé pour ' + echapperHTML(contact.name) + '. ' : ''}Restitution confidentielle et indicative.</p>
 
-      ${meta.reiteration ? `<div class="rpt-aggrav"><strong>Aggravant transversal — Réitération.</strong> Un contrôle URSSAF antérieur a donné lieu à observation ou redressement. En cas de persistance d'une pratique déjà observée, une majoration de 10 % peut s'appliquer (art. L. 243-7-6 CSS).</div>` : ''}
-      ${meta.multiSite ? `<div class="rpt-aggrav"><strong>Multi-sites.</strong> Plusieurs lieux d'affectation peuvent fausser un taux unique de versement mobilité. Vérification dédiée recommandée.</div>` : ''}
-
-      <h4 class="rpt-sub">Vos principaux signaux</h4>
-      ${top3HTML}
-      ${top3.length ? `<p class="rpt-muted rpt-see-detail">Ces signaux reposent sur vos réponses déclaratives. Ils doivent être confirmés à partir de vos documents et de vos DSN.</p>` : ''}
-    </section>
-  `;
-
-  // ========== Bloc C — Analyse détaillée ==========
-  // RÈGLE : pour chaque thème, on n'affiche que les verdicts du niveau max du thème.
-  // Un thème CRITIQUE n'affiche pas ses sous-réponses RÉDUIT ou MOYEN (incohérence visuelle
-  // + bruit pour le dirigeant). Exception : si le thème est RÉDUIT, on affiche le verdict
-  // rassurant pour montrer que c'est maîtrisé.
-  let blocCInner = '';
-  themesSorted.forEach(t => {
-    const verdictsFiltres = t.verdicts.filter(v => v.level === t.level);
-    const verdictsHTML = verdictsFiltres.map(v => `
-      <p class="rpt-verdict rpt-verdict-${v.level.toLowerCase()}">${v.text}</p>
-    `).join('');
-
-    let chiffrageHTML = '';
-    if (t.level !== 'REDUIT') {
-      chiffrageHTML = `<p class="rpt-chiffrage rpt-chiffrage-qual"><em>Exposition non chiffrable à ce stade — un audit ciblé permet de quantifier précisément l'enjeu à partir de vos données réelles (montants, volumes, effectifs concernés).</em></p>`;
-    }
-
-    // Encart dispenses si thème complémentaire santé ressort avec alerte sur les dispenses
-    const extra = (t.key === 'compl-sante' && t.showDispensesBox) ? encartDispenses() : '';
-
-    blocCInner += `
-      <article class="rpt-theme">
-        <header class="rpt-theme-header">
-          <h4>${t.name}</h4>
-          ${levelPill(t.level)}
-        </header>
-        <div class="rpt-theme-body">
-          ${verdictsHTML}
-          ${chiffrageHTML}
-          ${extra}
+      <div class="rpt-decision">
+        <div>
+          <span class="rpt-decision-label">Décision en un coup d'œil</span>
+          <strong>${echapperHTML(seuilLabel)}</strong>
         </div>
-      </article>
+        <p>${decisionText}</p>
+      </div>
+
+      <div class="rpt-summary-grid" aria-label="Synthèse des signaux">
+        <div class="rpt-summary-card rpt-summary-critical"><strong>${criticalCount}</strong><span>priorité forte</span></div>
+        <div class="rpt-summary-card rpt-summary-check"><strong>${checkCount}</strong><span>à vérifier</span></div>
+        <div class="rpt-summary-card rpt-summary-calm"><strong>${noHighAlertCount}</strong><span>sans alerte haute</span></div>
+      </div>
+      <p class="rpt-method-note">Lecture correcte : il s'agit d'un filtre déclaratif. « Sans alerte haute » ne signifie pas « conforme ».</p>
+    </section>
+  `;
+
+  const contextItems = [];
+  if (meta && meta.reiteration) {
+    contextItems.push("Un contrôle antérieur est déclaré. Les observations et régularisations de ce contrôle doivent être examinées en premier.");
+  }
+  if (meta && meta.multiSite) {
+    contextItems.push("Plusieurs sites sont déclarés. Le lieu réel d'affectation doit être rapproché du versement mobilité appliqué en DSN.");
+  }
+  const contextBlock = contextItems.length ? `
+    <div class="rpt-context">
+      <strong>Contexte à intégrer</strong>
+      <ul>${contextItems.map(item => `<li>${item}</li>`).join('')}</ul>
+    </div>
+  ` : '';
+
+  let prioritiesHTML = '';
+  if (priorityThemes.length) {
+    prioritiesHTML = priorityThemes.map((theme, index) => {
+      const themeMeta = REPORT_THEME_META[theme.key];
+      const verdict = theme.verdicts.find(v => v.level === theme.level) || theme.verdicts[0];
+      const confidence = reportConfidence(theme, answers);
+      return `
+        <article class="rpt-priority">
+          <header class="rpt-priority-head">
+            <span class="rpt-priority-number">${String(index + 1).padStart(2, '0')}</span>
+            <div><span class="rpt-priority-label">Priorité ${index + 1}</span><h4>${themeMeta.title}</h4></div>
+            ${reportLevelPill(theme.level)}
+          </header>
+          <div class="rpt-priority-signal">
+            <span>Ce que votre réponse indique</span>
+            <p>${echapperHTML(reportCleanVerdict(verdict && verdict.text))}</p>
+          </div>
+          <div class="rpt-priority-grid">
+            <div class="rpt-detail-card">
+              <span>Règle de contrôle</span>
+              <p>${themeMeta.rule}</p>
+              <div class="rpt-source-list">
+                <a href="${themeMeta.sourceUrl}" target="_blank" rel="noopener noreferrer">${themeMeta.sourceLabel} ↗</a>
+                ${themeMeta.sourceUrl2 ? `<a href="${themeMeta.sourceUrl2}" target="_blank" rel="noopener noreferrer">${themeMeta.sourceLabel2} ↗</a>` : ''}
+              </div>
+            </div>
+            <div class="rpt-detail-card">
+              <span>Pièces à réunir</span>
+              <p>${themeMeta.documents}</p>
+            </div>
+            <div class="rpt-detail-card rpt-detail-action">
+              <span>Prochaine action</span>
+              <p>${themeMeta.action}</p>
+            </div>
+            <div class="rpt-detail-card">
+              <span>Fiabilité du signal : ${confidence.label}</span>
+              <p>${confidence.detail}</p>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+  } else {
+    prioritiesHTML = `
+      <div class="rpt-no-priority">
+        <strong>Aucune priorité forte détectée.</strong>
+        <p>Le questionnaire n'a pas déclenché de signal élevé. La vue par thème ci-dessous indique les contrôles de maintien à conserver.</p>
+      </div>
     `;
-  });
+  }
 
-  const blocC = `
-    <section class="rpt-block rpt-blockC">
-      <h3 class="rpt-block-title">Analyse détaillée par thème</h3>
-      ${themesSorted.length ? blocCInner : '<p class="rpt-muted">Aucun thème activé.</p>'}
+  const priorities = `
+    <section class="rpt-block rpt-priorities">
+      <div class="rpt-section-head">
+        <span>01</span>
+        <div><h3>Vos priorités</h3><p>Chaque signal est relié à une règle, aux preuves attendues et à une action.</p></div>
+      </div>
+      ${contextBlock}
+      ${prioritiesHTML}
     </section>
   `;
 
-  // ========== Bloc D — Passage à l'action ==========
-  const aenTheme = themes.find(t => t.key === 'aen-vehicule');
-  const showANV = aenTheme && (aenTheme.level === 'ELEVE' || aenTheme.level === 'CRITIQUE');
+  const themeRows = REPORT_THEME_ORDER.map(key => {
+    const themeMeta = REPORT_THEME_META[key];
+    const theme = themes.find(item => item.key === key);
+    if (!theme) {
+      return `
+        <tr>
+          <th scope="row">${themeMeta.title}</th>
+          <td><span class="rpt-pill rpt-pill-neutral">Non déclenché</span></td>
+          <td>Non concerné selon vos réponses ou question conditionnelle non ouverte.</td>
+          <td>Aucune action prioritaire. Conserver les éléments justificatifs usuels.</td>
+        </tr>
+      `;
+    }
+    const confidence = reportConfidence(theme, answers);
+    const action = theme.level === 'REDUIT' ? themeMeta.reducedAction : themeMeta.action;
+    return `
+      <tr>
+        <th scope="row">${themeMeta.title}</th>
+        <td>${reportLevelPill(theme.level)}</td>
+        <td>${confidence.label}</td>
+        <td>${action}</td>
+      </tr>
+    `;
+  }).join('');
 
-  // Recos pratiques personnalisées selon les thèmes CRITIQUE/ÉLEVÉ du prospect
-  const recosParTheme = {
-    'frais-pro':     "<strong>Frais professionnels.</strong> Reconstituer les justificatifs (cartes grises, relevés kilométriques, notes de frais) sur 3 ans, vérifier l'usage des barèmes URSSAF et tracer la DFS si applicable.",
-    'titres-resto':  "<strong>Titres-restaurant.</strong> Auditer le paramétrage paie : participation employeur 50–60 %, un titre par repas dans l'horaire journalier, part patronale ≤ 7,32 € (2026). Rectifier si dépassement.",
-    'compl-sante':   "<strong>Complémentaire santé — dispenses.</strong> Vérifier l'existence d'un acte fondateur valide (DUE, accord, référendum) couvrant chaque cas, collecter les demandes signées à jour et leurs justificatifs, confirmer l'éligibilité aux dispenses d'ordre public.",
-    'temps-travail': "<strong>Temps de travail et rémunérations.</strong> Sécuriser les forfaits jours (conventions individuelles, suivi charge, entretiens annuels), documenter les heures supplémentaires et basculer toute rémunération hors paie dans le circuit DSN.",
-    'rgdu':          "<strong>RGDU / Réduction générale.</strong> Faire recalculer la réduction sur 3 ans (paramétrage, SMIC, primes, absences) et documenter les écarts par rapport à la DSN.",
-    'aen-vehicule':  "<strong>Avantage en nature véhicule.</strong> Recenser la flotte, qualifier l'usage (professionnel strict vs mixte), choisir le mode d'évaluation (réel ou forfait) et produire des attestations d'usage signées.",
-    'ruptures':      "<strong>Ruptures et transactions.</strong> Reconstituer les protocoles transactionnels, vérifier la ventilation indemnités imposables / non imposables et justifier le caractère indemnitaire des sommes versées.",
-    'vm':            "<strong>Versement mobilité.</strong> Contrôler le taux applicable par commune d'affectation réelle des salariés et, en multi-sites, ventiler les déclarations DSN en conséquence."
-  };
+  const matrix = `
+    <section class="rpt-block rpt-matrix-block">
+      <div class="rpt-section-head">
+        <span>02</span>
+        <div><h3>Vue complète des thèmes</h3><p>Une ligne absente des priorités reste visible ici.</p></div>
+      </div>
+      <div class="rpt-table-wrap">
+        <table class="rpt-matrix">
+          <thead><tr><th>Thème</th><th>Résultat</th><th>Fiabilité</th><th>Action</th></tr></thead>
+          <tbody>${themeRows}</tbody>
+        </table>
+      </div>
+    </section>
+  `;
 
-  const themesActifs = themesSorted.filter(t => t.level === 'CRITIQUE' || t.level === 'ELEVE');
-  const recosHTML = themesActifs
-    .slice(0, 4)
-    .map(t => recosParTheme[t.key])
-    .filter(Boolean)
-    .map(txt => `<li>${txt}</li>`)
-    .join('');
+  let planSteps;
+  if (priorityThemes.length) {
+    const first = REPORT_THEME_META[priorityThemes[0].key];
+    const second = REPORT_THEME_META[(priorityThemes[1] || priorityThemes[0]).key];
+    const third = REPORT_THEME_META[(priorityThemes[2] || priorityThemes[priorityThemes.length - 1]).key];
+    planSteps = [
+      { period: 'Jours 1 à 7', title: `Documenter ${first.title.toLowerCase()}`, text: first.documents },
+      { period: 'Jours 8 à 15', title: `Tester ${second.title.toLowerCase()}`, text: second.action },
+      { period: 'Jours 16 à 30', title: 'Décider et tracer', text: `${third.action} Formaliser ensuite la décision, le responsable et la date de contrôle.` }
+    ];
+  } else {
+    planSteps = [
+      { period: 'Jours 1 à 7', title: 'Conserver les preuves', text: 'Centraliser les actes, paramétrages et contrôles qui soutiennent les réponses rassurantes.' },
+      { period: 'Jours 8 à 15', title: 'Tester un échantillon', text: 'Choisir un thème sensible pour votre activité et vérifier quelques dossiers réels.' },
+      { period: 'Jours 16 à 30', title: 'Planifier la prochaine revue', text: 'Nommer un responsable et fixer une date de contrôle des paramètres susceptibles d\'évoluer.' }
+    ];
+  }
+  const plan = `
+    <section class="rpt-block rpt-plan-block">
+      <div class="rpt-section-head">
+        <span>03</span>
+        <div><h3>Plan d'action sur 30 jours</h3><p>Un ordre simple pour passer du signal à la preuve.</p></div>
+      </div>
+      <ol class="rpt-plan">${planSteps.map(step => `
+        <li><span>${step.period}</span><div><strong>${step.title}</strong><p>${step.text}</p></div></li>
+      `).join('')}</ol>
+    </section>
+  `;
 
-  const stepsIntro = themesActifs.length
-    ? `<li><strong>Actions prioritaires sur vos thèmes à risque.</strong> Voici, <em>à titre non exhaustif</em>, quelques chantiers concrets à engager en priorité. Un audit permettra notamment d'affiner ces recommandations en fonction de votre situation précise et de votre documentation réelle :<ul class="rpt-substeps">${recosHTML}</ul><p class="rpt-substeps-note">Cette liste est indicative. D'autres axes peuvent émerger selon le contexte opérationnel, conventionnel et documentaire propre à votre entreprise — c'est l'objet de l'audit ciblé.</p></li>`
-    : `<li><strong>Maintenir la vigilance.</strong> Aucun thème ne ressort en ÉLEVÉ ou CRITIQUE — un test de robustesse annuel reste recommandé pour confirmer la maîtrise documentaire.</li>`;
+  const scope = `
+    <section class="rpt-block rpt-scope-block">
+      <div class="rpt-section-head">
+        <span>04</span>
+        <div><h3>Ce que ce prédiagnostic ne vérifie pas</h3><p>La limite est aussi importante que le résultat.</p></div>
+      </div>
+      <ul class="rpt-scope-list">
+        <li>Le contenu de vos accords, contrats, actes unilatéraux et procédures.</li>
+        <li>Les montants réellement versés, les bulletins, les DSN et les paramétrages de paie.</li>
+        <li>La période contrôlable, les effectifs concernés et le chiffrage d'une éventuelle régularisation.</li>
+        <li>Les faits particuliers qui peuvent modifier l'analyse juridique.</li>
+      </ul>
+      <p class="rpt-scope-warning">Un thème « non déclenché » ou un signal réduit ne constitue donc ni une validation de conformité ni une garantie d'absence de redressement.</p>
+    </section>
+  `;
 
-  const blocD = `
-    <section class="rpt-block rpt-blockD">
+  const firstPriorityName = priorityThemes.length
+    ? REPORT_THEME_META[priorityThemes[0].key].title.toLowerCase()
+    : 'votre résultat';
+  const closing = `
+    <section class="rpt-block rpt-closing">
       <div class="rpt-cta-main">
-        <h3>Comprendre vos signaux de vigilance</h3>
-        <p>Un échange de 30 minutes permet de vérifier les faits déterminants et de décider si un audit est utile.</p>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener" class="btn-primary">Échanger sur mes résultats →</a>
+        <span class="rpt-cta-kicker">Étape suivante</span>
+        <h3>Confirmer ${firstPriorityName} avec vos données</h3>
+        <p>Un échange de 30 minutes permet de vérifier les faits déterminants, de choisir les pièces utiles et de décider si un audit ciblé est pertinent.</p>
+        <a href="${rdvURL}" target="_blank" rel="noopener noreferrer" class="btn-primary" onclick="if(window.posthog) posthog.capture('prediag_rdv_clique', { source: 'rapport' })">Vérifier mes résultats →</a>
       </div>
-
       ${disclaimerFinal()}
-
-      <div class="rpt-print">
-        <button type="button" onclick="window.print()" class="rpt-print-btn">Imprimer ou sauvegarder en PDF</button>
-      </div>
+      <div class="rpt-print"><button type="button" onclick="window.print()" class="rpt-print-btn">Imprimer ou sauvegarder en PDF</button></div>
     </section>
   `;
 
-  // ========== CTA Calendly sticky mobile-friendly ==========
   const sticky = `
     <div class="rpt-sticky-cta">
-      <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">
-        Prendre rendez-vous — échange de 30 minutes
-      </a>
+      <a href="${rdvURL}" target="_blank" rel="noopener noreferrer" onclick="if(window.posthog) posthog.capture('prediag_rdv_clique', { source: 'rapport_sticky' })">Vérifier mes priorités</a>
     </div>
   `;
 
   return `
-    <div class="acompia-report" id="acompia-report">
-      ${blocA}
-      ${blocB}
-      ${blocD}
+    <div class="acompia-report rpt-v2" id="acompia-report">
+      ${header}
+      ${priorities}
+      ${matrix}
+      ${plan}
+      ${scope}
+      ${closing}
     </div>
     ${sticky}
   `;
