@@ -8,11 +8,38 @@ const page = fs.readFileSync(path.join(racine, 'outils/prediagnostic-urssaf/inde
 const questionnaire = fs.readFileSync(path.join(racine, 'js/questionnaire.js'), 'utf8');
 const scoring = fs.readFileSync(path.join(racine, 'js/scoring.js'), 'utf8');
 
-test('la promesse publique annonce quatre minutes de façon cohérente', () => {
-  assert.ok(page.includes('Prédiagnostic URSSAF gratuit en 4 minutes'));
-  assert.ok(page.includes('4 minutes environ'));
-  assert.ok(!page.includes('3 minutes'));
-  assert.ok(!page.includes('~3 minutes'));
+function listerPagesHtml(dossier) {
+  return fs.readdirSync(dossier, { withFileTypes: true }).flatMap(entree => {
+    if (entree.name === '.git' || entree.name === 'node_modules') return [];
+    const cible = path.join(dossier, entree.name);
+    if (entree.isDirectory()) return listerPagesHtml(cible);
+    return entree.isFile() && entree.name.endsWith('.html') ? [cible] : [];
+  });
+}
+
+test('la promesse publique annonce trois minutes de façon cohérente', () => {
+  assert.ok(page.includes('Prédiagnostic URSSAF gratuit en 3 minutes'));
+  assert.ok(page.includes('3 minutes environ'));
+  assert.ok(!page.includes('4 minutes'));
+  assert.ok(!page.includes('5 minutes'));
+});
+
+test('aucune page publique ne conserve une promesse de quatre ou cinq minutes', () => {
+  const motifsObsoletes = [
+    /prédiagnostic[^.\n<]{0,180}(^|[^0-9])[45]\s*(?:minutes?|min)\b/i,
+    /(^|[^0-9])[45]\s*(?:minutes?|min)\b[^.\n<]{0,180}prédiagnostic/i,
+    /Gratuit\s*·\s*[45]\s*minutes?/i,
+    /(^|[^0-9])[45]\s+minutes?\s+pour\s+(?:évaluer|situer|repérer)/i,
+    /\([45]\s+min\)/i
+  ];
+  const anciennesPromesses = listerPagesHtml(racine).flatMap(fichier => {
+    const contenu = fs.readFileSync(fichier, 'utf8');
+    return motifsObsoletes.some(motif => motif.test(contenu))
+      ? [path.relative(racine, fichier)]
+      : [];
+  });
+
+  assert.deepEqual(anciennesPromesses, []);
 });
 
 test('le bouton de démarrage précède l’aperçu du rapport dans le premier écran', () => {
