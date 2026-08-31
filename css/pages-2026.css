@@ -47,6 +47,74 @@
                 0 8px 20px -8px rgba(74, 52, 245, 0.32);
 }
 
+/* ============================================================
+   Barre de navigation
+
+   Elle est commune à tout le site, mais l'accueil la rhabillait pour lui seul
+   dans `landing-2026.css`. Résultat, la même barre changeait de forme d'une
+   page à l'autre : 93 px de haut et transparente sur l'accueil, 82 px et
+   blanche voilée ailleurs ; libellés en 15 px maigres d'un côté, 14 px gras de
+   l'autre ; et surtout un bouton noir sur l'accueil, mauve partout ailleurs.
+   C'est ce bouton qui trahissait le plus le changement de page.
+
+   Les valeurs ci-dessous sont celles de `landing-2026.css`, reportées telles
+   quelles. Elles ne sont pas recalculées : toute divergence future se corrige
+   des deux côtés, ou se factorise.
+   ============================================================ */
+
+body > header {
+  /* Transparente au repos, comme sur l'accueil : la barre ne se pose sur un
+     fond que lorsqu'elle passe devant du contenu. `main.js` bascule
+     `nav--scrolled` au-delà de 50 px, sur le `nav` comme sur son `header`. */
+  background-color: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: background-color .25s ease, box-shadow .25s ease;
+}
+body > header.nav--scrolled {
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  box-shadow: 0 1px 0 rgba(12, 12, 20, 0.06), 0 8px 24px rgba(12, 12, 20, 0.05);
+}
+
+#nav {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px clamp(20px, 3vw, 56px);
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 0;
+}
+#nav.nav--scrolled { box-shadow: none; }
+
+.nav-links a,
+.nav-dropdown-toggle {
+  font-size: 15px;
+  font-weight: 400;
+  color: #55556A;
+}
+.nav-links a:hover,
+.nav-dropdown-toggle:hover { color: #0C0C14; }
+
+/* `.nav-cta` est déclaré propriété par propriété en `!important` dans
+   `style.css` : aucune spécificité ne lui répond, seul un `!important` le
+   peut. Le `::before` de `style-v2.css` porte en plus un dégradé à éteindre. */
+.nav-links a.nav-cta {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #FFFFFF !important;
+  background: #0C0C14 !important;
+  padding: 11px 20px !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  white-space: nowrap;
+  transition: background-color .2s ease;
+}
+.nav-links a.nav-cta::before { display: none; }
+.nav-links a.nav-cta:hover { background: #4A34F5 !important; }
+
 /* Schibsted Grotesk porte plus large que Geist à taille égale. Sans resserrer
    l'interlettrage, les titres gagnaient une ligne et le rythme des pages ne
    répondait plus à celui de l'accueil, qui les serre à -0,04 em. */

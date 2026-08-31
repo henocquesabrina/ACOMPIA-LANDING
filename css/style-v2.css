@@ -3971,12 +3971,12 @@ section { scroll-margin-top: 84px; }
 /* Ressources : la barre de filtres par sujet se place SOUS la barre de navigation,
    elle ne la recouvre plus jamais (on doit toujours pouvoir revenir à l'accueil) */
 .ress-filters {
-  top: 81px !important;
+  top: 93px !important;
   z-index: 60 !important;
   border-top: 1px solid var(--line);
 }
 @media (max-width: 900px) {
-  .ress-filters { top: 64px !important; }
+  .ress-filters { top: 93px !important; }
 }
 
 /* /solution/ : sommaire d'ancres sous l'en-tête de page (la page s'annonce en un écran) */

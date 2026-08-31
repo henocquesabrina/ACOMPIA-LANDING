@@ -917,18 +917,16 @@ a.article-cta-btn--accent:hover,
   .article-content h3 { font-size: 19px; }
 }
 
-/* Nav fond + scroll : opacité renforcée pour éviter le bleed-through au scroll.
+/* Cette règle posait un fond opaque en permanence sur la barre de navigation,
+   pour éviter que le contenu ne transparaisse au défilement. Elle faisait deux
+   dégâts : son sélecteur attrapait tout `header` de la page, dont l'en-tête
+   éditorial, qui en est un — d'où une bande grise derrière le titre une fois la
+   page passée au blanc ; et elle empêchait la barre d'être transparente au
+   repos comme sur l'accueil.
 
-   Le sélecteur visait la barre de navigation mais attrapait tout `header` de la
-   page, dont l'en-tête éditorial `.ress-page-header`, qui est aussi un `header`.
-   Invisible tant que la page était crème, la teinte s'est détachée en bande
-   grise dès le passage au blanc. Le `>` la borne à la barre, seule fille
-   directe du `body`. */
-body.ress-page > header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
+   Le besoin est désormais couvert par `pages-2026.css`, qui reprend le
+   comportement de l'accueil : transparente en haut de page, blanche voilée
+   dès que `main.js` bascule `nav--scrolled`, au-delà de 50 px. */
 
 /* Bandeau d'article sur mobile : hauteur libre, contenu dans le flux (le ratio 21/9 tronquait le titre) */
 @media (max-width: 768px) {
