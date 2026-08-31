@@ -46,7 +46,7 @@ ul { list-style: none; }
 /* === BUTTONS === */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 10px;
-  background: linear-gradient(135deg, #4338CA 0%, #5B4FE0 100%);
+  background: linear-gradient(135deg, #3B29C9 0%, #5B4FE0 100%);
   color: #fff;
   padding: 16px 36px; border-radius: var(--radius-md);
   font-family: var(--font-body);
@@ -880,7 +880,7 @@ nav {
   left: 0;
   width: 56px;
   height: 3px;
-  background: linear-gradient(90deg, #4338CA 0%, #22D3EE 100%);
+  background: linear-gradient(90deg, #3B29C9 0%, #22D3EE 100%);
   border-radius: 2px;
 }
 
@@ -925,7 +925,7 @@ nav {
    ============================================ */
 .acompia-report .rpt-blockA {
   padding: 56px 48px;
-  background: linear-gradient(135deg, #4338CA 0%, #5B4FDE 35%, #22D3EE 100%);
+  background: linear-gradient(135deg, #3B29C9 0%, #5B4FDE 35%, #22D3EE 100%);
   color: #FFFFFF;
   border: none;
   border-radius: 24px;
@@ -1139,7 +1139,7 @@ nav {
   margin-bottom: 12px;
   background: #EFF2F9;
   border: 1px solid rgba(67,56,202,0.12);
-  border-left: 3px solid #4338CA;
+  border-left: 3px solid #3B29C9;
   border-radius: 12px;
 }
 .acompia-report .rpt-top3 li::before {
@@ -1150,7 +1150,7 @@ nav {
   font-family: var(--font-display, "Geist", sans-serif);
   font-size: 24px;
   font-weight: 700;
-  color: #4338CA;
+  color: #3B29C9;
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -1196,7 +1196,7 @@ nav {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: #4338CA;
+  color: #3B29C9;
   font-weight: 700;
   margin-bottom: 12px;
 }
@@ -1204,7 +1204,7 @@ nav {
   font-family: var(--font-display, "Geist", sans-serif);
   font-size: 28px;
   font-weight: 700;
-  background: linear-gradient(135deg, #4338CA 0%, #22D3EE 100%);
+  background: linear-gradient(135deg, #3B29C9 0%, #22D3EE 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1299,7 +1299,7 @@ nav {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #4338CA;
+  color: #3B29C9;
   font-weight: 700;
   margin-bottom: 6px;
 }
@@ -1371,7 +1371,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #4338CA 0%, #22D3EE 100%);
+  background: linear-gradient(135deg, #3B29C9 0%, #22D3EE 100%);
   color: #fff;
   border-radius: 50%;
   font-family: var(--font-display, "Geist", sans-serif);
@@ -1391,7 +1391,7 @@ nav {
   position: static;
   background: #FFFFFF;
   border: 1px solid rgba(67,56,202,0.12);
-  border-left: 3px solid #4338CA;
+  border-left: 3px solid #3B29C9;
   border-radius: 8px;
   padding: 12px 16px;
   margin-bottom: 8px;
@@ -1451,7 +1451,7 @@ nav {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: #4338CA;
+  color: #3B29C9;
   margin-bottom: 18px;
   font-weight: 700;
 }
@@ -1476,7 +1476,7 @@ nav {
   letter-spacing: 0.18em;
   color: #7A8299;
   font-weight: 700;
-  border-bottom: 2px solid #4338CA;
+  border-bottom: 2px solid #3B29C9;
 }
 .acompia-report .rpt-anv-table td { color: #5C6480; }
 .acompia-report .rpt-anv-table td strong {
@@ -1489,19 +1489,19 @@ nav {
   background: rgba(67,56,202,0.08) !important;
 }
 .acompia-report .rpt-anv-active td { color: #111836; }
-.acompia-report .rpt-anv-active td strong { color: #4338CA; }
+.acompia-report .rpt-anv-active td strong { color: #3B29C9; }
 .acompia-report .rpt-anv-yours {
   font-size: 10px !important;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: #4338CA !important;
+  color: #3B29C9 !important;
   font-weight: 700;
 }
 .acompia-report .rpt-anv-cta {
   display: inline-block;
   margin-top: 12px;
   padding: 14px 28px;
-  background: linear-gradient(135deg, #4338CA 0%, #22D3EE 100%);
+  background: linear-gradient(135deg, #3B29C9 0%, #22D3EE 100%);
   color: #FFFFFF;
   text-decoration: none;
   font-family: var(--font-body, "Geist", sans-serif);
@@ -1522,7 +1522,7 @@ nav {
   text-align: center;
   margin: 36px 0 20px;
   padding: 44px 32px;
-  background: linear-gradient(135deg, #4338CA 0%, #5B4FDE 40%, #22D3EE 100%);
+  background: linear-gradient(135deg, #3B29C9 0%, #5B4FDE 40%, #22D3EE 100%);
   color: #FFFFFF;
   border: none;
   border-radius: 20px;
@@ -1558,7 +1558,7 @@ nav {
   display: inline-block;
   padding: 15px 36px;
   background: #FFFFFF;
-  color: #4338CA;
+  color: #3B29C9;
   text-decoration: none;
   font-family: var(--font-body, "Geist", sans-serif);
   font-size: 14px;
@@ -1579,8 +1579,8 @@ nav {
   margin: 28px auto 8px;
   padding: 12px 28px;
   background: transparent;
-  color: #4338CA;
-  border: 1.5px solid #4338CA;
+  color: #3B29C9;
+  border: 1.5px solid #3B29C9;
   font-family: var(--font-body, "Geist", sans-serif);
   font-size: 13px;
   font-weight: 600;
@@ -1590,7 +1590,7 @@ nav {
   transition: all 0.2s ease;
 }
 .acompia-report .rpt-print-btn:hover {
-  background: #4338CA;
+  background: #3B29C9;
   color: #FFFFFF;
   transform: translateY(-1px);
 }
@@ -1609,7 +1609,7 @@ nav {
 .acompia-report .rpt-disclaimer p { font-size: 11.5px; color: #7A8299; margin: 0 0 10px; }
 .acompia-report .rpt-disclaimer p:last-child { margin-bottom: 0; }
 .acompia-report .rpt-disclaimer strong { color: #111836; }
-.acompia-report .rpt-disclaimer a { color: #4338CA; text-decoration: underline; font-weight: 600; }
+.acompia-report .rpt-disclaimer a { color: #3B29C9; text-decoration: underline; font-weight: 600; }
 
 /* --- CTA Sticky mobile --- */
 .rpt-sticky-cta {
@@ -1617,7 +1617,7 @@ nav {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(135deg, #4338CA 0%, #22D3EE 100%);
+  background: linear-gradient(135deg, #3B29C9 0%, #22D3EE 100%);
   color: #FFFFFF;
   padding: 14px 16px;
   text-align: center;
@@ -1667,12 +1667,12 @@ nav {
     padding: 40px;
   }
   .acompia-report .rpt-blockA {
-    background: linear-gradient(135deg, #4338CA 0%, #22D3EE 100%) !important;
+    background: linear-gradient(135deg, #3B29C9 0%, #22D3EE 100%) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   .acompia-report .rpt-cta-main {
-    background: linear-gradient(135deg, #4338CA 0%, #22D3EE 100%) !important;
+    background: linear-gradient(135deg, #3B29C9 0%, #22D3EE 100%) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }

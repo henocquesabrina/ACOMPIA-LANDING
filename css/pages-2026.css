@@ -1,0 +1,82 @@
+/* ============================================================
+   ACOMPIA — Charte 2026 sur les pages hors accueil
+
+   L'accueil a été refondu en août 2026 (voir `landing-2026.css`) : Schibsted
+   Grotesk, fond blanc, accent mauve, titres serrés, boutons en pastille. Passer
+   de l'accueil à une page de ressources donnait l'impression de changer de site.
+
+   La bascule s'est faite en deux temps, et il faut connaître les deux avant de
+   toucher à quoi que ce soit :
+
+   1. Les valeurs écrites en clair dans `style-v2.css`, `style.css`,
+      `ressources.css` et `legal-v2.css` ont été migrées sur place : police,
+      accent, fonds crème, nuits. C'était nécessaire — ces feuilles déclaraient
+      la police hors de tout jeton, une cinquantaine de fois, et aucune feuille
+      chargée après ne pouvait les atteindre sans réécrire autant de sélecteurs.
+
+   2. Cette feuille-ci ne porte plus que ce qui reste : les jetons que la
+      migration ne pouvait pas atteindre parce qu'ils portent un autre nom
+      (`variables.css` nomme `--bg-light` ce que `style-v2.css` appelle `--bg`),
+      et les quelques traits de la refonte qui n'existaient nulle part avant.
+
+   Ni l'une ni l'autre n'a touché au HTML : pas un mot du contenu ne bouge.
+
+   L'accueil ne charge pas cette feuille, il a la sienne.
+   ============================================================ */
+
+:root {
+  /* ---------- Filets ----------
+     Les filets de l'ancienne charte étaient teintés de beige, accordés au fond
+     crème. Sur blanc, ils tirent au jaune. */
+  --line: rgba(16, 16, 20, 0.08);
+  --line-2: rgba(16, 16, 20, 0.16);
+  --line-a: rgba(16, 16, 20, 0.08);
+  --line-a-strong: rgba(16, 16, 20, 0.16);
+
+  /* ---------- Dégradés secondaires ----------
+     Ils partaient de l'indigo pour finir en cyan ou en émeraude. L'accent est
+     devenu mauve, et le cyan est justement la couleur qui jure le plus avec
+     lui : on garde la mécanique, on change les arrivées. */
+  --g-cyan: linear-gradient(135deg, #4A34F5 0%, #8C7BFF 100%);
+  --g-cyem: linear-gradient(135deg, #6E5BFF 0%, #A99BFF 100%);
+  --indigo-pale: #8C7BFF;
+
+  /* Ombre d'appel à l'action, recalée sur le mauve et adoucie : sur blanc, une
+     ombre portée se lit plus franchement que sur crème. */
+  --shadow-cta: 0 1px 2px rgba(16, 16, 20, 0.10),
+                0 8px 20px -8px rgba(74, 52, 245, 0.32);
+}
+
+/* Schibsted Grotesk porte plus large que Geist à taille égale. Sans resserrer
+   l'interlettrage, les titres gagnaient une ligne et le rythme des pages ne
+   répondait plus à celui de l'accueil, qui les serre à -0,04 em. */
+h1, h2, h3,
+.section-header h2,
+.hero h1 {
+  letter-spacing: -0.035em;
+}
+h1, .hero h1 { letter-spacing: -0.04em; }
+
+/* Les chiffres du site se lisent en colonnes : dates, montants, barèmes. La
+   chasse fixe les aligne d'une ligne à l'autre. */
+.stat-number,
+.stat-value,
+table td,
+table th {
+  font-variant-numeric: tabular-nums;
+}
+
+/* La refonte arrondit ses boutons en pastille plutôt qu'en rectangle. C'est le
+   signe le plus visible de la nouvelle charte, et il ne coûte qu'un rayon : la
+   géométrie des boutons ne bouge pas d'un pixel.
+
+   `!important` parce que `style.css` déclare tout le bouton de la barre de
+   navigation en `!important`, rayon compris. Une spécificité plus forte n'y
+   suffit pas : seul un `!important` répond à un `!important`. */
+.btn-primary,
+.btn-secondary,
+.btn-ghost,
+.nav-links a.nav-cta,
+.nav-cta {
+  border-radius: 999px !important;
+}

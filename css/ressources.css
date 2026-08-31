@@ -4,7 +4,7 @@
    ========================================================= */
 
 body.ress-page {
-  background: #FBFAF6;
+  background: #FFFFFF;
   color: #1A1A1A;
 }
 
@@ -17,7 +17,7 @@ body.ress-page {
   margin: 0 auto;
 }
 .ress-page-title {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-size: clamp(36px, 4.5vw, 56px);
   font-weight: 600;
   letter-spacing: -0.022em;
@@ -26,7 +26,7 @@ body.ress-page {
   color: #0A0A0A;
 }
 .ress-page-subtitle {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-size: 17px;
   color: #3F3F3F;
   margin: 0;
@@ -98,7 +98,7 @@ body.ress-page {
   right: 0;
   bottom: -22px;
   height: 2px;
-  background: #4F46E5;
+  background: #4A34F5;
 }
 @media (max-width: 720px) {
   .ress-filters {
@@ -166,8 +166,8 @@ body.ress-page {
 /* ===== Variantes de fond ===== */
 .ress-cover--aurora {
   /* Gamme indigo-nuit (l'aurora multicolore est hors charte depuis le 21/07) */
-  background: linear-gradient(135deg, #0F0F1E 0%, #1E1B4B 40%, #312E81 72%, #4338CA 105%);
-  color: #FAFAF7;
+  background: linear-gradient(135deg, #12121F 0%, #1E1B4B 40%, #312E81 72%, #3B29C9 105%);
+  color: #FFFFFF;
 }
 .ress-cover--aurora::after {
   content: '';
@@ -178,16 +178,16 @@ body.ress-page {
   pointer-events: none;
 }
 .ress-cover--ink {
-  background: #07070F;
-  color: #FAFAF7;
+  background: #0E0E1A;
+  color: #FFFFFF;
 }
 .ress-cover--indigo {
-  background: #4F46E5;
-  color: #FAFAF7;
+  background: #4A34F5;
+  color: #FFFFFF;
 }
 .ress-cover--dark {
-  background: #0F0F1E;
-  color: #FAFAF7;
+  background: #12121F;
+  color: #FFFFFF;
 }
 .ress-cover--cream {
   background: #FFFFFF;
@@ -195,7 +195,7 @@ body.ress-page {
   color: #0A0A0A;
 }
 .ress-cover--cream:hover {
-  background: #FAFAF7;
+  background: #FFFFFF;
 }
 
 @keyframes aurora-shift {
@@ -247,7 +247,7 @@ body.ress-page {
   opacity: 0.78;
 }
 .ress-cover-title {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-size: 21px;
   font-weight: 600;
   line-height: 1.22;
@@ -328,7 +328,7 @@ body.ress-page {
   color: #6E6E6E; /* A11Y : contraste 4.5:1 mini (ex-#888) */
   text-decoration: none;
 }
-.article-breadcrumb a:hover { color: #4F46E5; }
+.article-breadcrumb a:hover { color: #4A34F5; }
 .article-breadcrumb .sep { color: #D4D0C5; margin: 0 8px; }
 
 .article-hero-banner {
@@ -337,7 +337,7 @@ body.ress-page {
   margin-bottom: 36px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #0F0F1E 0%, #1E1B4B 40%, #312E81 72%, #4338CA 105%);
+  background: linear-gradient(135deg, #12121F 0%, #1E1B4B 40%, #312E81 72%, #3B29C9 105%);
 }
 .article-hero-banner::after {
   content: '';
@@ -365,7 +365,7 @@ body.ress-page {
   margin-bottom: 14px;
 }
 .article-title-banner {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-size: clamp(28px, 4.2vw, 46px);
   font-weight: 600;
   line-height: 1.12;
@@ -442,10 +442,10 @@ body.ress-page {
   content: '';
   width: 18px;
   height: 1px;
-  background: #4F46E5;
+  background: #4A34F5;
 }
 .article-author-card-name {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.018em;
@@ -454,7 +454,7 @@ body.ress-page {
   line-height: 1.2;
 }
 .article-author-card-title {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-size: 14px;
   color: #3F3F3F;
   margin: 0 0 16px;
@@ -462,7 +462,7 @@ body.ress-page {
   line-height: 1.45;
 }
 .article-author-card-bio {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-size: 14.5px;
   line-height: 1.62;
   color: #3F3F3F;
@@ -482,14 +482,14 @@ body.ress-page {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: #4F46E5;
+  color: #4A34F5;
   text-decoration: none;
   border-bottom: 1px solid rgba(79,70,229,0.35);
   padding-bottom: 3px;
   transition: border-bottom-color 0.2s ease;
 }
 .article-author-card-link:hover {
-  border-bottom-color: #4F46E5;
+  border-bottom-color: #4A34F5;
 }
 @media (max-width: 640px) {
   .article-author-card {
@@ -562,13 +562,13 @@ body.ress-page {
   margin-right: 4px;
 }
 .article-toc a:hover {
-  color: #4F46E5;
-  border-left-color: #4F46E5;
+  color: #4A34F5;
+  border-left-color: #4A34F5;
 }
 
 .article-content {
   max-width: 720px;
-  font-family: 'Geist', sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-size: 17.5px;
   line-height: 1.78;
   color: #1A1A1A;
@@ -602,7 +602,7 @@ body.ress-page {
   hyphens: none;
 }
 .article-content h2 {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-size: 30px;
   line-height: 1.22;
   margin: 64px 0 18px;
@@ -624,13 +624,13 @@ body.ress-page {
   font-weight: 600;
 }
 .article-content a {
-  color: #4F46E5;
+  color: #4A34F5;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   text-decoration-color: rgba(79,70,229,0.4);
 }
-.article-content a:hover { text-decoration-color: #4F46E5; }
+.article-content a:hover { text-decoration-color: #4A34F5; }
 .article-content ul,
 .article-content ol {
   margin: 0 0 24px;
@@ -640,10 +640,10 @@ body.ress-page {
 .article-content blockquote {
   margin: 28px 0;
   padding: 4px 0 4px 22px;
-  border-left: 2px solid #4F46E5;
+  border-left: 2px solid #4A34F5;
   font-size: 19px;
   line-height: 1.6;
-  font-family: 'Geist', system-ui, sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   font-style: italic;
   color: #2A2A2A;
 }
@@ -671,7 +671,7 @@ body.ress-page {
   content: '';
   width: 18px;
   height: 1px;
-  background: #4F46E5;
+  background: #4A34F5;
 }
 .callout-retenir ul {
   margin: 0;
@@ -714,7 +714,7 @@ body.ress-page {
   border-radius: 12px;
   overflow: hidden;
 }
-.article-content thead { background: #FAFAF7; }
+.article-content thead { background: #FFFFFF; }
 .article-content th {
   padding: 14px 18px;
   text-align: left;
@@ -730,7 +730,7 @@ body.ress-page {
   border-bottom: 1px solid #F0EEE8;
 }
 .article-content tr:last-child td { border-bottom: none; }
-.article-content tbody tr:hover { background: #FAFAF7; }
+.article-content tbody tr:hover { background: #FFFFFF; }
 
 /* Wide reference table: horizontal scroll on narrow viewports */
 .article-content .table-scroll {
@@ -750,7 +750,7 @@ body.ress-page {
   color: #6B6B6B;
   min-width: 240px;
 }
-.article-content table td:last-child a { color: #4F46E5; }
+.article-content table td:last-child a { color: #4A34F5; }
 
 .article-faq { margin-top: 64px; }
 .article-faq h2 { margin-bottom: 24px; }
@@ -782,7 +782,7 @@ body.ress-page {
   transform: translateY(-50%);
   font-size: 24px;
   font-weight: 300;
-  color: #4F46E5;
+  color: #4A34F5;
   transition: transform 0.25s ease;
   line-height: 1;
 }
@@ -852,7 +852,7 @@ a.article-cta-btn:hover,
 }
 a.article-cta-btn--accent,
 .article-ctas a.article-cta-btn--accent {
-  background: #4F46E5;
+  background: #4A34F5;
   color: #FFFFFF;
 }
 a.article-cta-btn--accent:hover,
@@ -961,7 +961,7 @@ body.ress-page header {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: #4F46E5;
+  color: #4A34F5;
   margin-bottom: 6px;
   display: flex;
   align-items: center;
@@ -971,7 +971,7 @@ body.ress-page header {
   content: '';
   width: 18px;
   height: 1px;
-  background: #4F46E5;
+  background: #4A34F5;
 }
 .callout-outil p {
   margin: 0;
@@ -979,4 +979,4 @@ body.ress-page header {
   line-height: 1.6;
   color: #3A3A3A;
 }
-.callout-outil a { color: #4F46E5; font-weight: 600; }
+.callout-outil a { color: #4A34F5; font-weight: 600; }
