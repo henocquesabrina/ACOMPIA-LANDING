@@ -14,14 +14,19 @@ Légende : ✅ mesurable aujourd'hui · 🔧 événement manquant · ⚖️ arbi
 
 ## 0. Le préalable qui conditionne tout le reste
 
-**Peut-on suivre un visiteur d'une page à l'autre ?** ⚖️ — **non, et c'est délibéré.**
+**Peut-on suivre un visiteur d'une page à l'autre ?** — **oui depuis le 31 août 2026.**
 
-`js/analytics.js` configure PostHog en `persistence: 'memory'`. Aucun cookie, aucun
-stockage sur le terminal — ce que la politique de confidentialité revendique
-explicitement, et qui évite le bandeau de consentement. Pour une marque dont le produit
-*est* la conformité, c'est un choix cohérent et défendable.
+> Ce qui suit décrivait l'état antérieur et n'est plus vrai. `js/analytics.js`
+> configure désormais PostHog en `persistence: 'localStorage+cookie'`, avec
+> l'enregistrement de session actif et les saisies masquées. L'identifiant
+> survit au changement de page, donc les limites listées ci-dessous tombent.
+> Le bandeau de consentement, lui, reste à mettre en place.
 
-Il a un prix, et il faut le connaître avant de commander quoi que ce soit :
+`js/analytics.js` configurait PostHog en `persistence: 'memory'`. Aucun cookie, aucun
+stockage sur le terminal — ce que la politique de confidentialité revendiquait
+explicitement, et qui évitait le bandeau de consentement.
+
+Ce choix avait un prix, qu'il fallait connaître avant de commander quoi que ce soit :
 
 - **Chaque chargement de page crée une personne différente.** Un dirigeant qui lit un
   article, va sur l'accueil, puis fait le prédiagnostic compte pour **trois visiteurs**.

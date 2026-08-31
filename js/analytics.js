@@ -7,11 +7,32 @@
     posthog.init('phc_tzcr2EPAnKEJNFC3w9rsfwkjJB7zQFJ8NuDziAGZJ8qq', {
       api_host: 'https://eu.i.posthog.com',
       defaults: '2026-05-30',
-      persistence: 'memory',
+      /* Le site a tourné sans aucun stockage terminal jusqu'au 31/08/2026
+         (`persistence: 'memory'`). Greg a demandé l'enregistrement de session,
+         qui a besoin d'un identifiant survivant au changement de page : sans
+         lui, chaque page produirait un replay d'un seul écran, inutile pour
+         comprendre un abandon de formulaire. D'où le retour au stockage.
+
+         Conséquence directe : la politique de confidentialité ne peut plus
+         annoncer l'exemption de consentement prévue par la CNIL pour la seule
+         mesure d'audience anonyme. Elle a été réécrite en conséquence. */
+      persistence: 'localStorage+cookie',
       person_profiles: 'identified_only',
       respect_dnt: true,
       capture_pageview: true,
       capture_pageleave: true,
       autocapture: true,
-      disable_session_recording: true
+      disable_session_recording: false,
+      session_recording: {
+        /* Les formulaires du site portent SIREN, effectifs, masse salariale et
+           adresse électronique d'entreprises qui se renseignent sur leur propre
+           exposition URSSAF. Rien de tout cela n'a à partir chez un tiers pour
+           qu'on comprenne un parcours : on masque la saisie, pas la navigation.
+           `maskAllInputs` couvre les champs, `maskTextSelector` les zones où le
+           rapport de prédiagnostic réaffiche ce qui a été saisi. */
+        maskAllInputs: true,
+        maskTextSelector: '[data-sensible], .acompia-report, .prediag-entry',
+        /* Le réseau porterait les mêmes données que les champs masqués. */
+        recordCrossOriginIframes: false
+      }
     });

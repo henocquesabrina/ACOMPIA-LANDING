@@ -100,7 +100,7 @@
       <li><strong>Traitement des demandes de devis</strong>, sur le même fondement précontractuel</li>
       <li><strong>Envoi du résultat du simulateur et veille sur le barème de l'avantage en nature</strong>, sur le fondement de l'exécution de mesures précontractuelles pour l'envoi du résultat et de votre consentement pour la veille (case optionnelle distincte)</li>
       <li><strong>Envoi d'informations sur l'actualité ACOMPIA et ses offres</strong>, sur le fondement de votre consentement (article 6.1.a du RGPD), recueilli via une case optionnelle distincte</li>
-      <li><strong>Mesure d'audience et amélioration du site</strong>, sur le fondement de l'intérêt légitime d'ACOMPIA à comprendre l'usage de son site (article 6.1.f du RGPD), au moyen d'outils sans cookie et sans donnée identifiante, exemptés de consentement au sens des lignes directrices de la CNIL</li>
+      <li><strong>Mesure d'audience et amélioration du site</strong>, sur le fondement de l'intérêt légitime d'ACOMPIA à comprendre l'usage de son site (article 6.1.f du RGPD), au moyen d'outils hébergés dans l'Union européenne et sans donnée identifiante. Cette mesure comprend l'enregistrement du déroulé des visites, décrit à l'article 9, dont le contenu des formulaires est exclu</li>
     </ul>
 
     <h2>4. Destinataires et <em>sous-traitants</em></h2>
@@ -123,7 +123,7 @@
         <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Politique de confidentialité Cloudflare</a>.
       </li>
       <li>
-        <strong>PostHog, Inc.</strong> (données hébergées dans l'Union européenne, région EU Cloud) · mesure d'audience et analyse de l'usage du site, sans cookie ni stockage sur votre terminal.
+        <strong>PostHog, Inc.</strong> (données hébergées dans l'Union européenne, région EU Cloud) · mesure d'audience, analyse de l'usage du site et enregistrement du déroulé des visites, au moyen d'un cookie et d'un stockage local sur votre terminal. Le contenu des formulaires est masqué à la source et n'est pas transmis.
         Données traitées · statistiques de navigation et d'interaction (pages vues, clics, progression dans le prédiagnostic), sans conservation de l'adresse IP et sans donnée identifiante.
         <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Politique de confidentialité PostHog</a>.
       </li>
@@ -215,12 +215,31 @@
 
     <h2>9. Cookies et stockage local</h2>
     <p>
-      Ce site <strong>n'utilise aucun cookie</strong> de suivi, publicitaire ou tiers.
-      La mesure d'audience est assurée par <strong>Cloudflare Web Analytics</strong> et <strong>PostHog</strong>
-      (hébergement des données dans l'Union européenne), deux outils configurés sans cookie ni stockage sur votre terminal,
-      sans conservation de l'adresse IP côté PostHog, et sans suivi entre les sites. Ils permettent de comprendre
-      l'usage du site (pages consultées, interactions, progression dans le prédiagnostic) afin d'en améliorer l'ergonomie.
+      Ce site <strong>n'utilise aucun cookie publicitaire ni aucun cookie de suivi entre les sites</strong>.
       Aucun outil publicitaire (Google Analytics, Meta Pixel, etc.) n'est utilisé et aucun profilage n'est effectué.
+    </p>
+    <p>
+      La mesure d'audience est assurée par deux outils dont les données sont hébergées dans l'Union européenne&nbsp;:
+    </p>
+    <ul>
+      <li>
+        <strong>Cloudflare Web Analytics</strong>, sans cookie ni stockage sur votre terminal.
+      </li>
+      <li>
+        <strong>PostHog</strong>, qui dépose un cookie et une entrée de stockage local sur votre terminal afin de
+        rattacher entre elles les pages d'une même visite. PostHog enregistre également le déroulé de votre visite
+        (pages consultées, défilement, clics, déplacements du pointeur) sous forme d'un
+        <strong>enregistrement de session</strong> rejouable par ACOMPIA, dans le seul but de comprendre où le site
+        est difficile à utiliser. <strong>Le contenu que vous saisissez dans les formulaires est masqué à la source</strong>
+        et n'apparaît pas dans ces enregistrements. L'adresse IP n'est pas conservée côté PostHog.
+      </li>
+    </ul>
+    <p>
+      L'enregistrement de session n'est pas nécessaire au fonctionnement du site. Vous pouvez vous y opposer, ainsi
+      qu'à l'ensemble de la mesure d'audience, en activant le signal «&nbsp;Do Not Track&nbsp;» de votre navigateur,
+      que ce site respecte, ou en supprimant les données de navigation de votre terminal. Vous pouvez également
+      écrire à <a href="mailto:she@acompia.com">she@acompia.com</a> pour demander la suppression des
+      enregistrements vous concernant.
     </p>
     <p>
       Le stockage local du navigateur (localStorage) est utilisé à une seule fin technique · conserver, sur votre propre
