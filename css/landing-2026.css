@@ -198,6 +198,18 @@ body.landing-2026 {
 .landing-2026 .l26-pill--blanche:hover { background: #EDEBFA; color: var(--l26-encre); }
 .l26-pill .l26-pill-note { opacity: .55; font-weight: 400; }
 
+/* `style-v2` peint le survol de `.btn-primary` avec un calque `::before` posé
+   sur toute la surface, et repasse le contenu devant par `.btn-primary > *`.
+   Cela suppose que le libellé soit enveloppé dans un élément, comme sur les
+   19 autres pages où il vit dans un `span`. Les boutons de la refonte portent
+   un simple nœud de texte, qu'aucun `z-index` ne peut remonter : au survol, le
+   calque recouvrait le libellé et le bouton se vidait de son texte. Seule la
+   pastille « 3 min », elle bien dans un `span`, y survivait.
+
+   Les couleurs de survol de la refonte sont définies juste au-dessus, une par
+   variante : le calque hérité n'a rien à peindre ici. */
+.landing-2026 .l26-pill::before { content: none; }
+
 /* ---------- Navigation ---------- */
 
 .landing-2026 #nav {
