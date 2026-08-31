@@ -54,7 +54,12 @@ function verifierLiensInternes() {
   pages.forEach((page) => {
     [...contenus.get(page).matchAll(/(?:href|src|srcset)="([^"]+)"/g)].forEach(([, reference]) => {
       if (EXTERNE.test(reference)) return;
-      const [chemin, ancre] = reference.split('#');
+      /* La chaîne de requête est retirée avant résolution : les feuilles de
+         style portent une estampille de version (`?v=AAAA-MM-JJ`, posée par
+         `tools/versionner-css.js`) qui contourne le cache du visiteur sans
+         changer le fichier servi. */
+      const [avantAncre, ancre] = reference.split('#');
+      const chemin = avantAncre.split('?')[0];
 
       if (!chemin) {
         if (ancre && !idsParPage.get(page).has(ancre)) {
