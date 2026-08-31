@@ -170,6 +170,12 @@ function animerCompteurVersCible(el, cible) {
 }
 
 function animerCompteursStat() {
+  /* Le compteur affiche pendant sa montée des valeurs qui ne sont pas celles
+     de la source. C'est un choix assumé, mais on ne l'impose pas au visiteur
+     qui a demandé moins de mouvement : il lit alors le chiffre exact, déjà
+     présent dans le markup. */
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;

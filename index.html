@@ -516,24 +516,31 @@
 
     <!-- ==================== STATISTIQUES ==================== -->
     <!-- Chiffres et source conservés du site : dossier de presse Urssaf du 25 juin 2026.
-         Le prototype proposait « x2 sur cinq ans » et « 180 j de délai », non sourcés. -->
+         Le prototype proposait « x2 sur cinq ans » et « 180 j de délai », non sourcés.
+
+         Les nombres montent depuis zéro, l'unité reste fixe hors du compteur.
+         Sabrina préférait des chiffres statiques, l'animation affichant pendant
+         sa montée des valeurs qui ne sont celles d'aucune source ; Greg a tranché
+         pour l'animation le 31/08. Elle ne joue pas si le visiteur a demandé
+         moins de mouvement, et la valeur exacte reste dans le markup, donc elle
+         s'affiche telle quelle si le script ne tourne pas. -->
     <section id="stats" class="l26-stats-zone">
       <p class="l26-eyebrow l26-stats-titre">Le contrôle URSSAF a changé d'échelle</p>
       <div class="l26-stats-grille">
         <div class="l26-stat reveal">
-          <div class="l26-stat-chiffre">48&nbsp;000</div>
+          <div class="l26-stat-chiffre"><span class="stat-number" data-target="48000">48&nbsp;000</span></div>
           <p class="l26-stat-libelle">contrôles comptables d'assiette menés par l'URSSAF en 2025</p>
         </div>
         <div class="l26-stat reveal">
-          <div class="l26-stat-chiffre">90<span class="l26-stat-unite">&nbsp;%</span></div>
+          <div class="l26-stat-chiffre"><span class="stat-number" data-target="90">90</span><span class="l26-stat-unite">&nbsp;%</span></div>
           <p class="l26-stat-libelle">des contrôles sont ciblés, un ciblage affiné par le croisement de données</p>
         </div>
         <div class="l26-stat reveal">
-          <div class="l26-stat-chiffre">667<span class="l26-stat-unite">&nbsp;M€</span></div>
+          <div class="l26-stat-chiffre"><span class="stat-number" data-target="667">667</span><span class="l26-stat-unite">&nbsp;M€</span></div>
           <p class="l26-stat-libelle">de redressements dus par les entreprises en 2025, au titre de ces contrôles</p>
         </div>
         <div class="l26-stat reveal">
-          <div class="l26-stat-chiffre">180<span class="l26-stat-unite">&nbsp;M€</span></div>
+          <div class="l26-stat-chiffre"><span class="stat-number" data-target="180">180</span><span class="l26-stat-unite">&nbsp;M€</span></div>
           <p class="l26-stat-libelle">restitués aux entreprises en cas de trop-versé</p>
         </div>
       </div>

@@ -1211,6 +1211,15 @@ body.landing-2026 {
   font-weight: 600;
 }
 
+/* L'unité porte l'accent, le nombre reste à l'encre. Elle est plus petite et
+   posée après un chiffre de 56 px : la couleur est ce qui la fait exister, et
+   c'est aussi elle qui distingue « 90 % » d'un « 90 » nu. La règle ci-dessus
+   ramène toute la ligne à l'encre pour neutraliser le dégradé hérité de
+   `style.css` ; celle-ci est plus spécifique et ne reprend que l'unité. */
+.landing-2026 .l26-stat-chiffre .l26-stat-unite {
+  color: var(--l26-mauve);
+}
+
 /* Titres et sous-titres empilés : ces libellés sont des <span> imbriqués,
    inline par défaut, donc collés sur une même ligne sans cette règle. */
 .l26-onglet-titre,
