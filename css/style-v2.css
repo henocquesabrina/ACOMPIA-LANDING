@@ -349,6 +349,31 @@ a.nav-logo:hover { opacity: 0.75; }
     transform .34s cubic-bezier(0.32, 0.72, 0, 1),
     visibility 0s .28s;
 }
+
+/* Pont de survol. Cette marge ouvre une bande de 30 à 33 px où le pointeur ne
+   survole ni le libellé ni le menu : en descendant vers une entrée, `:hover`
+   retombait sur le conteneur et `pointer-events` repassait à `none`, sans
+   transition pour amortir. Le menu s'affichait mais restait inatteignable à la
+   souris, seul le clavier y accédait.
+
+   Ce pseudo-élément comble la bande. Il appartient au menu, donc il hérite de
+   son `pointer-events: none` tant qu'il est fermé et ne masque rien ; et
+   comme il descend de `.nav-dropdown`, le survoler y maintient `:hover`.
+
+   Hauteur : la marge, plus les 10 px dont l'amorce d'entrée décale encore le
+   menu vers le bas pendant qu'il s'ouvre. Sans eux, le pont laisse un trou
+   tant que l'animation court, c'est-à-dire précisément quand le pointeur
+   descend. La somme place le haut du pont au ras du libellé, sans mordre sur
+   les entrées voisines de la barre. */
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: calc(var(--nav-menu-ecart, 30px) + 10px);
+}
+
 .nav-dropdown:hover .nav-dropdown-menu,
 .nav-dropdown:focus-within .nav-dropdown-menu {
   transition:
