@@ -837,32 +837,47 @@ body.landing-2026 {
 /* Sur un téléphone, les trois onglets passaient à la ligne et se centraient
    chacun sur sa propre largeur de contenu : trois pavés décalés, de tailles
    différentes, qu'on lisait comme un accident de mise en page plutôt que
-   comme un choix à faire. Ils occupaient en plus près de 570 px pour trois
-   libellés.
+   comme un choix à faire, pour près de 570 px de hauteur.
 
-   Empilés sur toute la largeur, ils redeviennent une liste de trois portes,
-   ce que dit d'ailleurs le chapeau juste au-dessus. Le libellé passe à gauche
-   et sa disponibilité à droite, sur une seule ligne : la colonne des titres
-   s'aligne, et le bloc tombe sous les 200 px. */
+   Ils redeviennent ici ce qu'ils sont : une barre segmentée, trois parts
+   égales sur une seule ligne, la part active détachée en blanc. C'est la
+   forme que le tactile reconnaît comme « choisir entre trois », et elle tient
+   en une soixantaine de pixels.
+
+   La disponibilité disparaît de la barre, faute de place à ce format : chaque
+   panneau la répète en tête, « Ouverture en septembre 2026 », « Sur devis ·
+   réponse sous 48 h », « Disponible dès maintenant ». Rien ne se perd. */
 @media (max-width: 620px) {
   .l26-onglets {
     display: grid;
-    gap: 10px;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 5px;
+    padding: 5px;
+    background: var(--l26-surface);
+    border: 1px solid var(--l26-bord-3);
+    border-radius: var(--l26-r-interne);
   }
   .l26-onglet {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 15px 18px;
-    text-align: left;
+    padding: 10px 4px;
+    border: 0;
+    background: transparent;
+    border-radius: calc(var(--l26-r-interne) - 9px);
+    /* Deux lignes possibles pour « Audits sur mesure » : les trois parts
+       gardent la même hauteur, c'est la grille qui les égalise. */
+    line-height: 1.25;
   }
-  /* La disponibilité ne se replie pas sous le titre : c'est elle qui distingue
-     les trois portes, elle doit rester lisible d'un coup d'œil sur sa ligne. */
-  .l26-onglet-sous {
-    margin-top: 0;
-    white-space: nowrap;
+  .l26-onglet-titre { font-size: 13px; letter-spacing: -0.015em; color: var(--l26-texte-3); }
+  /* Préfixé `.landing-2026` pour passer devant la règle d'empilement des
+     titres et sous-titres, plus bas dans le fichier et de même spécificité. */
+  .landing-2026 .l26-onglet-sous { display: none; }
+
+  .l26-onglet[aria-selected="true"] {
+    background: #FFFFFF;
+    border: 0;
+    box-shadow: 0 1px 2px rgba(16, 16, 20, 0.07);
   }
+  .l26-onglet[aria-selected="true"] .l26-onglet-titre { color: var(--l26-encre); }
 }
 
 .l26-panneau {
@@ -900,7 +915,11 @@ body.landing-2026 {
 }
 .l26-panneau-titre em { font-style: normal; color: var(--l26-mauve); }
 
-.l26-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start; }
+/* `min(300px, 100%)` et non `300px` : sous 300 px de place disponible, une
+   piste `minmax(300px, 1fr)` garde son plancher de 300 px et déborde. Les
+   deux tuiles « audits sur mesure » et « pilotage de flotte » passaient ainsi
+   hors de leur panneau sur un téléphone, texte coupé au bord de l'écran. */
+.l26-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start; }
 
 /* Parcours en 6 étapes */
 .l26-parcours {
@@ -1468,6 +1487,49 @@ body.landing-2026 {
    plus courte remontait sa pastille, et l'ondulation devenait accidentelle.
    Calées en haut, seules les translations voulues creusent la vague. */
 .l26-panneau--audit .steps { align-items: start; }
+
+/* Le parcours en six étapes est dessiné pour une lecture horizontale : une
+   illustration posée au-dessus de son titre, la vague qui les relie. Sur un
+   téléphone, la courbe n'est plus tracée et les six étapes s'empilent en
+   gardant cette composition verticale : 1 530 px de panneau pour six phrases,
+   avec un large vide sous chaque illustration.
+
+   Reprises en ligne, illustration à gauche et texte à droite, elles retrouvent
+   la forme d'une chronologie et le bloc perd la moitié de sa hauteur. Le
+   `!important` répond à celui de `style-v2`, qui force la colonne unique en
+   dessous de 640 px. */
+@media (max-width: 716px) {
+  .landing-2026 .l26-panneau--audit .journey { padding: 24px 0 8px; }
+
+  .landing-2026 .l26-panneau--audit .steps {
+    grid-template-columns: 1fr !important;
+    row-gap: 20px;
+  }
+  .landing-2026 .l26-panneau--audit .step {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    column-gap: 14px;
+    align-items: start;
+    padding: 0;
+  }
+  .landing-2026 .l26-panneau--audit .step-illustration {
+    grid-row: 1 / span 2;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+  }
+  /* La pastille ne servait qu'à poser l'étape sur la courbe, qui n'est plus
+     tracée ici. Le script qui aligne le tracé s'arrête d'ailleurs de lui-même
+     quand les pastilles n'ont plus de largeur. */
+  .landing-2026 .l26-panneau--audit .step-marker { display: none; }
+  .landing-2026 .l26-panneau--audit .step-name { margin: 0; }
+  .landing-2026 .l26-panneau--audit .step-desc { margin-top: 4px; }
+
+  /* Le halo de la dernière étape déborde de vingt pixels de chaque côté, ce qui
+     tenait sur une colonne large et dépassait du panneau une fois l'étape
+     étalée sur toute la largeur. Il se contente ici de sa propre surface. */
+  .landing-2026 .l26-panneau--audit .step.final::before { inset: 0; }
+}
 
 /* ---------- Retours Sabrina du 28/08 ---------- */
 
