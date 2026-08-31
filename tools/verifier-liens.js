@@ -26,6 +26,9 @@ const signaler = (message) => anomalies.push(message);
 function listerPages(dossier = RACINE, acc = []) {
   fs.readdirSync(dossier, { withFileTypes: true }).forEach((entree) => {
     if (entree.name.startsWith('.') || entree.name === 'node_modules') return;
+    /* `tools/` contient de l'outillage, pas des pages publiées : rien n'y est
+       servi, rien n'a à figurer au sitemap. */
+    if (dossier === RACINE && entree.name === 'tools') return;
     const complet = path.join(dossier, entree.name);
     if (entree.isDirectory()) listerPages(complet, acc);
     else if (entree.name.endsWith('.html')) acc.push(path.relative(RACINE, complet));

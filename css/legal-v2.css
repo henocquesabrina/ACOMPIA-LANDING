@@ -29,6 +29,10 @@ a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px
 a:hover { opacity: 0.7; }
 
 /* === Nav sticky sobre === */
+/* Les pages légales gardent une barre dépouillée, sans les menus : on y arrive
+   depuis le pied de page pour lire un texte, pas pour naviguer. Elle reprend en
+   revanche le retrait, la transparence et l'absence de filet de la barre
+   commune, pour ne pas donner l'impression d'un autre site. */
 .legal-nav {
   position: sticky;
   top: 0;
@@ -36,11 +40,9 @@ a:hover { opacity: 0.7; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 32px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--line);
+  padding: 24px clamp(20px, 3vw, 56px);
+  background: transparent;
+  border-bottom: 0;
 }
 .legal-nav-logo {
   display: inline-flex;

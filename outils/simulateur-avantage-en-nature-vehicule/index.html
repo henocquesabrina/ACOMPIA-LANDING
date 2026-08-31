@@ -139,11 +139,15 @@ input, select { font-family: inherit; }
 .maq-note strong { color: #fff; font-weight: 600; }
 
 /* ---------- Nav simplifiée ---------- */
+/* Barre réduite au logo et au fil d'Ariane : la page est un outil, pas une
+   étape de navigation. Elle reprend néanmoins le retrait et la transparence de
+   la barre commune, sans quoi elle s'ouvrait 13 px plus haut, sous un filet que
+   le reste du site n'a plus. */
 .nav {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px clamp(20px, 5vw, 56px);
-  border-bottom: 1px solid var(--ligne);
-  background: var(--pierre);
+  padding: 24px clamp(20px, 3vw, 56px);
+  border-bottom: 0;
+  background: transparent;
 }
 .nav-brand { display: flex; align-items: center; gap: 11px; }
 .nav-brand svg { width: 30px; height: 30px; }
