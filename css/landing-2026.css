@@ -627,7 +627,11 @@ body.landing-2026 {
   margin: 0 auto;
   background: #FFFFFF;
   border-radius: var(--l26-r-panneau);
-  padding: clamp(56px, 6vw, 96px) clamp(24px, 4vw, 64px) clamp(56px, 6vw, 88px);
+  /* Le retrait latéral passe par une variable : la bande glissante des
+     cas-types s'en sert pour déborder puis se reposer dessus, et les deux
+     valeurs ne peuvent pas diverger. */
+  --l26-slab-gouttiere: clamp(24px, 4vw, 64px);
+  padding: clamp(56px, 6vw, 96px) var(--l26-slab-gouttiere) clamp(56px, 6vw, 88px);
 }
 .l26-slab > header { max-width: 780px; }
 
@@ -664,7 +668,10 @@ body.landing-2026 {
   font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--l26-rouge);
-  white-space: nowrap;
+  /* Pas de `nowrap` : le troisième cas affiche deux montants séparés par une
+     flèche, et la ligne entière débordait de la carte sur un téléphone. Chaque
+     montant est déjà rendu insécable par ses espaces insécables, la coupure ne
+     peut donc tomber qu'autour de la flèche, exactement où on la veut. */
   margin: 0;
 }
 .l26-cas-montant .l26-vers { color: var(--l26-texte-3); font-weight: 400; }
@@ -753,6 +760,49 @@ body.landing-2026 {
 .l26-cas-pied { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
 .l26-cas-mention { margin: 0; font-size: 13px; line-height: 1.6; color: var(--l26-texte-3); max-width: 620px; }
 
+/* Sur un téléphone, la grille retombe sur une colonne et les trois cas
+   s'empilent : près de 1 200 px à dérouler pour un bloc qui se lit très bien
+   de côté, puisque les cartes sont indépendantes et de même nature. On les
+   passe donc en bande glissante.
+
+   Le point de bascule est celui où la grille cesse d'en tenir deux de front :
+   deux colonnes de 300 px et leur gouttière demandent 620 px de contenu, soit
+   716 px de fenêtre une fois retirés les retraits de la zone et du panneau.
+
+   La bande déborde des gouttières du panneau puis les repose en remplissage :
+   elle balaie ainsi toute la largeur du panneau blanc, tandis que les cartes
+   restent alignées sur le titre au-dessus. `scroll-padding` reporte ce même
+   retrait sur l'ancrage, sans quoi la carte aimantée viendrait se coller au
+   bord de l'écran. */
+@media (max-width: 716px) {
+  .l26-cas-grille {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--l26-slab-gouttiere);
+    margin-inline: calc(var(--l26-slab-gouttiere) * -1);
+    padding-inline: var(--l26-slab-gouttiere);
+    /* La barre de défilement doublerait le repère que donne déjà la carte
+       suivante en amorce, et décalerait la hauteur du bloc sur les plateformes
+       qui la réservent. */
+    scrollbar-width: none;
+  }
+  .l26-cas-grille::-webkit-scrollbar { display: none; }
+
+  /* 86 % : la carte suivante affleure d'un doigt de large. C'est ce bord visible
+     qui dit qu'il y en a d'autres, sans pastilles ni flèches à entretenir. */
+  .l26-cas {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+    /* Sans cela, la taille minimale automatique d'un élément flex vaut sa
+       largeur de contenu minimale : la troisième carte, dont le montant tient
+       sur deux lignes larges, dépassait sa base de cinquante pixels et cassait
+       l'alignement de la bande. */
+    min-width: 0;
+  }
+}
+
 /* ---------- Solution : onglets ---------- */
 
 .l26-onglets {
@@ -783,6 +833,37 @@ body.landing-2026 {
   box-shadow: 0 12px 30px -18px rgba(74, 52, 245, 0.55);
 }
 .l26-onglet[aria-selected="true"] .l26-onglet-titre { color: var(--l26-mauve); }
+
+/* Sur un téléphone, les trois onglets passaient à la ligne et se centraient
+   chacun sur sa propre largeur de contenu : trois pavés décalés, de tailles
+   différentes, qu'on lisait comme un accident de mise en page plutôt que
+   comme un choix à faire. Ils occupaient en plus près de 570 px pour trois
+   libellés.
+
+   Empilés sur toute la largeur, ils redeviennent une liste de trois portes,
+   ce que dit d'ailleurs le chapeau juste au-dessus. Le libellé passe à gauche
+   et sa disponibilité à droite, sur une seule ligne : la colonne des titres
+   s'aligne, et le bloc tombe sous les 200 px. */
+@media (max-width: 620px) {
+  .l26-onglets {
+    display: grid;
+    gap: 10px;
+  }
+  .l26-onglet {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 15px 18px;
+    text-align: left;
+  }
+  /* La disponibilité ne se replie pas sous le titre : c'est elle qui distingue
+     les trois portes, elle doit rester lisible d'un coup d'œil sur sa ligne. */
+  .l26-onglet-sous {
+    margin-top: 0;
+    white-space: nowrap;
+  }
+}
 
 .l26-panneau {
   max-width: 1560px;
