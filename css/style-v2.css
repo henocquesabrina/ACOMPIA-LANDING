@@ -37,8 +37,8 @@ img { max-width: 100%; height: auto; }
   --ink: #0A0A0A;
   --ink-2: #3F3F3F;
   --ink-3: #767676;
-  --line: #E8E5DE;
-  --line-2: #D4D0C5;
+  --line: rgba(16, 16, 20, 0.08);
+  --line-2: rgba(16, 16, 20, 0.16);
   --accent: #4A34F5;
 
   --night: #0E0E1A;
@@ -4436,7 +4436,7 @@ section.stats { padding-top: 48px !important; padding-bottom: 48px !important; }
 /* Outils gratuits : mini-aperçus visuels (variante o1 choisie par Sabrina, 21/07) */
 .o1-visual {
   width: 100%;
-  background: #EEF1FB;
+  background: #EFEDF8;
   border: 1px solid rgba(79, 70, 229, 0.10);
   border-radius: 14px;
   padding: 24px 26px 20px;

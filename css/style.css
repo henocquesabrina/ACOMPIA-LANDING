@@ -1774,7 +1774,7 @@ nav {
 
 /* === Pricing — police mono pour les chiffres === */
 
-/* === Platform — fond clair (#EEF1FB) au lieu de sombre === */
+/* === Platform — fond clair (#EFEDF8) au lieu de sombre === */
 .platform {
   background: var(--bg-tint);
   border-top: 3px solid rgba(67,56,202,0.15);

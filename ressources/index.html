@@ -187,6 +187,16 @@
 
 /* Barre de filtres : pastilles à compteur, bandeau blanc affirmé */
 .ress-filters {
+  /* La barre héritait d'un positionnement fixe sans décalage horizontal : elle
+     restait large de 1 280 px mais collée au bord gauche, si bien qu'au-delà de
+     cette largeur son filet s'arrêtait en plein écran, à côté d'un contenu, lui,
+     centré. En collante, elle reprend le flux et se centre comme le reste ;
+     `max-width` levée, elle balaie toute la fenêtre, et le remplissage réaligne
+     les pastilles sur la colonne de 1 280 px. */
+  position: sticky;
+  max-width: none;
+  margin: 0;
+  padding-inline: max(48px, calc((100% - 1280px) / 2 + 48px));
   top: 81px !important;
   z-index: 60 !important;
   justify-content: flex-start;
@@ -197,8 +207,8 @@
   gap: 8px;
   padding: 13px 48px;
   background: #FFFFFF;
-  border-top: 1px solid #EFEDE6;
-  border-bottom: 1px solid #E4E2DA;
+  border-top: 1px solid rgba(16, 16, 20, 0.06);
+  border-bottom: 1px solid rgba(16, 16, 20, 0.12);
   box-shadow: 0 6px 18px -14px rgba(20, 18, 30, 0.14);
 }
 .ress-filters::-webkit-scrollbar { display: none; }
@@ -212,7 +222,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 15px;
-  border: 1px solid #E4E2DA;
+  border: 1px solid rgba(16, 16, 20, 0.12);
   border-radius: 999px;
   background: #FFFFFF;
   font-family: 'Schibsted Grotesk', system-ui, sans-serif;
@@ -249,10 +259,18 @@
   .ress-filters { top: 64px !important; padding: 11px 24px; }
 }
 
-/* En-tête compact : on voit la bibliothèque dès le premier écran */
+/* En-tête compact : on voit la bibliothèque dès le premier écran. L'échelle
+   revient toutefois à celle de l'accueil — 58 px au plus large, resserrés à
+   -0,04 em — parce qu'un titre à 42 px sur une page par ailleurs identique
+   faisait paraître la bibliothèque secondaire. Le chapeau suit à 17 px. */
 .ress-page-header { padding: 156px 48px 6px; }
-.ress-page-title { font-size: clamp(30px, 3.4vw, 42px); margin-bottom: 10px; }
-.ress-page-subtitle { font-size: 15px; }
+.ress-page-title {
+  font-size: clamp(32px, 4vw, 58px);
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  margin-bottom: 14px;
+}
+.ress-page-subtitle { font-size: 17px; color: #55555F; }
 .ress-rule { display: none; }
 .hubB-index-meta {
   max-width: 1280px;
@@ -291,14 +309,15 @@
   color: #6B6B66; /* A11Y : contraste 4.5:1 mini (ex-#A3A094) */
 }
 .hubB-row {
-  padding: 14px 12px;
-  border-bottom: 1px solid #ECEAE2;
-  border-radius: 10px;
+  padding: 18px 14px;
+  border-bottom: 1px solid rgba(16, 16, 20, 0.08);
+  /* Rayon interne de la charte, comme les tuiles de l'accueil. */
+  border-radius: 14px;
   text-decoration: none;
   color: #0A0A0A;
   transition: background 0.16s ease;
 }
-.hubB-row:hover { background: #F4F5FD; }
+.hubB-row:hover { background: #F7F6FC; }
 .hubB-num {
   font-family: 'Geist Mono', monospace;
   font-size: 10.5px;
@@ -312,7 +331,7 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: #4A34F5;
-  background: #EEF1FB;
+  background: #EFEDF8;
   border-radius: 999px;
   padding: 5px 11px;
   white-space: nowrap;
@@ -324,10 +343,12 @@
 .hubB-title {
   display: block;
   font-family: 'Schibsted Grotesk', system-ui, sans-serif;
-  font-size: 15.5px;
+  /* 17 px et -0,02 em : l'échelle des titres de ligne de l'accueil. À 15,5 px
+     la liste se lisait comme un tableau de données, pas comme une bibliothèque. */
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.35;
-  letter-spacing: -0.008em;
+  letter-spacing: -0.02em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

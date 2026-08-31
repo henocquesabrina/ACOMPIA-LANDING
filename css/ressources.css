@@ -71,7 +71,7 @@ body.ress-page {
   max-width: 1280px;
   margin: 0 auto;
   padding: 22px 48px 22px;
-  border-bottom: 1px solid #E8E5DE;
+  border-bottom: 1px solid rgba(16, 16, 20, 0.08);
 }
 .ress-filter {
   background: none;
@@ -329,7 +329,7 @@ body.ress-page {
   text-decoration: none;
 }
 .article-breadcrumb a:hover { color: #4A34F5; }
-.article-breadcrumb .sep { color: #D4D0C5; margin: 0 8px; }
+.article-breadcrumb .sep { color: rgba(16, 16, 20, 0.16); margin: 0 8px; }
 
 .article-hero-banner {
   aspect-ratio: 21/9;
@@ -398,7 +398,7 @@ body.ress-page {
   object-fit: cover;
   object-position: center 20%;
   display: block;
-  border: 1px solid #E8E5DE;
+  border: 1px solid rgba(16, 16, 20, 0.08);
 }
 
 /* ==================================================
@@ -423,7 +423,7 @@ body.ress-page {
   object-fit: cover;
   object-position: center 18%;
   display: block;
-  border: 1px solid #E8E5DE;
+  border: 1px solid rgba(16, 16, 20, 0.08);
 }
 .article-author-card-content { padding-top: 4px; }
 .article-author-card-eyebrow {
@@ -510,7 +510,7 @@ body.ress-page {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #D4D0C5;
+  background: rgba(16, 16, 20, 0.16);
 }
 
 .article-layout {
@@ -551,7 +551,7 @@ body.ress-page {
   line-height: 1.45;
   display: block;
   padding: 6px 0 6px 14px;
-  border-left: 1px solid #E8E5DE;
+  border-left: 1px solid rgba(16, 16, 20, 0.08);
   transition: all 0.2s;
 }
 .article-toc a::before {
@@ -710,7 +710,7 @@ body.ress-page {
   margin: 28px 0;
   font-size: 15px;
   background: white;
-  border: 1px solid #E8E5DE;
+  border: 1px solid rgba(16, 16, 20, 0.08);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -723,7 +723,7 @@ body.ress-page {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #3F3F3F;
-  border-bottom: 1px solid #E8E5DE;
+  border-bottom: 1px solid rgba(16, 16, 20, 0.08);
 }
 .article-content td {
   padding: 14px 18px;
@@ -756,7 +756,7 @@ body.ress-page {
 .article-faq h2 { margin-bottom: 24px; }
 .article-faq details {
   background: white;
-  border: 1px solid #E8E5DE;
+  border: 1px solid rgba(16, 16, 20, 0.08);
   border-radius: 12px;
   margin-bottom: 10px;
   padding: 0;
@@ -870,14 +870,14 @@ a.article-cta-btn--accent:hover,
   font-style: italic;
   max-width: 720px;
   padding: 22px 0 0;
-  border-top: 1px solid #E8E5DE;
+  border-top: 1px solid rgba(16, 16, 20, 0.08);
 }
 
 .article-similar {
   max-width: 1280px;
   margin: 80px auto 80px;
   padding: 60px 48px 0;
-  border-top: 1px solid #E8E5DE;
+  border-top: 1px solid rgba(16, 16, 20, 0.08);
 }
 .article-similar-title {
   font-family: 'Geist Mono', monospace;
@@ -917,9 +917,15 @@ a.article-cta-btn--accent:hover,
   .article-content h3 { font-size: 19px; }
 }
 
-/* Nav fond + scroll : opacite renforcee pour eviter le bleed-through au scroll */
-body.ress-page header {
-  background: rgba(251, 250, 246, 0.95);
+/* Nav fond + scroll : opacité renforcée pour éviter le bleed-through au scroll.
+
+   Le sélecteur visait la barre de navigation mais attrapait tout `header` de la
+   page, dont l'en-tête éditorial `.ress-page-header`, qui est aussi un `header`.
+   Invisible tant que la page était crème, la teinte s'est détachée en bande
+   grise dès le passage au blanc. Le `>` la borne à la barre, seule fille
+   directe du `body`. */
+body.ress-page > header {
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
