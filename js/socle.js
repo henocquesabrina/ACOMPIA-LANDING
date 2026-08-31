@@ -14,9 +14,11 @@ function echapperHTML(valeur) {
   }[caractere]));
 }
 
-/* Provenance du visiteur. PostHog tourne sans cookie (persistence 'memory') : chaque
-   chargement de page est une personne neuve, donc l'attribution ne peut pas être
-   reconstruite après coup. On l'attache à chaque événement, sinon elle est perdue. */
+/* Provenance du visiteur, attachée à chaque événement. Depuis le passage au
+   stockage terminal (31/08/2026), PostHog sait relier les pages d'une visite et
+   pourrait reconstruire l'attribution après coup ; on continue néanmoins de la
+   joindre à chaque événement, parce qu'elle reste la seule source disponible
+   pour un visiteur qui refuse le stockage ou signale « Do Not Track ». */
 function proprietesAttribution() {
   const params = new URLSearchParams(location.search);
   const utm = {};
@@ -65,9 +67,13 @@ function signalerEchecEnvoi(conteneur) {
 /* ============================================
    Mesure de parcours en page
 
-   Sans cookie, aucun tunnel entre deux pages n'est calculable : chaque chargement
-   crée une personne distincte. Tout ce qui suit mesure donc ce qui se passe à
-   l'intérieur d'un même chargement, où l'identifiant reste stable.
+   Ces mesures ont été écrites quand le site tournait sans stockage terminal :
+   aucun tunnel entre deux pages n'était alors calculable, chaque chargement
+   créant une personne distincte. Elles décrivent donc ce qui se passe à
+   l'intérieur d'un même chargement. Depuis le 31/08/2026, l'identifiant survit
+   au changement de page et un tunnel multi-pages devient calculable dans
+   PostHog ; ces événements-ci restent utiles, mais ils ne sont plus la seule
+   fenêtre disponible.
    ============================================ */
 
 const SEUIL_SECTION_VUE = 0.4; // 40 % visible = section réellement vue

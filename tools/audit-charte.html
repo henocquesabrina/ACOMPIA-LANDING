@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Audit de charte</title>
+<!-- Outil de vérification, non publié : `tools/` est exclu de l'inventaire des
+     pages et du sitemap.
+
+     Il charge chaque page du site dans un cadre de 1 440 × 900 et relève les
+     marqueurs de la charte 2026 : fond blanc, Schibsted Grotesk, barre de
+     navigation transparente sans filet, bouton noir en pastille, absence de
+     couleurs de l'ancienne charte, absence de débordement horizontal.
+
+     Le cadre doit être servi depuis la même origine que le site, sinon
+     `contentDocument` est inaccessible. Donc : servir le site, ouvrir
+     /tools/audit-charte.html, puis dans la console
+
+       window.PAGES_A_AUDITER = ['index.html', 'solution/index.html', …];
+       await window.lancerAudit();
+
+     Comparer le résultat à l'accueil, qui fait référence. -->
+<meta name="robots" content="noindex, nofollow">
+<style>body{margin:0;font:13px monospace}#cadre{width:1440px;height:900px;border:0}</style>
+</head>
+<body>
+<iframe id="cadre" src="about:blank"></iframe>
+<script>
+/* Audit de charte page par page. Chaque page est chargée dans un cadre de
+   1 440 × 900, puis mesurée sur les marqueurs de la refonte : fond blanc,
+   Schibsted Grotesk, barre de navigation identique à celle de l'accueil,
+   absence de couleurs de l'ancienne charte, absence de débordement. */
+/* Lu à l'appel, pas au chargement : la liste est fournie après coup. */
+
+const CREMES = /rgb\((25[0-1]), (25[0-1]), (24[6-7])\)|rgb\(239, 242, 249\)/;
+const INDIGOS = /rgb\(79, 70, 229\)|rgb\(67, 56, 202\)/;
+
+function auditer(doc, vue) {
+  const g = (e) => vue.getComputedStyle(e);
+  const corps = doc.body;
+  const entete = doc.querySelector('body > header');
+  const cta = doc.querySelector('.nav-cta, .coquille-cta');
+  const lien = doc.querySelector('.nav-dropdown-toggle, .nav-links a:not(.nav-cta), .coquille-liens a:not(.coquille-cta)');
+  const titre = doc.querySelector('h1');
+
+  const restes = [];
+  for (const e of doc.querySelectorAll('body *')) {
+    const s = g(e);
+    const valeurs = s.backgroundColor + '|' + s.color + '|' + s.borderTopColor;
+    if (CREMES.test(valeurs)) restes.push('crème:' + (e.className || e.tagName).toString().slice(0, 22));
+    if (INDIGOS.test(valeurs)) restes.push('indigo:' + (e.className || e.tagName).toString().slice(0, 22));
+  }
+
+  const enGeist = [...doc.querySelectorAll('body *')]
+    .filter((e) => /^Geist,|^"Geist",/.test(g(e).fontFamily))
+    .map((e) => (e.className || e.tagName).toString().slice(0, 22));
+
+  return {
+    fond: g(corps).backgroundColor,
+    police: g(corps).fontFamily.split(',')[0].replace(/"/g, ''),
+    entete: entete ? {
+      h: Math.round(entete.getBoundingClientRect().height),
+      fond: g(entete).backgroundColor,
+      filet: g(entete).borderBottomWidth
+    } : null,
+    cta: cta ? {
+      fond: g(cta).backgroundColor,
+      taille: g(cta).fontSize,
+      graisse: g(cta).fontWeight,
+      rayon: g(cta).borderRadius
+    } : null,
+    lien: lien ? { taille: g(lien).fontSize, graisse: g(lien).fontWeight } : null,
+    vide_avant_h1: (titre && entete)
+      ? Math.round(titre.getBoundingClientRect().top - entete.getBoundingClientRect().bottom)
+      : null,
+    deborde: doc.documentElement.scrollWidth > vue.innerWidth + 1,
+    restes: [...new Set(restes)].slice(0, 4),
+    geist: [...new Set(enGeist)].slice(0, 4)
+  };
+}
+
+window.lancerAudit = async function () {
+  const cadre = document.getElementById('cadre');
+  const resultats = {};
+  for (const page of (window.PAGES_A_AUDITER || [])) {
+    await new Promise((resoudre) => {
+      cadre.onload = () => setTimeout(resoudre, 350);
+      cadre.src = '/' + page.replace(/index\.html$/, '');
+    });
+    try {
+      resultats[page] = auditer(cadre.contentDocument, cadre.contentWindow);
+    } catch (e) {
+      resultats[page] = { erreur: String(e).slice(0, 80) };
+    }
+  }
+  return resultats;
+};
+</script>
+</body>
+</html>

@@ -45,11 +45,12 @@
   })();
   </script>
   <!-- Charge l'ancien style.css (pour questionnaire + rapport généré dynamiquement) puis style-v2.css qui override -->
-  <link href="css/fonts.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/style-v2.css">
+  <link href="css/fonts.css?v=2026-08-31" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css?v=2026-08-31">
+  <link rel="stylesheet" href="css/animations.css?v=2026-08-31">
+  <link rel="stylesheet" href="css/style-v2.css?v=2026-08-31">
+  <!-- Rafraîchissement de la landing (handoff 08/2026) : surcharge les deux feuilles ci-dessus -->
+  <link rel="stylesheet" href="css/landing-2026.css?v=2026-08-31">
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -193,35 +194,36 @@
   <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
 
-  <!-- Analytics · PostHog EU (sans cookie : persistence memory, IP écartées côté projet, pas de session recording) -->
+  <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
   <script src="js/analytics.js" defer></script>
 </head>
-<body>
+<body class="landing-2026">
 
   <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <div class="l26-carte">
 
   <!-- ==================== NAV ==================== -->
   <header>
     <nav id="nav">
       <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
-        <span class="nav-logo-icon" aria-hidden="true">
-          <!-- Logo D4 · Horizon + soleil -->
-          <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round">
-            <defs>
-              <radialGradient id="navLogoSun" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#4F46E5"/>
-                <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
-              </radialGradient>
-            </defs>
-            <circle cx="24" cy="20" r="6.5" fill="url(#navLogoSun)" stroke="none"/>
-            <circle cx="24" cy="20" r="9.5" opacity="0.22" fill="none" stroke="#0A0A0A"/>
-            <line x1="6" y1="34" x2="42" y2="34"/>
-            <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
-            <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
-          </svg>
-        </span>
-        <span class="nav-logo-text">ACOMPIA</span>
-      </a>
+          <span class="nav-logo-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round">
+              <defs>
+                <radialGradient id="navLogoSun" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#4F46E5"/>
+                  <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
+                </radialGradient>
+              </defs>
+              <circle cx="24" cy="20" r="6.5" fill="url(#navLogoSun)" stroke="none"/>
+              <circle cx="24" cy="20" r="9.5" opacity="0.22" fill="none" stroke="#0A0A0A"/>
+              <line x1="6" y1="34" x2="42" y2="34"/>
+              <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
+              <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
+            </svg>
+          </span>
+          <span class="nav-logo-text">ACOMPIA</span>
+        </a>
       <div class="nav-links" id="nav-links">
         <div class="nav-dropdown">
           <a href="/solution/" class="nav-dropdown-toggle" aria-haspopup="true">
@@ -299,646 +301,784 @@
     </nav>
   </header>
 
-  <main id="main">
+  <main id="main" class="l26-page">
 
-  <!-- ==================== HERO ==================== -->
-  <section id="hero" class="hero hero-split">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
+    <!-- ==================== HERO ==================== -->
+    <section id="hero" class="l26-hero-zone">
+      <!-- Le calque de fond ne couvre que le hero : son débordement de 128 px
+           doit mourir sous la bande partenaires, pas dans les statistiques. -->
+      <div class="l26-hero-bloc">
+      <span class="l26-hero-fond" aria-hidden="true"></span>
+      <span class="l26-hero-halo" aria-hidden="true"></span>
 
-    <!-- Filigrane du logo ACOMPIA en arrière-plan -->
-    <div class="hero-watermark" aria-hidden="true">
-      <svg viewBox="0 0 480 480" fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round">
-        <defs>
-          <radialGradient id="heroWmSun" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#4F46E5"/>
-            <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
-          </radialGradient>
-        </defs>
-        <circle cx="240" cy="200" r="60" fill="url(#heroWmSun)" stroke="none"/>
-        <circle cx="240" cy="200" r="90" opacity="0.35" fill="none"/>
-        <line x1="60" y1="340" x2="420" y2="340"/>
-        <line x1="110" y1="380" x2="370" y2="380" opacity="0.5"/>
-        <line x1="160" y1="420" x2="320" y2="420" opacity="0.28"/>
-      </svg>
-    </div>
+      <div class="l26-hero">
+        <div class="l26-hero-texte">
+          <p class="l26-eyebrow">La conformité URSSAF, enfin maîtrisée</p>
 
-    <div class="hero-layout">
-    <div class="hero-content reveal">
-      <p class="hero-eyebrow">La conformité URSSAF, enfin maîtrisée</p>
-      <h1>Réduisez vos risques URSSAF.<br>Optimisez vos <em>charges sociales</em>.</h1>
+          <h1 class="l26-hero-titre">
+            Réduisez vos risques URSSAF.
+            <span>Optimisez vos charges sociales.</span>
+          </h1>
 
-      <p class="hero-subtitle">
-        L'URSSAF analyse déjà vos données par algorithme. Sachez ce qu'elle trouvera, corrigez avant elle, et récupérez ce que vous payez en trop.
+          <p class="l26-hero-para">
+            L'URSSAF analyse déjà vos données par algorithme. Sachez ce qu'elle trouvera,
+            corrigez avant elle, et récupérez ce que vous payez en trop.
+          </p>
+
+          <!-- Rendez-vous en primaire, prédiagnostic en contour. Cet ordre inverse
+               l'arbitrage du 26/07 (option C, commit edcc0ea) qui mettait le
+               prédiagnostic devant : Sabrina l'a retourné le 28/08 pour que le CTA
+               primaire soit le même aux quatre emplacements — barre, héros, cas-types,
+               CTA final. La réassurance « 3 min, sans inscription » reste accrochée au
+               prédiagnostic, à qui elle appartient, et non au bouton rendez-vous. -->
+          <div class="l26-hero-ctas">
+            <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener" class="btn-primary l26-pill l26-pill--noire">
+              Prendre rendez-vous
+            </a>
+            <a href="outils/prediagnostic-urssaf/" class="btn-secondary l26-pill l26-pill--ghost">
+              Faire mon prédiagnostic gratuit <span class="l26-pill-note">3&nbsp;min</span>
+            </a>
+          </div>
+
+          <ul class="l26-preuves">
+            <li>Prédiagnostic sans inscription</li>
+            <li>Rapport immédiat</li>
+            <li>Données hébergées en France</li>
+          </ul>
+        </div>
+
+        <div class="l26-hero-visuel" aria-hidden="true">
+<div style="animation: acHeroIn .9s cubic-bezier(.2,.7,.3,1) .18s both; position: relative; border-radius: 24px; background: #FFFFFF; border: 1px solid rgba(16,16,20,0.07); box-shadow: 0 30px 70px -34px rgba(16,16,20,0.28); overflow: hidden;">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid rgba(12,12,20,0.07); background: #FAFAF8;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F57;"></span>
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #FEBC2E;"></span>
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #28C840;"></span>
+          <span style="margin: 0 auto; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: #5F5F6B; background: #FFFFFF; border: 1px solid rgba(12,12,20,0.07); padding: 4px 16px; border-radius: 999px;">app.acompia.com</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 148px 1fr; min-height: 430px;">
+
+          <div style="background: #F7F6FC; border-right: 1px solid rgba(16,16,20,0.06); padding: 14px 10px; display: grid; gap: 14px; align-content: start;">
+            <div style="display: flex; align-items: center; gap: 7px;">
+              <span style="width: 16px; height: 16px; border-radius: 5px; background: linear-gradient(150deg, #6E5BFF, #3B2BD6);"></span>
+              <span style="font-family: 'PolySans', 'Schibsted Grotesk', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.16em;">ACOMPIA</span>
+            </div>
+            <div style="padding: 10px; border-radius: 10px; background: rgba(16,16,20,0.05);">
+              <div style="font-size: 9.5px; font-weight: 600; letter-spacing: 0.06em;">TRANSPORTS RIVIÈRE</div>
+              <div style="margin-top: 4px; font-size: 9px; color: #8A8A96;">← Retour aux entreprises</div>
+            </div>
+            <div style="display: grid; gap: 2px;">
+            <div style="padding: 7px 10px; border-radius: 8px; font-size: 10.5px; color: #101014; background: #FFFFFF; font-weight: 600;">Tableau de bord</div>
+            <div style="padding: 7px 10px; border-radius: 8px; font-size: 10.5px; color: #5F5F6B; background: transparent; font-weight: 400;">Importer des justificatifs</div>
+            <div style="padding: 7px 10px; border-radius: 8px; font-size: 10.5px; color: #5F5F6B; background: transparent; font-weight: 400;">Pilotage de ma flotte</div>
+            <div style="padding: 7px 10px; border-radius: 8px; font-size: 10.5px; color: #5F5F6B; background: transparent; font-weight: 400;">Pilotage de ma paye</div>
+            <div style="padding: 7px 10px; border-radius: 8px; font-size: 10.5px; color: #5F5F6B; background: transparent; font-weight: 400;">Anomalies</div>
+            <div style="padding: 7px 10px; border-radius: 8px; font-size: 10.5px; color: #5F5F6B; background: transparent; font-weight: 400;">Optimisations</div>
+            <div style="padding: 7px 10px; border-radius: 8px; font-size: 10.5px; color: #5F5F6B; background: transparent; font-weight: 400;">Mes audits</div>
+            </div>
+          </div>
+
+          <div style="padding: 16px 18px 20px; display: grid; gap: 12px; align-content: start;">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+              <div>
+                <div style="font-family: 'PolySans', 'Schibsted Grotesk', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: -0.03em;">Où en est votre assiette</div>
+                <div style="margin-top: 3px; font-size: 10px; color: #8A8A96;">312 salariés · 60 véhicules · analysé le 26/08/2026</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 2px; padding: 2px; border-radius: 8px; background: #F4F4F2;"><span style="padding: 3px 8px; border-radius: 6px; font-size: 10px; color: #9A9AA2; background: transparent; border: 1px solid transparent;">2021</span><span style="padding: 3px 8px; border-radius: 6px; font-size: 10px; color: #9A9AA2; background: transparent; border: 1px solid transparent;">2022</span><span style="padding: 3px 8px; border-radius: 6px; font-size: 10px; color: #9A9AA2; background: transparent; border: 1px solid transparent;">2023</span><span style="padding: 3px 8px; border-radius: 6px; font-size: 10px; color: #9A9AA2; background: transparent; border: 1px solid transparent;">2024</span><span style="padding: 3px 8px; border-radius: 6px; font-size: 10px; color: #101014; background: #FFFFFF; border: 1px solid rgba(16,16,20,0.12);">2025</span></div>
+                <span style="font-size: 10px; font-weight: 600; color: #FFFFFF; background: #4A34F5; padding: 7px 11px; border-radius: 8px; white-space: nowrap;">Relancer l'évaluation</span>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 10px;">
+              <div style="padding: 14px; border-radius: 12px; border: 1px solid rgba(16,16,20,0.08);">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                  <span style="font-size: 10.5px; font-weight: 600;">Écart à documenter</span>
+                  <span style="font-size: 9px; color: #9A9AA2;">Exercice 2025</span>
+                </div>
+                <div style="margin-top: 8px; display: flex; align-items: center; gap: 9px; flex-wrap: wrap;">
+                  <span style="font-family: 'PolySans', 'Schibsted Grotesk', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums;">17 159,29 €</span>
+                  <span style="font-size: 9.5px; color: #8A6A1F; background: #FDF6E7; padding: 4px 8px; border-radius: 999px; white-space: nowrap;">7 pièces à produire</span>
+                </div>
+                <div style="margin-top: 8px; font-size: 9.5px; line-height: 1.5; color: #6E6E78;">Rien n'est acquis à l'URSSAF : l'écart entier repose sur des documents que vous pouvez encore produire.</div>
+                <div style="margin-top: 12px; height: 7px; border-radius: 999px; overflow: hidden; display: flex;">
+                  <span style="width: 61%; background: #4A34F5;"></span>
+                  <span style="flex: 1; background: repeating-linear-gradient(115deg, #F0D8A0 0 5px, #FBEDD2 5px 10px);"></span>
+                </div>
+                <div style="margin-top: 8px; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px;">
+                  <span>
+                    <span style="display: block; font-size: 9px; color: #8A8A96;">Défendu par vos pièces</span>
+                    <span style="display: block; margin-top: 2px; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;">26 763,70 €</span>
+                  </span>
+                  <span style="text-align: right;">
+                    <span style="display: block; font-size: 9px; color: #8A8A96;">Plafond d'un contrôle</span>
+                    <span style="display: block; margin-top: 2px; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;">43 922,99 €</span>
+                  </span>
+                </div>
+                <span style="margin-top: 12px; display: inline-block; font-size: 10px; font-weight: 600; color: #FFFFFF; background: #8C7BFF; padding: 7px 11px; border-radius: 8px;">Demander les 7 pièces</span>
+              </div>
+
+              <div style="padding: 14px; border-radius: 12px; border: 1px solid rgba(16,16,20,0.08);">
+                <div style="font-size: 10.5px; font-weight: 600;">Ce que la paie a déclaré</div>
+                <div style="margin-top: 8px; font-size: 9px; color: #8A8A96;">Déclaré en DSN</div>
+                <div style="margin-top: 3px; font-family: 'PolySans', 'Schibsted Grotesk', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums;">24 495,46 €</div>
+                <div style="margin-top: 12px; font-size: 9px; color: #8A8A96;">Écarts contre ce déclaré</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 0; border-top: 1px solid rgba(16,16,20,0.06); font-size: 10.5px;">
+                <span style="color: #55555F;">Écart, borne soutenable</span><span style="font-weight: 600; font-variant-numeric: tabular-nums;">2 268,24 €</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 0; border-top: 1px solid rgba(16,16,20,0.06); font-size: 10.5px;">
+                <span style="color: #55555F;">Écart, borne d'exposition</span><span style="font-weight: 600; font-variant-numeric: tabular-nums;">19 427,53 €</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 0; border-top: 1px solid rgba(16,16,20,0.06); font-size: 10.5px;">
+                <span style="color: #55555F;">Retenu en paie, non déclaré en DSN</span><span style="font-weight: 600; font-variant-numeric: tabular-nums;">2 121,78 €</span>
+              </div>
+              </div>
+            </div>
+
+            <div style="padding: 14px; border-radius: 12px; border: 1px solid rgba(16,16,20,0.08);">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px;">
+                <span style="font-size: 10.5px; font-weight: 600;">D'où vient l'écart de 19 427,53 €</span>
+                <span style="font-size: 9.5px; color: #4A34F5;">Comment lire ces montants</span>
+              </div>
+              <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 8px; background: #F7F6FC; font-size: 10px;">
+                <span style="color: #55555F;">Socle non déclaré</span><span style="font-weight: 600; font-variant-numeric: tabular-nums;">2 268,24 €</span>
+              </div>
+              <div style="margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 9.5px; font-weight: 500; color: #9A9AA2;">
+                <span>Conditionné par les justificatifs manquants</span><span style="color: #101014; font-weight: 500;">17 159,29 €</span>
+              </div>
+              <div style="margin-top: 10px; display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: center;">
+                <div style="position: relative; width: 132px; height: 132px; border-radius: 50%; background: conic-gradient(#4A34F5 0 41.5%, #22B8CF 41.5% 74.9%, #2D1FA8 74.9% 99.4%, #C9C6E8 99.4% 100%); display: grid; place-items: center;">
+                  <div style="width: 86px; height: 86px; border-radius: 50%; background: #FFFFFF; display: grid; place-items: center; text-align: center;">
+                    <div>
+                      <div style="font-family: 'PolySans', 'Schibsted Grotesk', sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums;">17 159,29 €</div>
+                      <div style="margin-top: 2px; font-size: 8px; line-height: 1.4; color: #9A9AA2;">dépend des pièces<br />4 groupes</div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+              <div style="display: grid; grid-template-columns: 8px 1fr auto; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid rgba(16,16,20,0.06);">
+                <span style="margin-top: 4px; width: 7px; height: 7px; border-radius: 50%; background: #4A34F5;"></span>
+                <span>
+                  <span style="display: block; font-size: 10.5px; font-weight: 600;">Carburant · Mode d'évaluation</span>
+                  <span style="display: block; margin-top: 2px; font-size: 9.5px; color: #9A9AA2;">18 fenêtres · 18 salariés</span>
+                </span>
+                <span style="font-size: 10.5px; font-weight: 600; font-variant-numeric: tabular-nums;">7 126,80 €</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 8px 1fr auto; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid rgba(16,16,20,0.06);">
+                <span style="margin-top: 4px; width: 7px; height: 7px; border-radius: 50%; background: #22B8CF;"></span>
+                <span>
+                  <span style="display: block; font-size: 10.5px; font-weight: 600;">Prix du véhicule</span>
+                  <span style="display: block; margin-top: 2px; font-size: 9.5px; color: #9A9AA2;">13 fenêtres · 12 salariés</span>
+                </span>
+                <span style="font-size: 10.5px; font-weight: 600; font-variant-numeric: tabular-nums;">5 738,70 €</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 8px 1fr auto; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid rgba(16,16,20,0.06);">
+                <span style="margin-top: 4px; width: 7px; height: 7px; border-radius: 50%; background: #2D1FA8;"></span>
+                <span>
+                  <span style="display: block; font-size: 10.5px; font-weight: 600;">Usage professionnel</span>
+                  <span style="display: block; margin-top: 2px; font-size: 9.5px; color: #9A9AA2;">21 fenêtres · 19 salariés</span>
+                </span>
+                <span style="font-size: 10.5px; font-weight: 600; font-variant-numeric: tabular-nums;">4 184,69 €</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 8px 1fr auto; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid rgba(16,16,20,0.06);">
+                <span style="margin-top: 4px; width: 7px; height: 7px; border-radius: 50%; background: #C9C6E8;"></span>
+                <span>
+                  <span style="display: block; font-size: 10.5px; font-weight: 600;">Statut du bénéficiaire</span>
+                  <span style="display: block; margin-top: 2px; font-size: 9.5px; color: #9A9AA2;">2 fenêtres · 2 salariés</span>
+                </span>
+                <span style="font-size: 10.5px; font-weight: 600; font-variant-numeric: tabular-nums;">109,10 €</span>
+              </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>        </div>
+      </div>
+      </div><!-- /.l26-hero-bloc -->
+
+      <!-- Bande partenaires -->
+      <div class="l26-large">
+        <div class="l26-partenaires">
+          <p class="l26-partenaires-label">Soutenu par</p>
+          <div class="l26-marquee" aria-hidden="true">
+            <div class="l26-marquee-piste">
+              <span>Bpifrance</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
+              <span>Bpifrance</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
+              <span>Bpifrance</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
+              <span>Bpifrance</span><span>Barreau de Paris</span><span>STATION F</span><span>CEGID</span>
+            </div>
+          </div>
+          <p class="sr-only">Soutenu par Bpifrance, le Barreau de Paris, STATION F et CEGID.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== STATISTIQUES ==================== -->
+    <!-- Chiffres et source conservés du site : dossier de presse Urssaf du 25 juin 2026.
+         Le prototype proposait « x2 sur cinq ans » et « 180 j de délai », non sourcés.
+
+         Les nombres montent depuis zéro, l'unité reste fixe hors du compteur.
+         Sabrina préférait des chiffres statiques, l'animation affichant pendant
+         sa montée des valeurs qui ne sont celles d'aucune source ; Greg a tranché
+         pour l'animation le 31/08. Elle ne joue pas si le visiteur a demandé
+         moins de mouvement, et la valeur exacte reste dans le markup, donc elle
+         s'affiche telle quelle si le script ne tourne pas. -->
+    <section id="stats" class="l26-stats-zone">
+      <p class="l26-eyebrow l26-stats-titre">Le contrôle URSSAF a changé d'échelle</p>
+      <div class="l26-stats-grille">
+        <div class="l26-stat reveal">
+          <div class="l26-stat-chiffre"><span class="stat-number" data-target="48000">48&nbsp;000</span></div>
+          <p class="l26-stat-libelle">contrôles comptables d'assiette menés par l'URSSAF en 2025</p>
+        </div>
+        <div class="l26-stat reveal">
+          <div class="l26-stat-chiffre"><span class="stat-number" data-target="90">90</span><span class="l26-stat-unite">&nbsp;%</span></div>
+          <p class="l26-stat-libelle">des contrôles sont ciblés, un ciblage affiné par le croisement de données</p>
+        </div>
+        <div class="l26-stat reveal">
+          <div class="l26-stat-chiffre"><span class="stat-number" data-target="667">667</span><span class="l26-stat-unite">&nbsp;M€</span></div>
+          <p class="l26-stat-libelle">de redressements dus par les entreprises en 2025, au titre de ces contrôles</p>
+        </div>
+        <div class="l26-stat reveal">
+          <div class="l26-stat-chiffre"><span class="stat-number" data-target="180">180</span><span class="l26-stat-unite">&nbsp;M€</span></div>
+          <p class="l26-stat-libelle">restitués aux entreprises en cas de trop-versé</p>
+        </div>
+      </div>
+
+      <p class="l26-source">
+        3 contrôles sur 4 aboutissent à une régularisation (78,7&nbsp;% en 2025).
+        Source&nbsp;: <a href="https://www.urssaf.org/accueil/espace-medias/communiques-de-presse/dossier-de-presse-le-controle.html" target="_blank" rel="noopener noreferrer">Urssaf Caisse nationale, dossier de presse «&nbsp;Le contrôle à l'Urssaf&nbsp;», 25 juin 2026</a>.
       </p>
+    </section>
 
-      <!-- Trust bar perspective (entre subtitle et CTAs) -->
-      <div class="trust-bar">
-        <span class="trust-bar-item">
-          <!-- Palais de justice / institution -->
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h18"/><path d="M5 22V10l7-5 7 5v12"/><path d="M9 22v-7h6v7"/><path d="M5 10h14"/></svg>
-          Incubée par le <b>Barreau de Paris</b>
-        </span>
-        <span class="trust-bar-sep"></span>
-        <span class="trust-bar-item">
-          <!-- Station F : fusée -->
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
-          Résidente à <b>Station F</b>
-        </span>
-        <span class="trust-bar-sep"></span>
-        <span class="trust-bar-item">
-          <!-- IA / sparkles -->
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
-          Expertise <b>augmentée par IA</b>
-        </span>
-      </div>
+    <!-- ==================== CAS-TYPES ==================== -->
+    <section id="cas-types" class="l26-biseau l26-cas-zone">
+      <span class="l26-biseau-fond" aria-hidden="true"></span>
 
-      <div class="hero-ctas">
-        <a href="/outils/prediagnostic-urssaf/" class="btn-primary"><span>Faire mon prédiagnostic gratuit (3 min) <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="btn-ghost">Prendre rendez-vous</a>
-      </div>
-    </div>
+      <div class="l26-slab">
+        <header>
+          <p class="l26-eyebrow">Cas-types</p>
+          <h2 class="l26-h2">Trois contrôles, <em>trois additions.</em></h2>
+          <p class="l26-chapeau">
+            Des situations chiffrées aux barèmes en vigueur, sources à l'appui.
+            Le même contrôle ne coûte pas le même prix selon la qualité du dossier.
+          </p>
+        </header>
 
-    <!-- Vitrine produit : capture réelle du tableau de bord ACOMPIA, à cheval sur la section suivante. -->
-    <div class="hero-showcase">
-      <div class="dash-window">
-        <!-- A11Y : chrome de fausse fenêtre purement décoratif (contraste non requis) -->
-        <div class="dash-window-bar" aria-hidden="true">
-          <span class="dash-window-dots"><i></i><i></i><i></i></span>
-          <span class="dash-window-url">app.acompia.com</span>
+        <div class="l26-cas-grille">
+
+          <article class="l26-cas reveal" data-ouvert="false">
+            <p class="l26-cas-meta">Cas 01 · Flotte</p>
+            <h3 class="l26-cas-titre">40 véhicules. Un barème resté en 2024.</h3>
+            <p class="l26-cas-montant">≈&nbsp;35&nbsp;600&nbsp;€</p>
+            <p class="l26-cas-sous">de cotisations exposées, hors majorations</p>
+            <p class="l26-cas-constat">
+              Une entreprise loue 40 véhicules à 550&nbsp;€ TTC par mois, location, entretien
+              et assurance compris. La paie applique encore le forfait de 30&nbsp;%. Pour tout
+              véhicule attribué depuis le 1<sup>er</sup> février 2025, la règle est passée à 50&nbsp;%.
+            </p>
+            <p class="l26-cas-cle">Chaque mois non corrigé ajoute 4&nbsp;400&nbsp;€ à l'assiette redressable.</p>
+            <button type="button" class="l26-cas-bouton" aria-expanded="false" aria-controls="cas-detail-1">
+              <span>Le détail et la source</span><span class="l26-plus" aria-hidden="true">+</span>
+            </button>
+            <div class="l26-cas-detail" id="cas-detail-1">
+              <div class="l26-cas-detail-inner">
+                <ul class="l26-cas-puces">
+                  <li><b>110&nbsp;€</b> d'avantage en nature oublié, par véhicule et par mois</li>
+                  <li><b>4&nbsp;400&nbsp;€</b> d'assiette sociale omise chaque mois pour la flotte</li>
+                  <li>au 31 juillet 2026&nbsp;: <b>≈&nbsp;79&nbsp;200&nbsp;€</b> d'assiette accumulée, <b>≈&nbsp;35&nbsp;600&nbsp;€</b> de cotisations, hors majorations</li>
+                </ul>
+                <p class="l26-cas-regle">
+                  <b>La règle.</b> Arrêté du 25 février 2025, article 3&nbsp;: le forfait des véhicules loués
+                  passe de 30&nbsp;% à 50&nbsp;% du coût global annuel pour les mises à disposition à compter
+                  du 1<sup>er</sup> février 2025. Le BOSS plafonne l'évaluation à celle d'un achat.
+                  Véhicule thermique, méthode forfaitaire, carburant privé non pris en charge.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="l26-cas reveal" data-ouvert="false">
+            <p class="l26-cas-meta">Cas 02 · Frais pro</p>
+            <h3 class="l26-cas-titre">25 commerciaux. 315&nbsp;000&nbsp;€ d'indemnités que personne ne peut justifier.</h3>
+            <p class="l26-cas-montant">≈&nbsp;141&nbsp;750&nbsp;€</p>
+            <p class="l26-cas-sous">de cotisations exposées, hors majorations</p>
+            <p class="l26-cas-constat">
+              Chaque commercial touche 350&nbsp;€ par mois pour l'usage professionnel de son véhicule.
+              L'entreprise ne conserve ni dates, ni destinations, ni kilomètres parcourus, ni puissance
+              fiscale des véhicules.
+            </p>
+            <p class="l26-cas-cle">Respecter le barème kilométrique ne suffit pas. Il faut pouvoir prouver chaque déplacement.</p>
+            <button type="button" class="l26-cas-bouton" aria-expanded="false" aria-controls="cas-detail-2">
+              <span>Le détail et la source</span><span class="l26-plus" aria-hidden="true">+</span>
+            </button>
+            <div class="l26-cas-detail" id="cas-detail-2">
+              <div class="l26-cas-detail-inner">
+                <ul class="l26-cas-puces">
+                  <li><b>315&nbsp;000&nbsp;€</b> exclus de l'assiette sur au moins 36 mois contrôlables</li>
+                  <li>sans justificatifs, la réintégration est <b>intégrale</b>, c'est la jurisprudence constante</li>
+                  <li><b>≈&nbsp;141&nbsp;750&nbsp;€</b> de cotisations, hors majorations de retard</li>
+                </ul>
+                <p class="l26-cas-regle">
+                  <b>La règle.</b> Arrêté du 4 septembre 2025, article 4&nbsp;: l'indemnité n'est présumée
+                  conforme, dans les limites du barème fiscal, que si le salarié est contraint d'utiliser
+                  son véhicule personnel, et c'est l'employeur qui en porte la preuve.
+                  Cass. 2<sup>e</sup> civ., 9 décembre 2021, n°&nbsp;20-14.050&nbsp;: réintégration intégrale
+                  faute de justificatifs. Période contrôlable&nbsp;: article L.244-3 du Code de la sécurité sociale.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="l26-cas reveal" data-ouvert="false">
+            <p class="l26-cas-meta">Cas 03 · Frais de santé</p>
+            <h3 class="l26-cas-titre">15 dispenses de mutuelle. Zéro papier.</h3>
+            <p class="l26-cas-montant">64&nbsp;800&nbsp;€ <span class="l26-vers">→</span> 136&nbsp;000&nbsp;€</p>
+            <p class="l26-cas-sous">du simple au double, selon le dossier de preuve</p>
+            <p class="l26-cas-constat">
+              120 salariés, dont 15 non affiliés au régime frais de santé, sans demande écrite de dispense
+              retrouvable. Contribution patronale&nbsp;: 80&nbsp;€ par mois et par salarié affilié.
+            </p>
+            <p class="l26-cas-cle">Le jour du contrôle, c'est la preuve qui fait le prix.</p>
+            <button type="button" class="l26-cas-bouton" aria-expanded="false" aria-controls="cas-detail-3">
+              <span>Le détail et la source</span><span class="l26-plus" aria-hidden="true">+</span>
+            </button>
+            <div class="l26-cas-detail" id="cas-detail-3">
+              <div class="l26-cas-detail-inner">
+                <ul class="l26-cas-puces">
+                  <li>l'entreprise <b>reconstitue la situation de façon probante</b>&nbsp;: redressement réduit à 1,5 fois les sommes manquantes, soit <b>64&nbsp;800&nbsp;€</b></li>
+                  <li>elle <b>ne le peut pas</b>&nbsp;: cotisations recalculées sur l'ensemble des contributions patronales versées, soit <b>≈&nbsp;136&nbsp;000&nbsp;€</b></li>
+                  <li>le même contrôle, deux factures&nbsp;: la différence, c'est <b>la qualité du dossier de preuve</b></li>
+                </ul>
+                <p class="l26-cas-regle">
+                  <b>La règle.</b> Article L.133-4-8 du Code de la sécurité sociale&nbsp;: redressement réduit
+                  à 1,5 fois les sommes faisant défaut si l'employeur reconstitue les sommes de manière probante,
+                  redressement global sinon. Cass. 2<sup>e</sup> civ., 1<sup>er</sup> février 2024,
+                  n°&nbsp;22-12.207&nbsp;: un simple tableau reconstitué ne suffit pas.
+                </p>
+              </div>
+            </div>
+          </article>
+
         </div>
-        <div class="dash-shot-clip">
-          <picture>
-            <source srcset="assets/dashboard-acompia.webp" type="image/webp">
-            <img src="assets/dashboard-acompia.png"
-                 alt="Tableau de bord ACOMPIA : exposition URSSAF chiffrée par thématique, mise en conformité et écarts à corriger"
-                 class="dash-shot" width="1760" height="1314" loading="eager" fetchpriority="high" decoding="async">
-          </picture>
+
+        <div class="l26-cas-pied">
+          <p class="l26-cas-mention">
+            Estimations établies aux barèmes en vigueur. Taux de cotisations indicatif de 40 à 50&nbsp;%
+            selon l'entreprise (rémunérations, allégements, versement mobilité, taux AT/MP), hors majorations
+            de retard. Cas-types illustratifs.
+          </p>
+          <a href="outils/prediagnostic-urssaf/" class="btn-primary l26-pill l26-pill--noire">Évaluer mon exposition en 3&nbsp;minutes</a>
         </div>
       </div>
+    </section>
 
-      <div class="dash-chip dash-chip-alert">
-        <span class="dash-chip-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 6a3.5 3.5 0 0 0 7 0z"/><path d="M19 7l-3 6a3.5 3.5 0 0 0 7 0z"/><path d="M8 21h8"/></svg>
-        </span>
-        <span class="dash-chip-text"><b>Conçue par une avocate URSSAF</b>Chaque règle sourcée</span>
+    <!-- ==================== NOTRE SOLUTION ==================== -->
+    <section id="solution-home" class="l26-section">
+      <header class="l26-entete">
+        <p class="l26-eyebrow">Notre solution</p>
+        <h2 class="l26-h2">La conformité URSSAF, <em>à votre rythme.</em></h2>
+        <p class="l26-chapeau">
+          Choisissez votre porte d'entrée. La rigueur d'une avocate, la puissance d'un logiciel.
+        </p>
+      </header>
+
+      <div class="l26-onglets" role="tablist" aria-label="Nos trois offres">
+        <button type="button" class="l26-onglet" role="tab" id="onglet-0" aria-controls="panneau-0" aria-selected="true">
+          <span class="l26-onglet-titre">Audit continu</span>
+          <span class="l26-onglet-sous">Septembre 2026</span>
+        </button>
+        <button type="button" class="l26-onglet" role="tab" id="onglet-1" aria-controls="panneau-1" aria-selected="false" tabindex="-1">
+          <span class="l26-onglet-titre">Audits sur mesure</span>
+          <span class="l26-onglet-sous">Sur devis · 48&nbsp;h</span>
+        </button>
+        <button type="button" class="l26-onglet" role="tab" id="onglet-2" aria-controls="panneau-2" aria-selected="false" tabindex="-1">
+          <span class="l26-onglet-titre">Pilotage de flotte</span>
+          <span class="l26-onglet-sous">Disponible maintenant</span>
+        </button>
       </div>
 
-      <div class="dash-chip dash-chip-proof">
-        <span class="dash-chip-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg>
-        </span>
-        <span class="dash-chip-text"><b>Prêt en cas de contrôle</b>Dossier de preuve exportable en un clic</span>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <!-- ==================== STATS ==================== -->
-  <section id="stats" class="stats">
-    <p class="stats-kicker reveal">Le contrôle URSSAF a changé d'échelle</p>
-
-    <div class="stats-grid">
-      <div class="stat-card reveal">
-        <div class="stat-number-wrap">
-          <span class="stat-number">48&nbsp;000</span>
-        </div>
-        <div class="stat-label">contrôles comptables d'assiette menés par l'URSSAF en 2025</div>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-number-wrap">
-          <span class="stat-number">3</span>
-          <span class="stat-suffix">sur 4</span>
-        </div>
-        <div class="stat-label">des contrôles aboutissent à une régularisation, redressement ou restitution (78,7 % en 2025)</div>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-number-wrap">
-          <span class="stat-number" data-target="667">667</span>
-          <span class="stat-suffix">M€</span>
-        </div>
-        <div class="stat-label">de redressements dus par les entreprises en 2025, au titre des contrôles comptables d'assiette</div>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-number-wrap">
-          <span class="stat-number" data-target="180">180</span>
-          <span class="stat-suffix">M€</span>
-        </div>
-        <div class="stat-label">restitués aux entreprises en cas de trop-versé</div>
-      </div>
-    </div>
-    <p class="stats-sources reveal">90 % des contrôles comptables d'assiette sont ciblés, un ciblage affiné par le croisement de données. Source : <a href="https://www.urssaf.org/accueil/espace-medias/communiques-et-dossiers-de-press/communiques-de-presse/2026/le-controle-a-l%27urssaf.html" target="_blank" rel="noopener noreferrer">Urssaf Caisse nationale, dossier de presse « Le contrôle à l'Urssaf », 25 juin 2026</a>.</p>
-  </section>
-
-  <!-- ==================== CAS-TYPES (constat / exposition / règle sourcée) ==================== -->
-  <section id="cas-types" class="cas-types">
-    <div class="section-header reveal">
-      <div class="section-tag">Cas-types</div>
-      <h2>Trois contrôles, <em>trois additions</em>.</h2>
-      <p>Des situations chiffrées aux barèmes en vigueur, sources à l'appui. Le même contrôle ne coûte pas le même prix selon la qualité du dossier.</p>
-    </div>
-
-    <div class="cas-grid">
-
-      <article class="cas-card reveal">
-        <h3 class="cas-title">40 véhicules. Un barème resté en 2024.</h3>
-        <p class="cas-constat"><b>Le constat.</b> Une entreprise loue 40 véhicules à 550&nbsp;€ TTC par mois, location, entretien et assurance compris. La paie applique encore le forfait de 30&nbsp;%. Pour tout véhicule attribué depuis le 1<sup>er</sup> février 2025, la règle est passée à 50&nbsp;%.</p>
-        <div class="cas-expo-tt">L'exposition</div>
-        <ul class="cas-expo">
-          <li><b>110&nbsp;€</b> d'avantage en nature oublié, par véhicule et par mois</li>
-          <li><b>4&nbsp;400&nbsp;€</b> d'assiette sociale omise chaque mois pour la flotte</li>
-          <li>au 31 juillet 2026&nbsp;: <b>≈&nbsp;79&nbsp;200&nbsp;€</b> d'assiette accumulée, <b class="cas-rouge">≈&nbsp;35&nbsp;600&nbsp;€</b> de cotisations, hors majorations</li>
-        </ul>
-        <p class="cas-chute">Chaque mois non corrigé ajoute 4&nbsp;400&nbsp;€ à l'assiette redressable.</p>
-        <p class="cas-regle"><b>La règle.</b> Arrêté du 25 février 2025, article&nbsp;3&nbsp;: le forfait des véhicules loués passe de 30&nbsp;% à 50&nbsp;% du coût global annuel pour les mises à disposition à compter du 1<sup>er</sup> février 2025. Le BOSS plafonne l'évaluation à celle d'un achat. Véhicule thermique, méthode forfaitaire, carburant privé non pris en charge.</p>
-      </article>
-
-      <article class="cas-card reveal">
-        <h3 class="cas-title">25 commerciaux. 315&nbsp;000&nbsp;€ d'indemnités que personne ne peut justifier.</h3>
-        <p class="cas-constat"><b>Le constat.</b> Chaque commercial touche 350&nbsp;€ par mois pour l'usage professionnel de son véhicule. L'entreprise ne conserve ni dates, ni destinations, ni kilomètres parcourus, ni puissance fiscale des véhicules.</p>
-        <div class="cas-expo-tt">L'exposition</div>
-        <ul class="cas-expo">
-          <li><b>315&nbsp;000&nbsp;€</b> exclus de l'assiette sur au moins 36 mois contrôlables</li>
-          <li>sans justificatifs, la réintégration est <b>intégrale</b>, c'est la jurisprudence constante</li>
-          <li><b class="cas-rouge">≈&nbsp;141&nbsp;750&nbsp;€</b> de cotisations, hors majorations de retard</li>
-        </ul>
-        <p class="cas-chute">Respecter le barème kilométrique ne suffit pas. Il faut pouvoir prouver chaque déplacement.</p>
-        <p class="cas-regle"><b>La règle.</b> Arrêté du 4 septembre 2025, article&nbsp;4&nbsp;: l'indemnité n'est présumée conforme, dans les limites du barème fiscal, que si le salarié est contraint d'utiliser son véhicule personnel, et c'est l'employeur qui en porte la preuve. Cass. 2<sup>e</sup>&nbsp;civ., 9&nbsp;décembre 2021, n°&nbsp;20-14.050&nbsp;: réintégration intégrale faute de justificatifs. Période contrôlable&nbsp;: article L.244-3 du Code de la sécurité sociale.</p>
-      </article>
-
-      <article class="cas-card reveal">
-        <h3 class="cas-title">15 dispenses de mutuelle. Zéro papier. Deux additions possibles.</h3>
-        <p class="cas-constat"><b>Le constat.</b> 120 salariés, dont 15 non affiliés au régime frais de santé, sans demande écrite de dispense retrouvable. Contribution patronale&nbsp;: 80&nbsp;€ par mois et par salarié affilié.</p>
-        <div class="cas-expo-tt">L'exposition</div>
-        <ul class="cas-expo">
-          <li>l'entreprise <b>reconstitue la situation de façon probante</b>&nbsp;: redressement réduit à 1,5&nbsp;fois les sommes manquantes, soit <b class="cas-vert">64&nbsp;800&nbsp;€</b></li>
-          <li>elle <b>ne le peut pas</b>&nbsp;: cotisations recalculées sur l'ensemble des contributions patronales versées, soit <b class="cas-rouge">≈&nbsp;136&nbsp;000&nbsp;€</b></li>
-          <li>le même contrôle, deux factures, du simple au double&nbsp;: la différence, c'est <b>la qualité du dossier de preuve</b></li>
-        </ul>
-        <p class="cas-chute">Le jour du contrôle, c'est la preuve qui fait le prix.</p>
-        <p class="cas-regle"><b>La règle.</b> Article L.133-4-8 du Code de la sécurité sociale&nbsp;: redressement réduit à 1,5&nbsp;fois les sommes faisant défaut si l'employeur reconstitue les sommes de manière probante, redressement global sinon. Cass. 2<sup>e</sup>&nbsp;civ., 1<sup>er</sup>&nbsp;février 2024, n°&nbsp;22-12.207&nbsp;: un simple tableau reconstitué ne suffit pas.</p>
-      </article>
-
-    </div>
-
-    <p class="cas-disclaimer reveal">Estimations établies aux barèmes en vigueur. Taux de cotisations indicatif de 40 à 50&nbsp;% selon l'entreprise (rémunérations, allégements, versement mobilité, taux AT/MP), hors majorations de retard. Cas-types illustratifs.</p>
-
-    <div class="cas-cta reveal">
-      <a href="/outils/prediagnostic-urssaf/" class="btn-primary"><span>Évaluer mon exposition en 3 minutes</span></a>
-      <p class="cas-cta-note">Gratuit · Confidentiel · Sans inscription</p>
-    </div>
-  </section>
-
-  <!-- ==================== LA SOLUTION (trio) ==================== -->
-  <section id="solution-home" class="prediag solution-home portes">
-    <div class="section-header reveal">
-      <div class="section-tag">Notre solution</div>
-      <h2>La conformité URSSAF, <em>à votre rythme</em>.</h2>
-      <p>Choisissez votre porte d'entrée. La rigueur d'une avocate, la puissance d'un logiciel.</p>
-    </div>
-
-    <div class="portes-tabs reveal" role="tablist" aria-label="Les trois offres">
-      <button class="porte-tab is-active" data-porte="continu" role="tab" aria-selected="true" type="button"><b>Audit continu</b><span>Septembre 2026</span></button>
-      <button class="porte-tab" data-porte="audits" role="tab" aria-selected="false" type="button"><b>Audits sur mesure</b><span>Sur devis · 48 h</span></button>
-      <button class="porte-tab" data-porte="pilotage" role="tab" aria-selected="false" type="button"><b>Pilotage de flotte</b><span>Disponible maintenant</span></button>
-    </div>
-
-    <div class="portes-panels reveal">
-
-      <div class="porte-panel is-active" id="porte-continu" role="tabpanel">
+      <!-- Onglet 1 — Audit continu -->
+      <div class="l26-panneau l26-panneau--sombre l26-panneau--audit" id="panneau-0" role="tabpanel" aria-labelledby="onglet-0" tabindex="0">
         <div class="porte-how how">
-          <div class="platform-tag-soon porte-badge">● Ouverture en septembre 2026</div>
-          <h2 class="how-title">De vos données à votre <em>conformité démontrable</em>.</h2>
-          <p class="how-sub">ACOMPIA s'occupe de tout. Vous importez vos données, la solution analyse, alerte, corrige, prouve. <strong>Vous voyez tout, vous savez quoi faire.</strong></p>
-          <div class="journey">
-        <div class="journey-curve">
-          <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="curveG" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.2"/>
-                <stop offset="50%" stop-color="#A5B4FC" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.8"/>
-              </linearGradient>
-              <linearGradient id="curveGlow" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#4F46E5" stop-opacity="0"/>
-                <stop offset="50%" stop-color="#A5B4FC" stop-opacity="0.4"/>
-                <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.4"/>
-              </linearGradient>
-              <path id="journeyPath" d="M 100,68 C 200,68 200,134 300,134 C 400,134 400,72 500,72 C 600,72 600,134 700,134 C 800,134 800,90 900,90 C 1000,90 1000,106 1100,106" fill="none"/>
-            </defs>
-
-            <use href="#journeyPath" stroke="url(#curveGlow)" stroke-width="10" fill="none" opacity="0.7"/>
-            <use href="#journeyPath" stroke="url(#curveG)" stroke-width="1.5" fill="none"/>
-            <use href="#journeyPath" stroke="#22D3EE" stroke-width="1.5" fill="none" stroke-dasharray="4 20" opacity="0.7">
-              <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2s" repeatCount="indefinite"/>
-            </use>
-
-            <circle r="3.5" fill="#A5B4FC">
-              <animateMotion dur="9s" repeatCount="indefinite"><mpath href="#journeyPath"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.5;0.95;1" dur="9s" repeatCount="indefinite"/>
-            </circle>
-            <circle r="3" fill="#818CF8">
-              <animateMotion dur="9s" repeatCount="indefinite" begin="3s"><mpath href="#journeyPath"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.5;0.95;1" dur="9s" repeatCount="indefinite" begin="3s"/>
-            </circle>
-            <circle r="2.5" fill="#6366F1">
-              <animateMotion dur="9s" repeatCount="indefinite" begin="6s"><mpath href="#journeyPath"/></animateMotion>
-              <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.5;0.95;1" dur="9s" repeatCount="indefinite" begin="6s"/>
-            </circle>
-          </svg>
-        </div>
-
-        <div class="steps">
-
-          <div class="step">
-            <div class="step-illustration" aria-hidden="true">
-              <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="14" width="13" height="20" rx="2"/>
-                <line x1="6" y1="20" x2="13" y2="20" opacity="0.55"/>
-                <line x1="6" y1="24" x2="11" y2="24" opacity="0.55"/>
-                <line x1="6" y1="28" x2="13" y2="28" opacity="0.55"/>
-                <path d="M 16 24 C 22 24 26 24 32 24"/>
-                <circle cx="21" cy="24" r="1.3" fill="currentColor" stroke="none"/>
-                <circle cx="27" cy="24" r="1" fill="currentColor" stroke="none" opacity="0.7"/>
-                <rect x="32" y="14" width="13" height="20" rx="2"/>
-                <circle cx="38.5" cy="24" r="3"/>
-                <circle cx="38.5" cy="24" r="1.2" fill="currentColor" stroke="none"/>
-              </svg>
-            </div>
-            <div class="step-marker"></div>
-            <h3 class="step-name">Import</h3>
-            <p class="step-desc">Vous importez vos fichiers de paie, DSN et documents RH. La connexion directe arrivera ensuite.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-illustration" aria-hidden="true">
-              <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="6" y="6" width="36" height="36" rx="2"/>
-                <line x1="11" y1="13" x2="30" y2="13" opacity="0.4"/>
-                <line x1="11" y1="19" x2="36" y2="19" opacity="0.4"/>
-                <line x1="11" y1="31" x2="28" y2="31" opacity="0.4"/>
-                <line x1="11" y1="37" x2="34" y2="37" opacity="0.4"/>
-                <line x1="3" y1="25" x2="45" y2="25" stroke-width="1.8"/>
-                <line x1="3" y1="25" x2="45" y2="25" stroke-width="3" opacity="0.2"/>
-                <circle cx="33" cy="25" r="3.5"/>
-                <circle cx="33" cy="25" r="1.3" fill="currentColor" stroke="none"/>
-              </svg>
-            </div>
-            <div class="step-marker"></div>
-            <h3 class="step-name">Analyse</h3>
-            <p class="step-desc">Le moteur juridique analysera vos données en continu, à la lumière des règles URSSAF.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-illustration" aria-hidden="true">
-              <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="6" y1="42" x2="44" y2="42" opacity="0.35"/>
-                <line x1="6" y1="6" x2="6" y2="42" opacity="0.35"/>
-                <line x1="6" y1="22" x2="44" y2="22" stroke-dasharray="2 3" opacity="0.55"/>
-                <polyline points="9,36 16,32 22,28 28,17 35,12 42,15"/>
-                <circle cx="35" cy="12" r="3.5"/>
-                <circle cx="35" cy="12" r="1.3" fill="currentColor" stroke="none"/>
-                <circle cx="35" cy="12" r="6" opacity="0.3" stroke-dasharray="1.5 2"/>
-              </svg>
-            </div>
-            <div class="step-marker"></div>
-            <h3 class="step-name">Alertes</h3>
-            <p class="step-desc">Dépassement de seuil, changement de taux, incidence sur vos cotisations.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-illustration" aria-hidden="true">
-              <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M8 30V24a8 8 0 0 1 8-8h21"/>
-                <polyline points="32,10 38,16 32,22"/>
-                <path d="M40 18v6a8 8 0 0 1-8 8H11" opacity="0.5"/>
-                <polyline points="16,38 10,32 16,26" opacity="0.5"/>
-              </svg>
-            </div>
-            <div class="step-marker"></div>
-            <h3 class="step-name">Correction</h3>
-            <p class="step-desc">La solution ne se contente pas de signaler le risque. Elle vous livre un plan d'action priorisé pour le corriger.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-illustration" aria-hidden="true">
-              <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M13 6h16l8 8v26a3 3 0 0 1-3 3H13a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3z"/>
-                <polyline points="29,6 29,14 37,14"/>
-                <line x1="17" y1="22" x2="30" y2="22"/>
-                <line x1="17" y1="29" x2="30" y2="29"/>
-                <line x1="17" y1="36" x2="24" y2="36"/>
-              </svg>
-            </div>
-            <div class="step-marker"></div>
-            <h3 class="step-name">Preuve</h3>
-            <p class="step-desc">Chaque analyse alimente votre dossier de conformité. Vous n'avez rien à constituer.</p>
-          </div>
-
-          <div class="step final">
-            <div class="step-illustration" aria-hidden="true">
-              <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <defs>
-                  <radialGradient id="howSeraSun" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#4F46E5"/>
-                    <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.7"/>
-                  </radialGradient>
-                </defs>
-                <circle cx="24" cy="20" r="6" fill="url(#howSeraSun)" stroke="none"/>
-                <circle cx="24" cy="20" r="9" opacity="0.28" fill="none"/>
-                <line x1="6" y1="34" x2="42" y2="34"/>
-                <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
-                <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
-              </svg>
-            </div>
-            <div class="step-marker"></div>
-            <h3 class="step-name">Sérénité</h3>
-            <p class="step-desc">Le jour du contrôle, tout est prêt. Daté, sourcé, exportable en un clic.</p>
-          </div>
-
-        </div>
-      </div>
-        </div>
-        <div class="porte-ctas">
-          <a href="/solution/#platform" class="btn-primary"><span>Être informé du lancement <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-          <a href="/solution/" class="porte-link">Toute la solution →</a>
-        </div>
-      </div>
-
-      <div class="porte-panel porte-panel--light" id="porte-audits" role="tabpanel">
-        <div class="porte-head">
-          <h3>Audits sur mesure, du ciblé au multi-thématique</h3>
-          <p>Un audit croisé couvrant plusieurs axes de conformité, adapté à votre profil de risque. Chaque audit inclut un plan d'action détaillé avec les corrections concrètes à mettre en œuvre.</p>
-        </div>
-        <div class="themes-grid">
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-          </div>
-          <h4>Frais professionnels</h4>
-          <p>IK, forfaits repas, déplacements, DFS</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1-6h10l1 6M8 17v2M16 17v2"/><circle cx="8" cy="13" r="1.5"/><circle cx="16" cy="13" r="1.5"/></svg>
-          </div>
-          <h4>Avantages en nature</h4>
-          <p>Véhicules, NTIC, logement, nourriture</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <h4>Protection sociale</h4>
-          <p>Mutuelle, prévoyance, DUE, dispenses</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M16 8.5C15 7.5 13.5 7 12 7c-2.8 0-4.5 2-4.5 5s1.7 5 4.5 5c1.5 0 3-.5 4-1.5"/>
-              <line x1="7.5" y1="10.5" x2="13.5" y2="10.5"/>
-              <line x1="7.5" y1="13.5" x2="13.5" y2="13.5"/>
-            </svg>
-          </div>
-          <h4>Rémunérations</h4>
-          <p>Heures sup, forfait jours, primes, DSN</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="6" y="13" width="3" height="6"/><rect x="11" y="9" width="3" height="10"/><rect x="16" y="6" width="3" height="13"/></svg>
-          </div>
-          <h4>Réduction générale</h4>
-          <p>Calcul RGDU, seuils, situations complexes</p>
-        </div>
-        <div class="theme-card">
-          <div class="theme-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 14l2 2 4-4"/></svg>
-          </div>
-          <h4>Ruptures de contrat</h4>
-          <p>Transactions, ruptures conv., indemnités</p>
-        </div>
-      </div>
-        <p class="porte-note">Chaque audit est sur-mesure. Contactez-nous pour recevoir un devis adapté, réponse sous 48&nbsp;h, sans engagement.</p>
-        <div class="porte-ctas">
-          <a href="/solution/#devis" class="btn-primary"><span>Demander un devis <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-          <a href="/solution/#audits" class="porte-link porte-link--dark">Le détail des audits →</a>
+                  <div class="platform-tag-soon porte-badge">● Ouverture en septembre 2026</div>
+                  <h3 class="how-title">De vos données à votre <em>conformité démontrable</em>.</h3>
+                  <p class="how-sub">ACOMPIA s'occupe de tout. Vous importez vos données, la solution analyse, alerte, corrige, prouve. <strong>Vous voyez tout, vous savez quoi faire.</strong></p>
+                  <div class="journey">
+                <div class="journey-curve">
+                  <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="curveG" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.2"/>
+                        <stop offset="50%" stop-color="#A5B4FC" stop-opacity="0.9"/>
+                        <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.8"/>
+                      </linearGradient>
+                      <linearGradient id="curveGlow" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#4F46E5" stop-opacity="0"/>
+                        <stop offset="50%" stop-color="#A5B4FC" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.4"/>
+                      </linearGradient>
+                      <path id="journeyPath" d="M 100,68 C 200,68 200,134 300,134 C 400,134 400,72 500,72 C 600,72 600,134 700,134 C 800,134 800,90 900,90 C 1000,90 1000,106 1100,106" fill="none"/>
+                    </defs>
+        
+                    <use href="#journeyPath" stroke="url(#curveGlow)" stroke-width="10" fill="none" opacity="0.7"/>
+                    <use href="#journeyPath" stroke="url(#curveG)" stroke-width="1.5" fill="none"/>
+                    <use href="#journeyPath" stroke="#22D3EE" stroke-width="1.5" fill="none" stroke-dasharray="4 20" opacity="0.7">
+                      <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2s" repeatCount="indefinite"/>
+                    </use>
+        
+                    <circle r="3.5" fill="#A5B4FC">
+                      <animateMotion dur="9s" repeatCount="indefinite"><mpath href="#journeyPath"/></animateMotion>
+                      <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.5;0.95;1" dur="9s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle r="3" fill="#818CF8">
+                      <animateMotion dur="9s" repeatCount="indefinite" begin="3s"><mpath href="#journeyPath"/></animateMotion>
+                      <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.5;0.95;1" dur="9s" repeatCount="indefinite" begin="3s"/>
+                    </circle>
+                    <circle r="2.5" fill="#6366F1">
+                      <animateMotion dur="9s" repeatCount="indefinite" begin="6s"><mpath href="#journeyPath"/></animateMotion>
+                      <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.5;0.95;1" dur="9s" repeatCount="indefinite" begin="6s"/>
+                    </circle>
+                  </svg>
+                </div>
+        
+                <div class="steps">
+        
+                  <div class="step">
+                    <div class="step-illustration" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="14" width="13" height="20" rx="2"/>
+                        <line x1="6" y1="20" x2="13" y2="20" opacity="0.55"/>
+                        <line x1="6" y1="24" x2="11" y2="24" opacity="0.55"/>
+                        <line x1="6" y1="28" x2="13" y2="28" opacity="0.55"/>
+                        <path d="M 16 24 C 22 24 26 24 32 24"/>
+                        <circle cx="21" cy="24" r="1.3" fill="currentColor" stroke="none"/>
+                        <circle cx="27" cy="24" r="1" fill="currentColor" stroke="none" opacity="0.7"/>
+                        <rect x="32" y="14" width="13" height="20" rx="2"/>
+                        <circle cx="38.5" cy="24" r="3"/>
+                        <circle cx="38.5" cy="24" r="1.2" fill="currentColor" stroke="none"/>
+                      </svg>
+                    </div>
+                    <div class="step-marker"></div>
+                    <h3 class="step-name">Import</h3>
+                    <p class="step-desc">Vous importez vos fichiers de paie, DSN et documents RH. La connexion directe arrivera ensuite.</p>
+                  </div>
+        
+                  <div class="step">
+                    <div class="step-illustration" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="6" width="36" height="36" rx="2"/>
+                        <line x1="11" y1="13" x2="30" y2="13" opacity="0.4"/>
+                        <line x1="11" y1="19" x2="36" y2="19" opacity="0.4"/>
+                        <line x1="11" y1="31" x2="28" y2="31" opacity="0.4"/>
+                        <line x1="11" y1="37" x2="34" y2="37" opacity="0.4"/>
+                        <line x1="3" y1="25" x2="45" y2="25" stroke-width="1.8"/>
+                        <line x1="3" y1="25" x2="45" y2="25" stroke-width="3" opacity="0.2"/>
+                        <circle cx="33" cy="25" r="3.5"/>
+                        <circle cx="33" cy="25" r="1.3" fill="currentColor" stroke="none"/>
+                      </svg>
+                    </div>
+                    <div class="step-marker"></div>
+                    <h3 class="step-name">Analyse</h3>
+                    <p class="step-desc">Le moteur juridique analysera vos données en continu, à la lumière des règles URSSAF.</p>
+                  </div>
+        
+                  <div class="step">
+                    <div class="step-illustration" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="6" y1="42" x2="44" y2="42" opacity="0.35"/>
+                        <line x1="6" y1="6" x2="6" y2="42" opacity="0.35"/>
+                        <line x1="6" y1="22" x2="44" y2="22" stroke-dasharray="2 3" opacity="0.55"/>
+                        <polyline points="9,36 16,32 22,28 28,17 35,12 42,15"/>
+                        <circle cx="35" cy="12" r="3.5"/>
+                        <circle cx="35" cy="12" r="1.3" fill="currentColor" stroke="none"/>
+                        <circle cx="35" cy="12" r="6" opacity="0.3" stroke-dasharray="1.5 2"/>
+                      </svg>
+                    </div>
+                    <div class="step-marker"></div>
+                    <h3 class="step-name">Alertes</h3>
+                    <p class="step-desc">Dépassement de seuil, changement de taux, incidence sur vos cotisations.</p>
+                  </div>
+        
+                  <div class="step">
+                    <div class="step-illustration" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 30V24a8 8 0 0 1 8-8h21"/>
+                        <polyline points="32,10 38,16 32,22"/>
+                        <path d="M40 18v6a8 8 0 0 1-8 8H11" opacity="0.5"/>
+                        <polyline points="16,38 10,32 16,26" opacity="0.5"/>
+                      </svg>
+                    </div>
+                    <div class="step-marker"></div>
+                    <h3 class="step-name">Correction</h3>
+                    <p class="step-desc">La solution ne se contente pas de signaler le risque. Elle vous livre un plan d'action priorisé pour le corriger.</p>
+                  </div>
+        
+                  <div class="step">
+                    <div class="step-illustration" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 6h16l8 8v26a3 3 0 0 1-3 3H13a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3z"/>
+                        <polyline points="29,6 29,14 37,14"/>
+                        <line x1="17" y1="22" x2="30" y2="22"/>
+                        <line x1="17" y1="29" x2="30" y2="29"/>
+                        <line x1="17" y1="36" x2="24" y2="36"/>
+                      </svg>
+                    </div>
+                    <div class="step-marker"></div>
+                    <h3 class="step-name">Preuve</h3>
+                    <p class="step-desc">Chaque analyse alimente votre dossier de conformité. Vous n'avez rien à constituer.</p>
+                  </div>
+        
+                  <div class="step final">
+                    <div class="step-illustration" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <defs>
+                          <radialGradient id="howSeraSun" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#4F46E5"/>
+                            <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.7"/>
+                          </radialGradient>
+                        </defs>
+                        <circle cx="24" cy="20" r="6" fill="url(#howSeraSun)" stroke="none"/>
+                        <circle cx="24" cy="20" r="9" opacity="0.28" fill="none"/>
+                        <line x1="6" y1="34" x2="42" y2="34"/>
+                        <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
+                        <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
+                      </svg>
+                    </div>
+                    <div class="step-marker"></div>
+                    <h3 class="step-name">Sérénité</h3>
+                    <p class="step-desc">Le jour du contrôle, tout est prêt. Daté, sourcé, exportable en un clic.</p>
+                  </div>
+        
+                </div>
+              </div>
+                </div>
+        <div class="l26-panneau-ctas">
+          <a href="solution/#platform" class="btn-primary l26-pill l26-pill--blanche">Être informé du lancement</a>
+          <a href="solution/" class="l26-lien-souligne">Toute la solution</a>
         </div>
       </div>
 
-      <div class="porte-panel" id="porte-pilotage" role="tabpanel">
-        <div class="pil-grid">
-          <div class="pil-left">
-            <div class="platform-tag-soon porte-badge">● Disponible dès maintenant</div>
-            <h3>Pilotage de flotte AEN</h3>
-            <p>Votre flotte, vue comme un inspecteur la verrait. L'outil centralise véhicules, contrats et justificatifs, et vérifie en continu la conformité technique et juridique de chaque situation.</p>
-            <ul class="pil-checks">
-              <li>Avantage en nature calculé pour chaque véhicule, au barème en vigueur</li>
-              <li>Écarts entre la paie et la DSN détectés et chiffrés</li>
-              <li>Pièces manquantes réclamées, par véhicule et par salarié</li>
-              <li>Veille du barème BOSS et historique opposable</li>
-            </ul>
-            <div class="porte-ctas porte-ctas--left">
-              <a href="/solution/#fondateurs" class="btn-primary"><span>Devenir entreprise fondatrice <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-              <a href="/outils/pilotage-flotte-tarifs/" class="porte-link">Voir l'outil et les tarifs →</a>
+      <!-- Onglet 2 — Audits sur mesure -->
+      <div class="l26-panneau l26-panneau--blanc" id="panneau-1" role="tabpanel" aria-labelledby="onglet-1" tabindex="0" hidden>
+        <div class="l26-duo">
+          <div>
+            <p class="l26-eyebrow">Sur devis · réponse sous 48&nbsp;h</p>
+            <h3 class="l26-panneau-titre">Composez votre audit, <em>axe par axe.</em></h3>
+            <p class="l26-chapeau">Un audit croisé couvrant plusieurs axes de conformité, adapté à votre profil de risque. Chaque audit inclut un plan d'action détaillé avec les corrections concrètes à mettre en œuvre.</p>
+            <p class="l26-compteur" style="margin-top:32px"><span id="l26-compteur-n">2</span></p>
+            <p class="l26-compteur-libelle" id="l26-compteur-libelle">axes sélectionnés · devis sous 48&nbsp;h</p>
+            <div class="l26-jauge"><div class="l26-jauge-barre" id="l26-jauge-barre" style="width:33%"></div></div>
+            <div class="l26-panneau-ctas">
+              <a href="solution/#devis" class="btn-primary l26-pill l26-pill--noire">Demander un devis</a>
+              <a href="solution/#audits" class="l26-lien-souligne">Le détail des audits</a>
+            </div>
+            <p class="l26-outil-mention" style="margin-top:18px">Chaque audit est sur-mesure. Contactez-nous pour recevoir un devis adapté, réponse sous 48&nbsp;h, sans engagement.</p>
+          </div>
+          <ul class="l26-axes" id="l26-axes"></ul>
+        </div>
+      </div>
+
+      <!-- Onglet 3 — Pilotage de flotte -->
+      <div class="l26-panneau l26-panneau--sombre" id="panneau-2" role="tabpanel" aria-labelledby="onglet-2" tabindex="0" hidden>
+        <div class="l26-duo">
+          <div>
+            <p class="l26-eyebrow">Disponible dès maintenant</p>
+            <h3 class="l26-panneau-titre">Votre flotte, vue comme <em>un inspecteur la verrait.</em></h3>
+            <p class="l26-chapeau">Véhicules, contrats et justificatifs centralisés, conformité vérifiée en continu.</p>
+            <div class="l26-panneau-ctas">
+              <a href="solution/#fondateurs" class="btn-primary l26-pill l26-pill--mauve">Devenir entreprise fondatrice</a>
+              <a href="outils/pilotage-flotte-tarifs/" class="l26-lien-souligne">Voir l'outil et les tarifs</a>
             </div>
           </div>
-        </div>
-        <div class="pil-tiles">
-          <div class="pil-tile">
-            <div class="pil-tile-visu"><span class="pil-bar" style="height:34px"></span><span class="pil-bar" style="height:22px"></span><span class="pil-bar pil-bar--accent" style="height:44px"></span><span class="pil-bar" style="height:16px"></span><span class="pil-bar" style="height:28px"></span></div>
-            <b>Tableau de bord flotte</b>
-            <span>chaque véhicule, son AEN et son statut</span>
-          </div>
-          <div class="pil-tile">
-            <div class="pil-tile-visu"><span class="pil-row-doc"></span><span class="pil-row-doc pil-row-doc--miss"></span><span class="pil-row-doc"></span></div>
-            <b>Pièces manquantes</b>
-            <span>réclamées par véhicule et salarié, comme un inspecteur</span>
-          </div>
-          <div class="pil-tile">
-            <div class="pil-tile-visu"><span class="pil-pulse"></span><span class="pil-line"></span></div>
-            <b>Alertes barème</b>
-            <span>un taux change au BOSS, vous le savez</span>
-          </div>
+          <ul class="l26-lignes">
+            <li class="l26-ligne"><span class="l26-ligne-num">01</span><span><span class="l26-ligne-titre">Tableau de bord flotte</span><span class="l26-ligne-sous">Chaque véhicule, son avantage en nature calculé au barème en vigueur, son statut de conformité.</span></span></li>
+            <li class="l26-ligne"><span class="l26-ligne-num">02</span><span><span class="l26-ligne-titre">Écarts paie · DSN</span><span class="l26-ligne-sous">Détectés et chiffrés, avant que l'inspecteur ne les trouve.</span></span></li>
+            <li class="l26-ligne"><span class="l26-ligne-num">03</span><span><span class="l26-ligne-titre">Pièces manquantes</span><span class="l26-ligne-sous">Réclamées par véhicule et par salarié, comme un inspecteur le ferait.</span></span></li>
+            <li class="l26-ligne"><span class="l26-ligne-num">04</span><span><span class="l26-ligne-titre">Veille barème BOSS</span><span class="l26-ligne-sous">Un taux change, vous le savez, et l'historique reste opposable.</span></span></li>
+          </ul>
         </div>
       </div>
+    </section>
 
-      
+    <!-- ==================== OUTILS GRATUITS ==================== -->
+    <section id="prediag" class="l26-section">
+      <header class="l26-entete">
+        <p class="l26-eyebrow">Outils gratuits</p>
+        <h2 class="l26-h2">Évaluez votre situation, <em>maintenant.</em></h2>
+        <p class="l26-chapeau">Deux outils gratuits, sans inscription, pour mesurer votre situation à tout moment.</p>
+      </header>
 
-    </div>
-  </section>
-  <script>
-  (function () {
-    var tabs = document.querySelectorAll('.porte-tab');
-    tabs.forEach(function (t) {
-      t.addEventListener('click', function () {
-        tabs.forEach(function (x) {
-          var on = x === t;
-          x.classList.toggle('is-active', on);
-          x.setAttribute('aria-selected', on ? 'true' : 'false');
-        });
-        document.querySelectorAll('.porte-panel').forEach(function (p) {
-          p.classList.toggle('is-active', p.id === 'porte-' + t.dataset.porte);
-        });
-      });
-    });
-  })();
-  </script>
-
-  <!-- ==================== OUTILS GRATUITS (duo) ==================== -->
-  <section id="prediag" class="prediag">
-    <div class="section-header reveal">
-      <div class="section-tag">Outils gratuits</div>
-      <h2>Évaluez votre situation, <em>maintenant</em>.</h2>
-      <p>Deux outils gratuits, sans inscription, pour mesurer votre situation à tout moment.</p>
-    </div>
-    <div class="outils-duo-grid reveal">
-      <div class="outil-card o1-card">
-        <div class="o1-visual" aria-hidden="true">
-          <svg class="o1-gauge" viewBox="0 0 200 112">
-            <defs><linearGradient id="o1g" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#A5B4FC"/>
-            </linearGradient></defs>
-            <path d="M 20 100 A 80 80 0 0 1 180 100" stroke="#E3E6F5" stroke-width="13" fill="none" stroke-linecap="round"/>
-            <path d="M 20 100 A 80 80 0 0 1 143.6 32.9" stroke="url(#o1g)" stroke-width="13" fill="none" stroke-linecap="round"/>
-            <circle cx="143.6" cy="32.9" r="7.5" fill="#fff" stroke="#4F46E5" stroke-width="3"/>
-          </svg>
-          <div class="o1-rows">
-            <span class="o1-row"><i class="o1-dot"></i><b style="width:84%"></b></span>
-            <span class="o1-row"><i class="o1-dot o1-dot-2"></i><b style="width:62%"></b></span>
-            <span class="o1-row"><i class="o1-dot o1-dot-3"></i><b style="width:44%"></b></span>
-          </div>
-        </div>
-        <span class="outil-eyebrow">Gratuit · 3 minutes</span>
-        <h3>Prédiagnostic URSSAF</h3>
-        <p>Un questionnaire ciblé et un rapport immédiat : votre indice d'exposition, vos trois principales zones à risque et un plan d'action priorisé.</p>
-        <a href="/outils/prediagnostic-urssaf/" class="btn-primary"><span>Faire le prédiagnostic <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-        <span class="outil-note">Confidentiel · sans engagement</span>
-      </div>
-      <div class="outil-card o1-card">
-        <div class="o1-visual" aria-hidden="true">
-          <div class="o1-calc">
-            <div class="o1-calc-screen">
-              <span class="o1-euro">€</span>
-              <span class="o1-blocks"><i></i><i></i><i></i><i></i></span>
+      <div class="l26-outils">
+        <article class="l26-outil reveal">
+          <div class="l26-outil-visuel" aria-hidden="true">
+            <div class="l26-jauge-demi">
+              <span class="l26-jauge-demi-arc"></span>
+              <span class="l26-jauge-aiguille"></span>
             </div>
-            <div class="o1-keys">
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="o1-key-accent"></i>
+            <div class="l26-outil-barres">
+              <span></span><span></span><span></span>
             </div>
           </div>
+          <div>
+            <span class="l26-outil-badge">Gratuit · 3 minutes</span>
+            <h3 class="l26-outil-titre">Prédiagnostic URSSAF</h3>
+            <p class="l26-outil-texte">Un questionnaire ciblé et un rapport immédiat&nbsp;: votre indice d'exposition, vos trois principales zones à risque et un plan d'action priorisé.</p>
+          </div>
+          <div class="l26-outil-pied">
+            <a href="outils/prediagnostic-urssaf/" class="btn-primary l26-pill l26-pill--noire">Faire le prédiagnostic</a>
+            <span class="l26-outil-mention">Confidentiel · sans engagement</span>
+          </div>
+        </article>
+
+        <article class="l26-outil reveal">
+          <div class="l26-outil-visuel" aria-hidden="true">
+            <div class="l26-pave">
+              <div class="l26-pave-ecran"><span>€</span><span class="l26-pave-blocs"><i></i><i></i><i></i><i></i></span></div>
+              <div class="l26-pave-grille">
+                <span class="l26-pave-touche"></span><span class="l26-pave-touche"></span><span class="l26-pave-touche"></span>
+                <span class="l26-pave-touche"></span><span class="l26-pave-touche"></span><span class="l26-pave-touche"></span>
+                <span class="l26-pave-touche"></span><span class="l26-pave-touche"></span><span class="l26-pave-touche l26-pave-touche--mauve"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="l26-outil-badge">Gratuit · barème 2026</span>
+            <h3 class="l26-outil-titre">Simulateur AEN véhicule</h3>
+            <p class="l26-outil-texte">Calculez l'assiette de cotisations d'un véhicule de fonction au barème 2026&nbsp;: achat ou location, thermique ou électrique, salarié ou dirigeant.</p>
+          </div>
+          <div class="l26-outil-pied">
+            <a href="outils/simulateur-avantage-en-nature-vehicule/" class="btn-primary l26-pill l26-pill--mauve">Lancer le simulateur</a>
+            <span class="l26-outil-mention">Le calcul reste dans votre navigateur</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== ÉQUIPE ==================== -->
+    <section id="team" class="l26-section">
+      <header class="l26-entete">
+        <p class="l26-eyebrow">L'équipe</p>
+        <h2 class="l26-h2">Une <em>avocate URSSAF</em>, entourée de juristes et d'ingénieurs.</h2>
+      </header>
+
+      <div class="l26-equipe-carte reveal">
+        <div class="l26-portrait">
+          <img src="assets/images/sabrina-portrait.jpg"
+               alt="Portrait de Maître Sabrina Henocque Chiche, avocate au Barreau de Paris"
+               width="340" height="425" loading="lazy" decoding="async">
         </div>
-        <span class="outil-eyebrow">Gratuit · barème 2026</span>
-        <h3>Simulateur AEN véhicule</h3>
-        <p>Calculez l'assiette de cotisations d'un véhicule de fonction au barème 2026 : achat ou location, thermique ou électrique, salarié ou dirigeant.</p>
-        <a href="/outils/simulateur-avantage-en-nature-vehicule/" class="btn-primary"><span>Lancer le simulateur <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-        <span class="outil-note">Le calcul reste dans votre navigateur</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== ÉQUIPE ==================== -->
-  <section id="team" class="team">
-    <div class="section-header reveal">
-      <div class="section-tag">L'équipe</div>
-      <h2>Une <em>avocate URSSAF</em>, entourée <br>de juristes et d'ingénieurs.</h2>
-    </div>
-
-    <div class="team-founder reveal">
-      <figure>
-        <img src="assets/images/sabrina-portrait.jpg" alt="Sabrina Henocque Chiche · Fondatrice d'ACOMPIA" class="team-photo" width="280" height="280" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-        <div class="team-photo-placeholder" style="display:none">SHC</div>
-      </figure>
-      <div class="team-info">
-        <div class="team-name-row">
-          <h3>Sabrina Henocque Chiche</h3>
-          <a class="team-linkedin-icon" href="https://www.linkedin.com/in/sabrinahenocquechiche/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn de Sabrina Henocque Chiche">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
-            </svg>
-          </a>
+        <div>
+          <h3 class="l26-equipe-nom">Sabrina Henocque Chiche</h3>
+          <p class="l26-equipe-role">Fondatrice &amp; CEO · Avocate au Barreau de Paris</p>
+          <p class="l26-equipe-bio">
+            Avocate en droit social depuis plus de 10 ans. Spécialiste des contrôles URSSAF et du
+            contentieux de la sécurité sociale, elle a accompagné des entreprises de toutes tailles
+            face à l'URSSAF. Elle connaît précisément les mécanismes qui déclenchent les redressements.
+          </p>
+          <blockquote class="l26-citation">
+            <p>
+              L'URSSAF automatise et industrialise ses contrôles. Les entreprises, elles, découvrent
+              encore leurs failles le jour du contrôle. J'ai créé ACOMPIA pour rétablir l'équilibre&nbsp;:
+              si l'URSSAF industrialise ses contrôles, les entreprises doivent industrialiser leur conformité.
+            </p>
+          </blockquote>
+          <p style="margin-top:22px">
+            <a href="equipe/sabrina-henocque-chiche/" class="l26-lien-souligne">La fiche complète</a>
+          </p>
         </div>
-        <div class="team-role">Fondatrice &amp; CEO · Avocate au Barreau de Paris</div>
-        <p>
-          Avocate en droit social depuis plus de 10&nbsp;ans. Spécialiste des contrôles URSSAF
-          et du contentieux de la sécurité sociale, elle a accompagné des entreprises de toutes tailles
-          face à l'URSSAF. Elle connaît précisément les mécanismes qui déclenchent les redressements.
-        </p>
-        <p class="team-quote">
-          <span class="team-quote-mark">«</span>&nbsp;L'URSSAF automatise et industrialise ses contrôles. Les entreprises, elles,
-          découvrent encore leurs failles le jour du contrôle. J'ai créé ACOMPIA pour rétablir
-          l'équilibre&nbsp;: si l'URSSAF industrialise ses contrôles, les entreprises doivent industrialiser
-          leur conformité.&nbsp;<span class="team-quote-mark">»</span>
-        </p>
       </div>
-    </div>
+    </section>
 
-  </section>
+    <!-- ==================== FAQ ==================== -->
+    <section id="faq" class="l26-faq-zone">
+      <div class="l26-faq-duo">
+          <header>
+            <p class="l26-eyebrow">FAQ</p>
+            <h2 class="l26-h2">Vos <em>questions</em> fréquentes.</h2>
+            <p class="l26-chapeau">
+              Une question plus précise sur votre situation&nbsp;? Trente minutes d'échange
+              suffisent souvent à y voir clair.
+            </p>
+            <p style="margin-top:26px">
+              <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener" class="btn-secondary l26-pill l26-pill--ghost">Prendre rendez-vous</a>
+            </p>
+          </header>
 
-  <!-- ==================== FAQ ==================== -->
-  <section id="faq" class="faq">
-    <div class="faq-inner">
-      <div class="section-header reveal faq-head">
-        <div class="section-tag">FAQ</div>
-        <h2>Vos <em>questions</em> fréquentes.</h2>
-        <p class="faq-hook">Une question plus précise sur votre situation ? Trente minutes d'échange suffisent souvent à y voir clair.</p>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="btn-ghost">Prendre rendez-vous</a>
-      </div>
-      <div class="faq-list reveal">
-        <details class="faq-item" open>
-          <summary>L'URSSAF utilise-t-elle vraiment l'IA pour ses contrôles&nbsp;?</summary>
-          <div class="faq-content">
+          <div class="l26-faq">
+            <details class="l26-faq-item" open>
+            <summary>L'URSSAF utilise-t-elle vraiment l'IA pour ses contrôles&nbsp;?<span class="l26-plus" aria-hidden="true">+</span></summary>
+            <div class="l26-faq-reponse">
             <p><strong>Oui, et c'est officiel.</strong> Depuis 2025, l'URSSAF utilise une intelligence artificielle qui analyse plus de <strong>12 millions de déclarations par mois</strong> pour détecter les anomalies. Le déploiement a été officiellement présenté par Thomas Cazenave, ministre du Budget, en 2024.</p>
             <p>En parallèle, <strong>55 % des contrôles des TPE et 50 % des PME</strong> sont déjà déclenchés par datamining (chiffres confirmés par une question parlementaire au Sénat en 2024). Un protocole DGFIP-URSSAF de 2025 a également étendu le croisement automatisé à 17 bases de données administratives.</p>
             <p>C'est précisément pour cette raison qu'ACOMPIA existe&nbsp;: face à des contrôles ciblés par algorithme, votre conformité doit être aussi complète et rigoureuse que leur ciblage.</p>
-            <div class="faq-sources">
-              Sources&nbsp;:
-              <a href="https://presse.economie.gouv.fr/thomas-cazenave-devoile-les-premieres-realisations-de-lurssaf-en-matiere-dintelligence-artificielle-au-service-des-usagers/" target="_blank" rel="noopener noreferrer">presse.economie.gouv.fr</a> ·
-              <a href="https://www.senat.fr/questions/base/2024/qSEQ240900095.html" target="_blank" rel="noopener noreferrer">senat.fr (2024)</a> ·
-              <a href="https://www.urssaf.org/accueil/espace-medias/actualites/l-urssaf-caisse-nationale-presen.html" target="_blank" rel="noopener noreferrer">urssaf.org</a>
+            <div class="l26-faq-sources">
+            Sources&nbsp;:
+            <a href="https://presse.economie.gouv.fr/thomas-cazenave-devoile-les-premieres-realisations-de-lurssaf-en-matiere-dintelligence-artificielle-au-service-des-usagers/" target="_blank" rel="noopener noreferrer">presse.economie.gouv.fr</a> ·
+            <a href="https://www.senat.fr/questions/base/2024/qSEQ240900095.html" target="_blank" rel="noopener noreferrer">senat.fr (2024)</a> ·
+            <a href="https://www.urssaf.org/accueil/espace-medias/actualites/l-urssaf-caisse-nationale-presen.html" target="_blank" rel="noopener noreferrer">urssaf.org</a>
             </div>
-          </div>
-        </details>
-        <details class="faq-item">
-          <summary>ACOMPIA est-il un logiciel ou un cabinet d'avocats&nbsp;?</summary>
-          <div class="faq-content">
+            </div>
+            </details>
+            <details class="l26-faq-item">
+            <summary>ACOMPIA est-il un logiciel ou un cabinet d'avocats&nbsp;?<span class="l26-plus" aria-hidden="true">+</span></summary>
+            <div class="l26-faq-reponse">
             <p><strong>Un logiciel</strong>, édité par ComplyDB SAS. Ses règles d'analyse ont été écrites par Maître Sabrina Henocque Chiche, avocate au Barreau de Paris. Le partage des rôles tient en une phrase&nbsp;: conçu par une avocate, exécuté par le logiciel.</p>
             <p>Chaque règle est sourcée (BOSS, Légifrance, jurisprudence) et chaque résultat est documenté, pour être exploitable en cas de contrôle.</p>
-          </div>
-        </details>
-        <details class="faq-item">
-          <summary>Mon expert-comptable ne gère-t-il pas déjà ma conformité URSSAF&nbsp;?</summary>
-          <div class="faq-content">
+            </div>
+            </details>
+            <details class="l26-faq-item">
+            <summary>Mon expert-comptable ne gère-t-il pas déjà ma conformité URSSAF&nbsp;?<span class="l26-plus" aria-hidden="true">+</span></summary>
+            <div class="l26-faq-reponse">
             <p>Sa mission couvre la production de la paie et des déclarations, <strong>pas l'audit systématique de vos risques URSSAF</strong>. Avantages en nature, frais professionnels, protection sociale, forfait jours&nbsp;: ces zones se jouent dans vos pratiques internes, que votre prestataire ne voit pas toujours.</p>
             <p>C'est précisément ce que couvre ACOMPIA. Pour approfondir&nbsp;: <a href="/ressources/externalisation-paie-audit-urssaf/">paie externalisée, ce que la sous-traitance ne couvre pas</a>.</p>
-          </div>
-        </details>
-        <details class="faq-item">
-          <summary>Par où commencer&nbsp;?</summary>
-          <div class="faq-content">
+            </div>
+            </details>
+            <details class="l26-faq-item">
+            <summary>Par où commencer&nbsp;?<span class="l26-plus" aria-hidden="true">+</span></summary>
+            <div class="l26-faq-reponse">
             <p>Par la mesure. Le <a href="/outils/prediagnostic-urssaf/">prédiagnostic gratuit</a> vous donne en 3 minutes votre indice d'exposition et vos zones à risque. Si votre sujet est la flotte, le <a href="/outils/simulateur-avantage-en-nature-vehicule/">simulateur</a> chiffre chaque véhicule au barème 2026.</p>
             <p>Ensuite, un échange de trente minutes suffit souvent à décider de la suite.</p>
-          </div>
-        </details>
-        <p class="faq-more">D'autres questions ? <a href="/solution/#faq">Confidentialité, engagement, tarifs et disponibilité</a> · <a href="/ressources/">Toutes les ressources</a></p>
+            </div>
+            </details>
+            <p class="l26-faq-pied">
+              D'autres questions&nbsp;?
+              <a href="solution/#faq">Confidentialité, engagement, tarifs et disponibilité</a> ·
+              <a href="ressources/">Toutes les ressources</a>
+            </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==================== CTA FINAL ==================== -->
-  <section id="cta-final" class="cta-final">
-    <div class="section-header reveal">
-      <h2>Sachez ce que l'URSSAF verra. <em>Avant elle</em>.</h2>
+    <!-- Barre d'action collante, mobile uniquement (masquée au-delà de 860 px et
+         à l'impression). Elle porte le même libellé que le hero et le CTA final :
+         le visiteur n'a jamais à revérifier qu'il s'agit de la même action.
+         `aria-hidden` non : le lien doit rester atteignable au clavier. -->
+    <div class="l26-barre-collante">
+      <a href="outils/prediagnostic-urssaf/" class="btn-primary l26-pill l26-pill--noire">
+        Faire mon prédiagnostic gratuit <span class="l26-pill-note">3&nbsp;min</span>
+      </a>
     </div>
-    <div class="cta-final-actions reveal">
-      <a href="/outils/prediagnostic-urssaf/" class="btn-primary"><span>Faire mon prédiagnostic gratuit (3 min) <svg viewBox="0 0 14 10" fill="none"><path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
-      <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="btn-ghost">Prendre rendez-vous</a>
-      <p class="cas-cta-note">Gratuit · Confidentiel · Sans inscription</p>
-    </div>
-  </section>
 
-    </main>
+    <!-- ==================== CTA FINAL ==================== -->
+    <section id="cta-final" class="l26-final">
+      <div class="l26-final-slab">
+        <h2 class="l26-h2">Sachez ce que l'URSSAF verra. <em>Avant elle.</em></h2>
+        <div class="l26-final-ctas">
+          <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener" class="btn-primary l26-pill l26-pill--noire">
+            Prendre rendez-vous
+          </a>
+          <a href="outils/prediagnostic-urssaf/" class="btn-secondary l26-pill l26-pill--ghost">
+            Faire mon prédiagnostic gratuit <span class="l26-pill-note">3&nbsp;min</span>
+          </a>
+        </div>
+        <p class="l26-outil-mention" style="margin-top:20px">Prédiagnostic&nbsp;: gratuit · confidentiel · sans inscription</p>
+      </div>
+    </section>
+
+  </main>
+
+  </div><!-- /.l26-carte -->
 
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer" id="contact">
@@ -1004,6 +1144,7 @@
   <script src="js/config.js" defer></script>
   <script src="js/socle.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/landing-2026.js" defer></script>
 
 </body>
 </html>

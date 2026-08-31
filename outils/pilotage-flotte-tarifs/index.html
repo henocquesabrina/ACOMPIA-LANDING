@@ -18,16 +18,17 @@
 <meta name="twitter:title" content="Tarifs Pilotage de flotte et Audit AEN véhicule · ACOMPIA">
 <meta name="twitter:description" content="Abonnement de pilotage dès 150 € HT/mois, audit AEN 3 ans dès 1 500 € HT (à moitié prix pour les abonnés).">
 <meta name="twitter:image" content="https://www.acompia.com/assets/og-image.png">
-<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/fonts.css?v=2026-08-31" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/pages-2026.css?v=2026-08-31">
 <style>
 :root{
-  --pierre:#FAFAF7; --carte:#fff; --ink:#0A0A0A; --ink-2:#3F3F3F; --ink-3:#6B6B6B;
-  --indigo:#4F46E5; --indigo-deep:#1E1B4B; --indigo-pale:#EEF0FD; --violet:#8B84F0;
+  --pierre:#FFFFFF; --carte:#fff; --ink:#0A0A0A; --ink-2:#3F3F3F; --ink-3:#6B6B6B;
+  --indigo:#4A34F5; --indigo-deep:#1E1B4B; --indigo-pale:#EEF0FD; --violet:#8B84F0;
   --vert:#047857; --vert-pale:#ECFDF5; --ambre:#92400E; --ambre-pale:#FEF7EC;
   --ligne:rgba(10,10,10,.11); --ligne-forte:rgba(10,10,10,.2);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Geist',system-ui,sans-serif;background:var(--pierre);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+body{font-family:'Schibsted Grotesk',system-ui,sans-serif;background:var(--pierre);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
 .wrap{max-width:980px;margin:0 auto;padding:48px 36px 80px}
 .eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);font-weight:600}
 h1{font-size:38px;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin:12px 0 0}
@@ -82,7 +83,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
   <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
 
-  <!-- Analytics · PostHog EU (sans cookie : persistence memory, IP écartées côté projet, pas de session recording) -->
+  <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
   <script src="../../js/analytics.js" defer></script>
   <!-- Mesure des clics rendez-vous (aucune donnée personnelle) -->
 
@@ -190,20 +191,25 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
     @media (max-width: 860px) { .infos-flotte-grid { grid-template-columns: 1fr; gap: 26px; } }
 
     /* ===== Coquille du site (header + footer), autonome pour ne pas charger style.css ===== */
-    .coquille-nav{display:flex;align-items:center;gap:28px;max-width:1160px;margin:0 auto;padding:18px 32px;border-bottom:1px solid var(--ligne)}
+    /* Cette page porte sa propre coquille, pour ne pas charger style.css. Elle
+       reprend donc à la main la géométrie de la barre commune : 1 440 px, mêmes
+       retraits, pas de filet, libellés en 15 px maigres, bouton noir en
+       pastille. Sans cela, une barre plus étroite, plus dense et à bouton mauve
+       signalait un changement de site au milieu du parcours. */
+    .coquille-nav{display:flex;align-items:center;gap:28px;max-width:1440px;margin:0 auto;padding:24px clamp(20px,3vw,56px)}
     .coquille-logo{display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-weight:700;letter-spacing:0.22em;font-size:13px;color:var(--ink);text-decoration:none}
     .coquille-logo svg{width:30px;height:30px}
-    .coquille-liens{display:flex;gap:24px;margin-left:auto}
-    .coquille-liens a{font-size:14.5px;font-weight:500;color:var(--ink);text-decoration:none}
-    .coquille-liens a:hover{color:var(--indigo)}
-    .coquille-cta{background:var(--indigo);color:#fff;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
-    .coquille-cta:hover{background:#4338CA}
+    .coquille-liens{display:flex;gap:clamp(12px,1.7vw,32px);margin-left:auto;align-items:center}
+    .coquille-liens a{font-size:15px;font-weight:400;color:#55556A;text-decoration:none}
+    .coquille-liens a:hover{color:#0C0C14}
+    .coquille-cta{background:#0C0C14;color:#fff;border-radius:999px;padding:11px 20px;font-size:15px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background-color .2s ease}
+    .coquille-cta:hover{background:#4A34F5}
     .coquille-ariane{max-width:1060px;margin:0 auto;padding:18px 36px 0;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3)}
     .coquille-ariane a{color:inherit}
     @media (max-width:820px){.coquille-liens{display:none}}
-    .coquille-footer{background:#07070F;color:#FAFAF7;margin-top:64px}
+    .coquille-footer{background:#0E0E1A;color:#FFFFFF;margin-top:64px}
     .coquille-footer-inner{max-width:1160px;margin:0 auto;padding:52px 32px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
-    .coquille-footer-marque a{font-family:'Geist Mono',monospace;font-weight:700;letter-spacing:0.22em;font-size:13px;color:#FAFAF7;text-decoration:none}
+    .coquille-footer-marque a{font-family:'Geist Mono',monospace;font-weight:700;letter-spacing:0.22em;font-size:13px;color:#FFFFFF;text-decoration:none}
     .coquille-footer-marque p{font-size:13.5px;line-height:1.55;color:rgba(240,241,248,.72);margin-top:12px;max-width:34ch}
     .coquille-footer-copy{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(240,241,248,.45)}
     .coquille-footer-col h4,.coquille-footer-col .footer-col-title{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#A5B4FC;font-weight:600;margin-bottom:12px}

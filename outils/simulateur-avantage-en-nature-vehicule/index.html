@@ -19,7 +19,8 @@
 <meta name="twitter:title" content="Simulateur AEN véhicule 2026 · calcul URSSAF gratuit · ACOMPIA">
 <meta name="twitter:description" content="Calculez l'avantage en nature d'un véhicule de fonction au barème 2026. Conçu par une avocate au Barreau de Paris.">
 <meta name="twitter:image" content="https://www.acompia.com/assets/og-image.png">
-<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/fonts.css?v=2026-08-31" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/pages-2026.css?v=2026-08-31">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -95,15 +96,15 @@
 <style>
 /* ============================================================
    MAQUETTE 15 · Simulateur avantage en nature véhicule
-   Charte : pierre #FAFAF7, ink #0A0A0A, indigo #4F46E5
+   Charte : pierre #FFFFFF, ink #0A0A0A, indigo #4A34F5
    Geist / Geist Mono (Instrument Serif retirée au commit 3272b4f)
    ============================================================ */
 :root {
-  --pierre: #FAFAF7;
+  --pierre: #FFFFFF;
   --ink: #0A0A0A;
   --ink-2: #3F3F3F;
   --ink-3: #6B6B6B;
-  --indigo: #4F46E5;
+  --indigo: #4A34F5;
   --indigo-deep: #1E1B4B;
   --indigo-pale: #EEF0FD;
   --vert-fonce: #047857;
@@ -115,7 +116,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Geist', system-ui, sans-serif;
+  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   background: var(--pierre);
   color: var(--ink);
   line-height: 1.6;
@@ -138,11 +139,15 @@ input, select { font-family: inherit; }
 .maq-note strong { color: #fff; font-weight: 600; }
 
 /* ---------- Nav simplifiée ---------- */
+/* Barre réduite au logo et au fil d'Ariane : la page est un outil, pas une
+   étape de navigation. Elle reprend néanmoins le retrait et la transparence de
+   la barre commune, sans quoi elle s'ouvrait 13 px plus haut, sous un filet que
+   le reste du site n'a plus. */
 .nav {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px clamp(20px, 5vw, 56px);
-  border-bottom: 1px solid var(--ligne);
-  background: var(--pierre);
+  padding: 24px clamp(20px, 3vw, 56px);
+  border-bottom: 0;
+  background: transparent;
 }
 .nav-brand { display: flex; align-items: center; gap: 11px; }
 .nav-brand svg { width: 30px; height: 30px; }
@@ -172,7 +177,7 @@ input, select { font-family: inherit; }
   max-width: 17ch;
 }
 .hero h1 .grad {
-  color: #4F46E5;
+  color: #4A34F5;
 }
 .hero-lead {
   margin-top: 18px; max-width: 62ch;
@@ -674,7 +679,7 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
 .statique-fold summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .statique-fold summary::-webkit-details-marker { display: none; }
 .statique-fold summary h2 { margin: 0; }
-.statique-fold summary::after { content: '+'; font-size: 26px; font-weight: 300; color: #4F46E5; flex: 0 0 auto; transition: transform .2s ease; }
+.statique-fold summary::after { content: '+'; font-size: 26px; font-weight: 300; color: #4A34F5; flex: 0 0 auto; transition: transform .2s ease; }
 .statique-fold[open] summary::after { transform: rotate(45deg); }
 .statique-fold-body { padding-top: 18px; }
 
@@ -693,8 +698,8 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
 <style>
 
 :root{
-  --pierre:#FAFAF7;--carte:#fff;--ink:#0A0A0A;--ink-2:#3F3F3F;--ink-3:#6B6B6B;
-  --indigo:#4F46E5;--indigo-deep:#1E1B4B;--indigo-pale:#EEF0FD;--violet:#8B84F0;
+  --pierre:#FFFFFF;--carte:#fff;--ink:#0A0A0A;--ink-2:#3F3F3F;--ink-3:#6B6B6B;
+  --indigo:#4A34F5;--indigo-deep:#1E1B4B;--indigo-pale:#EEF0FD;--violet:#8B84F0;
   --vert:#047857;--vert-pale:#ECFDF5;--ambre:#92400E;--ambre-pale:#FEF7EC;
   --ligne:rgba(10,10,10,.11);--ligne-forte:rgba(10,10,10,.2);
 }
@@ -888,7 +893,7 @@ td.mono { font-family: 'Geist Mono', monospace; font-size: 12.5px; white-space: 
   <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
 
-  <!-- Analytics · PostHog EU (sans cookie : persistence memory, IP écartées côté projet, pas de session recording) -->
+  <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
   <script src="../../js/analytics.js" defer></script>
   <!-- Mesure des clics rendez-vous (aucune donnée personnelle) -->
 </head>

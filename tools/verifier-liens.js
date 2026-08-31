@@ -26,6 +26,9 @@ const signaler = (message) => anomalies.push(message);
 function listerPages(dossier = RACINE, acc = []) {
   fs.readdirSync(dossier, { withFileTypes: true }).forEach((entree) => {
     if (entree.name.startsWith('.') || entree.name === 'node_modules') return;
+    /* `tools/` contient de l'outillage, pas des pages publiées : rien n'y est
+       servi, rien n'a à figurer au sitemap. */
+    if (dossier === RACINE && entree.name === 'tools') return;
     const complet = path.join(dossier, entree.name);
     if (entree.isDirectory()) listerPages(complet, acc);
     else if (entree.name.endsWith('.html')) acc.push(path.relative(RACINE, complet));
@@ -54,7 +57,12 @@ function verifierLiensInternes() {
   pages.forEach((page) => {
     [...contenus.get(page).matchAll(/(?:href|src|srcset)="([^"]+)"/g)].forEach(([, reference]) => {
       if (EXTERNE.test(reference)) return;
-      const [chemin, ancre] = reference.split('#');
+      /* La chaîne de requête est retirée avant résolution : les feuilles de
+         style portent une estampille de version (`?v=AAAA-MM-JJ`, posée par
+         `tools/versionner-css.js`) qui contourne le cache du visiteur sans
+         changer le fichier servi. */
+      const [avantAncre, ancre] = reference.split('#');
+      const chemin = avantAncre.split('?')[0];
 
       if (!chemin) {
         if (ancre && !idsParPage.get(page).has(ancre)) {

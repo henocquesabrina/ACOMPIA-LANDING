@@ -10,9 +10,18 @@ projet EU Cloud, token `phc_tzcr2EPAnKEJNFC3w9rsfwkjJB7zQFJ8NuDziAGZJ8qq`.
 
 ## Contraintes de mesure — à lire avant toute chose
 
-Ce site est instrumenté **sans aucun cookie ni stockage terminal** (`persistence: 'memory'`,
-`person_profiles: 'identified_only'`, `disable_session_recording: true`). C'est un choix
-juridique assumé, pas un oubli. Trois conséquences qui déterminent ce que tu peux construire :
+> **Périmé depuis le 31 août 2026.** Le site est passé à `persistence:
+> 'localStorage+cookie'` avec l'enregistrement de session actif. L'identifiant
+> survit désormais au changement de page : les visiteurs uniques, la rétention et
+> les tunnels multi-pages redeviennent calculables, et les trois interdits
+> ci-dessous tombent. Le reste du document (nommage des événements, propriétés
+> disponibles) reste valable. À réécrire avant la prochaine commande de tableaux
+> de bord.
+
+Ce site était instrumenté **sans aucun cookie ni stockage terminal**
+(`persistence: 'memory'`, `person_profiles: 'identified_only'`,
+`disable_session_recording: true`). C'était un choix juridique assumé, pas un
+oubli. Trois conséquences qui déterminaient ce qu'on pouvait construire :
 
 1. **Chaque chargement de page crée une personne distincte.** Il n'existe donc ni visiteur
    unique, ni visiteur récurrent, ni rétention, ni cohorte.

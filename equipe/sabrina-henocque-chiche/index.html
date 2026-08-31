@@ -29,12 +29,13 @@
   <link rel="alternate icon" href="../../favicon.svg">
   <link rel="mask-icon" href="../../favicon.svg" color="#4F46E5">
 
-  <link href="../../css/fonts.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/variables.css">
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/animations.css">
-  <link rel="stylesheet" href="../../css/style-v2.css">
-  <link rel="stylesheet" href="../../css/ressources.css">
+  <link href="../../css/fonts.css?v=2026-08-31" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/variables.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/style.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/animations.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/style-v2.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/ressources.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/pages-2026.css?v=2026-08-31">
 
   <style>
     .author-page {
@@ -51,8 +52,8 @@
       margin-bottom: 48px;
     }
     .author-page-breadcrumb a { color: #888; text-decoration: none; }
-    .author-page-breadcrumb a:hover { color: #4F46E5; }
-    .author-page-breadcrumb .sep { color: #D4D0C5; margin: 0 8px; }
+    .author-page-breadcrumb a:hover { color: #4A34F5; }
+    .author-page-breadcrumb .sep { color: rgba(16, 16, 20, 0.16); margin: 0 8px; }
 
     .author-page-hero {
       display: grid;
@@ -67,19 +68,19 @@
       border-radius: 50%;
       object-fit: cover;
       object-position: center 18%;
-      border: 1px solid #E8E5DE;
+      border: 1px solid rgba(16, 16, 20, 0.08);
     }
     .author-page-eyebrow {
       font-family: 'Geist Mono', monospace;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: #4F46E5;
+      color: #4A34F5;
       margin-bottom: 14px;
       font-weight: 500;
     }
     .author-page-name {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Schibsted Grotesk', system-ui, sans-serif;
       font-size: clamp(36px, 5vw, 56px);
       font-weight: 600;
       line-height: 1.05;
@@ -88,7 +89,7 @@
       color: #0A0A0A;
     }
     .author-page-title {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Schibsted Grotesk', system-ui, sans-serif;
       font-size: 17px;
       color: #3F3F3F;
       margin: 0 0 28px;
@@ -104,19 +105,19 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: #4F46E5;
+      color: #4A34F5;
       text-decoration: none;
       border-bottom: 1px solid rgba(79,70,229,0.35);
       padding-bottom: 3px;
     }
-    .author-page-link:hover { border-bottom-color: #4F46E5; }
+    .author-page-link:hover { border-bottom-color: #4A34F5; }
 
     .author-page-section {
       margin-top: 56px;
       max-width: 720px;
     }
     .author-page-section h2 {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Schibsted Grotesk', system-ui, sans-serif;
       font-size: 24px;
       font-weight: 600;
       letter-spacing: -0.018em;
@@ -145,7 +146,7 @@
     .author-page-publications {
       margin-top: 64px;
       padding-top: 48px;
-      border-top: 1px solid #E8E5DE;
+      border-top: 1px solid rgba(16, 16, 20, 0.08);
     }
     .author-page-publications-title {
       font-family: 'Geist Mono', monospace;
@@ -233,7 +234,7 @@
   <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
 
-  <!-- Analytics · PostHog EU (sans cookie : persistence memory, IP écartées côté projet, pas de session recording) -->
+  <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
   <script src="../../js/analytics.js" defer></script>
 </head>
 <body class="ress-page">

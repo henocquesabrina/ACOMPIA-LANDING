@@ -1,0 +1,1547 @@
+/* ============================================================
+   ACOMPIA — Rafraîchissement de la landing (handoff 08/2026)
+
+   Feuille chargée sur la seule page d'accueil, après style.css et
+   style-v2.css qu'elle surcharge. Les jetons proviennent du handoff
+   `design_handoff_acompia_landing/README.md`.
+
+   Deux écarts assumés par rapport au prototype, documentés dans le
+   commit de refonte :
+     - typographie Schibsted Grotesk servie depuis le site (le prototype
+       la chargeait chez Google, ce que la politique de confidentialité
+       du site exclut) ;
+     - les sous-menus de navigation sont conservés : le prototype les
+       simplifie, les retirer coûterait les liens internes vers les
+       13 articles et les outils.
+   ============================================================ */
+
+:root {
+  --l26-encre: #101014;
+  --l26-texte-2: #55555F;
+  --l26-texte-3: #5F5F6B;
+  --l26-mauve: #4A34F5;
+  --l26-mauve-clair: #8C7BFF;
+  --l26-mauve-bouton: #6E5BFF;
+  --l26-page: #FFFFFF;
+  --l26-bande: #EFEDF8;
+  --l26-surface: #F7F6FC;
+  --l26-sombre: #0E0E1A;
+  --l26-rouge: #C0293F;
+  --l26-vert: #16713F;
+
+  --l26-bord-1: rgba(16, 16, 20, 0.06);
+  --l26-bord-2: rgba(16, 16, 20, 0.08);
+  --l26-bord-3: rgba(16, 16, 20, 0.16);
+
+  --l26-r-panneau: clamp(28px, 3vw, 44px);
+  --l26-r-interne: 18px;
+
+  --l26-ombre-carte: 0 30px 70px -34px rgba(16, 16, 20, 0.28);
+  --l26-ombre-survol: 0 34px 70px -32px rgba(16, 16, 20, 0.30);
+
+  --l26-police: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
+  --l26-mono: 'Geist Mono', ui-monospace, monospace;
+
+  --l26-section-haut: clamp(48px, 6vw, 88px);
+  --l26-section-bas: clamp(56px, 6vw, 96px);
+  --l26-gouttiere: clamp(24px, 4vw, 56px);
+  --l26-biseau: 96px;
+}
+
+/* ---------- Reprise de style.css ----------
+
+   `css/style.css` n'est plus chargée par l'accueil : mesuré, 13 % de ses règles
+   seulement trouvaient une cible ici, et la géométrie de la page ne bougeait que
+   de six valeurs sans elle. Ces six-là tenaient aux déclarations ci-dessous, qui
+   sont donc reprises telles quelles. 53 Ko de moins sur le premier rendu.
+
+   `style-v2.css` reste chargée, elle : sans elle le document passe de 7 932 à
+   14 660 px et la barre de navigation casse. Elle porte encore la nav, le pied de
+   page et le bloc « parcours » du panneau Audit continu. */
+
+*, *::before, *::after { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img { display: block; }
+ul { list-style: none; }
+
+/* Lien d'évitement : hors écran, il revient au premier Tab. */
+.skip-link {
+  position: absolute; top: -100px; left: 16px; z-index: 9999;
+  background: var(--l26-encre); color: #FFFFFF;
+  padding: 12px 18px; border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  transition: top .2s;
+}
+.skip-link:focus { top: 16px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+*:focus-visible { outline: 2px solid var(--l26-mauve); outline-offset: 2px; }
+
+/* ---------- Ossature ---------- */
+
+body.landing-2026 {
+  background: var(--l26-page);
+  color: var(--l26-encre);
+  font-family: var(--l26-police);
+}
+
+.landing-2026 h1,
+.landing-2026 h2,
+.landing-2026 h3,
+.landing-2026 h4 {
+  font-family: var(--l26-police);
+  text-wrap: balance;
+}
+
+/* Le conteneur de page englobe la navigation et le contenu, et occupe toute la
+   fenêtre : ni marge, ni coins arrondis, ni fond « bureau » derrière lui.
+   Le lissage antialiased est celui du prototype ; sans lui la graisse du texte
+   paraît sensiblement plus lourde. */
+.l26-carte {
+  margin: 0;
+  background: var(--l26-page);
+  position: relative;
+  /* `clip` et non `hidden` : les deux rognent pareil, mais `hidden` fait de
+     la carte un conteneur de défilement, ce qui neutralise le `sticky` de la
+     barre de navigation qu'elle contient. `clip` n'en crée pas. */
+  overflow: clip; /* garde les biseaux dans la carte */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.landing-2026 main { background: transparent; }
+
+.l26-large { max-width: 1440px; margin: 0 auto; padding-inline: var(--l26-gouttiere); }
+.l26-etroit { max-width: 1280px; margin: 0 auto; padding-inline: var(--l26-gouttiere); }
+
+.l26-section {
+  padding: clamp(48px, 6vw, 88px) clamp(24px, 4vw, 56px) clamp(56px, 6vw, 96px);
+}
+/* Les en-têtes de section sont centrés sur une colonne courte. */
+.l26-entete { max-width: 900px; margin: 0 auto; text-align: center; }
+.landing-2026 #solution-home .l26-entete { max-width: 1120px; }
+.l26-entete .l26-chapeau { margin-inline: auto; }
+
+/* Un biseau est un calque décoratif : jamais de clip-path sur un ancêtre,
+   sinon les panneaux de détail des cas-types sont rognés. */
+.l26-biseau { position: relative; }
+.l26-biseau > .l26-biseau-fond {
+  position: absolute;
+  inset: 0;
+  background: var(--l26-bande);
+  z-index: 0;
+  pointer-events: none;
+}
+.l26-biseau > *:not(.l26-biseau-fond) { position: relative; z-index: 1; }
+
+/* ---------- Titres ---------- */
+
+.l26-eyebrow {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--l26-mauve);
+  margin: 0;
+}
+
+/* Chaque section a sa propre échelle de titre dans le prototype ; le README
+   les résumait en une seule valeur, ce qui aplatissait la hiérarchie. */
+.landing-2026 .l26-h2 {
+  margin: 14px 0 0;
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  color: var(--l26-encre);
+}
+.landing-2026 #cas-types .l26-h2 { font-size: clamp(38px, 4.6vw, 68px); letter-spacing: -0.045em; line-height: 0.96; }
+.landing-2026 #solution-home .l26-h2 { font-size: clamp(34px, 4.2vw, 60px); }
+.landing-2026 #faq .l26-h2 { font-size: clamp(32px, 3.8vw, 56px); letter-spacing: -0.045em; line-height: 1.0; }
+.landing-2026 #cta-final .l26-h2 { font-size: clamp(32px, 4.4vw, 64px); letter-spacing: -0.045em; line-height: 1.0; }
+.l26-h2 em { font-style: normal; color: var(--l26-mauve); }
+
+.l26-chapeau {
+  margin: 18px 0 0;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--l26-texte-2);
+  max-width: 620px;
+  text-wrap: pretty;
+}
+
+/* ---------- Pills ---------- */
+
+.landing-2026 .l26-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 15.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  cursor: pointer;
+}
+.landing-2026 .l26-pill--noire { background: var(--l26-encre); color: #FFFFFF; }
+.landing-2026 .l26-pill--noire:hover { background: #2E2E36; color: #FFFFFF; }
+.landing-2026 .l26-pill--ghost { background: transparent; color: var(--l26-encre); border-color: var(--l26-bord-3); }
+.landing-2026 .l26-pill--ghost:hover { background: #FFFFFF; border-color: rgba(16, 16, 20, 0.28); color: var(--l26-encre); }
+.landing-2026 .l26-pill--mauve { background: var(--l26-mauve); color: #FFFFFF; }
+.landing-2026 .l26-pill--mauve:hover { background: #3B29C9; color: #FFFFFF; }
+.landing-2026 .l26-pill--blanche { background: #FFFFFF; color: var(--l26-encre); }
+.landing-2026 .l26-pill--blanche:hover { background: #EDEBFA; color: var(--l26-encre); }
+.l26-pill .l26-pill-note { opacity: .55; font-weight: 400; }
+
+/* `style-v2` peint le survol de `.btn-primary` avec un calque `::before` posé
+   sur toute la surface, et repasse le contenu devant par `.btn-primary > *`.
+   Cela suppose que le libellé soit enveloppé dans un élément, comme sur les
+   19 autres pages où il vit dans un `span`. Les boutons de la refonte portent
+   un simple nœud de texte, qu'aucun `z-index` ne peut remonter : au survol, le
+   calque recouvrait le libellé et le bouton se vidait de son texte. Seule la
+   pastille « 3 min », elle bien dans un `span`, y survivait.
+
+   Les couleurs de survol de la refonte sont définies juste au-dessus, une par
+   variante : le calque hérité n'a rien à peindre ici. */
+.landing-2026 .l26-pill::before { content: none; }
+
+/* ---------- Navigation ---------- */
+
+.landing-2026 #nav {
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 0;
+  position: relative;
+  z-index: 30;
+}
+.landing-2026 #nav.nav--scrolled { box-shadow: none; }
+.landing-2026 #nav {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px clamp(20px, 3vw, 56px);
+}
+.landing-2026 .nav-inner { max-width: none; padding-inline: 0; }
+.landing-2026 .nav-links { gap: clamp(12px, 1.7vw, 32px); }
+.landing-2026 .nav-logo-text {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  color: var(--l26-encre);
+}
+.landing-2026 .nav-links a,
+.landing-2026 .nav-dropdown-toggle {
+  font-size: 15px;
+  color: #55556A;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* 44 px de haut minimum : les libellés ne faisaient que 23 px, sous le seuil
+   tactile. La hauteur est prise sur la zone cliquable, pas sur le texte.
+
+   Le sélecteur ne vise QUE les entrées de premier niveau. `.nav-links a` seul
+   attrapait aussi les liens à l'intérieur des menus déroulants, dont chaque
+   entrée empile un badge et un titre : les passer en `inline-flex` les mettait
+   côte à côte, badge collé au titre, et rabotait le filet de séparation du
+   pied de menu à la largeur de son texte. */
+.landing-2026 .nav-links > a,
+.landing-2026 .nav-dropdown > .nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.landing-2026 .nav-links a:hover,
+.landing-2026 .nav-dropdown-toggle:hover { color: #0C0C14; }
+/* `.nav-cta` de style.css marque `!important` sur chacune de ses propriétés :
+   aucune spécificité ne peut lui répondre, seul un `!important` le peut. C'est
+   la dette CSS décrite dans le README ; elle se paiera au chantier prévu, pas
+   ici. Le ::before de style-v2 porte un dégradé qu'il faut aussi éteindre. */
+.landing-2026 .nav-links a.nav-cta {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #FFFFFF !important;
+  background: #0C0C14 !important;
+  padding: 11px 20px !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  white-space: nowrap;
+  transition: background-color .2s ease;
+}
+.landing-2026 .nav-links a.nav-cta::before { display: none; }
+.landing-2026 .nav-links a.nav-cta:hover { background: var(--l26-mauve) !important; }
+
+/* ---------- Hero ---------- */
+
+.l26-hero-zone { position: relative; }
+/* Seul ce bloc porte le calque : il s'arrête avant la bande partenaires. */
+.l26-hero-bloc { position: relative; }
+
+/* Calque de fond : diagonale blanc → mauve clair, débordant sous le hero.
+   Le halo mauve est posé par-dessus, en haut à droite. */
+.l26-hero-fond {
+  position: absolute;
+  inset: 0 0 -128px 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(103deg, #FFFFFF 0 44%, var(--l26-bande) 44%);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--l26-biseau)), 0 100%);
+}
+.l26-hero-halo {
+  position: absolute;
+  top: -280px;
+  right: -180px;
+  width: 780px;
+  height: 780px;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(74, 52, 245, 0.16) 0%, rgba(74, 52, 245, 0) 68%);
+}
+
+.l26-hero {
+  position: relative;
+  z-index: 2;
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 108px) var(--l26-gouttiere) 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(32px, 3.5vw, 56px);
+  align-items: flex-start;
+}
+.l26-hero-texte { flex: 1 1 480px; min-width: 300px; max-width: 660px; }
+
+.landing-2026 .l26-hero-titre {
+  margin: 16px 0 0;
+  font-size: clamp(40px, 4.6vw, 72px);
+  line-height: 1.0;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+}
+.l26-hero-titre span {
+  display: block;
+  margin-top: 6px;
+  font-size: clamp(24px, 2.7vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  color: var(--l26-mauve);
+}
+.l26-hero-para {
+  margin: 40px 0 0;
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--l26-texte-2);
+  text-wrap: pretty;
+}
+.l26-hero-ctas { margin: 36px 0 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.l26-preuves {
+  margin: 22px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 13.5px;
+  color: var(--l26-texte-3);
+  list-style: none;
+  padding: 0;
+}
+.l26-preuves li { display: inline-flex; align-items: center; gap: 7px; }
+.l26-preuves li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--l26-mauve);
+  flex: none;
+}
+
+/* Le mockup déborde à droite tant que la page n'est pas empilée. */
+.l26-hero-visuel {
+  position: relative;
+  flex: 1.9 1 720px;
+  min-width: 0;
+  margin-right: clamp(-140px, calc((1180px - 100vw) * 0.5), 0px);
+}
+.l26-fenetre {
+  position: relative;
+  border-radius: 24px;
+  background: #FFFFFF;
+  border: 1px solid rgba(16, 16, 20, 0.07);
+  box-shadow: var(--l26-ombre-carte);
+  overflow: hidden;
+}
+.l26-fenetre img { display: block; width: 100%; height: auto; }
+.l26-fenetre-chrome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(12, 12, 20, 0.07);
+  background: #FAFAF8;
+}
+.l26-pastille { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.l26-fenetre-url {
+  margin-left: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  border: 1px solid rgba(12, 12, 20, 0.08);
+  font-family: var(--l26-mono);
+  font-size: 11px;
+  color: #6E6E7A;
+}
+
+/* ---------- Bande partenaires ---------- */
+
+/* ---------- Barre d'action collante, mobile ---------- */
+
+/* Sur mobile le CTA du hero sort de l'écran dès le premier défilement et le
+   suivant n'arrive qu'au pied de page. Cette barre garde l'action à portée de
+   pouce tout du long. Elle ne s'affiche qu'en dessous de 860 px : sur desktop
+   les CTA restent visibles assez longtemps pour ne pas la justifier. */
+.l26-barre-collante { display: none; }
+
+@media (max-width: 860px) {
+  .l26-barre-collante {
+    display: block;
+    position: sticky;
+    bottom: 0;
+    z-index: 40;
+    padding: 12px var(--l26-gouttiere) calc(12px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--l26-bord-2);
+  }
+  .l26-barre-collante .l26-pill {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media print { .l26-barre-collante { display: none; } }
+
+/* ---------- Menus déroulants de la navigation ---------- */
+
+/* Réglages propres à la landing : `style-v2.css` sert encore les 19 autres
+   pages, on ne touche pas à sa version. Trois corrections.
+
+   1. Courbe d'ouverture. Le menu entrait en `ease`, l'easing par défaut. Il
+      prend la courbe du reste de la page, et une amorce un peu plus franche
+      (10 px au lieu de 6) pour que le mouvement se lise.
+
+   2. Rayon imbriqué. Le menu est à 14 px et ses entrées sont séparées de son
+      bord par 10 px de padding : le rayon intérieur vaut donc 14 − 10 = 4 px,
+      pas 9. Une entrée survolée dessinait un arrondi plus rond que la carte
+      qui la contient.
+
+   3. Le filet du pied de menu partait du bord de la zone cliquable, en retrait
+      de 14 px par rapport aux entrées. Il court maintenant sur toute la
+      largeur intérieure, comme une vraie séparation. */
+
+/* Seul écart avec la barre héritée : elle fait 93 px de haut au lieu de 81. */
+.landing-2026 .nav-dropdown-menu { --nav-menu-ecart: 33px; }
+
+.landing-2026 .nav-dropdown-menu a {
+  border-radius: 4px;
+  padding: 10px 12px;
+  transition:
+    background-color .2s cubic-bezier(0.32, 0.72, 0, 1),
+    color .2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.landing-2026 .nav-dropdown-menu a:hover { background: var(--l26-surface); }
+
+/* La hiérarchie des entrées (titre devant, libellé dessous) est désormais
+   posée dans `style-v2.css` : les menus sont identiques sur les 20 pages, et
+   ils changeaient d'apparence dès qu'on quittait l'accueil. Ne reste ici que
+   ce qui est propre à la landing : la police. */
+
+/* La flèche du sélecteur suit la même courbe que le menu qu'elle annonce. */
+.landing-2026 .nav-dropdown-arrow {
+  transition: transform .34s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ---------- Une seule police sur la page ---------- */
+
+/* `style-v2.css` réimpose Geist sur une partie de la page : mesuré au navigateur,
+   46 éléments en héritaient encore. Le plus visible : les mots accentués en mauve
+   à l'intérieur des titres, qui changeaient de dessin au milieu d'une phrase.
+
+   Geist Mono n'est pas concerné et reste en place sur les 32 éléments qui s'en
+   servent : eyebrows, montants, libellés de données. Le chasse fixe y est
+   fonctionnel, pas décoratif.
+
+   Deux niveaux de force sont nécessaires. La nav et les pilules cèdent à la
+   spécificité seule ; les `em` des titres sont posés en `!important` par
+   `style-v2.css` et ne cèdent qu'à un `!important`. */
+
+.landing-2026 .nav-dropdown-toggle,
+.landing-2026 .nav-dropdown-arrow,
+.landing-2026 .nav-dropdown-title,
+.landing-2026 .nav-links a,
+.landing-2026 .btn-primary,
+.landing-2026 .btn-secondary,
+.landing-2026 .l26-pill,
+.landing-2026 .l26-pill-note,
+.landing-2026 .how .step-name {
+  font-family: var(--l26-police);
+}
+
+.landing-2026 h1 em,
+.landing-2026 h2 em,
+.landing-2026 h3 em,
+.landing-2026 h4 em,
+.landing-2026 .l26-h2 em,
+.landing-2026 .l26-panneau-titre em,
+.landing-2026 .how-title em,
+.landing-2026 .how .step.final .step-name {
+  font-family: var(--l26-police) !important;
+}
+
+/* ---------- Amorce de scroll, écrans peu hauts ---------- */
+
+/* Sur un 13 pouces (~780 px utiles), le hero occupait tout le premier écran et
+   rien n'indiquait qu'il y avait une suite. La bande partenaires affleure
+   désormais sous le pli : une vingtaine de pixels suffisent à donner envie de
+   défiler. Au-delà de 900 px de hauteur, le hero garde ses proportions.
+
+   Le levier est le mockup, pas la gouttière : sa hauteur vient de son contenu,
+   pas de sa largeur — le rétrécir en colonne ne l'aurait pas raccourci d'un
+   pixel. D'où le `zoom`, qui réduit la hauteur occupée dans le flux, ce que
+   `transform: scale()` ne fait pas.
+
+   Le débord du calque passe de 128 à 40 px pour rester au-dessus de la bande :
+   sinon les logos défilent sur l'oblique mauve. Marge vérifiée : 8 px. */
+@media (max-height: 900px) {
+  .l26-hero { padding-top: 32px; }
+  .l26-hero-fond { inset: 0 0 -40px 0; }
+  .l26-hero-visuel { zoom: 0.8; }
+  .l26-partenaires { margin-top: 48px; }
+}
+
+.l26-partenaires {
+  /* Le calque du hero déborde de 128 px ; la bande démarre en dessous pour que
+     les logos défilent sur le blanc et non sur l'oblique mauve. */
+  margin-top: 136px;
+  border-top: 1px solid var(--l26-bord-2);
+  padding-block: 26px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 48px;
+}
+@media (max-width: 620px) {
+  .l26-partenaires { grid-template-columns: 1fr; gap: 16px; }
+}
+.l26-partenaires-label { font-size: 15px; color: var(--l26-texte-3); margin: 0; white-space: nowrap; }
+.l26-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.l26-marquee-piste {
+  display: flex;
+  align-items: center;
+  gap: clamp(40px, 6vw, 88px);
+  width: max-content;
+  animation: l26Marquee 34s linear infinite;
+}
+.l26-marquee-piste span {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1B1B33;
+  opacity: .55;
+  white-space: nowrap;
+}
+@keyframes l26Marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .l26-marquee-piste { animation: none; }
+}
+
+/* ---------- Statistiques ---------- */
+
+.l26-stats-zone { position: relative; z-index: 2; }
+.l26-stats-grille {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 56px clamp(24px, 4vw, 56px) 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 20px;
+}
+.l26-stat {
+  /* Fond blanc et arrondi comme le prototype, mais sans bordure : c'est elle
+     qui enfermait les chiffres et cassait la respiration de la bande. */
+  background: #FFFFFF;
+  border: 0;
+  border-radius: 24px;
+  padding: 28px 24px 32px;
+  text-align: center;
+}
+.l26-stat-chiffre {
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: var(--l26-encre);
+}
+.l26-stat-chiffre .l26-stat-unite { font-size: .55em; margin-left: 2px; }
+.l26-stat-libelle {
+  margin: 14px auto 0;
+  max-width: 230px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--l26-texte-3);
+}
+.l26-source {
+  margin: 0 0 24px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--l26-texte-3);
+  text-align: center;
+}
+.l26-source a { color: var(--l26-texte-3); text-decoration: underline; text-underline-offset: 2px; }
+.l26-source a:hover { color: var(--l26-mauve); }
+
+/* ---------- Cas-types ---------- */
+
+.l26-cas-zone {
+  position: relative;
+  z-index: 9;
+  padding: clamp(88px, 8vw, 132px) clamp(24px, 4vw, 64px) clamp(72px, 7vw, 108px);
+}
+.l26-cas-zone > .l26-biseau-fond {
+  clip-path: polygon(0 var(--l26-biseau), 100% 0, 100% 100%, 0 calc(100% - var(--l26-biseau)));
+}
+.l26-slab {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: var(--l26-r-panneau);
+  /* Le retrait latéral passe par une variable : la bande glissante des
+     cas-types s'en sert pour déborder puis se reposer dessus, et les deux
+     valeurs ne peuvent pas diverger. */
+  --l26-slab-gouttiere: clamp(24px, 4vw, 64px);
+  padding: clamp(56px, 6vw, 96px) var(--l26-slab-gouttiere) clamp(56px, 6vw, 88px);
+}
+.l26-slab > header { max-width: 780px; }
+
+/* Subgrid : les lignes d'une carte s'alignent d'une carte à l'autre. */
+.l26-cas-grille {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  align-items: start; /* chaque carte grandit pour elle seule */
+}
+.l26-cas {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--l26-surface);
+  border: 0;
+  border-radius: 24px;
+  padding: 28px 26px 24px;
+  transition: transform .32s cubic-bezier(.2, .7, .3, 1), box-shadow .32s ease, background-color .32s ease;
+}
+.l26-cas-meta {
+  font-family: var(--l26-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #B4B4BE;
+  margin: 0;
+}
+.landing-2026 .l26-cas-titre { margin: 0; font-size: 24px; line-height: 1.2; letter-spacing: -0.03em; font-weight: 600; }
+.l26-cas-montant {
+  font-size: clamp(26px, 2.3vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--l26-rouge);
+  /* Pas de `nowrap` : le troisième cas affiche deux montants séparés par une
+     flèche, et la ligne entière débordait de la carte sur un téléphone. Chaque
+     montant est déjà rendu insécable par ses espaces insécables, la coupure ne
+     peut donc tomber qu'autour de la flèche, exactement où on la veut. */
+  margin: 0;
+}
+.l26-cas-montant .l26-vers { color: var(--l26-texte-3); font-weight: 400; }
+.l26-cas-sous { margin: 0; font-size: 13.5px; color: var(--l26-texte-3); }
+.l26-cas-constat { margin: 0; font-size: 15px; line-height: 1.55; color: var(--l26-texte-2); }
+.l26-cas-cle {
+  margin: 0;
+  background: #FFFFFF;
+  border: 1px solid var(--l26-bord-2);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--l26-encre);
+}
+
+/* Le détail s'ouvre au survol sur pointeur fin, et au clic partout :
+   le prototype n'ouvrait qu'au survol, inaccessible au clavier et au tactile. */
+.l26-cas-bouton {
+  margin-top: auto; /* reste en pied de carte quelle que soit la longueur du texte */
+  padding-top: 14px;
+  border-top: 1px solid var(--l26-bord-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--l26-mauve);
+  cursor: pointer;
+  text-align: left;
+  min-height: 44px; /* seuil tactile : le libellé seul ne faisait que 21 px */
+}
+.l26-cas-bouton .l26-plus { transition: transform .25s ease; display: inline-block; font-size: 18px; line-height: 1; }
+.l26-cas[data-ouvert="true"] .l26-plus { transform: rotate(45deg); }
+
+/* Le détail est simplement retiré du flux tant qu'il est fermé, et la carte
+   grandit quand il y entre. Animer sa hauteur s'est révélé impraticable ici :
+   sur cet enfant flex, ni `grid-template-rows: 1fr`, ni `max-height`, ni même
+   une hauteur en style inline ne sortaient de zéro. Une apparition en fondu
+   suffit à adoucir l'ouverture. */
+.l26-cas-detail { display: none; }
+.l26-cas[data-ouvert="true"] .l26-cas-detail {
+  display: block;
+  animation: l26DetailEntre .32s cubic-bezier(.2, .7, .3, 1) both;
+}
+@keyframes l26DetailEntre {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .l26-cas[data-ouvert="true"] .l26-cas-detail { animation: none; }
+}
+/* Le détail fait corps avec la carte : un simple filet le sépare du reste,
+   sans encadré ni ombre qui le feraient lire comme une seconde tuile. */
+.l26-cas-detail-inner {
+  border-top: 1px solid var(--l26-bord-2);
+  padding-top: 18px;
+}
+.l26-cas[data-ouvert="true"] {
+  background: #FFFFFF;
+  box-shadow: var(--l26-ombre-survol);
+  z-index: 12;
+}
+
+/* Le survol n'ouvre plus le détail : sur une carte qui s'agrandit dans le flux,
+   l'ouverture au passage de la souris ferait sauter la mise en page sous le
+   curseur. L'ouverture se fait au clic, sur les trois cartes de la même façon. */
+@media (hover: hover) and (pointer: fine) {
+  .l26-cas:hover { background: #FFFFFF; }
+}
+.l26-cas:focus-within { background: #FFFFFF; }
+
+.l26-cas-puces { margin: 0; padding: 0 0 0 18px; font-size: 14px; line-height: 1.6; color: var(--l26-texte-2); }
+.l26-cas-puces li + li { margin-top: 8px; }
+.l26-cas-puces b { color: var(--l26-encre); }
+.l26-cas-regle { margin: 16px 0 0; font-size: 13px; line-height: 1.6; color: var(--l26-texte-3); }
+.l26-cas-regle b { color: var(--l26-texte-2); }
+.l26-cas-pied { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.l26-cas-mention { margin: 0; font-size: 13px; line-height: 1.6; color: var(--l26-texte-3); max-width: 620px; }
+
+/* Sur un téléphone, la grille retombe sur une colonne et les trois cas
+   s'empilent : près de 1 200 px à dérouler pour un bloc qui se lit très bien
+   de côté, puisque les cartes sont indépendantes et de même nature. On les
+   passe donc en bande glissante.
+
+   Le point de bascule est celui où la grille cesse d'en tenir deux de front :
+   deux colonnes de 300 px et leur gouttière demandent 620 px de contenu, soit
+   716 px de fenêtre une fois retirés les retraits de la zone et du panneau.
+
+   La bande déborde des gouttières du panneau puis les repose en remplissage :
+   elle balaie ainsi toute la largeur du panneau blanc, tandis que les cartes
+   restent alignées sur le titre au-dessus. `scroll-padding` reporte ce même
+   retrait sur l'ancrage, sans quoi la carte aimantée viendrait se coller au
+   bord de l'écran. */
+@media (max-width: 716px) {
+  .l26-cas-grille {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--l26-slab-gouttiere);
+    margin-inline: calc(var(--l26-slab-gouttiere) * -1);
+    padding-inline: var(--l26-slab-gouttiere);
+    /* La barre de défilement doublerait le repère que donne déjà la carte
+       suivante en amorce, et décalerait la hauteur du bloc sur les plateformes
+       qui la réservent. */
+    scrollbar-width: none;
+  }
+  .l26-cas-grille::-webkit-scrollbar { display: none; }
+
+  /* 86 % : la carte suivante affleure d'un doigt de large. C'est ce bord visible
+     qui dit qu'il y en a d'autres, sans pastilles ni flèches à entretenir. */
+  .l26-cas {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+    /* Sans cela, la taille minimale automatique d'un élément flex vaut sa
+       largeur de contenu minimale : la troisième carte, dont le montant tient
+       sur deux lignes larges, dépassait sa base de cinquante pixels et cassait
+       l'alignement de la bande. */
+    min-width: 0;
+  }
+}
+
+/* ---------- Solution : onglets ---------- */
+
+.l26-onglets {
+  margin: 34px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+/* Le pourtour de la page est passé au blanc : un fond blanc bordé à 8 % ne se
+   détachait plus de rien. La tuile reprend une surface et une bordure visibles. */
+.l26-onglet {
+  padding: 18px 26px;
+  border-radius: var(--l26-r-interne);
+  background: var(--l26-surface);
+  border: 1px solid var(--l26-bord-3);
+  text-align: center;
+  cursor: pointer;
+  font: inherit;
+  transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.l26-onglet:hover { background: #FFFFFF; }
+.l26-onglet-titre { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; color: var(--l26-encre); }
+.l26-onglet-sous { margin-top: 4px; font-size: 13px; color: var(--l26-texte-3); }
+.l26-onglet[aria-selected="true"] {
+  background: #FFFFFF;
+  border-color: var(--l26-mauve);
+  box-shadow: 0 12px 30px -18px rgba(74, 52, 245, 0.55);
+}
+.l26-onglet[aria-selected="true"] .l26-onglet-titre { color: var(--l26-mauve); }
+
+/* Sur un téléphone, les trois onglets passaient à la ligne et se centraient
+   chacun sur sa propre largeur de contenu : trois pavés décalés, de tailles
+   différentes, qu'on lisait comme un accident de mise en page plutôt que
+   comme un choix à faire, pour près de 570 px de hauteur.
+
+   Ils redeviennent ici ce qu'ils sont : une barre segmentée, trois parts
+   égales sur une seule ligne, la part active détachée en blanc. C'est la
+   forme que le tactile reconnaît comme « choisir entre trois », et elle tient
+   en une soixantaine de pixels.
+
+   La disponibilité disparaît de la barre, faute de place à ce format : chaque
+   panneau la répète en tête, « Ouverture en septembre 2026 », « Sur devis ·
+   réponse sous 48 h », « Disponible dès maintenant ». Rien ne se perd. */
+@media (max-width: 620px) {
+  .l26-onglets {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 5px;
+    padding: 5px;
+    background: var(--l26-surface);
+    border: 1px solid var(--l26-bord-3);
+    border-radius: var(--l26-r-interne);
+  }
+  .l26-onglet {
+    padding: 10px 4px;
+    border: 0;
+    background: transparent;
+    border-radius: calc(var(--l26-r-interne) - 9px);
+    /* Deux lignes possibles pour « Audits sur mesure » : les trois parts
+       gardent la même hauteur, c'est la grille qui les égalise. */
+    line-height: 1.25;
+  }
+  .l26-onglet-titre { font-size: 13px; letter-spacing: -0.015em; color: var(--l26-texte-3); }
+  /* Préfixé `.landing-2026` pour passer devant la règle d'empilement des
+     titres et sous-titres, plus bas dans le fichier et de même spécificité. */
+  .landing-2026 .l26-onglet-sous { display: none; }
+
+  .l26-onglet[aria-selected="true"] {
+    background: #FFFFFF;
+    border: 0;
+    box-shadow: 0 1px 2px rgba(16, 16, 20, 0.07);
+  }
+  .l26-onglet[aria-selected="true"] .l26-onglet-titre { color: var(--l26-encre); }
+}
+
+.l26-panneau {
+  max-width: 1560px;
+  margin: clamp(36px, 4vw, 56px) auto 0;
+  border-radius: var(--l26-r-panneau);
+  padding: clamp(44px, 5vw, 76px) clamp(24px, 4vw, 64px);
+}
+/* Le panneau déborde volontairement la colonne de texte qui le précède. */
+.l26-panneau-centre { max-width: 900px; margin: 0 auto; text-align: center; }
+.l26-panneau-centre .l26-chapeau { max-width: 680px; margin-inline: auto; }
+/* Dans les panneaux, le chapeau est d'un cran plus petit et plus aéré que
+   celui des en-têtes de section. */
+.l26-panneau .l26-chapeau { font-size: 17px; line-height: 1.6; }
+/* Les appels à l'action y sont aussi d'un cran au-dessus du reste du site :
+   la maquette les échelonne par contexte — 15,5 px au héros, 17 ici. */
+.l26-panneau .l26-pill { font-size: 17px; }
+.l26-panneau .l26-lien-souligne { font-size: 16px; font-weight: 500; }
+.l26-panneau-centre .l26-panneau-ctas { justify-content: center; }
+.l26-panneau[hidden] { display: none; }
+.l26-panneau--sombre { background: var(--l26-sombre); color: #FFFFFF; }
+.l26-panneau--sombre .l26-h2,
+.l26-panneau--sombre .l26-panneau-titre { color: #FFFFFF; }
+.l26-panneau--sombre .l26-h2 em,
+.l26-panneau--sombre .l26-panneau-titre em { color: var(--l26-mauve-clair); }
+.l26-panneau--sombre .l26-chapeau { color: rgba(255, 255, 255, 0.62); }
+.l26-panneau--blanc { background: #FFFFFF; border: 1px solid var(--l26-bord-2); }
+
+.landing-2026 .l26-panneau-titre {
+  margin: 0;
+  font-size: clamp(26px, 3vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+.l26-panneau-titre em { font-style: normal; color: var(--l26-mauve); }
+
+/* `min(300px, 100%)` et non `300px` : sous 300 px de place disponible, une
+   piste `minmax(300px, 1fr)` garde son plancher de 300 px et déborde. Les
+   deux tuiles « audits sur mesure » et « pilotage de flotte » passaient ainsi
+   hors de leur panneau sur un téléphone, texte coupé au bord de l'écran. */
+.l26-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start; }
+
+/* Parcours en 6 étapes */
+.l26-parcours {
+  margin: clamp(40px, 4.5vw, 64px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: clamp(24px, 2.6vw, 40px);
+  text-align: left;
+}
+.l26-etape-rang { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.l26-etape-num {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-family: var(--l26-mono);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+/* Le filet relie visuellement les étapes sans les enfermer dans un tableau. */
+.l26-etape-fil {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+}
+.l26-etape--finale .l26-etape-num { background: var(--l26-mauve); border-color: var(--l26-mauve); color: #FFFFFF; }
+.l26-etape-titre { font-size: 15.5px; font-weight: 600; letter-spacing: -0.02em; color: #FFFFFF; }
+.l26-etape--finale .l26-etape-titre { color: #B9AFFF; }
+.l26-etape-sous { margin-top: 4px; font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.55); }
+
+.l26-panneau-ctas { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.l26-lien-souligne { font-size: 15px; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.l26-panneau--sombre .l26-lien-souligne { color: rgba(255, 255, 255, 0.72); }
+.l26-panneau--sombre .l26-lien-souligne:hover { color: #FFFFFF; }
+
+/* Configurateur d'audit */
+.l26-compteur { font-size: 40px; font-weight: 600; letter-spacing: -0.04em; color: var(--l26-mauve); line-height: 1; }
+.l26-compteur-libelle { margin: 8px 0 0; font-size: 14.5px; color: var(--l26-texte-2); }
+.l26-jauge { margin: 18px 0 0; height: 6px; border-radius: 999px; background: rgba(74, 52, 245, 0.12); overflow: hidden; }
+.l26-jauge-barre { height: 100%; background: var(--l26-mauve); transition: width .3s ease; }
+
+.l26-axes { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.l26-axe {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: var(--l26-r-interne);
+  background: #FFFFFF;
+  border: 1px solid var(--l26-bord-2);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: background-color .18s ease, border-color .18s ease;
+}
+.l26-axe[aria-pressed="true"] { background: #F2F0FF; border-color: rgba(74, 52, 245, 0.35); }
+.l26-axe-case {
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  color: #FFFFFF;
+  background: transparent;
+  border: 1px solid rgba(16, 16, 20, 0.18);
+  transition: background-color .18s ease, border-color .18s ease;
+}
+.l26-axe[aria-pressed="true"] .l26-axe-case { background: var(--l26-mauve); border-color: var(--l26-mauve); }
+.l26-axe-titre { font-size: 15.5px; font-weight: 600; letter-spacing: -0.02em; color: var(--l26-encre); }
+.l26-axe-sous { margin-top: 3px; font-size: 13px; color: var(--l26-texte-3); }
+.l26-axe-num { font-family: var(--l26-mono); font-size: 11px; letter-spacing: .1em; color: #B4B4BE; }
+.l26-axe[aria-pressed="true"] .l26-axe-num { color: var(--l26-mauve); }
+
+/* Lignes du pilotage de flotte */
+.l26-lignes { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.l26-ligne {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  border-radius: 14px;
+  transition: background-color .2s ease, transform .2s ease;
+}
+.l26-ligne:hover { background: rgba(140, 123, 255, 0.10); transform: translateX(6px); }
+/* Le numéro est un repère de lecture à part entière dans la maquette, pas
+   une étiquette : même police que le titre, presque sa taille, et il
+   s'aligne sur sa première ligne plutôt que de flotter au-dessus. */
+.l26-ligne-num {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--l26-mauve-clair);
+  line-height: 1.5;
+  flex: none;
+  /* Chasse fixe : sans elle le « 1 » plus étroit décalait le titre de sa
+     ligne de quatre pixels par rapport aux trois autres. */
+  font-variant-numeric: tabular-nums;
+}
+.l26-ligne-titre { font-size: 21px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.025em; }
+.l26-ligne-sous { margin-top: 5px; font-size: 15px; color: rgba(255, 255, 255, 0.55); line-height: 1.55; }
+
+/* ---------- Outils gratuits ---------- */
+
+.l26-outils {
+  max-width: 1200px;
+  margin: clamp(36px, 4vw, 56px) auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+}
+/* Pas de bordure : c'est elle qui donnait l'aspect « tuile ». Le visuel vient
+   en tête, le texte dessous — l'ordre inverse de ce que j'avais posé. */
+.l26-outil {
+  background: #FFFFFF;
+  border: 0;
+  border-radius: 28px;
+  padding: 26px 26px 30px;
+  display: grid;
+  gap: 22px;
+  align-content: start;
+}
+.l26-outil-badge {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--l26-mauve);
+  background: none;
+  padding: 0;
+}
+.landing-2026 .l26-outil-titre { margin: 14px 0 0; font-size: 26px; line-height: 1.1; font-weight: 600; letter-spacing: -0.03em; }
+.l26-outil-texte { margin: 14px 0 0; font-size: 15.5px; line-height: 1.6; color: var(--l26-texte-2); text-wrap: pretty; }
+.l26-outil-visuel {
+  position: relative;
+  height: 220px;
+  margin: 0;
+  background: var(--l26-surface);
+  border: 0;
+  border-radius: 20px;
+  padding: 26px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.l26-outil-pied { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.l26-outil-mention { font-size: 13px; color: var(--l26-texte-3); }
+
+/* Jauge du prédiagnostic : demi-anneau, arc mauve à 62 %, aiguille alignée. */
+.l26-jauge-demi { position: relative; width: 200px; height: 100px; }
+.l26-jauge-demi::before,
+.l26-jauge-demi-arc {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 200px 200px 0 0;
+  border: 16px solid rgba(74, 52, 245, 0.14);
+  border-bottom: 0;
+  box-sizing: border-box;
+}
+.l26-jauge-demi-arc {
+  border-color: var(--l26-mauve);
+  border-bottom: 0;
+  clip-path: polygon(0 0, 62% 0, 62% 100%, 0 100%);
+}
+.l26-jauge-aiguille {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 92px;
+  transform-origin: bottom center;
+  transform: rotate(15.1deg);
+}
+.l26-jauge-aiguille::after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 4px solid var(--l26-mauve);
+  box-sizing: border-box;
+}
+
+/* Trois filets sous la jauge, comme des lignes de rapport. */
+.l26-outil-barres {
+  position: absolute;
+  bottom: 26px;
+  left: 34px;
+  right: 34px;
+  display: grid;
+  gap: 10px;
+}
+.l26-outil-barres span { height: 8px; border-radius: 999px; background: rgba(16, 16, 20, 0.08); }
+.l26-outil-barres span:nth-child(2) { width: 78%; }
+.l26-outil-barres span:nth-child(3) { width: 56%; }
+
+/* Pavé de saisie : quatre blocs figurent le montant, la dernière touche est active. */
+.l26-pave-blocs { display: flex; gap: 6px; }
+.l26-pave-blocs i { width: 12px; height: 18px; border-radius: 3px; background: rgba(255, 255, 255, 0.28); }
+
+
+/* Pavé de saisie du simulateur */
+.l26-pave { width: 100%; max-width: 300px; display: grid; gap: 12px; }
+.l26-pave-ecran {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--l26-encre);
+  color: #FFFFFF;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-family: var(--l26-mono);
+  font-size: 15px;
+}
+.l26-pave-grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.l26-pave-touche {
+  height: 26px;
+  border-radius: 8px;
+  background: rgba(16, 16, 20, 0.07);
+  border: 0;
+}
+.l26-pave-touche--mauve { background: var(--l26-mauve); }
+
+/* ---------- Équipe ---------- */
+
+.l26-equipe-carte {
+  max-width: 1120px;
+  margin: clamp(36px, 4vw, 56px) auto 0;
+  background: #FFFFFF;
+  border: 0;
+  border-radius: 32px;
+  padding: 36px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 820px) { .l26-equipe-carte { grid-template-columns: 1fr; } }
+.l26-portrait { aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; background: var(--l26-surface); }
+.l26-portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.landing-2026 .l26-equipe-nom { margin: 0; font-size: clamp(26px, 2.4vw, 34px); font-weight: 600; letter-spacing: -0.03em; }
+.l26-equipe-role { margin: 8px 0 0; font-size: 15.5px; color: var(--l26-mauve); font-weight: 500; }
+.l26-equipe-bio { margin: 20px 0 0; font-size: 16.5px; line-height: 1.6; color: var(--l26-texte-2); }
+.l26-citation {
+  margin: 26px 0 0;
+  position: relative;
+  background: var(--l26-surface);
+  border-radius: 20px;
+  padding: 26px 28px 26px 56px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--l26-encre);
+}
+.l26-citation::before {
+  content: "\201C";
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  font-size: 56px;
+  line-height: 1;
+  color: rgba(74, 52, 245, 0.22);
+}
+.l26-citation p { margin: 0; }
+
+/* ---------- FAQ ---------- */
+
+.l26-faq-zone {
+  position: relative;
+  z-index: 2;
+  padding: clamp(96px, 9vw, 148px) clamp(24px, 4vw, 56px) clamp(56px, 6vw, 96px);
+  background: var(--l26-bande);
+  clip-path: polygon(0 88px, 100% 0, 100% 100%, 0 100%);
+}
+.l26-faq-duo {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: clamp(32px, 4vw, 80px);
+  align-items: start;
+}
+
+.landing-2026 .l26-faq details {
+  border-top: 1px solid rgba(16, 16, 20, 0.1);
+  padding: 0;
+  background: none;
+  border-radius: 0;
+}
+.landing-2026 .l26-faq details:last-of-type { border-bottom: 1px solid rgba(16, 16, 20, 0.1); }
+.landing-2026 .l26-faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--l26-encre);
+}
+.landing-2026 .l26-faq summary::-webkit-details-marker { display: none; }
+.l26-faq summary .l26-plus { flex: none; font-size: 20px; line-height: 1; color: var(--l26-mauve); transition: transform .25s ease; display: inline-block; }
+.l26-faq details[open] summary .l26-plus { transform: rotate(45deg); }
+.l26-faq-reponse { padding: 0 0 22px; font-size: 15.5px; line-height: 1.65; color: var(--l26-texte-2); max-width: 62ch; }
+.l26-faq-reponse p { margin: 0 0 12px; }
+.l26-faq-reponse p:last-child { margin-bottom: 0; }
+.l26-faq-reponse strong { color: var(--l26-encre); }
+.l26-faq-sources { margin-top: 14px; font-size: 13px; color: var(--l26-texte-3); }
+.l26-faq-sources a { color: var(--l26-texte-3); text-decoration: underline; text-underline-offset: 2px; }
+.l26-faq-sources a:hover { color: var(--l26-mauve); }
+.l26-faq-pied { margin-top: 26px; font-size: 14.5px; color: var(--l26-texte-2); }
+.l26-faq-pied a { color: var(--l26-mauve); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- CTA final ---------- */
+
+.l26-final {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(12px, 2vw, 28px) clamp(28px, 3vw, 44px);
+}
+.l26-final-slab {
+  max-width: 1560px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border: 0;
+  border-radius: var(--l26-r-panneau);
+  padding: clamp(56px, 7vw, 104px) clamp(24px, 4vw, 64px);
+  text-align: center;
+}
+/* Une seule ligne : la largeur bridée cassait la phrase en deux. Le mauve
+   porte l'accent à la place de la graisse, qui redescend en 500. */
+.l26-final-slab .l26-h2 {
+  margin: 0 auto;
+  max-width: none;
+  font-weight: 500;
+  text-wrap: nowrap;
+}
+@media (max-width: 1100px) {
+  .l26-final-slab .l26-h2 { text-wrap: balance; }
+}
+.l26-final-ctas { margin-top: 34px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; }
+
+/* ---------- Accessibilité et impression ---------- */
+
+.landing-2026 :is(a, button, summary):focus-visible {
+  outline: 2px solid var(--l26-mauve);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media print {
+  .l26-hero-fond, .l26-hero-halo, .l26-biseau-fond, .l26-marquee { display: none !important; }
+  .l26-cas-detail { display: block !important; }
+  .landing-2026 main { border-radius: 0; }
+}
+
+/* Le mockup vient du prototype avec `tabular-nums`, pensé pour PolySans.
+   Schibsted Grotesk y donne à la virgule décimale une chasse de chiffre, d'où
+   un blanc disgracieux au milieu des montants. Les colonnes du mockup sont
+   déjà alignées à droite : la chasse fixe n'y apporte rien. */
+.l26-hero-visuel [style*="tabular-nums"] { font-variant-numeric: normal !important; }
+
+/* `.stat-number` de style.css peint son texte avec un dégradé clippé
+   (background-clip: text + text-fill-color: transparent) : une déclaration
+   `color` reste sans effet tant que le remplissage n'est pas rendu à la
+   couleur courante. Le handoff veut ces chiffres à l'encre. */
+.landing-2026 .l26-stat-chiffre,
+.landing-2026 .l26-stat-chiffre .stat-number {
+  color: var(--l26-encre);
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+}
+
+/* L'unité porte l'accent, le nombre reste à l'encre. Elle est plus petite et
+   posée après un chiffre de 56 px : la couleur est ce qui la fait exister, et
+   c'est aussi elle qui distingue « 90 % » d'un « 90 » nu. La règle ci-dessus
+   ramène toute la ligne à l'encre pour neutraliser le dégradé hérité de
+   `style.css` ; celle-ci est plus spécifique et ne reprend que l'unité. */
+.landing-2026 .l26-stat-chiffre .l26-stat-unite {
+  color: var(--l26-mauve);
+}
+
+/* Titres et sous-titres empilés : ces libellés sont des <span> imbriqués,
+   inline par défaut, donc collés sur une même ligne sans cette règle. */
+.l26-onglet-titre,
+.l26-onglet-sous,
+.l26-etape-titre,
+.l26-etape-sous,
+.l26-axe-titre,
+.l26-axe-sous,
+.l26-ligne-titre,
+.l26-ligne-sous { display: block; }
+
+/* Le rang d'étape est un <span> : sans display il resterait inline et le filet
+   ne pourrait pas s'étirer. */
+.l26-etape-rang { display: flex; }
+.l26-panneau--sombre .l26-eyebrow { color: var(--l26-mauve-clair); }
+.l26-panneau--sombre .l26-chapeau strong { color: #FFFFFF; }
+
+/* style-v2 applique à l'élément `header` le traitement de la barre de
+   navigation : fond opaque, flou, filet, et surtout `position: sticky`.
+   Les en-têtes de section en héritaient et se collaient en haut au scroll. */
+/* Le header de la navigation garde de style-v2 un fond blanc cassé qui se
+   détache du blanc de la carte ; en haut de page, la carte fournit déjà le
+   fond. Il ne reprend le sien qu'une fois le contenu passé dessous. */
+.landing-2026 .l26-carte > header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background-color: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  /* `background-color` et non le raccourci `background` : animer le
+     raccourci laissait ici la couleur figée sur sa valeur de départ. */
+  transition: background-color .25s ease, box-shadow .25s ease;
+}
+/* `nav--scrolled` est basculée par main.js au-delà de 50 px, sur le `nav`
+   comme sur son `header`. */
+.landing-2026 .l26-carte > header.nav--scrolled {
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  box-shadow: 0 1px 0 rgba(12, 12, 20, 0.06), 0 8px 24px rgba(12, 12, 20, 0.05);
+}
+.landing-2026 main header {
+  position: static;
+  z-index: auto;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.landing-2026 .nav-logo { display: flex; align-items: center; gap: 12px; }
+
+/* Texte réservé aux lecteurs d'écran. La classe n'existait pas dans le site :
+   le résumé des partenaires s'affichait et gonflait la bande. */
+.landing-2026 .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ---------- Panneau « Audit continu » : tuile d'origine et son animation ----------
+   Le parcours animé (courbe SVG, particules en mouvement, illustrations par
+   étape) vient de la version précédente du site. Il est conservé tel quel :
+   le prototype le remplaçait par six colonnes statiques, nettement moins
+   parlantes pour un produit qui n'est pas encore ouvert.
+   Seules les couleurs sont reprises à la nouvelle charte. */
+
+.l26-panneau--audit .porte-badge,
+.l26-panneau--audit .platform-tag-soon {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--l26-mauve-clair);
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.landing-2026 .l26-panneau--audit .how-title {
+  margin: 14px 0 0;
+  font-size: clamp(30px, 3.6vw, 54px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-align: center;
+}
+.l26-panneau--audit .how-title em { font-style: normal; color: var(--l26-mauve-clair); }
+.l26-panneau--audit .how-sub {
+  margin: 18px auto 0;
+  max-width: 680px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.62);
+  text-align: center;
+  text-wrap: pretty;
+}
+.l26-panneau--audit .how-sub strong { color: #FFFFFF; font-weight: 600; }
+/* Le texte d'introduction reste sur une colonne courte ; le parcours animé,
+   lui, doit occuper toute la largeur du panneau pour que la courbe respire. */
+.l26-panneau--audit .porte-badge,
+.l26-panneau--audit .platform-tag-soon,
+.landing-2026 .l26-panneau--audit .how-title,
+.l26-panneau--audit .how-sub { max-width: 900px; margin-inline: auto; }
+.l26-panneau--audit .journey { max-width: none; }
+
+/* La courbe et les particules gardent leur dessin ; les teintes suivent la charte. */
+.l26-panneau--audit .journey { margin-top: clamp(32px, 4vw, 56px); }
+.l26-panneau--audit .step-name,
+.l26-panneau--audit .step h3 {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+.l26-panneau--audit .step p {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+  text-wrap: pretty;
+}
+.l26-panneau--audit .step-illustration { color: var(--l26-mauve-clair); }
+.l26-panneau--audit .l26-panneau-ctas {
+  margin-top: clamp(40px, 4.5vw, 64px);
+  justify-content: center;
+  gap: 26px;
+}
+
+/* La tuile d'origine vivait sur une section claire ; ici elle est posée dans le
+   panneau sombre, dont elle doit laisser voir le fond. */
+.landing-2026 .l26-panneau--audit .porte-how,
+.landing-2026 .l26-panneau--audit .how {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0;
+  color: inherit;
+}
+
+/* style-v2 pose `h2 em { color: var(--accent) !important }` — l'ancien indigo.
+   Le `!important` ne se bat qu'avec un `!important`, quelle que soit la spécificité. */
+.landing-2026 .l26-h2 em,
+.landing-2026 .l26-hero-titre span,
+.landing-2026 .l26-panneau-titre em,
+.landing-2026 h2 em,
+.landing-2026 h3 em {
+  color: var(--l26-mauve) !important;
+  font-style: normal;
+  font-weight: inherit !important;   /* l'accent est la couleur, pas la graisse */
+}
+.landing-2026 .l26-panneau--sombre .l26-h2 em,
+.landing-2026 .l26-panneau--sombre .l26-panneau-titre em,
+.landing-2026 .l26-panneau--audit .how-title em { color: var(--l26-mauve-clair) !important; }
+
+/* Les colonnes du parcours étaient centrées verticalement : une description
+   plus courte remontait sa pastille, et l'ondulation devenait accidentelle.
+   Calées en haut, seules les translations voulues creusent la vague. */
+.l26-panneau--audit .steps { align-items: start; }
+
+/* Le parcours en six étapes est dessiné pour une lecture horizontale : une
+   illustration posée au-dessus de son titre, la vague qui les relie. Sur un
+   téléphone, la courbe n'est plus tracée et les six étapes s'empilent en
+   gardant cette composition verticale : 1 530 px de panneau pour six phrases,
+   avec un large vide sous chaque illustration.
+
+   Reprises en ligne, illustration à gauche et texte à droite, elles retrouvent
+   la forme d'une chronologie et le bloc perd la moitié de sa hauteur. Le
+   `!important` répond à celui de `style-v2`, qui force la colonne unique en
+   dessous de 640 px. */
+@media (max-width: 716px) {
+  .landing-2026 .l26-panneau--audit .journey { padding: 24px 0 8px; }
+
+  .landing-2026 .l26-panneau--audit .steps {
+    grid-template-columns: 1fr !important;
+    row-gap: 20px;
+  }
+  .landing-2026 .l26-panneau--audit .step {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    column-gap: 14px;
+    align-items: start;
+    padding: 0;
+  }
+  .landing-2026 .l26-panneau--audit .step-illustration {
+    grid-row: 1 / span 2;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+  }
+  /* La pastille ne servait qu'à poser l'étape sur la courbe, qui n'est plus
+     tracée ici. Le script qui aligne le tracé s'arrête d'ailleurs de lui-même
+     quand les pastilles n'ont plus de largeur. */
+  .landing-2026 .l26-panneau--audit .step-marker { display: none; }
+  .landing-2026 .l26-panneau--audit .step-name { margin: 0; }
+  .landing-2026 .l26-panneau--audit .step-desc { margin-top: 4px; }
+
+  /* Le halo de la dernière étape déborde de vingt pixels de chaque côté, ce qui
+     tenait sur une colonne large et dépassait du panneau une fois l'étape
+     étalée sur toute la largeur. Il se contente ici de sa propre surface. */
+  .landing-2026 .l26-panneau--audit .step.final::before { inset: 0; }
+}
+
+/* ---------- Retours Sabrina du 28/08 ---------- */
+
+/* La bande de chiffres arrivait sans énoncé : quatre nombres posés là, à charge
+   du lecteur de deviner ce qu'ils comptent. Le titre les rassemble. */
+.landing-2026 .l26-stats-titre {
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+/* Le titre de panneau est calé à `margin: 0` ; l'eyebrow qui le précède doit
+   donc porter lui-même l'écart, que `.l26-h2` réserve ailleurs en marge haute. */
+.landing-2026 .l26-panneau .l26-eyebrow {
+  margin: 0 0 14px;
+}
