@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Anomalies DSN, compte rendu métier, DSN de substitution : ce que l&#x27;URSSAF détecte, ce qu&#x27;elle ne voit pas, et 8 tests de cohérence avant un contrôle.">
+  <meta name="author" content="Sabrina Henocque Chiche">
+  <meta name="keywords" content="anomalie DSN, anomalies DSN URSSAF, compte rendu métier DSN, CRM de rappel annuel, DSN de substitution, correction anomalie DSN, opposition DSN de substitution, Suivi DSN, pénalité DSN, cohérence paie DSN, audit DSN, contrôle URSSAF">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/">
+
+  <link rel="alternate" hreflang="fr-FR" href="https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/">
+  <link rel="alternate" hreflang="x-default" href="https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Anomalie DSN URSSAF : corriger, s&#x27;opposer, substitution">
+  <meta property="og:description" content="Anomalies DSN, compte rendu métier, DSN de substitution : ce que l&#x27;URSSAF détecte, ce qu&#x27;elle ne voit pas, et 8 tests de cohérence avant un contrôle.">
+  <meta property="og:url" content="https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/">
+  <meta property="og:image" content="https://www.acompia.com/assets/og-image.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACOMPIA">
+  <meta property="article:author" content="Sabrina Henocque Chiche">
+  <meta property="article:published_time" content="2026-09-15T09:00:00+02:00">
+  <meta property="article:modified_time" content="2026-09-15T09:00:00+02:00">
+  <meta property="article:section" content="Contrôle URSSAF">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anomalie DSN URSSAF : corriger, s&#x27;opposer, substitution">
+  <meta name="twitter:description" content="Anomalies DSN, compte rendu métier, DSN de substitution : ce que l&#x27;URSSAF détecte, ce qu&#x27;elle ne voit pas, et 8 tests de cohérence avant un contrôle.">
+  <meta name="twitter:image" content="https://www.acompia.com/assets/og-image.png">
+
+  <title>Anomalie DSN URSSAF : corriger, s'opposer, substitution</title>
+
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="alternate icon" href="../../favicon.svg">
+  <link rel="mask-icon" href="../../favicon.svg" color="#4F46E5">
+
+  <link href="../../css/fonts.css?v=2026-08-31" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/variables.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/style.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/animations.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/style-v2.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/ressources.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/pages-2026.css?v=2026-08-31">
+  <style>
+    .article-layout > .article-content { min-width:0; }
+    .autodiag fieldset.autodiag-choices { border:0; padding:0; margin:0; min-width:0; }
+    .article-content .reponse-directe { background:#F6F5FF; border-left:3px solid #4A34F5; border-radius:0 10px 10px 0; padding:14px 18px; }
+    .autodiag { border:1px solid rgba(16,16,20,.1); border-radius:14px; padding:8px 20px 16px; margin:28px 0; background:#fff; }
+    .autodiag-list { list-style:none; padding:0; margin:0; }
+    .autodiag-item { border-bottom:1px solid rgba(16,16,20,.07); padding:16px 0; margin:0; }
+    .autodiag-item:last-child { border-bottom:0; }
+    .autodiag-q { margin:0 0 4px; }
+    .autodiag-meta { margin:0 0 10px; font-size:13.5px; color:#6B6B6B; }
+    .autodiag-choices { display:flex; gap:18px; flex-wrap:wrap; font-size:14.5px; }
+    .autodiag-choices label { display:inline-flex; align-items:center; gap:6px; cursor:pointer; }
+    .autodiag-result { margin-top:14px; padding:16px 18px; border-radius:12px; background:#F6F5FF; }
+    .autodiag-result p { margin:0 0 8px; }
+    .autodiag-result p:last-child { margin-bottom:0; }
+    .autodiag-print { margin:12px 0 0; }
+    .autodiag-print-btn { font:inherit; font-size:13.5px; background:none; border:1px solid rgba(16,16,20,.2); border-radius:8px; padding:6px 12px; cursor:pointer; }
+    @media print { header, footer, .article-toc, .article-similar, .article-ctas, .autodiag-print { display:none !important; } }
+  </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.acompia.com/#org",
+      "name": "ACOMPIA",
+      "legalName": "ComplyDB SAS",
+      "url": "https://www.acompia.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.acompia.com/assets/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.acompia.com/#website",
+      "url": "https://www.acompia.com/",
+      "name": "ACOMPIA",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://www.acompia.com/#org"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.acompia.com/#founder",
+      "name": "Sabrina Henocque Chiche",
+      "jobTitle": "Avocate au Barreau de Paris, exerçant en droit social et contentieux URSSAF",
+      "image": "https://www.acompia.com/assets/images/sabrina-portrait.jpg",
+      "worksFor": {
+        "@id": "https://www.acompia.com/#org"
+      },
+      "url": "https://www.acompia.com/equipe/sabrina-henocque-chiche/",
+      "sameAs": [
+        "https://www.linkedin.com/in/sabrinahenocquechiche/",
+        "https://www.valnoa-avocat.fr/"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/#webpage",
+      "url": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/",
+      "name": "Anomalie DSN URSSAF : corriger, s'opposer, substitution",
+      "description": "Anomalies DSN, compte rendu métier, DSN de substitution : ce que l'URSSAF détecte, ce qu'elle ne voit pas, et 8 tests de cohérence avant un contrôle.",
+      "inLanguage": "fr-FR",
+      "isPartOf": {
+        "@id": "https://www.acompia.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/#breadcrumb"
+      },
+      "datePublished": "2026-09-15T09:00:00+02:00",
+      "dateModified": "2026-09-15T09:00:00+02:00"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/#article",
+      "headline": "Anomalies DSN et contrôle URSSAF, auto-diagnostic de la cohérence de vos données",
+      "description": "Anomalies DSN, compte rendu métier, DSN de substitution : ce que l'URSSAF détecte, ce qu'elle ne voit pas, et 8 tests de cohérence avant un contrôle.",
+      "datePublished": "2026-09-15T09:00:00+02:00",
+      "dateModified": "2026-09-15T09:00:00+02:00",
+      "author": {
+        "@id": "https://www.acompia.com/#founder"
+      },
+      "publisher": {
+        "@id": "https://www.acompia.com/#org"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://www.acompia.com/assets/og-image.png",
+        "width": 1200,
+        "height": 630
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/#webpage"
+      },
+      "isPartOf": {
+        "@id": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/#webpage"
+      },
+      "articleSection": "Contrôle URSSAF",
+      "wordCount": 3787,
+      "timeRequired": "PT16M",
+      "inLanguage": "fr-FR",
+      "isAccessibleForFree": true,
+      "keywords": "anomalie DSN, anomalies DSN URSSAF, compte rendu métier DSN, CRM de rappel annuel, DSN de substitution, correction anomalie DSN, opposition DSN de substitution, Suivi DSN, pénalité DSN, cohérence paie DSN, contrôle URSSAF, audit DSN",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          ".callout-retenir",
+          ".reponse-directe",
+          ".article-faq summary"
+        ]
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Déclaration sociale nominative"
+        },
+        {
+          "@type": "Thing",
+          "name": "Anomalie DSN"
+        },
+        {
+          "@type": "Thing",
+          "name": "DSN de substitution"
+        },
+        {
+          "@type": "Thing",
+          "name": "Contrôle URSSAF"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Thing",
+          "name": "Compte rendu métier"
+        },
+        {
+          "@type": "Thing",
+          "name": "Suivi DSN"
+        },
+        {
+          "@type": "GovernmentOrganization",
+          "name": "URSSAF",
+          "url": "https://www.urssaf.fr/"
+        }
+      ],
+      "citation": [
+        {
+          "@type": "Legislation",
+          "name": "Article L.133-5-3 du Code de la sécurité sociale"
+        },
+        {
+          "@type": "Legislation",
+          "name": "Article L.133-5-3-1 du Code de la sécurité sociale"
+        },
+        {
+          "@type": "Legislation",
+          "name": "Article L.133-5-4 du Code de la sécurité sociale"
+        },
+        {
+          "@type": "Legislation",
+          "name": "Article R.133-14-2 du Code de la sécurité sociale"
+        },
+        {
+          "@type": "Legislation",
+          "name": "Article L.243-7-8 du Code de la sécurité sociale"
+        },
+        {
+          "@type": "Legislation",
+          "name": "Article L.244-3 du Code de la sécurité sociale"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Cass. 2e civ., 9 janvier 2025, n° 22-13.480"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Cass. 2e civ., 4 septembre 2025, n° 22-17.437"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "URSSAF, Zoom sur le contrôle Urssaf, dossier de presse, juin 2026"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://www.acompia.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ressources",
+          "item": "https://www.acompia.com/ressources/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Anomalies DSN et contrôle URSSAF",
+          "item": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/#faq",
+      "isPartOf": {
+        "@id": "https://www.acompia.com/ressources/anomalies-dsn-controle-urssaf/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qu'est-ce qu'une anomalie DSN ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Une anomalie DSN est une donnée de la déclaration sociale nominative que les organismes jugent incomplète, non conforme ou incohérente à l'issue des vérifications prévues par l'article L.133-5-3-1 du Code de la sécurité sociale. L'URSSAF la signale à l'employeur par un compte rendu métier, disponible dans le logiciel de paie et sur net-entreprises, et l'affiche dans le service Suivi DSN tant qu'elle n'est pas corrigée."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment corriger une anomalie DSN signalée par l'URSSAF ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lorsque le compte rendu propose une correction, l'employeur corrige la donnée lors de l'échéance déclarative la plus proche, qui ne peut être inférieure à trente jours après la notification du compte rendu, par une DSN annule et remplace avant l'échéance ou par une régularisation ensuite. Il peut aussi s'opposer à la correction proposée, de manière motivée et dans le même délai (article R.133-14-2 du Code de la sécurité sociale)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que se passe-t-il si je ne corrige pas une anomalie DSN ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sans correction ni opposition motivée dans le délai, l'URSSAF peut corriger elle-même les données. C'est la DSN de substitution, dont l'URSSAF a annoncé une première campagne pour juin 2026, sur l'assiette brute plafonnée de l'année 2025. L'absence de correction peut en outre entraîner une pénalité dans la limite de 1,5 % du plafond mensuel de sécurité sociale par salarié concerné (article L.133-5-4)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Peut-on s'opposer aux corrections proposées par l'URSSAF ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. L'opposition doit être motivée et formée dans le délai de correction, depuis le service Suivi DSN. L'URSSAF indique viser un traitement sous 8 à 12 jours et ne pas engager la substitution avant d'avoir répondu, en précisant que l'absence de réponse ne vaut pas accord. Lorsque l'employeur s'est opposé, le décret prévoit que l'organisme peut engager le recouvrement de la dette dans les conditions de l'article R.133-14-4."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Une DSN sans anomalie protège-t-elle d'un redressement URSSAF ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Les vérifications ne voient que ce que les données déclarées permettent de voir, et une omission cohérente avec le reste de la déclaration passe en général inaperçue. Un avantage en nature jamais saisi en paie ou une dispense d'affiliation absente ne génèrent en général aucun compte rendu. Ces écarts peuvent apparaître lors du contrôle, au cours duquel l'employeur doit produire les justificatifs dont la charge lui incombe."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il refaire la paie après une DSN de substitution ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Selon l'URSSAF, la mise à jour de la paie à la suite d'une DSN de substitution relève de la responsabilité de l'employeur, mais aucune nouvelle correction n'est attendue en DSN. Les montants corrigés figurant dans le compte rendu post substitution ne doivent pas être réémis en DSN."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+
+  <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
+
+  <!-- Analytics · PostHog EU -->
+  <script src="../../js/analytics.js" defer></script>
+</head>
+<body class="ress-page">
+
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <header>
+    <nav id="nav">
+      <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
+        <span class="nav-logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round">
+            <defs>
+              <radialGradient id="navLogoSun" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#4F46E5"/>
+                <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
+              </radialGradient>
+            </defs>
+            <circle cx="24" cy="20" r="6.5" fill="url(#navLogoSun)" stroke="none"/>
+            <circle cx="24" cy="20" r="9.5" opacity="0.22" fill="none" stroke="#0A0A0A"/>
+            <line x1="6" y1="34" x2="42" y2="34"/>
+            <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
+            <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
+          </svg>
+        </span>
+        <span class="nav-logo-text">ACOMPIA</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <div class="nav-dropdown">
+          <a href="/solution/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Notre solution
+            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="/solution/#platform">
+              <div class="nav-dropdown-theme">Septembre 2026</div>
+              <div class="nav-dropdown-title">Conformité URSSAF en continu</div>
+            </a>
+            <a href="/outils/pilotage-flotte-tarifs/">
+              <div class="nav-dropdown-theme">Flotte véhicules</div>
+              <div class="nav-dropdown-title">Pilotage de l'avantage en nature · tarifs</div>
+            </a>
+            <a href="/solution/#audits">
+              <div class="nav-dropdown-theme">Sur devis</div>
+              <div class="nav-dropdown-title">Audits sur mesure</div>
+            </a>
+            <a href="/solution/#devis" class="nav-dropdown-all">Demander un devis →</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Outils gratuits
+            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="/outils/prediagnostic-urssaf/">
+              <div class="nav-dropdown-theme">Gratuit · 3 minutes</div>
+              <div class="nav-dropdown-title">Prédiagnostic URSSAF</div>
+            </a>
+            <a href="/outils/simulateur-avantage-en-nature-vehicule/">
+              <div class="nav-dropdown-theme">Gratuit · barème 2026</div>
+              <div class="nav-dropdown-title">Simulateur d'avantage en nature véhicule</div>
+            </a>
+            <a href="/outils/" class="nav-dropdown-all">Tous les outils →</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/ressources/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Ressources
+            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="/ressources/controle-urssaf/">
+              <div class="nav-dropdown-theme">Contrôle URSSAF</div>
+              <div class="nav-dropdown-title">Comment ça se passe et que risque-t-on ?</div>
+            </a>
+            <a href="/ressources/audit-urssaf/">
+              <div class="nav-dropdown-theme">Audit URSSAF</div>
+              <div class="nav-dropdown-title">Les 8 zones à vérifier avant un contrôle</div>
+            </a>
+            <a href="/ressources/aen-vehicule-urssaf/">
+              <div class="nav-dropdown-theme">AEN véhicule</div>
+              <div class="nav-dropdown-title">Le guide complet 2026</div>
+            </a>
+            <a href="/ressources/reduction-generale-cotisations-patronales/">
+              <div class="nav-dropdown-theme">Réduction générale</div>
+              <div class="nav-dropdown-title">RGDU : le guide 2026</div>
+            </a>
+            <a href="/ressources/reformes-urssaf-2025-2026/">
+              <div class="nav-dropdown-theme">Actualités</div>
+              <div class="nav-dropdown-title">Réformes URSSAF 2025-2026</div>
+            </a>
+            <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
+          </div>
+        </div>
+        <a href="/#team">Équipe</a>
+        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Prendre rendez-vous</span></a>
+      </div>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="article-hero">
+      <div class="article-breadcrumb">
+        <a href="/">Accueil</a>
+        <span class="sep">/</span>
+        <a href="../">Ressources</a>
+        <span class="sep">/</span>
+        <span>Anomalies DSN</span>
+      </div>
+
+      <div class="article-hero-banner">
+        <div class="article-hero-banner-content">
+          <div class="article-eyebrow">Guide pratique · DSN et contrôle URSSAF</div>
+          <h1 class="article-title-banner">Anomalies DSN et contrôle URSSAF, auto-diagnostic de la cohérence de vos données</h1>
+        </div>
+      </div>
+
+      <div class="article-meta-bar">
+        <div class="article-author-mini">
+          <img class="article-author-mini-photo" src="../../assets/images/sabrina-portrait.jpg" alt="Maître Sabrina Henocque Chiche, avocate au Barreau de Paris exerçant en droit social" width="44" height="44" loading="eager">
+          <div>
+            <div><strong>Sabrina Henocque Chiche</strong></div>
+            <div style="font-size:12.5px; color:#888;">Avocate au Barreau de Paris</div>
+          </div>
+        </div>
+        <span class="sep"></span>
+        <span><time datetime="2026-09-15">15 septembre 2026</time></span>
+        <span class="sep"></span>
+        <span>16 min de lecture</span>
+      </div>
+    </section>
+
+    <div class="article-layout">
+
+      <aside class="article-toc" aria-label="Sommaire">
+        <div class="article-toc-title">Sommaire</div>
+        <ol>
+          <li><a href="#anomalie">Qu'est-ce qu'une anomalie DSN ?</a></li>
+          <li><a href="#corriger">Corriger ou s'opposer</a></li>
+          <li><a href="#substitution">La DSN de substitution</a></li>
+          <li><a href="#limite">Ce qu'aucun compte rendu ne signale</a></li>
+          <li><a href="#autodiagnostic">Auto-diagnostic en huit tests</a></li>
+          <li><a href="#ecart">Traiter un écart</a></li>
+          <li><a href="#references">Références</a></li>
+          <li><a href="#faq">Questions fréquentes</a></li>
+        </ol>
+      </aside>
+
+      <article class="article-content">
+
+        <p>
+          Chaque mois, l'URSSAF lit la déclaration sociale nominative de votre entreprise avant même que la question d'un contrôle ne se pose. Lorsqu'elle y trouve une incohérence, elle vous le dit, par un compte rendu que beaucoup d'entreprises archivent sans le traiter. Ce silence n'est pas neutre. Depuis 2023, la loi permet à l'organisme de corriger lui-même les données non rectifiées, et l'URSSAF a annoncé une première campagne de corrections pour juin 2026. Ce guide explique ce que l'URSSAF détecte dans votre DSN, ce que vous devez faire de ses signalements, et surtout ce qu'elle ne peut pas voir. Il se termine par un auto-diagnostic en huit tests, que je recommande de mener avant d'y être invité.
+        </p>
+
+        <div class="callout-retenir">
+          <div class="callout-retenir-title">À retenir</div>
+          <ul>
+            <li>Une <strong>anomalie DSN</strong> est un écart détecté par les vérifications d'exhaustivité, de conformité et de cohérence que les organismes réalisent sur vos déclarations (<strong>article L.133-5-3-1 du Code de la sécurité sociale</strong>).</li>
+            <li>Elle vous est signalée par un <strong>compte rendu métier</strong>. Lorsque le compte rendu propose une correction, vous devez corriger à l'échéance déclarative la plus proche ou vous opposer de manière motivée dans le même délai (<strong>article R.133-14-2</strong>).</li>
+            <li>À défaut de correction et d'opposition, l'URSSAF peut <strong>corriger elle-même</strong> les données. C'est la <strong>DSN de substitution</strong>, dont l'URSSAF a annoncé une première campagne pour <strong>juin 2026</strong>, sur l'assiette brute plafonnée.</li>
+            <li>L'absence de correction peut aussi être sanctionnée par une <strong>pénalité</strong> dans la limite de <strong>1,5&nbsp;% du plafond mensuel</strong> par salarié concerné (<strong>article L.133-5-4</strong>).</li>
+            <li>Une DSN <strong>sans anomalie</strong> n'est pas une DSN <strong>complète</strong>. Les vérifications ne voient que ce que les données déclarées permettent de voir. Une omission cohérente avec le reste de la déclaration passe en général inaperçue.</li>
+          </ul>
+        </div>
+
+        <h2 id="anomalie">Qu'est-ce qu'une anomalie DSN ?</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Une anomalie DSN est une donnée de votre déclaration que les organismes jugent incomplète, non conforme ou incohérente. L'URSSAF vous la signale par un compte rendu métier, disponible dans votre logiciel de paie et sur net-entreprises, et la conserve dans le service Suivi DSN tant qu'elle n'est pas corrigée.
+        </p>
+
+        <p>
+          Le fondement est l'<strong>article L.133-5-3-1 du Code de la sécurité sociale</strong>, en vigueur depuis le 1<sup>er</sup> janvier 2023. Il dispose que « les déclarants sont informés des résultats des vérifications d'exhaustivité, de conformité et de cohérence réalisées par les organismes auxquels sont destinées les données déclarées ». Le texte ne définit pas ces trois notions. Dans leur sens usuel, l'exhaustivité renvoie à l'absence de donnée manquante, la conformité au respect de la norme et des règles applicables, et la cohérence au rapprochement des données entre elles.
+        </p>
+
+        <p>
+          Ces vérifications interviennent à plusieurs moments. Le ministère du travail indique que les organismes mettent à disposition « des contrôles mensuels en temps réel, au dépôt de la DSN et post exigibilité ». Les premiers permettent de rectifier avant l'échéance par une DSN annule et remplace, les seconds de corriger après l'exigibilité (<em>réponse ministérielle publiée au JO Sénat du 19 février 2026, question écrite n°&nbsp;04132</em>).
+        </p>
+
+        <p>
+          Le <strong>compte rendu métier</strong>, souvent appelé CRM, est le support de ce retour. L'URSSAF le définit comme « un rapport permettant à l'Urssaf de faire un retour à l'entreprise dès la réception de leurs déclarations quand une anomalie a été détectée ». Avec la norme NEOReS, il est intégré directement dans le logiciel de paie. Selon l'<strong>article R.133-14-2</strong>, il indique les données en anomalie, la nature de chaque anomalie et, le cas échéant, la correction proposée et le montant des cotisations dues après correction.
+        </p>
+
+        <h3>Où lire un compte rendu métier</h3>
+
+        <p>
+          Le compte rendu est disponible sur le tableau de bord DSN de net-entreprises et dans le logiciel de paie. Les anomalies non rectifiées sont également consultables dans le service Suivi DSN d'urssaf.fr (<em>urssaf.fr, 20 février 2026</em>). Selon la réponse ministérielle précitée, l'employeur peut y consulter les anomalies « par établissement, individu et typologie », comprendre les éléments qui les ont déclenchées et suivre un pas à pas de correction. Le compte rendu de rappel annuel porte le code CRM 124 (<em>urssaf.fr, foire aux questions du 7 avril 2026</em>).
+        </p>
+
+        <h2 id="corriger">Comment corriger une anomalie DSN, délai et opposition</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Lorsque le compte rendu propose une correction, deux options s'offrent à vous dans le même délai. Corriger la donnée lors de l'échéance déclarative la plus proche, qui ne peut être inférieure à trente jours après la notification du compte rendu, ou vous opposer à la correction de manière motivée. Rester sans réaction ouvre la voie à une correction par l'organisme.
+        </p>
+
+        <p>
+          La loi pose elle-même l'obligation de correction. « En cas de constat d'anomalie résultant de ces vérifications, les déclarants sont tenus d'effectuer les corrections requises » (<strong>article L.133-5-3-1, alinéa 2</strong>). L'article L.133-5-3 impose par ailleurs à l'employeur de procéder, le cas échéant, « à une régularisation au titre des données inexactes ou incomplètes transmises au cours des mois précédents ».
+        </p>
+
+        <p>
+          Le délai est fixé par l'<strong>article R.133-14-2, III</strong>. Les organismes informent les déclarants « qu'ils sont tenus de corriger les données présentant une anomalie lors de l'échéance déclarative la plus proche qui ne peut être inférieure à trente jours à compter de la notification du compte rendu », ou « de s'opposer à ces corrections de manière motivée dans le même délai ».
+        </p>
+
+        <p>
+          La correction dans le délai reste la voie la moins coûteuse. Selon la réponse ministérielle précitée, le dispositif garantit le droit à l'erreur, « le déclarant pouvant régulariser sans sanction sa DSN lors de sa prochaine déclaration ». À l'inverse, l'<strong>article L.133-5-4</strong> prévoit que « l'absence de correction par le déclarant » entraîne l'application d'une pénalité, fixée par décret « dans la limite de 1,5&nbsp;% du plafond mensuel de sécurité sociale en vigueur, arrondi à l'euro supérieur, au titre de chaque personne pour laquelle le manquement est constaté ». Le montant effectif est fixé par décret, dans cette limite légale.
+        </p>
+
+        <div class="callout-outil">
+          <div class="callout-outil-label">Outil gratuit</div>
+          <p>Les comptes rendus ne couvrent que ce qui est déclaré. Pour situer rapidement vos autres zones de vigilance, le <a href="/outils/prediagnostic-urssaf/" data-cta="prediag-micro">prédiagnostic URSSAF gratuit</a> passe en revue les thèmes les plus souvent redressés en 3 minutes, sans création de compte, avec un résultat affiché après saisie d'une adresse email professionnelle.</p>
+        </div>
+
+        <h2 id="substitution">Sans correction, l'URSSAF peut corriger elle-même, la DSN de substitution</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Si vous ne corrigez pas et ne vous opposez pas dans le délai, l'URSSAF peut rectifier elle-même les données et en tirer les conséquences sur vos cotisations. L'URSSAF a annoncé une première campagne pour juin 2026, limitée à l'assiette brute plafonnée de l'année 2025, qui sert au calcul des droits retraite.
+        </p>
+
+        <p>
+          La loi prévoit qu'en l'absence de correction par le déclarant, celle-ci « peut être réalisée par les organismes de sécurité sociale auxquels la déclaration a été adressée » (<strong>article L.133-5-3-1, alinéa 2</strong>). Le décret n°&nbsp;2023-1384 du 29 décembre 2023 en a fixé la procédure. L'<strong>article R.133-14-2, IV</strong> distingue deux situations. Lorsque le déclarant ne s'est pas opposé de manière motivée, les organismes peuvent corriger eux-mêmes les données à l'issue du délai. Lorsqu'il s'est opposé, ils peuvent engager le recouvrement de la dette dans les conditions de l'article R.133-14-4.
+        </p>
+
+        <p>
+          Un point de lecture mérite d'être signalé. La réponse ministérielle du 19 février 2026 indique que la substitution n'intervient « qu'en l'absence de régularisation et sur acceptation de l'employeur ». Le texte réglementaire ne subordonne pas la correction à une acceptation expresse. Faute de correction et d'opposition motivée dans le délai, l'organisme a la faculté de corriger, dans les conditions de l'article R.133-14-3. La même réponse le confirme d'ailleurs plus loin, en indiquant que si l'employeur « ne s'est pas opposé aux corrections, l'URSSAF procèdera aux corrections et engagera le recouvrement de la dette due ».
+        </p>
+
+        <p>
+          Toujours selon cette réponse, cette première DSN de substitution « s'appuie sur deux nouveaux contrôles mensuels déployés depuis février 2025 qui couvrent les salariés mensualisés ».
+        </p>
+
+        <h3>Le calendrier de la première campagne</h3>
+
+        <p>
+          Voici le calendrier annoncé par l'URSSAF en février 2026 pour cette campagne, qui vise les anomalies de l'année 2025 (<em>urssaf.fr, « Déclaration sociale nominative : que faire à réception du compte-rendu métier de rappel annuel ? », mis à jour le 20 février 2026</em>).
+        </p>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Période</th><th>Étape</th><th>Ce que l'employeur peut faire</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Chaque mois</td><td>Comptes rendus métier au dépôt de la DSN et après exigibilité</td><td>Corriger à l'échéance suivante, par DSN annule et remplace ou régularisation</td></tr>
+              <tr><td>13 ou 23 mars 2026</td><td>Compte rendu métier de rappel annuel, adressé seulement aux employeurs ayant des anomalies 2025 non rectifiées</td><td>Analyser chaque anomalie listée et les propositions de correction de l'assiette brute plafonnée</td></tr>
+              <tr><td>Mars à mai 2026</td><td>Phase d'échange</td><td>Contacter le conseiller URSSAF, corriger, ou s'opposer depuis le service Suivi DSN</td></tr>
+              <tr><td>5 ou 15 mai 2026</td><td>Date limite, selon l'échéance déclarative de l'entreprise</td><td>Dernier délai pour rectifier ou formuler l'opposition</td></tr>
+              <tr><td>Juin 2026</td><td>DSN de substitution</td><td>L'employeur est informé du montant des cotisations dues, augmentées des majorations de retard, ou trop versées</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>L'opposition aux corrections proposées, et la paie après substitution</h3>
+
+        <p>
+          Dans sa foire aux questions, l'URSSAF précise que son objectif est de traiter une opposition « sous 8 à 12 jours », qu'« une réponse motivée est assurée au déclarant ayant fait opposition, la substitution n'étant pas engagée avant qu'une réponse ait été transmise », mais que « l'absence de réponse ne vaut pas accord de la part de l'Urssaf ». Elle rappelle aussi que « la mise à jour de la paie en raison de l'émission d'une DSN de substitution relève de la responsabilité de l'employeur », sans qu'une nouvelle correction soit attendue en DSN (<em>urssaf.fr, « DSN de substitution : réponses à vos questions les plus fréquentes », 7 avril 2026</em>). Le décret prévoit par ailleurs que, lorsque l'employeur s'est opposé, l'organisme peut engager le recouvrement de la dette dans les conditions de l'article R.133-14-4. L'articulation entre ce recouvrement et une éventuelle substitution après rejet de l'opposition n'est pas détaillée par ces sources.
+        </p>
+
+        <h3>Le même mécanisme existe désormais après un contrôle</h3>
+
+        <p>
+          Depuis le 31 décembre 2025, l'<strong>article L.243-7-8</strong>, issu de la loi n°&nbsp;2025-1403 du 30 décembre 2025, prévoit que lorsqu'une anomalie dans les données déclarées est constatée à l'issue de la période contradictoire d'un contrôle, les organismes « peuvent réaliser les corrections requises », selon des modalités renvoyées à un décret en Conseil d'État. L'URSSAF indique par ailleurs que les premières DSN de substitution à la suite d'un contrôle ont été réalisées en décembre 2025, pour fiabiliser les droits à la retraite des salariés (<em>URSSAF, « Zoom sur le contrôle Urssaf », dossier de presse, juin 2026, p.&nbsp;9</em>). Les suites d'un contrôle peuvent donc désormais se prolonger dans les données individuelles des salariés.
+        </p>
+
+        <p>
+          Si votre paie est externalisée, l'employeur reste seul responsable envers l'URSSAF des données déclarées, sans préjudice de ses recours contractuels. J'en détaille les conséquences dans le guide consacré à la <a href="../externalisation-paie-audit-urssaf/#dsn-substitution">DSN de substitution et à la paie externalisée</a>.
+        </p>
+
+        <h2 id="limite">Une DSN sans anomalie ne prouve pas une assiette complète</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Les vérifications de l'URSSAF ne voient que ce que les données déclarées permettent de voir. Une omission cohérente avec le reste de la déclaration passe en général inaperçue. Un avantage en nature jamais saisi en paie ou une dispense d'affiliation jamais recueillie ne produisent en général aucun compte rendu. Ces écarts peuvent apparaître au contrôle.
+        </p>
+
+        <p>
+          C'est la limite structurelle du dispositif, et elle est rarement expliquée. Lorsque la paie et la DSN reposent sur la même information incomplète, elles restent parfaitement cohérentes entre elles. L'exemple le plus fréquent est celui du véhicule attribué dont l'usage privé n'a jamais été signalé au service paie, que j'analyse en détail dans le guide <a href="../flotte-automobile-controle-urssaf/">flotte automobile et contrôle URSSAF</a>.
+        </p>
+
+        <p>
+          Or ces omissions sont précisément celles que le contrôle sur place met au jour. L'employeur est tenu de présenter aux agents tout document et de permettre l'accès à tous les supports d'information demandés comme nécessaires à l'exercice du contrôle (<strong>article R.243-59</strong>). Et lorsque la charge de la preuve lui incombe, par exemple pour la déduction des frais professionnels ou une tolérance d'exclusion d'assiette, il doit produire ses justificatifs au cours du contrôle ou de la phase contradictoire (<em>Cass. 2<sup>e</sup> civ., 4 septembre 2025, n°&nbsp;22-17.437</em>, publié, §&nbsp;17).
+        </p>
+
+        <p>
+          L'URSSAF indique que la programmation de ses contrôles repose notamment sur « le ciblage par type d'usager avec une approche d'évaluation du risque d'erreur déclarative » (<em>dossier de presse précité, p.&nbsp;9</em>). J'explique la manière dont l'organisme sélectionne les entreprises dans le guide <a href="../controle-urssaf/#ciblage">contrôle URSSAF</a>. Une DSN sans anomalie ne met donc pas à l'abri d'un contrôle.
+        </p>
+
+        <h2 id="autodiagnostic">Auto-diagnostic, huit rapprochements entre la DSN et vos données internes</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Ces huit tests croisent la DSN avec les données internes qui déterminent réellement l'assiette. Pour chacun, cochez votre situation. Rien n'est transmis, le résultat s'affiche uniquement dans votre navigateur.
+        </p>
+
+        <div class="autodiag" id="autodiag" data-article="anomalies-dsn-controle-urssaf">
+          <ol class="autodiag-list">
+            <li class="autodiag-item">
+              <p class="autodiag-q"><strong>1. Anomalies en cours.</strong> Tous les comptes rendus métier des trois dernières années, y compris un éventuel rappel annuel, ont-ils été lus, corrigés ou contestés, avec une trace de la décision prise ?</p>
+              <p class="autodiag-meta">À rapprocher : service Suivi DSN et historique des DSN rectificatives.</p>
+              <fieldset class="autodiag-choices"><legend class="visually-hidden">Test 1, votre situation</legend>
+                <label><input type="radio" name="t1" value="ok"> Vérifié</label>
+                <label><input type="radio" name="t1" value="ko"> À vérifier</label>
+              </fieldset>
+            </li>
+            <li class="autodiag-item">
+              <p class="autodiag-q"><strong>2. Assiette plafonnée.</strong> L'assiette brute plafonnée déclarée est-elle cohérente avec la rémunération et le temps de travail, en particulier pour les salariés à temps partiel et les entrées ou sorties en cours de mois ?</p>
+              <p class="autodiag-meta">À rapprocher : journal de paie, contrats et avenants de temps de travail.</p>
+              <fieldset class="autodiag-choices"><legend class="visually-hidden">Test 2, votre situation</legend>
+                <label><input type="radio" name="t2" value="ok"> Vérifié</label>
+                <label><input type="radio" name="t2" value="ko"> À vérifier</label>
+              </fieldset>
+            </li>
+            <li class="autodiag-item">
+              <p class="autodiag-q"><strong>3. Avantages en nature.</strong> Chaque véhicule, logement ou équipement mis à disposition avec un usage privé figure-t-il en paie pour le bon salarié et la bonne période ?</p>
+              <p class="autodiag-meta">À rapprocher : fichier de flotte, contrats de location, attributions nominatives. Invisible en DSN si jamais saisi.</p>
+              <fieldset class="autodiag-choices"><legend class="visually-hidden">Test 3, votre situation</legend>
+                <label><input type="radio" name="t3" value="ok"> Vérifié</label>
+                <label><input type="radio" name="t3" value="ko"> À vérifier</label>
+              </fieldset>
+            </li>
+            <li class="autodiag-item">
+              <p class="autodiag-q"><strong>4. Frais professionnels.</strong> Les allocations et remboursements exclus de l'assiette sont-ils adossés à des justificatifs disponibles, salarié par salarié ?</p>
+              <p class="autodiag-meta">À rapprocher : notes de frais, barèmes appliqués, politique voyages. La preuve doit être produite pendant le contrôle.</p>
+              <fieldset class="autodiag-choices"><legend class="visually-hidden">Test 4, votre situation</legend>
+                <label><input type="radio" name="t4" value="ok"> Vérifié</label>
+                <label><input type="radio" name="t4" value="ko"> À vérifier</label>
+              </fieldset>
+            </li>
+            <li class="autodiag-item">
+              <p class="autodiag-q"><strong>5. Exonérations et réductions.</strong> Pour chaque dispositif appliqué, les conditions sont-elles réunies et documentées sur toute la période, et pas seulement au jour de sa mise en place ?</p>
+              <p class="autodiag-meta">À rapprocher : paramétrage de paie, effectif, temps de travail, pièces d'éligibilité.</p>
+              <fieldset class="autodiag-choices"><legend class="visually-hidden">Test 5, votre situation</legend>
+                <label><input type="radio" name="t5" value="ok"> Vérifié</label>
+                <label><input type="radio" name="t5" value="ko"> À vérifier</label>
+              </fieldset>
+            </li>
+            <li class="autodiag-item">
+              <p class="autodiag-q"><strong>6. Protection sociale complémentaire.</strong> Chaque salarié non affilié au régime collectif a-t-il formulé une demande de dispense écrite, accompagnée des justificatifs requis selon le cas de dispense ?</p>
+              <p class="autodiag-meta">À rapprocher : liste des affiliés de l'organisme assureur, demandes de dispense, acte fondateur du régime.</p>
+              <fieldset class="autodiag-choices"><legend class="visually-hidden">Test 6, votre situation</legend>
+                <label><input type="radio" name="t6" value="ok"> Vérifié</label>
+                <label><input type="radio" name="t6" value="ko"> À vérifier</label>
+              </fieldset>
+            </li>
+            <li class="autodiag-item">
+              <p class="autodiag-q"><strong>7. Taux par établissement.</strong> Le taux accidents du travail et maladies professionnelles et le taux de versement mobilité appliqués correspondent-ils, établissement par établissement, aux taux réellement applicables ?</p>
+              <p class="autodiag-meta">À rapprocher : notifications de taux AT/MP, adresses des établissements, paramétrage de paie.</p>
+              <fieldset class="autodiag-choices"><legend class="visually-hidden">Test 7, votre situation</legend>
+                <label><input type="radio" name="t7" value="ok"> Vérifié</label>
+                <label><input type="radio" name="t7" value="ko"> À vérifier</label>
+              </fieldset>
+            </li>
+            <li class="autodiag-item">
+              <p class="autodiag-q"><strong>8. Capacité d'extraction.</strong> Pouvez-vous extraire la paie, la DSN et ces données sources sur les trois années civiles précédentes et l'année en cours, dans un format exploitable ?</p>
+              <p class="autodiag-meta">À rapprocher : archives du logiciel de paie, changements de prestataire ou de logiciel intervenus sur la période.</p>
+              <fieldset class="autodiag-choices"><legend class="visually-hidden">Test 8, votre situation</legend>
+                <label><input type="radio" name="t8" value="ok"> Vérifié</label>
+                <label><input type="radio" name="t8" value="ko"> À vérifier</label>
+              </fieldset>
+            </li>
+          </ol>
+          <div class="autodiag-result" id="autodiag-result" aria-live="polite" hidden></div>
+          <p class="autodiag-print"><button type="button" class="autodiag-print-btn" id="autodiag-print">Imprimer la grille</button></p>
+        </div>
+
+        <p>
+          Les tests 1 et 2 portent sur ce que l'URSSAF voit déjà dans la DSN. Les tests 3 à 6 portent sur des éléments que la DSN ne révèle pas. Le test 7 porte sur des taux que les organismes connaissent, mais dont une erreur de report en paie peut se répéter chaque mois. Le test 8 conditionne tout le reste. En dehors des dérogations prévues par les articles R.243-59-2 et R.243-59-4, le redressement doit être établi sur des bases réelles lorsque la comptabilité de l'employeur permet de calculer le chiffre exact des sommes à réintégrer (<em>Cass. 2<sup>e</sup> civ., 9 janvier 2025, n°&nbsp;22-13.480</em>, publié). Des données exploitables sont la condition pour que cette garantie joue.
+        </p>
+
+        <p>
+          Pour un audit conduit thème par thème, voir les <a href="../audit-urssaf/">huit zones d'un audit URSSAF</a>. Pour étendre ce premier tri aux autres thèmes les plus souvent redressés, le <a href="/outils/prediagnostic-urssaf/" data-cta="prediag-apres-grille">prédiagnostic gratuit</a> prend 3 minutes.
+        </p>
+
+        <h2 id="ecart">Que faire si un test révèle un écart</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Qualifier l'écart, le chiffrer sur la période non prescrite, le corriger à la prochaine échéance et documenter la décision. Un écart peut aussi jouer en votre faveur, sous la forme d'un trop-versé.
+        </p>
+
+        <p>
+          <strong>Qualifier.</strong> Un écart n'est pas toujours une erreur. Une dispense régulière non retrouvée, un avantage correctement évalué mais mal libellé ou un taux correctement notifié mais mal reporté en paie appellent des réponses différentes. La première étape consiste à distinguer le défaut de preuve du défaut de déclaration. C'est l'objet même d'un audit DSN, qui rapproche la déclaration de ses données sources.
+        </p>
+
+        <p>
+          <strong>Chiffrer.</strong> Les cotisations se prescrivent par trois ans à compter de la fin de l'année civile au titre de laquelle elles sont dues (<strong>article L.244-3</strong>), hors règles particulières applicables au travail illégal, et le délai est suspendu pendant la période contradictoire d'un contrôle. C'est sur cet horizon qu'un écart répété prend sa véritable dimension.
+        </p>
+
+        <p>
+          <strong>Corriger et documenter.</strong> La correction à l'échéance suivante reste la voie la moins coûteuse. La décision prise, et les pièces qui la fondent, doivent être conservées. Ce sont elles que l'agent demandera. Lorsque l'écart révèle des cotisations payées à tort, la question devient celle de leur <a href="../recuperer-trop-paye-cotisations-urssaf/">récupération sur trois ans</a>.
+        </p>
+
+        <p>
+          <strong>Se faire accompagner lorsque l'enjeu le justifie.</strong> Un contrôle déjà annoncé, un écart qui touche un grand nombre de salariés ou une qualification incertaine justifient une analyse au cas par cas, avant toute régularisation.
+        </p>
+
+        <div class="article-ctas">
+          <div class="article-cta-block">
+            <h4>Ces rapprochements, sur vos données et sur trois ans</h4>
+            <p>ACOMPIA réalise, sur les fichiers que vous importez, les rapprochements entre la paie, la DSN et vos données sources, puis chiffre les écarts sur la période non prescrite. Devis sous 48&nbsp;h, sans engagement. Données hébergées en France.</p>
+            <a href="/solution/#devis" class="article-cta-btn article-cta-btn--accent" data-cta="devis-audit">Demander un devis</a>
+          </div>
+          <div class="article-cta-block">
+            <h4>Découvrir la démarche ACOMPIA</h4>
+            <p>Un échange de 30 minutes pour présenter la démarche d'audit ACOMPIA et définir le périmètre adapté à vos données.</p>
+            <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="article-cta-btn" data-cta="rdv">Réserver un échange</a>
+          </div>
+        </div>
+
+        <p class="callout-outil">
+          <strong>Vous gérez une flotte de véhicules ?</strong> Le <a href="/outils/pilotage-flotte-tarifs/" data-cta="pilotage">pilotage de la conformité de la flotte</a> rapproche en continu vos véhicules, leurs attributions et la paie, à partir des fichiers que vous importez.
+        </p>
+
+        <h2 id="references">Références</h2>
+
+        <ul class="article-refs">
+          <li><strong>CSS, art. L.133-5-3</strong>, déclaration sociale nominative, finalités des données, obligation de régularisation. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051287164" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>CSS, art. L.133-5-3-1</strong>, vérifications d'exhaustivité, de conformité et de cohérence, obligation de correction, correction par les organismes. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046804922" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>CSS, art. L.133-5-4</strong>, pénalité pour absence de correction, dans la limite de 1,5&nbsp;% du plafond mensuel par personne. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041395197" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>CSS, art. R.133-14-2</strong> (décret n°&nbsp;2023-1384 du 29 décembre 2023), compte rendu, délai de correction ou d'opposition, correction par l'organisme. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048854851" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>CSS, art. L.243-7-8</strong> (loi n°&nbsp;2025-1403 du 30 décembre 2025, art. 5), correction des données à l'issue d'un contrôle. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053266742" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>CSS, art. L.244-3</strong>, prescription triennale des cotisations. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033713008" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>Cass. 2<sup>e</sup> civ., 9 janvier 2025, n°&nbsp;22-13.480</strong>, publié, redressement sur bases réelles. <a href="https://www.courdecassation.fr/decision/677f8a714ae972558af70004" target="_blank" rel="noopener noreferrer">Cour de cassation</a></li>
+          <li><strong>Cass. 2<sup>e</sup> civ., 4 septembre 2025, n°&nbsp;22-17.437</strong>, publié, production des justificatifs pendant le contrôle. <a href="https://www.courdecassation.fr/decision/68b92dded5d722cabac541cc" target="_blank" rel="noopener noreferrer">Cour de cassation</a></li>
+          <li><strong>Réponse ministérielle</strong> à la question écrite n°&nbsp;04132, JO Sénat du 19 février 2026, p.&nbsp;941. <a href="https://www.senat.fr/questions/base/2025/qSEQ250404132.html" target="_blank" rel="noopener noreferrer">Sénat</a></li>
+          <li><strong>URSSAF</strong>, « Déclaration sociale nominative : que faire à réception du compte-rendu métier de rappel annuel ? », mis à jour le 20 février 2026. <a href="https://www.urssaf.fr/accueil/actualites/dsn-compte-rendu-metier-annuel.html" target="_blank" rel="noopener noreferrer">urssaf.fr</a></li>
+          <li><strong>URSSAF</strong>, « DSN de substitution : réponses à vos questions les plus fréquentes », 7 avril 2026. <a href="https://www.urssaf.fr/accueil/actualites/dsn-substitution-faq.html" target="_blank" rel="noopener noreferrer">urssaf.fr</a></li>
+          <li><strong>URSSAF</strong>, « Zoom sur le contrôle Urssaf », dossier de presse, juin 2026, p.&nbsp;9. <a href="https://www.urssaf.org/files/Espace%20media/Communiqu%C3%A9s%20de%20presse/2026/DP-Zoom-Controle-Urssaf_25_06_2026.pdf" target="_blank" rel="noopener noreferrer">urssaf.org</a></li>
+        </ul>
+
+        <h2 id="faq">Questions fréquentes</h2>
+
+        <div class="article-faq">
+          <details>
+            <summary>Qu'est-ce qu'une anomalie DSN ?</summary>
+            <div>Une anomalie DSN est une donnée de la déclaration sociale nominative que les organismes jugent incomplète, non conforme ou incohérente à l'issue des vérifications prévues par l'article L.133-5-3-1 du Code de la sécurité sociale. L'URSSAF la signale à l'employeur par un compte rendu métier, disponible dans le logiciel de paie et sur net-entreprises, et l'affiche dans le service Suivi DSN tant qu'elle n'est pas corrigée.</div>
+          </details>
+
+          <details>
+            <summary>Comment corriger une anomalie DSN signalée par l'URSSAF ?</summary>
+            <div>Lorsque le compte rendu propose une correction, l'employeur corrige la donnée lors de l'échéance déclarative la plus proche, qui ne peut être inférieure à trente jours après la notification du compte rendu, par une DSN annule et remplace avant l'échéance ou par une régularisation ensuite. Il peut aussi s'opposer à la correction proposée, de manière motivée et dans le même délai (article R.133-14-2 du Code de la sécurité sociale).</div>
+          </details>
+
+          <details>
+            <summary>Que se passe-t-il si je ne corrige pas une anomalie DSN ?</summary>
+            <div>Sans correction ni opposition motivée dans le délai, l'URSSAF peut corriger elle-même les données. C'est la DSN de substitution, dont l'URSSAF a annoncé une première campagne pour juin 2026, sur l'assiette brute plafonnée de l'année 2025. L'absence de correction peut en outre entraîner une pénalité dans la limite de 1,5&nbsp;% du plafond mensuel de sécurité sociale par salarié concerné (article L.133-5-4).</div>
+          </details>
+
+          <details>
+            <summary>Peut-on s'opposer aux corrections proposées par l'URSSAF ?</summary>
+            <div>Oui. L'opposition doit être motivée et formée dans le délai de correction, depuis le service Suivi DSN. L'URSSAF indique viser un traitement sous 8 à 12 jours et ne pas engager la substitution avant d'avoir répondu, en précisant que l'absence de réponse ne vaut pas accord. Lorsque l'employeur s'est opposé, le décret prévoit que l'organisme peut engager le recouvrement de la dette dans les conditions de l'article R.133-14-4.</div>
+          </details>
+
+          <details>
+            <summary>Une DSN sans anomalie protège-t-elle d'un redressement URSSAF ?</summary>
+            <div>Non. Les vérifications ne voient que ce que les données déclarées permettent de voir, et une omission cohérente avec le reste de la déclaration passe en général inaperçue. Un avantage en nature jamais saisi en paie ou une dispense d'affiliation absente ne génèrent en général aucun compte rendu. Ces écarts peuvent apparaître lors du contrôle, au cours duquel l'employeur doit produire les justificatifs dont la charge lui incombe.</div>
+          </details>
+
+          <details>
+            <summary>Faut-il refaire la paie après une DSN de substitution ?</summary>
+            <div>Selon l'URSSAF, la mise à jour de la paie à la suite d'une DSN de substitution relève de la responsabilité de l'employeur, mais aucune nouvelle correction n'est attendue en DSN. Les montants corrigés figurant dans le compte rendu post substitution ne doivent pas être réémis en DSN.</div>
+          </details>
+
+        </div>
+
+        <section class="article-author-card" aria-labelledby="author-name">
+          <img class="article-author-card-img" src="../../assets/images/sabrina-portrait.jpg" alt="Portrait de Maître Sabrina Henocque Chiche, avocate au Barreau de Paris" width="130" height="130" loading="lazy">
+          <div class="article-author-card-content">
+            <div class="article-author-card-eyebrow">L'auteure</div>
+            <h3 class="article-author-card-name" id="author-name">Sabrina Henocque Chiche</h3>
+            <p class="article-author-card-title">Avocate au Barreau de Paris · Droit social, contentieux URSSAF</p>
+            <p class="article-author-card-bio">
+              Plus de 10 années d'expérience en contentieux URSSAF. Fondatrice d'ACOMPIA, solution de conformité URSSAF incubée à l'Incubateur du Barreau de Paris. Intervient sur les contrôles et redressements, la fiabilité des déclarations sociales, les avantages en nature et la protection sociale complémentaire.
+            </p>
+            <div class="article-author-card-links">
+              <a class="article-author-card-link" href="https://www.linkedin.com/in/sabrinahenocquechiche/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a class="article-author-card-link" href="../../equipe/sabrina-henocque-chiche/">Sa pratique</a>
+            </div>
+          </div>
+        </section>
+
+        <p class="article-disclaimer">
+          Information juridique à vocation générale, à jour au 15 septembre 2026, qui ne remplace pas un conseil personnalisé.
+        </p>
+
+      </article>
+    </div>
+
+    <section class="article-similar">
+      <div class="article-similar-title">À lire dans le même thème</div>
+      <div class="article-similar-grid">
+
+        <a class="ress-cover ress-cover--aurora" href="../flotte-automobile-controle-urssaf/">
+          <div class="ress-cover-top">
+            <span class="ress-cover-num">→</span>
+            <span class="ress-cover-theme">AEN véhicule</span>
+          </div>
+          <div class="ress-cover-body">
+            <div class="ress-cover-eyebrow">Cas pratique</div>
+            <h3 class="ress-cover-title">Flotte automobile et contrôle URSSAF, les neuf extractions et les cinq rapprochements</h3>
+          </div>
+          <div class="ress-cover-meta">24 min</div>
+        </a>
+
+        <a class="ress-cover ress-cover--indigo" href="../controle-urssaf/">
+          <div class="ress-cover-top">
+            <span class="ress-cover-num">→</span>
+            <span class="ress-cover-theme">Contrôle URSSAF</span>
+          </div>
+          <div class="ress-cover-body">
+            <div class="ress-cover-eyebrow">Guide complet</div>
+            <h3 class="ress-cover-title">Contrôle URSSAF, déroulé, vos droits et comment réduire le risque de redressement</h3>
+          </div>
+          <div class="ress-cover-meta">20 min</div>
+        </a>
+
+        <a class="ress-cover ress-cover--ink" href="../externalisation-paie-audit-urssaf/">
+          <div class="ress-cover-top">
+            <span class="ress-cover-num">→</span>
+            <span class="ress-cover-theme">Externalisation paie</span>
+          </div>
+          <div class="ress-cover-body">
+            <div class="ress-cover-eyebrow">Guide complet</div>
+            <h3 class="ress-cover-title">Externalisation de la paie, pourquoi auditer sa conformité URSSAF</h3>
+          </div>
+          <div class="ress-cover-meta">16 min</div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-row">
+          <span class="footer-logo-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#F0F1F8" stroke-width="1.7" stroke-linecap="round">
+              <defs>
+                <radialGradient id="footerLogoSunDsn" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#4F46E5"/>
+                  <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
+                </radialGradient>
+              </defs>
+              <circle cx="24" cy="20" r="6.5" fill="url(#footerLogoSunDsn)" stroke="none"/>
+              <circle cx="24" cy="20" r="9.5" opacity="0.30" fill="none" stroke="#F0F1F8"/>
+              <line x1="6" y1="34" x2="42" y2="34"/>
+              <line x1="11" y1="38" x2="37" y2="38" opacity="0.6"/>
+              <line x1="16" y1="42" x2="32" y2="42" opacity="0.35"/>
+            </svg>
+          </span>
+          <span class="footer-logo">ACOMPIA</span>
+        </div>
+        <p>Le tiers de confiance de la conformité URSSAF en entreprise.</p>
+        <p class="footer-legal-entity">&copy; 2026 ComplyDB SAS · Tous droits réservés</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <p class="footer-col-title">Solution</p>
+          <a href="/outils/prediagnostic-urssaf/">Prédiagnostic gratuit</a>
+          <a href="/solution/#audits">Nos audits</a>
+          <a href="/solution/#platform">La solution ACOMPIA</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Ressources</p>
+          <a href="../">Toutes les publications</a>
+          <a href="../charges-patronales-salariales-urssaf/">Guide charges et cotisations 2026</a>
+          <a href="../externalisation-paie-audit-urssaf/">Guide externalisation paie 2026</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Légal</p>
+          <a href="../../mentions-legales.html">Mentions légales</a>
+          <a href="../../politique-confidentialite.html">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var box = document.getElementById('autodiag');
+    if (!box) return;
+    var res = document.getElementById('autodiag-result');
+    var total = 8, sent = false;
+    function list(a) { return a.length > 1 ? 'Les tests ' + a.slice(0, -1).join(', ') + ' et ' + a[a.length - 1] : 'Le test ' + a[0]; }
+    function render() {
+      var answered = 0, ko = [];
+      for (var i = 1; i <= total; i++) {
+        var c = box.querySelector('input[name="t' + i + '"]:checked');
+        if (c) { answered++; if (c.value === 'ko') ko.push(i); }
+      }
+      if (answered < total) { res.hidden = true; return; }
+      var msg;
+      if (ko.length === 0) {
+        msg = '<p><strong>Les huit points sont vérifiés.</strong> Conservez la trace de ces vérifications et des pièces qui les fondent, ce sont elles que l\'agent demandera.</p>';
+      } else {
+        var vus = ko.filter(function (n) { return n <= 2; });
+        var caches = ko.filter(function (n) { return n >= 3 && n <= 6; });
+        var taux = ko.indexOf(7) > -1, extr = ko.indexOf(8) > -1;
+        msg = '<p><strong>' + ko.length + ' point' + (ko.length > 1 ? 's' : '') + ' à vérifier sur 8.</strong></p>';
+        if (vus.length) msg += '<p>' + list(vus) + (vus.length > 1 ? ' portent' : ' porte') + ' sur des données que l\'URSSAF voit déjà dans votre DSN. Commencez par le service Suivi DSN et les comptes rendus en attente.</p>';
+        if (caches.length) msg += '<p>' + list(caches) + (caches.length > 1 ? ' portent' : ' porte') + ' sur des éléments que la DSN ne révèle pas et qui peuvent apparaître au contrôle, sur les trois années civiles précédentes et l\'année en cours.</p>';
+        if (taux) msg += '<p>Le test 7 porte sur des taux connus des organismes, dont une erreur de report en paie peut se répéter chaque mois.</p>';
+        if (extr) msg += '<p>Le test 8 conditionne tous les autres. Sans données exploitables, les rapprochements ne peuvent pas être conduits.</p>';
+        msg += '<p><a href="/solution/#devis" data-cta="devis-autodiag">Faire conduire ces rapprochements sur vos données</a> ou <a href="/outils/prediagnostic-urssaf/" data-cta="prediag-autodiag">lancer le prédiagnostic gratuit</a>.</p>';
+      }
+      res.innerHTML = msg;
+      res.hidden = false;
+      if (!sent) {
+        sent = true;
+        try { if (window.posthog && posthog.capture) posthog.capture('autodiag_complete', { article: box.getAttribute('data-article'), a_verifier: ko.length }); } catch (e) {}
+      }
+    }
+    box.addEventListener('change', render);
+    var pb = document.getElementById('autodiag-print');
+    if (pb) pb.addEventListener('click', function () { window.print(); });
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('[data-cta]') : null;
+      if (!a) return;
+      try { if (window.posthog && posthog.capture) posthog.capture('article_cta_click', { article: 'anomalies-dsn-controle-urssaf', position: a.getAttribute('data-cta') }); } catch (err) {}
+    });
+  })();
+  </script>
+  <script src="../../js/config.js" defer></script>
+  <script src="../../js/socle.js" defer></script>
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>
