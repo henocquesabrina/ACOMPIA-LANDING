@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   activerDropdownsNav();
   animerCompteursStat();
   activerFormulaireDevis();
+  preselectionnerTypeAudit();
   activerFormulaireNotify();
 });
 
@@ -231,6 +232,35 @@ function activerFormulaireDevis() {
     conteneur.querySelector('.js-name').textContent = champ('name').split(' ')[0];
     conteneur.querySelector('.js-email').textContent = champ('email');
   });
+}
+
+/* === Présélection du type d'audit depuis l'URL ===
+   Un lien du type /solution/?audit=psc#devis ouvre le formulaire de devis avec
+   le thème déjà sélectionné. La valeur lue dans l'URL est confrontée à une liste
+   fermée, puis à une option réellement présente dans le select. Elle n'est jamais
+   écrite dans le DOM, ce qui exclut toute injection depuis l'URL. */
+const TYPES_AUDIT_AUTORISES = ['anv', 'frais-pro', 'psc', 'remunerations', 'multi', 'autre'];
+
+function preselectionnerTypeAudit() {
+  const select = document.getElementById('devis-audit-type');
+  if (!select) return;
+
+  let demande = null;
+  try {
+    demande = new URLSearchParams(window.location.search).get('audit');
+  } catch (e) {
+    return;
+  }
+  if (!demande) return;
+
+  const valeur = String(demande).trim().toLowerCase();
+  if (!TYPES_AUDIT_AUTORISES.includes(valeur)) return;
+
+  const option = Array.from(select.options).find(o => o.value === valeur);
+  if (!option) return;
+
+  select.value = option.value;
+  select.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
 /* === Platform notify form === */
