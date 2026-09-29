@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Changement de prestataire ou de logiciel de paie : vérifiez les cumuls, les contrats DSN et les données reprises avant la première déclaration.">
+  <meta name="author" content="Sabrina Henocque Chiche">
+  <meta name="keywords" content="changement de prestataire de paie, changement de logiciel de paie, reprise des données de paie, reprise des cumuls de paie, DSN changement de prestataire, contrôle de la première paie, audit de reprise de paie, tiers déclarant, responsabilité prestataire de paie">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://www.acompia.com/ressources/changement-prestataire-paie-controles/">
+
+  <link rel="alternate" hreflang="fr-FR" href="https://www.acompia.com/ressources/changement-prestataire-paie-controles/">
+  <link rel="alternate" hreflang="x-default" href="https://www.acompia.com/ressources/changement-prestataire-paie-controles/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Changement de prestataire de paie : contrôles et DSN">
+  <meta property="og:description" content="Changement de prestataire ou de logiciel de paie : vérifiez les cumuls, les contrats DSN et les données reprises avant la première déclaration.">
+  <meta property="og:url" content="https://www.acompia.com/ressources/changement-prestataire-paie-controles/">
+  <meta property="og:image" content="https://www.acompia.com/assets/og-changement-prestataire-paie.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Changer de paie sans casser les compteurs">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACOMPIA">
+  <meta property="article:author" content="Sabrina Henocque Chiche">
+  <meta property="article:published_time" content="2026-09-29T09:00:00+02:00">
+  <meta property="article:modified_time" content="2026-09-29T09:00:00+02:00">
+  <meta property="article:section" content="Paie externalisée">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Changement de prestataire de paie : contrôles et DSN">
+  <meta name="twitter:description" content="Changement de prestataire ou de logiciel de paie : vérifiez les cumuls, les contrats DSN et les données reprises avant la première déclaration.">
+  <meta name="twitter:image" content="https://www.acompia.com/assets/og-changement-prestataire-paie.png">
+  <meta name="twitter:image:alt" content="Changer de paie sans casser les compteurs">
+
+  <title>Changement de prestataire de paie : contrôles et DSN</title>
+
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="alternate icon" href="../../favicon.svg">
+  <link rel="mask-icon" href="../../favicon.svg" color="#4F46E5">
+
+  <link href="../../css/fonts.css?v=2026-08-31" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/variables.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/style.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/animations.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/style-v2.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/ressources.css?v=2026-08-31">
+  <link rel="stylesheet" href="../../css/pages-2026.css?v=2026-08-31">
+  <style>
+    .article-layout > .article-content { min-width:0; }
+    .article-ctas .article-cta-note { font-size:13.5px; margin:14px 0 0; color:#55555F; }
+    .article-content .reponse-directe { background:#F6F5FF; border-left:3px solid #4A34F5; border-radius:0 10px 10px 0; padding:14px 18px; }
+    .article-content .article-steps { padding-left:22px; }
+    .article-content .article-steps li { margin:0 0 12px; }
+    .article-content .article-refs-date { font-size:13.5px; color:#5F5F6B; margin:10px 0 0; }
+    .restit { border:1px solid rgba(16,16,20,.1); border-radius:14px; padding:16px 18px; margin:26px 0; background:#fff; }
+    .restit-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; margin:0 0 12px; }
+    .restit-label { font-weight:600; font-size:14px; letter-spacing:.02em; text-transform:uppercase; color:#211A5C; }
+    .restit-note { font-size:13px; color:#5F5F6B; }
+    .restit-list { list-style:none; padding:0; margin:0; }
+    .restit-row { display:flex; align-items:flex-start; gap:10px; padding:11px 0; margin:0; border-bottom:1px solid rgba(16,16,20,.07); font-size:15.5px; }
+    .restit-row:last-child { border-bottom:0; }
+    .restit-dot { flex:0 0 auto; width:10px; height:10px; border-radius:50%; margin-top:6px; }
+    .restit-row--rouge .restit-dot { background:#EF4444; }
+    .restit-row--ambre .restit-dot { background:#F59E0B; }
+    .restit-row--vert .restit-dot { background:#10B981; }
+    @media print { header, footer, .article-toc, .article-similar, .article-ctas { display:none !important; } }
+  </style>
+
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.acompia.com/#org",
+      "name": "ACOMPIA",
+      "legalName": "ComplyDB SAS",
+      "url": "https://www.acompia.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.acompia.com/assets/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.acompia.com/#website",
+      "url": "https://www.acompia.com/",
+      "name": "ACOMPIA",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://www.acompia.com/#org"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.acompia.com/#founder",
+      "name": "Sabrina Henocque Chiche",
+      "jobTitle": "Avocate au Barreau de Paris, exerçant en droit social et contentieux URSSAF",
+      "image": "https://www.acompia.com/assets/images/sabrina-portrait.jpg",
+      "worksFor": {
+        "@id": "https://www.acompia.com/#org"
+      },
+      "url": "https://www.acompia.com/equipe/sabrina-henocque-chiche/",
+      "sameAs": [
+        "https://www.linkedin.com/in/sabrinahenocquechiche/",
+        "https://www.valnoa-avocat.fr/"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#webpage",
+      "url": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/",
+      "name": "Changement de prestataire de paie : contrôles et DSN",
+      "description": "Changement de prestataire ou de logiciel de paie : vérifiez les cumuls, les contrats DSN et les données reprises avant la première déclaration.",
+      "inLanguage": "fr-FR",
+      "isPartOf": {
+        "@id": "https://www.acompia.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#breadcrumb"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.acompia.com/assets/og-changement-prestataire-paie.png",
+        "width": 1200,
+        "height": 630
+      },
+      "datePublished": "2026-09-29T09:00:00+02:00",
+      "dateModified": "2026-09-29T09:00:00+02:00"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#article",
+      "headline": "Changement de logiciel ou de prestataire de paie : quels contrôles prévoir ?",
+      "description": "Changement de prestataire ou de logiciel de paie : vérifiez les cumuls, les contrats DSN et les données reprises avant la première déclaration.",
+      "datePublished": "2026-09-29T09:00:00+02:00",
+      "dateModified": "2026-09-29T09:00:00+02:00",
+      "author": {
+        "@id": "https://www.acompia.com/#founder"
+      },
+      "publisher": {
+        "@id": "https://www.acompia.com/#org"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://www.acompia.com/assets/og-changement-prestataire-paie.png",
+        "width": 1200,
+        "height": 630
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#webpage"
+      },
+      "isPartOf": {
+        "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#webpage"
+      },
+      "articleSection": "Paie externalisée",
+      "wordCount": 4002,
+      "timeRequired": "PT13M",
+      "inLanguage": "fr-FR",
+      "isAccessibleForFree": true,
+      "keywords": "changement de prestataire de paie, changement de logiciel de paie, reprise des données de paie, reprise des cumuls de paie, DSN changement de prestataire, contrôle de la première paie, audit de reprise de paie, tiers déclarant, responsabilité prestataire de paie",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          ".callout-retenir",
+          ".reponse-directe",
+          ".article-faq summary"
+        ]
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Changement de prestataire de paie"
+        },
+        {
+          "@type": "Thing",
+          "name": "Reprise des cumuls de paie"
+        },
+        {
+          "@type": "Thing",
+          "name": "Déclaration sociale nominative"
+        },
+        {
+          "@type": "Thing",
+          "name": "Tiers déclarant"
+        },
+        {
+          "@type": "Thing",
+          "name": "Contrôle URSSAF"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Thing",
+          "name": "Déclaration sociale nominative"
+        },
+        {
+          "@type": "Thing",
+          "name": "Compte rendu métier"
+        },
+        {
+          "@type": "GovernmentOrganization",
+          "name": "URSSAF",
+          "url": "https://www.urssaf.fr/"
+        }
+      ],
+      "citation": [
+        {
+          "@type": "Legislation",
+          "name": "Article L. 133-11 du Code de la sécurité sociale",
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033686041"
+        },
+        {
+          "@type": "Legislation",
+          "name": "Article R. 133-43 du Code de la sécurité sociale",
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047133119"
+        },
+        {
+          "@type": "Legislation",
+          "name": "Article L. 243-16 du Code de la sécurité sociale",
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037853712"
+        },
+        {
+          "@type": "Legislation",
+          "name": "Article L. 243-7-6 du Code de la sécurité sociale",
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041396065"
+        },
+        {
+          "@type": "Legislation",
+          "name": "Règlement (UE) 2016/679, article 28, 3, g",
+          "url": "https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre4#Article28"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Cass. com., 9 juillet 2013, n° 12-19.962",
+          "url": "https://www.legifrance.gouv.fr/juri/id/JURITEXT000027709258"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Cass. com., 24 janvier 2024, n° 22-18.688 et 22-18.961",
+          "url": "https://www.legifrance.gouv.fr/juri/id/JURITEXT000049053229"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Net-entreprises, récupération des données clés des individus et de leurs contrats en cas de changement de logiciel de paie ou de tiers déclarant",
+          "url": "https://www.net-entreprises.fr/astuces-net-entreprises/comment-recuperer-les-donnees-cles-des-individus-et-de-leurs-contrats-en-dsn-en-cas-de-changement-de-logiciel-de-paie-ou-de-tiers-declarant/"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Net-entreprises, outil de contrôle DSN-VAL",
+          "url": "https://www.net-entreprises.fr/declaration/outils-de-controle-dsn-val/"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Net-entreprises, comptes rendus métier",
+          "url": "https://www.net-entreprises.fr/declaration/comptes-rendus-metiers-dsn/"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://www.acompia.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ressources",
+          "item": "https://www.acompia.com/ressources/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Changement de logiciel ou de prestataire de paie",
+          "item": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#faq",
+      "isPartOf": {
+        "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Le prestataire de paie peut-il être contrôlé à la place de l'entreprise ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. L'article L. 133-11, II, du Code de la sécurité sociale précise que le recours à un tiers déclarant s'applique sans préjudice des règles de contrôle, de recouvrement et de sanctions mises en œuvre à l'égard de l'employeur. L'article R. 133-43, III, ajoute que l'employeur demeure responsable du paiement des pénalités et majorations en cas de défaut de déclaration, d'inexactitude des montants déclarés ou d'omission de salariés."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Une clause du contrat peut-elle mettre le redressement à la charge du prestataire ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Une clause peut organiser une indemnisation entre les parties, mais elle n'est pas opposable à l'organisme, qui réclame les cotisations à l'employeur. L'article L. 133-11, I, frappe par ailleurs de nullité de plein droit les stipulations qui visent à faire échec aux demandes des organismes de sécurité sociale, ce qui ne condamne pas une clause d'indemnisation entre le client et son prestataire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que faire des numéros de contrat qui changent avec le nouveau logiciel ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le nouveau numéro doit être déclaré avec l'ancien, afin que le système qui consolide les données reconnaisse le même contrat. Lorsque l'ancien identifiant n'a pas été récupéré, le signalement d'amorçage des données variables permet de le retrouver, avec un compte rendu métier dédié aux données du contrat mis à disposition dans les vingt-quatre heures."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps faut-il conserver les données de l'ancien logiciel de paie ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Au moins six ans. L'article L. 243-16 impose de conserver les documents et pièces justificatives nécessaires à l'établissement de l'assiette ou au contrôle des cotisations pendant une durée au moins égale à six ans à compter de leur établissement ou de leur réception. Cette durée est un minimum, et un acte plus ancien reste nécessaire tant qu'il fonde une règle encore appliquée."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "À quel moment de l'année vaut-il mieux changer de système de paie ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Une bascule au 1er janvier simplifie la reprise des cumuls annuels, qui est la principale source d'écarts. Elle ne dispense pas de récupérer l'historique nécessaire au contrôle des périodes antérieures, ni de vérifier la continuité des identifiants de contrat en déclaration."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#verifications",
+      "name": "Plan de contrôle d'un changement de logiciel ou de prestataire de paie",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 6,
+      "isPartOf": {
+        "@id": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#webpage"
+      },
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Avant la fermeture des accès : Exporter les fichiers et vérifier qu'ils s'ouvrent hors de l'ancien logiciel",
+          "url": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#plan"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Avant la première paie : Comparer les cumuls de clôture et les cumuls repris, salarié par salarié",
+          "url": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#plan"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Pendant les essais : Rejouer des cas représentatifs de chaque société, établissement et convention collective",
+          "url": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#plan"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Avant la première déclaration : Vérifier les identifiants de contrat, les habilitations et qui dépose",
+          "url": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#plan"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Après le dépôt : Examiner les retours de chaque organisme et affecter chaque anomalie",
+          "url": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#plan"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Sur les paies suivantes : Vérifier que les corrections tiennent et que les anomalies ne reviennent pas",
+          "url": "https://www.acompia.com/ressources/changement-prestataire-paie-controles/#plan"
+        }
+      ]
+    }
+  ]
+}</script>
+
+  <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
+
+  <!-- Analytics · PostHog EU -->
+  <script src="../../js/analytics.js" defer></script>
+</head>
+<body class="ress-page">
+
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <header>
+    <nav id="nav">
+      <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
+        <span class="nav-logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round">
+            <defs>
+              <radialGradient id="navLogoSun" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#4F46E5"/>
+                <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
+              </radialGradient>
+            </defs>
+            <circle cx="24" cy="20" r="6.5" fill="url(#navLogoSun)" stroke="none"/>
+            <circle cx="24" cy="20" r="9.5" opacity="0.22" fill="none" stroke="#0A0A0A"/>
+            <line x1="6" y1="34" x2="42" y2="34"/>
+            <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
+            <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
+          </svg>
+        </span>
+        <span class="nav-logo-text">ACOMPIA</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <div class="nav-dropdown">
+          <a href="/solution/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Notre solution
+            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="/solution/#platform">
+              <div class="nav-dropdown-theme">Septembre 2026</div>
+              <div class="nav-dropdown-title">Conformité URSSAF en continu</div>
+            </a>
+            <a href="/outils/pilotage-flotte-tarifs/">
+              <div class="nav-dropdown-theme">Flotte véhicules</div>
+              <div class="nav-dropdown-title">Pilotage de l'avantage en nature · tarifs</div>
+            </a>
+            <a href="/solution/#audits">
+              <div class="nav-dropdown-theme">Sur devis</div>
+              <div class="nav-dropdown-title">Audits sur mesure</div>
+            </a>
+            <a href="/solution/#devis" class="nav-dropdown-all">Demander un devis →</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Outils gratuits
+            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="/outils/prediagnostic-urssaf/">
+              <div class="nav-dropdown-theme">Gratuit · 3 minutes</div>
+              <div class="nav-dropdown-title">Prédiagnostic URSSAF</div>
+            </a>
+            <a href="/outils/simulateur-avantage-en-nature-vehicule/">
+              <div class="nav-dropdown-theme">Gratuit · barème 2026</div>
+              <div class="nav-dropdown-title">Simulateur d'avantage en nature véhicule</div>
+            </a>
+            <a href="/outils/" class="nav-dropdown-all">Tous les outils →</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/ressources/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Ressources
+            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="/ressources/controle-urssaf/">
+              <div class="nav-dropdown-theme">Contrôle URSSAF</div>
+              <div class="nav-dropdown-title">Comment ça se passe et que risque-t-on ?</div>
+            </a>
+            <a href="/ressources/audit-urssaf/">
+              <div class="nav-dropdown-theme">Audit URSSAF</div>
+              <div class="nav-dropdown-title">Les 8 zones à vérifier avant un contrôle</div>
+            </a>
+            <a href="/ressources/aen-vehicule-urssaf/">
+              <div class="nav-dropdown-theme">AEN véhicule</div>
+              <div class="nav-dropdown-title">Le guide complet 2026</div>
+            </a>
+            <a href="/ressources/reduction-generale-cotisations-patronales/">
+              <div class="nav-dropdown-theme">Réduction générale</div>
+              <div class="nav-dropdown-title">RGDU : le guide 2026</div>
+            </a>
+            <a href="/ressources/reformes-urssaf-2025-2026/">
+              <div class="nav-dropdown-theme">Actualités</div>
+              <div class="nav-dropdown-title">Réformes URSSAF 2025-2026</div>
+            </a>
+            <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
+          </div>
+        </div>
+        <a href="/#team">Équipe</a>
+        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Prendre rendez-vous</span></a>
+      </div>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="article-hero">
+      <div class="article-breadcrumb">
+        <a href="/">Accueil</a>
+        <span class="sep">/</span>
+        <a href="../">Ressources</a>
+        <span class="sep">/</span>
+        <span>Changement de prestataire de paie</span>
+      </div>
+
+      <div class="article-hero-banner">
+        <div class="article-hero-banner-content">
+          <div class="article-eyebrow">Paie externalisée · Contrôle URSSAF</div>
+          <h1 class="article-title-banner">Changement de logiciel ou de prestataire de paie : quels contrôles prévoir ?</h1>
+        </div>
+      </div>
+
+      <div class="article-meta-bar">
+        <div class="article-author-mini">
+          <img class="article-author-mini-photo" src="../../assets/images/sabrina-portrait.jpg" alt="Maître Sabrina Henocque Chiche, avocate au Barreau de Paris exerçant en droit social" width="44" height="44" loading="eager">
+          <div>
+            <div><strong>Sabrina Henocque Chiche</strong></div>
+            <div style="font-size:12.5px; color:#888;">Avocate au Barreau de Paris</div>
+          </div>
+        </div>
+        <span class="sep"></span>
+        <span>Publié le <time datetime="2026-09-29">29 septembre 2026</time></span>
+        <span class="sep"></span>
+        <span>Mis à jour le <time datetime="2026-09-29">29 septembre 2026</time></span>
+        <span class="sep"></span>
+        <span>13 min de lecture</span>
+      </div>
+    </section>
+
+    <div class="article-layout">
+
+      <aside class="article-toc" aria-label="Sommaire">
+        <div class="article-toc-title">Sommaire</div>
+        <ol>
+          <li><a href="#avant">Avant la première paie</a></li>
+          <li><a href="#donnees">Les données à récupérer</a></li>
+          <li><a href="#cumuls">Vérifier la reprise des cumuls</a></li>
+          <li><a href="#contrats">Les contrats en DSN</a></li>
+          <li><a href="#tester">Tester et décider la bascule</a></li>
+          <li><a href="#apres">Les erreurs découvertes après</a></li>
+          <li><a href="#responsabilite">Qui répond, et qui paie</a></li>
+          <li><a href="#plan">Le plan de contrôle</a></li>
+          <li><a href="#faq">Questions fréquentes</a></li>
+          <li><a href="#sources">Sources officielles vérifiées</a></li>
+        </ol>
+      </aside>
+
+      <article class="article-content">
+        <p>
+          Un changement de logiciel de paie ou de prestataire déplace, en quelques semaines, l'ensemble des données sociales d'une entreprise. Les cumuls annuels doivent être repris, les paramétrages sont resaisis, les identifiants de contrat changent, et l'historique reste dans un système que l'on quitte. Un contrôle URSSAF portera pourtant sur les trois années civiles précédentes et sur l'année en cours, sans distinguer l'avant et l'après. Cette page donne les contrôles à conduire avant la première paie, la vérification des contrats en déclaration sociale nominative, le traitement des erreurs découvertes ensuite, et la répartition réelle des responsabilités.
+        </p>
+
+        <div class="callout-retenir">
+          <div class="callout-retenir-title">À retenir</div>
+          <ul>
+            <li>Trois contrôles priment sur tous les autres, la reprise des cumuls annuels salarié par salarié, la continuité des identifiants de contrat en déclaration, et la comparaison d'un mois complet déjà payé.</li>
+            <li>L'employeur qui a recours à un tiers déclarant « demeure responsable du paiement des pénalités et majorations » en cas de défaut de déclaration, d'inexactitude des montants déclarés ou d'omission de salariés (<strong>article R. 133-43, III</strong>).</li>
+            <li>Le changement d'outil modifie le numéro technique du contrat de travail. Sans déclaration de l'ancien numéro, le système qui consolide les données ne reconnaît plus le même contrat, ce qui <strong>lèse le salarié dans ses droits</strong>.</li>
+            <li>Les pièces nécessaires à l'assiette et au contrôle se conservent <strong>six ans au moins</strong>, ce qui suppose de distinguer l'archive de preuve du fichier de reprise exploitable (<strong>article L. 243-16</strong>).</li>
+            <li>Devant l'URSSAF, c'est l'entreprise qui paie. Le recours contre le prestataire est une action distincte, dont le montant ne recouvre pas mécaniquement celui du redressement.</li>
+          </ul>
+        </div>
+
+        <h2 id="avant">Quels contrôles conduire avant la première paie ?</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Trois vérifications décident de la suite. La reprise des cumuls annuels, la continuité des identifiants de contrat en déclaration, et la comparaison d'un mois déjà payé recalculé dans le nouvel outil. Les trois se conduisent avant de valider la première paie, pas après.
+        </p>
+
+        <p>
+          Une bascule se joue sur un calendrier court, et la tentation est de valider la première paie sur le seul net à payer. C'est la principale cause d'écarts découverts un an plus tard. Deux bulletins peuvent afficher le même net avec des assiettes, des taux et des exonérations différents. La comparaison utile porte sur les rubriques, les bases, les taux, les montants et les cumuls.
+        </p>
+
+        <p>
+          Une précision de méthode évite un contresens fréquent. L'ancien système n'est pas la référence juridique. La comparaison révèle une différence, elle ne dit pas qui a raison. Lorsqu'un écart apparaît, il faut recalculer à partir de la règle applicable à la période concernée pour déterminer lequel des deux résultats est exact. Un paramétrage ancien peut être erroné depuis des années, et le nouvel outil peut avoir raison contre lui.
+        </p>
+
+        <h2 id="donnees">Quelles données récupérer du prestataire sortant ?</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Tout ce qui sert à établir l'assiette ou à la contrôler, sur six ans. Et il faut distinguer deux besoins qui n'appellent pas les mêmes fichiers, l'archive de preuve d'un côté, le fichier de reprise exploitable de l'autre.
+        </p>
+
+        <p>
+          L'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037853712" target="_blank" rel="noopener noreferrer">article L. 243-16</a> impose que « les documents ou pièces justificatives nécessaires à l'établissement de l'assiette ou au contrôle des cotisations et contributions sociales » soient conservés « pendant une durée au moins égale à six ans à compter de la date à laquelle les documents ou pièces ont été établis ou reçus ». Cette durée est un minimum, et elle ne commande pas de détruire un acte plus ancien encore nécessaire pour établir la règle appliquée, par exemple la décision unilatérale qui institue un régime de prévoyance toujours en vigueur.
+        </p>
+
+        <p>
+          Cette obligation pèse sur l'entreprise. Elle n'efface pas les obligations du prestataire sortant, et notamment celles qui découlent de sa qualité de sous-traitant au sens du règlement général sur la protection des données. Son contrat doit prévoir que, « selon le choix du responsable du traitement », il « supprime toutes les données à caractère personnel ou les renvoie au responsable du traitement au terme de la prestation de services relatifs au traitement », et « détruit les copies existantes », sous réserve des conservations exigées par le droit applicable (<a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre4#Article28" target="_blank" rel="noopener noreferrer">RGPD, article 28, 3, g</a>). Une restitution conforme à cette clause ne garantit pas pour autant un fichier directement importable dans le nouvel outil.
+        </p>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Élément à récupérer</th><th>Besoin couvert</th><th>Pourquoi il compte en contrôle</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Bulletins et journaux de paie détaillés, par période</td><td>Preuve</td><td>Base de tout rapprochement entre le déclaré et le payé</td></tr>
+              <tr><td>Cumuls annuels par salarié, à la date de bascule</td><td>Reprise</td><td>Plafond, réduction générale et bases régularisées se calculent sur l'année entière</td></tr>
+              <tr><td>Fichiers DSN déposés et comptes rendus métier reçus</td><td>Preuve et reprise</td><td>Retracent ce qui a été déclaré et les anomalies signalées</td></tr>
+              <tr><td>Paramétrage des rubriques, des taux et des exonérations</td><td>Reprise</td><td>Explique l'écart constaté, souvent mieux que le bulletin lui-même</td></tr>
+              <tr><td>Table des identifiants de contrat de travail</td><td>Reprise</td><td>Condition de la continuité déclarative après la bascule</td></tr>
+              <tr><td>Actes des régimes de protection sociale complémentaire et demandes de dispense</td><td>Preuve</td><td>Pièces exigées quelle que soit la date de mise en place des garanties</td></tr>
+              <tr><td>Justificatifs de frais professionnels et éléments de calcul des avantages en nature</td><td>Preuve</td><td>Chaque régime a ses exigences propres de justification</td></tr>
+              <tr><td>Observations reçues lors d'un précédent contrôle et suites données</td><td>Preuve</td><td>Une observation non suivie d'effet expose à une majoration spécifique</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Une distinction mérite d'être posée avec le prestataire entrant comme avec le sortant. Un dossier de documents au format PDF peut suffire à un besoin de preuve, sans permettre une reprise correcte. À l'inverse, un fichier d'import peut alimenter le nouveau système sans conserver la trace de ce qui a justifié un calcul. Les deux sont nécessaires. La perte des accès ne rend pas toute récupération impossible, mais elle la transforme en négociation, avec des délais qui ne sont plus les vôtres.
+        </p>
+
+        <div class="article-ctas">
+          <div class="article-cta-block">
+            <h4>Votre reprise de données résisterait-elle à un contrôle ?</h4>
+            <p>ACOMPIA rapproche les paies avant et après bascule, les cumuls annuels, les identifiants de contrat, les données déclarées et les pièces justificatives, sur vos propres fichiers. L'analyse identifie les écarts, les pièces manquantes, leur impact financier et les corrections à conduire.</p>
+            <a href="/solution/?audit=multi&amp;sujet=reprise-paie#devis" class="article-cta-btn article-cta-btn--accent" data-cta-source="article-donnees" data-cta-position="apres-tableau">Faire contrôler ma reprise de paie</a>
+            <p class="article-cta-note">Confidentiel · Sans engagement · Méthode conçue par une avocate au Barreau de Paris</p>
+          </div>
+        </div>
+
+        <h2 id="cumuls">Comment vérifier la reprise des cumuls de paie ?</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> En comparant, salarié par salarié, les cumuls de clôture de l'ancien système et les cumuls repris dans le nouveau, avant la première paie. Une reprise incomplète ne se voit pas sur le bulletin du mois, elle se voit sur l'année.
+        </p>
+
+        <p>
+          Les calculs annuels sont les premiers exposés. Le plafond de la sécurité sociale, la réduction générale des cotisations patronales, les régularisations progressives et les plafonds propres à certains régimes se déterminent sur la période entière, et non sur le mois. Une bascule au 1<sup>er</sup> janvier simplifie ces reprises, sans dispenser de récupérer l'historique nécessaire aux contrôles des périodes antérieures.
+        </p>
+
+        <div class="restit" aria-label="Exemple fictif de contrôle de reprise">
+          <div class="restit-head">
+            <span class="restit-label">Exemple fictif de contrôle</span>
+            <span class="restit-note">Illustration, aucune donnée réelle</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr><th>Contrôle sur un salarié</th><th>Montant</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Brut cumulé de janvier à septembre, ancien système</td><td>27 000 €</td></tr>
+                <tr><td>Brut d'octobre, nouveau système</td><td>3 000 €</td></tr>
+                <tr><td>Cumul attendu après octobre</td><td>30 000 €</td></tr>
+                <tr><td>Cumul présent dans le nouveau système</td><td>3 000 €</td></tr>
+                <tr><td><strong>Écart de reprise</strong></td><td><strong>27 000 €</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="restit-note">Un écart de reprise de 27 000 € n'est pas un redressement de 27 000 €. C'est une anomalie de données dont il reste à mesurer l'effet sur le plafond, sur la réduction générale et sur les régularisations de l'exercice.</p>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Compteur</th><th>Point de vigilance</th><th>Contrôle à conduire</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Plafond de la sécurité sociale</td><td>Proratisation, entrées et sorties, temps partiel, absences non rémunérées</td><td>Recalculer le plafond annuel sur un échantillon de contrats non standards</td></tr>
+              <tr><td>Réduction générale des cotisations patronales</td><td>Rémunération annuelle de référence, heures supplémentaires, régularisation progressive</td><td>Comparer le montant appliqué avant et après bascule sur les mêmes salariés</td></tr>
+              <tr><td>Avantages en nature</td><td>Méthode de valorisation et options retenues, historique des véhicules et des logements</td><td>Vérifier la méthode applicable à la période, expliquer tout changement plutôt que l'aligner</td></tr>
+              <tr><td>Frais professionnels et indemnités kilométriques</td><td>Compteurs de distance, limites d'exonération, justificatifs restés dans l'ancien outil</td><td>Contrôler les cumuls par salarié et la disponibilité des pièces exigées pour le régime appliqué</td></tr>
+              <tr><td>Protection sociale complémentaire</td><td>Population affiliée, dispenses, assiettes des contributions patronales</td><td>Rapprocher la liste des affiliés de l'organisme assureur et la paie</td></tr>
+              <tr><td>Absences, congés et compteurs de temps</td><td>Soldes repris sans les règles qui les ont produits</td><td>Rejouer un mois complet avec les deux systèmes</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Certaines erreurs apparaissent dès le premier bulletin, un taux absent ou une rubrique non reprise. D'autres ne se révèlent qu'à la régularisation annuelle ou lors d'un contrôle, parce qu'elles portent sur un cumul et non sur un montant du mois. Ce sont les secondes qui coûtent le plus cher, et ce sont elles que la comparaison des cumuls permet de voir tout de suite.
+        </p>
+
+        <h2 id="contrats">Que deviennent les contrats en DSN après un changement de logiciel ?</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Le numéro technique du contrat de travail change avec l'outil. Si l'ancien numéro n'est pas déclaré à côté du nouveau, le système qui consolide les données ne reconnaît plus le même contrat, et les droits du salarié en sont affectés. C'est le point le plus souvent oublié d'une migration.
+        </p>
+
+        <p>
+          Le dispositif déclaratif l'explique sans ambiguïté. Les informations enregistrées chaque mois doivent pouvoir être cumulées « sur une même identification des contrats de travail du salarié ». Lors d'un changement de logiciel de paie ou de tiers déclarant, « il est donc indispensable de déclarer explicitement les changements que cela a généré sur le numéro technique de contrat de travail ». Concrètement, si le numéro passe de aa111 dans l'ancien outil à 2599 dans le nouveau, la déclaration porte le nouveau numéro en bloc 40 et doit porter en parallèle un bloc 41 mentionnant l'ancien numéro. À défaut, « cela lèse l'individu en termes de calcul de ses droits sociaux », les signalements de fin de contrat et d'arrêt de travail sont transmis de manière incomplète, et les statistiques de mouvements de main-d'œuvre comptent deux contrats au lieu d'un (<a href="https://www.net-entreprises.fr/astuces-net-entreprises/comment-recuperer-les-donnees-cles-des-individus-et-de-leurs-contrats-en-dsn-en-cas-de-changement-de-logiciel-de-paie-ou-de-tiers-declarant/" target="_blank" rel="noopener noreferrer">net-entreprises, récupération des données clés en cas de changement de logiciel ou de tiers déclarant</a>).
+        </p>
+
+        <p>
+          Lorsque ces identifiants n'ont pas été récupérés, un mécanisme officiel permet de les retrouver. Le signalement d'amorçage des données variables permet de récupérer les informations principales de l'individu et de son contrat telles qu'elles ont été déclarées dans la déclaration précédente. En retour, un compte rendu métier dédié aux données du contrat, le CRM n° 114, est mis à disposition dans les vingt-quatre heures. Il précise notamment la date de début du contrat, le numéro de contrat, le statut conventionnel, le libellé de l'emploi, la nature du contrat et le code régime de base maladie. Un retour distinct de l'administration fiscale précise, sous cinq jours au plus, le taux de prélèvement à la source de l'individu.
+        </p>
+
+        <p>
+          La consigne pratique est simple à poser au prestataire entrant. Demander la table de correspondance entre anciens et nouveaux identifiants, vérifier que les contrats renumérotés sont bien accompagnés du bloc portant l'ancien numéro, et contrôler ce point sur la première déclaration plutôt que sur la dixième.
+        </p>
+
+        <h2 id="tester">Comment tester et décider la bascule ?</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> En rejouant un mois déjà payé, en couvrant chaque société, chaque établissement et chaque convention collective, puis en contrôlant le fichier déclaratif avant son dépôt. Un test concluant sur un établissement ne vaut pas validation des autres.
+        </p>
+
+        <p>
+          La paie témoin consiste à recalculer un mois complet déjà payé dans le nouvel outil et à comparer bulletin par bulletin, en expliquant chaque écart plutôt qu'en l'arrondissant. L'échantillon doit être choisi, et non pris au hasard. Contrats courts, temps partiels, absences, salariés en dispense de couverture, véhicules de fonction, heures supplémentaires, apprentis, et pour un groupe, au moins un cas par société, par établissement et par convention collective appliquée.
+        </p>
+
+        <p>
+          Le fichier déclaratif se teste ensuite avant l'envoi. Le dispositif met à disposition <a href="https://www.net-entreprises.fr/declaration/outils-de-controle-dsn-val/" target="_blank" rel="noopener noreferrer">DSN-VAL</a>, présenté comme « un habillage graphique de la brique de contrôle utilisée en production par le dispositif DSN ». L'outil contrôle la norme déclarative et ses règles, ce qui évite des rejets. Il ne vaut pas validation du fond, puisqu'un fichier parfaitement conforme à la norme peut véhiculer une assiette fausse.
+        </p>
+
+        <p>
+          Le premier mois déclaré doit enfin être suivi. Les <a href="https://www.net-entreprises.fr/declaration/comptes-rendus-metiers-dsn/" target="_blank" rel="noopener noreferrer">comptes rendus métier</a> sont les retours des organismes lorsqu'une erreur ou une suspicion d'erreur est détectée. Chacun s'analyse, se corrige lorsque l'erreur est confirmée, ou se documente lorsque l'entreprise conteste la lecture faite de sa déclaration. Ce que l'on conserve, c'est la trace du traitement. Le circuit complet figure dans notre article consacré aux <a href="../anomalie-dsn-urssaf/">anomalies DSN</a>.
+        </p>
+
+        <h2 id="apres">Comment traiter les erreurs découvertes après la bascule ?</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Par une correction déclarative, pas par un courrier. Tant que l'échéance n'est pas passée, une déclaration qui annule et remplace la précédente reste possible. Ensuite, la correction passe par une régularisation rattachée à la bonne période.
+        </p>
+
+        <p>
+          Le principe est celui de la correction à l'échéance déclarative la plus proche, avec le versement du complément de cotisations correspondant. Deux voies coexistent en pratique. Avant l'échéance, la déclaration du mois peut être remplacée par une déclaration corrigée. Après, la correction s'effectue selon les modalités de régularisation applicables, en conservant le rattachement aux périodes d'emploi concernées. Un courrier d'explication peut accompagner l'échange avec l'organisme, il ne remplace pas la correction déclarative.
+        </p>
+
+        <p>
+          Deux réflexes limitent le coût. Documenter la correction au moment où elle est faite, avec le calcul, la période concernée et la personne qui l'a validée. Et traiter la cause dans le paramétrage, faute de quoi l'anomalie se reproduit à chaque paie, ce qui transforme une erreur ponctuelle en pratique répétée. Corriger spontanément est toujours préférable, sans effacer automatiquement toute majoration, les mécanismes favorables ayant leurs conditions propres.
+        </p>
+
+        <p>
+          Un point mérite une attention particulière lorsque l'entreprise a déjà été contrôlée. Le montant du redressement mis en recouvrement à l'issue d'un contrôle « est majoré de 10 % en cas de constat d'absence de mise en conformité », un tel constat étant dressé « lorsque le cotisant n'a pas pris en compte les observations notifiées lors d'un précédent contrôle, que ces observations aient donné lieu à redressement ou non » (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041396065" target="_blank" rel="noopener noreferrer">article L. 243-7-6</a>). Une migration est le moment où une correction acquise se perd. Transmettre au prestataire entrant les observations reçues et vérifier comment chacune a été traduite dans le paramétrage est une précaution peu coûteuse.
+        </p>
+
+        <h2 id="responsabilite">Qui répond des erreurs, et qui en supporte le coût ?</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> L'employeur répond devant l'organisme, y compris des pénalités et majorations, même lorsque la déclaration est faite par un tiers. Le recours contre le prestataire est une action contractuelle distincte, dont le montant ne recouvre pas mécaniquement celui du redressement.
+        </p>
+
+        <p>
+          L'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033686041" target="_blank" rel="noopener noreferrer">article L. 133-11 du Code de la sécurité sociale</a> organise le recours à un tiers déclarant, qui « est réputé accomplir l'ensemble des déclarations ou formalités sociales pour le compte de son client ». Il pose aussitôt deux limites. Le recours à ce tiers « ne dispense pas l'employeur ou le travailleur indépendant de répondre, le cas échéant, aux demandes des organismes de sécurité sociale, quel qu'en soit le motif », et « sont nulles de plein droit, quelle qu'en soit la forme, les stipulations des conventions qui visent à faire échec à ces demandes ». Cette nullité vise les clauses qui feraient obstacle aux demandes des organismes. Elle ne condamne pas une clause d'indemnisation entre les parties.
+        </p>
+
+        <p>
+          Le texte d'application est plus direct encore. L'employeur « ayant recours à un tiers déclarant demeure responsable du paiement des pénalités et majorations prévues par le présent code […] en cas de défaut de production d'une déclaration obligatoire, d'inexactitude des montants déclarés ou d'omission de salariés ou assimilés dans la déclaration » (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047133119" target="_blank" rel="noopener noreferrer">article R. 133-43, III</a>). Le même texte prévoit que, lorsque le tiers déclarant méconnaît les obligations découlant de sa mission, l'employeur accomplit lui-même les déclarations.
+        </p>
+
+        <p>
+          Reste la question du recours. Elle relève du droit commun de la responsabilité contractuelle et suppose une faute, un préjudice et un lien de causalité. La difficulté porte sur le préjudice. Les cotisations dont l'entreprise était de toute façon redevable ne constituent pas, par elles-mêmes, un appauvrissement causé par le prestataire. La Cour de cassation l'a jugé à propos de cotisations personnelles d'un gérant, en retenant que leur paiement « ne constitue pas un préjudice réparable ». Le même arrêt ajoute une nuance souvent ignorée sur les accessoires, puisqu'il reproche aux juges du fond de ne pas avoir recherché si la société, « en conservant dans son patrimoine le montant des cotisations dues à compter de leur exigibilité », n'en avait pas retiré « un avantage financier de nature à venir en compensation, fût-ce partiellement, avec le préjudice résultant des majorations de retard » (<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000027709258" target="_blank" rel="noopener noreferrer">Cass. com., 9 juillet 2013, n°&nbsp;12-19.962</a>, inédit). Autrement dit, même les majorations ne sont pas nécessairement remboursées à l'euro près.
+        </p>
+
+        <p>
+          Une seconde limite tient au partage. Lorsqu'une faute de l'entreprise a contribué au dommage, son indemnisation peut être réduite. Dans une affaire où un cabinet d'expertise comptable était chargé d'une mission de surveillance comptable et d'établissement des déclarations fiscales et sociales, la cour d'appel a mis 75 % du préjudice à la charge du cabinet, retenant une carence du dirigeant « dans l'exercice de son pouvoir de direction et de contrôle », et la Cour de cassation a écarté le moyen dirigé contre ce partage (<a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000049053229" target="_blank" rel="noopener noreferrer">Cass. com., 24 janvier 2024, n°&nbsp;22-18.688 et 22-18.961</a>, inédit). Cette affaire ne portait pas sur un redressement URSSAF, et cette proportion n'a évidemment rien de général. Elle illustre un mécanisme, celui du partage lorsque la faute du client est caractérisée.
+        </p>
+
+        <p>
+          La conséquence pratique est nette. Externaliser la paie ne dispense pas d'un contrôle interne, et ce contrôle interne est aussi ce qui préserve le recours.
+        </p>
+
+        <h3 id="contrat">Ce que doit prévoir le contrat du prestataire</h3>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Point du contrat</th><th>Ce qu'il faut y lire</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Périmètre de la mission</td><td>Ce que le prestataire calcule, ce qu'il déclare, ce qu'il ne fait pas, et ce qui reste à la charge de l'entreprise</td></tr>
+              <tr><td>Qualité de tiers déclarant</td><td>Mission déclarée à l'organisme de recouvrement et déclarant identifié</td></tr>
+              <tr><td>Traitement des comptes rendus métier</td><td>Qui les consulte, dans quel délai, qui corrige, qui documente un désaccord et qui informe l'entreprise</td></tr>
+              <tr><td>Correction des périodes antérieures</td><td>Qui prépare la régularisation d'un mois produit par le prestataire précédent, qui la transmet, qui en suit le traitement</td></tr>
+              <tr><td>Réversibilité</td><td>Format, contenu et délai de restitution en fin de contrat, historique et identifiants de contrat compris</td></tr>
+              <tr><td>Protection des données</td><td>Sort des données personnelles au terme de la prestation, selon le choix du responsable du traitement</td></tr>
+              <tr><td>Responsabilité et assurance</td><td>Étendue de la responsabilité, plafond d'indemnisation, attestation d'assurance à jour</td></tr>
+              <tr><td>Assistance en cas de contrôle</td><td>Production des éléments demandés dans le délai du contrôle, et non après</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="plan">Le plan de contrôle, moment par moment</h2>
+
+        <p class="reponse-directe">
+          <strong>En bref.</strong> Chaque contrôle a son moment, son responsable et sa preuve. C'est cette dernière colonne qui fait la différence en cas de contrôle, et c'est elle que l'on oublie.
+        </p>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Moment</th><th>Action</th><th>Preuve à conserver</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Avant la fermeture des accès</td><td>Exporter les fichiers et vérifier qu'ils s'ouvrent hors de l'ancien logiciel</td><td>Inventaire daté, périodes couvertes, fichiers manquants identifiés</td></tr>
+              <tr><td>Avant la première paie</td><td>Comparer les cumuls de clôture et les cumuls repris, salarié par salarié</td><td>Tableau des écarts de reprise</td></tr>
+              <tr><td>Pendant les essais</td><td>Rejouer des cas représentatifs de chaque société, établissement et convention collective</td><td>Résultat attendu, résultat obtenu, explication de chaque écart</td></tr>
+              <tr><td>Avant la première déclaration</td><td>Vérifier les identifiants de contrat, les habilitations et qui dépose</td><td>Table de correspondance des identifiants et répartition des tâches</td></tr>
+              <tr><td>Après le dépôt</td><td>Examiner les retours de chaque organisme et affecter chaque anomalie</td><td>Responsable, échéance, correction effectuée ou désaccord documenté</td></tr>
+              <tr><td>Sur les paies suivantes</td><td>Vérifier que les corrections tiennent et que les anomalies ne reviennent pas</td><td>Registre de suivi clôturé au fur et à mesure</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Pour replacer ces contrôles dans l'ensemble des zones vérifiées par un inspecteur, voir les <a href="../audit-urssaf/">huit zones d'un audit URSSAF</a> et le guide <a href="../externalisation-paie-audit-urssaf/">externalisation de la paie</a>, qui traite le fonctionnement courant quand la présente page traite la transition. Sur le déroulé d'un contrôle et le délai de reprise, le guide <a href="../controle-urssaf/">contrôle URSSAF</a> complète cette lecture.
+        </p>
+
+        <h2 id="faq">Questions fréquentes</h2>
+
+        <div class="article-faq">
+          <details>
+            <summary>Le prestataire de paie peut-il être contrôlé à la place de l'entreprise ?</summary>
+            <div>Non. L'article L. 133-11, II, du Code de la sécurité sociale précise que le recours à un tiers déclarant s'applique sans préjudice des règles de contrôle, de recouvrement et de sanctions mises en œuvre à l'égard de l'employeur. L'article R. 133-43, III, ajoute que l'employeur demeure responsable du paiement des pénalités et majorations en cas de défaut de déclaration, d'inexactitude des montants déclarés ou d'omission de salariés.</div>
+          </details>
+
+          <details>
+            <summary>Une clause du contrat peut-elle mettre le redressement à la charge du prestataire ?</summary>
+            <div>Une clause peut organiser une indemnisation entre les parties, mais elle n'est pas opposable à l'organisme, qui réclame les cotisations à l'employeur. L'article L. 133-11, I, frappe par ailleurs de nullité de plein droit les stipulations qui visent à faire échec aux demandes des organismes de sécurité sociale, ce qui ne condamne pas une clause d'indemnisation entre le client et son prestataire.</div>
+          </details>
+
+          <details>
+            <summary>Que faire des numéros de contrat qui changent avec le nouveau logiciel ?</summary>
+            <div>Le nouveau numéro doit être déclaré avec l'ancien, afin que le système qui consolide les données reconnaisse le même contrat. Lorsque l'ancien identifiant n'a pas été récupéré, le signalement d'amorçage des données variables permet de le retrouver, avec un compte rendu métier dédié aux données du contrat mis à disposition dans les vingt-quatre heures.</div>
+          </details>
+
+          <details>
+            <summary>Combien de temps faut-il conserver les données de l'ancien logiciel de paie ?</summary>
+            <div>Au moins six ans. L'article L. 243-16 impose de conserver les documents et pièces justificatives nécessaires à l'établissement de l'assiette ou au contrôle des cotisations pendant une durée au moins égale à six ans à compter de leur établissement ou de leur réception. Cette durée est un minimum, et un acte plus ancien reste nécessaire tant qu'il fonde une règle encore appliquée.</div>
+          </details>
+
+          <details>
+            <summary>À quel moment de l'année vaut-il mieux changer de système de paie ?</summary>
+            <div>Une bascule au 1er janvier simplifie la reprise des cumuls annuels, qui est la principale source d'écarts. Elle ne dispense pas de récupérer l'historique nécessaire au contrôle des périodes antérieures, ni de vérifier la continuité des identifiants de contrat en déclaration.</div>
+          </details>
+        </div>
+
+        <div class="article-ctas">
+          <div class="article-cta-block">
+            <h4>Votre reprise de données résisterait-elle à un contrôle ?</h4>
+            <p>ACOMPIA rapproche les paies avant et après bascule, les cumuls annuels, les identifiants de contrat, les données déclarées et les pièces justificatives, sur vos propres fichiers. L'analyse identifie les écarts, les pièces manquantes, leur impact financier et les corrections à conduire.</p>
+            <a href="/solution/?audit=multi&amp;sujet=reprise-paie#devis" class="article-cta-btn article-cta-btn--accent" data-cta-source="article-fin" data-cta-position="fin-article">Faire contrôler ma reprise de paie</a>
+            <p class="article-cta-note">Confidentiel · Sans engagement · Méthode conçue par une avocate au Barreau de Paris</p>
+          </div>
+        </div>
+
+        <h2 id="sources">Sources officielles vérifiées</h2>
+
+        <ul class="article-refs">
+          <li><strong>CSS, art. L. 133-11</strong>, recours à un tiers déclarant, obligation de répondre aux organismes, nullité des stipulations contraires, application sans préjudice des règles de contrôle et de sanctions. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033686041" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>CSS, art. R. 133-43, III</strong>, l'employeur demeure responsable des pénalités et majorations en cas de défaut de déclaration, d'inexactitude ou d'omission de salariés. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047133119" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>CSS, art. L. 243-16</strong>, conservation des documents et pièces justificatives pendant six ans au moins. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037853712" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>CSS, art. L. 243-7-6</strong>, majoration de 10 % en cas de constat d'absence de mise en conformité après des observations antérieures. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041396065" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>RGPD, art. 28, 3, g</strong>, suppression ou restitution des données personnelles au terme de la prestation, selon le choix du responsable du traitement. <a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre4#Article28" target="_blank" rel="noopener noreferrer">CNIL</a></li>
+          <li><strong>Cass. com., 9 juillet 2013, n°&nbsp;12-19.962</strong>, inédit, le paiement de cotisations dues n'est pas en lui-même un préjudice réparable, et l'avantage financier tiré de la conservation des sommes se compense avec les majorations. <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000027709258" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>Cass. com., 24 janvier 2024, n°&nbsp;22-18.688 et 22-18.961</strong>, inédit, partage de responsabilité lorsque la carence du dirigeant a contribué au dommage. <a href="https://www.legifrance.gouv.fr/juri/id/JURITEXT000049053229" target="_blank" rel="noopener noreferrer">Légifrance</a></li>
+          <li><strong>Net-entreprises</strong>, récupération des données clés des individus et de leurs contrats en cas de changement de logiciel de paie ou de tiers déclarant, signalement d'amorçage et compte rendu métier n° 114. <a href="https://www.net-entreprises.fr/astuces-net-entreprises/comment-recuperer-les-donnees-cles-des-individus-et-de-leurs-contrats-en-dsn-en-cas-de-changement-de-logiciel-de-paie-ou-de-tiers-declarant/" target="_blank" rel="noopener noreferrer">net-entreprises.fr</a></li>
+          <li><strong>Net-entreprises</strong>, outil de contrôle DSN-VAL et comptes rendus métier. <a href="https://www.net-entreprises.fr/declaration/outils-de-controle-dsn-val/" target="_blank" rel="noopener noreferrer">DSN-VAL</a> · <a href="https://www.net-entreprises.fr/declaration/comptes-rendus-metiers-dsn/" target="_blank" rel="noopener noreferrer">comptes rendus métier</a></li>
+        </ul>
+
+        <p class="article-refs-date">Textes, décisions et documentation officielle vérifiés le 24 septembre 2026.</p>
+
+        <section class="article-author-card" aria-labelledby="author-name">
+          <img class="article-author-card-img" src="../../assets/images/sabrina-portrait.jpg" alt="Portrait de Maître Sabrina Henocque Chiche, avocate au Barreau de Paris" width="130" height="130" loading="lazy">
+          <div class="article-author-card-content">
+            <div class="article-author-card-eyebrow">L'auteure</div>
+            <h3 class="article-author-card-name" id="author-name">Sabrina Henocque Chiche</h3>
+            <p class="article-author-card-title">Avocate au Barreau de Paris · Droit social, contentieux URSSAF</p>
+            <p class="article-author-card-bio">
+              Plus de 10 années d'expérience en contentieux URSSAF. Fondatrice d'ACOMPIA, solution de conformité URSSAF incubée à l'Incubateur du Barreau de Paris. Intervient sur les contrôles et redressements, la fiabilité des déclarations sociales, les avantages en nature et la protection sociale complémentaire.
+            </p>
+            <div class="article-author-card-links">
+              <a class="article-author-card-link" href="https://www.linkedin.com/in/sabrinahenocquechiche/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a class="article-author-card-link" href="../../equipe/sabrina-henocque-chiche/">Sa pratique</a>
+              <a class="article-author-card-link" href="/solution/?audit=multi&amp;sujet=reprise-paie#devis" data-cta-source="article-auteure" data-cta-position="carte-auteure">Faire contrôler ma reprise de paie</a>
+            </div>
+          </div>
+        </section>
+
+        <p class="article-disclaimer">
+          Information juridique à vocation générale, mise à jour au 29 septembre 2026. L'analyse d'une situation particulière suppose l'examen du contrat, du paramétrage, des données reprises et des pièces disponibles.
+        </p>
+      </article>
+    </div>
+
+    <section class="article-similar">
+      <div class="article-similar-title">À lire dans le même thème</div>
+      <div class="article-similar-grid">
+
+        <a class="ress-cover ress-cover--aurora" href="../externalisation-paie-audit-urssaf/">
+          <div class="ress-cover-top">
+            <span class="ress-cover-num">→</span>
+            <span class="ress-cover-theme">Externalisation paie</span>
+          </div>
+          <div class="ress-cover-body">
+            <div class="ress-cover-eyebrow">Guide complet</div>
+            <h3 class="ress-cover-title">Externalisation de la paie, ce que le prestataire ne contrôle pas</h3>
+          </div>
+          <div class="ress-cover-meta">17 min</div>
+        </a>
+
+        <a class="ress-cover ress-cover--ink" href="../anomalie-dsn-urssaf/">
+          <div class="ress-cover-top">
+            <span class="ress-cover-num">→</span>
+            <span class="ress-cover-theme">Contrôle URSSAF</span>
+          </div>
+          <div class="ress-cover-body">
+            <div class="ress-cover-eyebrow">Guide pratique</div>
+            <h3 class="ress-cover-title">Anomalie DSN URSSAF, que corriger, que contester, que faire auditer</h3>
+          </div>
+          <div class="ress-cover-meta">18 min</div>
+        </a>
+
+        <a class="ress-cover ress-cover--indigo" href="../audit-urssaf/">
+          <div class="ress-cover-top">
+            <span class="ress-cover-num">→</span>
+            <span class="ress-cover-theme">Audit URSSAF</span>
+          </div>
+          <div class="ress-cover-body">
+            <div class="ress-cover-eyebrow">Guide complet</div>
+            <h3 class="ress-cover-title">Audit URSSAF, les 8 zones à vérifier avant un contrôle</h3>
+          </div>
+          <div class="ress-cover-meta">18 min</div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-row">
+          <span class="footer-logo-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#F0F1F8" stroke-width="1.7" stroke-linecap="round">
+              <defs>
+                <radialGradient id="footerLogoSunDsn" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#4F46E5"/>
+                  <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
+                </radialGradient>
+              </defs>
+              <circle cx="24" cy="20" r="6.5" fill="url(#footerLogoSunDsn)" stroke="none"/>
+              <circle cx="24" cy="20" r="9.5" opacity="0.30" fill="none" stroke="#F0F1F8"/>
+              <line x1="6" y1="34" x2="42" y2="34"/>
+              <line x1="11" y1="38" x2="37" y2="38" opacity="0.6"/>
+              <line x1="16" y1="42" x2="32" y2="42" opacity="0.35"/>
+            </svg>
+          </span>
+          <span class="footer-logo">ACOMPIA</span>
+        </div>
+        <p>Le tiers de confiance de la conformité URSSAF en entreprise.</p>
+        <p class="footer-legal-entity">&copy; 2026 ComplyDB SAS · Tous droits réservés</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <p class="footer-col-title">Solution</p>
+          <a href="/outils/prediagnostic-urssaf/">Prédiagnostic gratuit</a>
+          <a href="/solution/#audits">Nos audits</a>
+          <a href="/solution/#platform">La solution ACOMPIA</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Ressources</p>
+          <a href="../">Toutes les publications</a>
+          <a href="../charges-patronales-salariales-urssaf/">Guide charges et cotisations 2026</a>
+          <a href="../externalisation-paie-audit-urssaf/">Guide externalisation paie 2026</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Légal</p>
+          <a href="../../mentions-legales.html">Mentions légales</a>
+          <a href="../../politique-confidentialite.html">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  /* Clic sur un appel à l'action. Aucune donnée personnelle transmise. */
+  (function () {
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('[data-cta-source]') : null;
+      if (!a) return;
+      try {
+        if (window.posthog && posthog.capture) {
+          posthog.capture('audit_cta_click', {
+            source: a.getAttribute('data-cta-source'),
+            position: a.getAttribute('data-cta-position')
+          });
+        }
+      } catch (err) {}
+    });
+  })();
+  </script>
+  <script src="../../js/config.js" defer></script>
+  <script src="../../js/socle.js" defer></script>
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>

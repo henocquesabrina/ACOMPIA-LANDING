@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   animerCompteursStat();
   activerFormulaireDevis();
   preselectionnerTypeAudit();
+  prerremplirSujetDevis();
   activerFormulaireNotify();
 });
 
@@ -241,6 +242,13 @@ function activerFormulaireDevis() {
    écrite dans le DOM, ce qui exclut toute injection depuis l'URL. */
 const TYPES_AUDIT_AUTORISES = ['anv', 'frais-pro', 'psc', 'remunerations', 'multi', 'autre'];
 
+/* Contextes d'article autorisés dans l'URL. La valeur lue n'est jamais affichée
+   telle quelle : elle sert seulement de clé dans cette table, dont seul le libellé
+   est écrit dans le champ message, via value. */
+const SUJETS_AUTORISES = {
+  'reprise-paie': 'Changement de prestataire ou de logiciel de paie'
+};
+
 function preselectionnerTypeAudit() {
   const select = document.getElementById('devis-audit-type');
   if (!select) return;
@@ -261,6 +269,28 @@ function preselectionnerTypeAudit() {
 
   select.value = option.value;
   select.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* === Contexte de la demande depuis l'URL ===
+   /solution/?audit=multi&sujet=reprise-paie#devis préremplit le message avec le
+   libellé correspondant, sans écraser ce que le visiteur a déjà saisi. */
+function prerremplirSujetDevis() {
+  const message = document.getElementById('devis-message');
+  if (!message || message.value) return;
+
+  let demande = null;
+  try {
+    demande = new URLSearchParams(window.location.search).get('sujet');
+  } catch (e) {
+    return;
+  }
+  if (!demande) return;
+
+  const libelle = SUJETS_AUTORISES[String(demande).trim().toLowerCase()];
+  if (!libelle) return;
+
+  message.value = libelle;
+  message.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
 /* === Platform notify form === */
