@@ -246,7 +246,8 @@ const TYPES_AUDIT_AUTORISES = ['anv', 'frais-pro', 'psc', 'remunerations', 'mult
    telle quelle : elle sert seulement de clé dans cette table, dont seul le libellé
    est écrit dans le champ message, via value. */
 const SUJETS_AUTORISES = {
-  'reprise-paie': 'Changement de prestataire ou de logiciel de paie'
+  'reprise-paie': 'Changement de prestataire ou de logiciel de paie',
+  'trop-verse': 'Cotisations versées en trop, analyse dans les deux sens'
 };
 
 function preselectionnerTypeAudit() {
