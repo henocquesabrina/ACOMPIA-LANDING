@@ -1,0 +1,30 @@
+/* Alternance blanc / lavande / violet, sans changer la palette de marque. */
+.sol{background:#fff}
+.hero-description,.sol-head .lede,.risk-copy>p{color:#665d74}
+.step p,.themes-h p,.monthly-heading>p{color:#756582}
+.themes{background:#f1ecfb;border:1px solid #e2d8f2;border-radius:28px;padding:clamp(24px,3.5vw,56px);margin-top:80px}
+.themes-browser .family-selector{border-color:#d9cbea}
+.themes-browser .family-selector button{border-color:#dfd3ec;color:#79638d}
+.themes-browser .family-selector button[aria-pressed=true]{color:#4a34f5}
+.themes-browser .ix-card{background:transparent}
+.family-detail-rows p{color:#7c698b}
+.family-detail-rows li{border-color:#ddd0eb}
+.theme-navigation{color:#826d96}
+.monthly-workspace{background:radial-gradient(ellipse at 50% 45%,#d5c5f8 0%,#e9dff9 55%,#f0e9fc 100%);border-color:#d3bfee;box-shadow:0 24px 70px -45px #65409580}
+.monthly-workspace:before{border-color:#c2a8e5}
+.monthly-workspace:after{border-color:#d5c0ed}
+.monthly-toolbar,.monthly-input.source-fan>small{color:#79618f}
+.monthly-calendar{background:#ffffff65;border-top-color:#cfb8e9}
+.monthly-calendar>span{color:#89719c}
+.monthly-calendar .current{background:#ded0f6;color:#5834a2}
+.monthly-events>span{color:#806397}
+.restored-copy .mq-autre-texte,.restored-copy .mq-roi li span,.restored-copy .l26-equipe-bio,.restored-copy blockquote,.restored-copy .l26-faq-reponse{color:#756582}
+.final .box{background:#35205e;border:1px solid #48306f;box-shadow:0 22px 60px -40px #35205e80}
+.final h2{color:#fff}
+.final h2 span{color:#c8b4f3}
+.final p{color:#d6c9eb}
+.final .btn-n{background:#fff;border-color:#fff;color:#45267b;box-shadow:0 4px 0 #c7b2ec}
+.final .btn-n small{color:#796193;border-color:#d9cbea}
+.final .btn-b{color:#fff;background:#ffffff0a;border-color:#8e74b5}
+.final .box::before{border-color:#ffffff15}
+@media(max-width:700px){.themes{margin-top:48px;padding:24px 16px;border-radius:20px}.themes-browser .ix-card{padding-inline:0}.final .box{border-radius:22px}}
