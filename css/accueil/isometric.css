@@ -1,0 +1,94 @@
+/* Scène vectorielle originale : projection commune x'=x, y'=y−x/2.
+   Les couches se déplacent sans modifier cette perspective. */
+.hero-motion{grid-template-columns:.85fr 1.3fr;gap:8px;min-height:660px}.hero-copy{position:relative;z-index:1}.hero h1{font-size:clamp(45px,4.6vw,65px)}.hero .ctas{gap:17px}.hero .text-cta{font-size:11px}.iso-demo{height:660px;border:0;border-radius:0;background:#fff;overflow:visible;perspective:none;animation:none}.iso-art{position:absolute;width:115%;height:610px;left:-6%;top:15px;overflow:visible;font-family:var(--l26-police);shape-rendering:geometricPrecision}.iso-topline{position:absolute;left:5%;right:0;top:4px;display:flex;justify-content:space-between;font:7px var(--l26-mono);letter-spacing:.04em;color:#55555f}.iso-topline span:first-child{color:#55555f}.iso-caption{position:absolute;bottom:65px;left:8%;right:0;display:flex;gap:13px;align-items:baseline;background:#ffffffdd;padding-top:16px}.iso-index{font:10px var(--l26-mono);color:#9b85ce}.iso-title{font-size:16px;letter-spacing:-.025em;font-weight:500;color:#4d3b6e}.iso-description{font-size:11px;color:#55555f;margin-top:6px}.iso-demo .demo-controls{bottom:12px;left:8%;right:0;border-top:1px solid #ece7f4;padding-top:12px}.iso-demo .demo-tabs button{font-size:9px;border-radius:0;padding:10px 5px}.iso-demo .demo-tabs button.active{background:transparent;border-color:transparent;color:#7652ca}.iso-demo .demo-tabs button.active::after{height:1px;background:#a28ad7;animation-duration:6500ms}.iso-demo .demo-pause{border-radius:0;border-color:#e7e0ef;color:#55555f}.analysis-sheet{transform:translate(-165px,-82.5px);opacity:0;transition:transform 1.8s cubic-bezier(.22,1,.36,1),opacity 1.3s;}.mapping-lines{opacity:0;transition:opacity 1s .35s}.output-tags{opacity:0;transform:translate(-25px,0);transition:transform 1.3s cubic-bezier(.22,1,.36,1),opacity 1s}.field-highlight{opacity:0;transition:opacity 1s}.document-face{transition:opacity 1.2s;opacity:1}.iso-demo[data-phase='1'] .analysis-sheet,.iso-demo[data-phase='2'] .analysis-sheet{transform:translate(0,0);opacity:1}.iso-demo[data-phase='1'] .mapping-lines,.iso-demo[data-phase='2'] .mapping-lines,.iso-demo[data-phase='1'] .field-highlight,.iso-demo[data-phase='2'] .field-highlight{opacity:1}.iso-demo[data-phase='1'] .document-face,.iso-demo[data-phase='2'] .document-face{opacity:.62}.iso-demo[data-phase='1'] .output-tags,.iso-demo[data-phase='2'] .output-tags{opacity:1;transform:translate(0,0)}.iso-bar{transform-box:fill-box;transform-origin:bottom;transform:scaleY(.12);transition:transform 1.4s cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--i)*.08s)}.iso-demo[data-phase='1'] .iso-bar,.iso-demo[data-phase='2'] .iso-bar{transform:scaleY(1)}.verification-mark{opacity:0;transition:opacity 1s}.iso-demo[data-phase='2'] .verification-mark{opacity:1}.paper-scan{animation:paper-pass 5s cubic-bezier(.4,0,.2,1) infinite}.iso-demo[data-phase='1'] .paper-scan,.iso-demo[data-phase='2'] .paper-scan{opacity:0}.iso-demo[data-phase='2'] .analysis-sheet{transform:translate(12px,6px)}@keyframes paper-pass{0%{opacity:0;transform:translateY(0)}12%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(275px)}}
+@media(min-width:961px) and (max-width:1150px){.hero-motion{grid-template-columns:.9fr 1.1fr}.hero h1{font-size:50px}.iso-demo{height:600px}.iso-art{top:30px;height:530px;width:120%;left:-10%}.iso-topline{font-size:6px}.hero .ctas{align-items:flex-start}}
+@media(max-width:960px){.hero-motion{grid-template-columns:1fr;gap:8px;min-height:0}.hero-copy{max-width:600px}.hero h1{font-size:64px}.iso-demo{height:670px;max-width:740px;width:100%}.iso-art{width:100%;height:600px;left:0;top:25px}.iso-topline{top:18px;left:3%;right:3%}.iso-caption{left:4%;bottom:68px}.iso-demo .demo-controls{left:4%;right:4%}}
+@media(max-width:600px){.hero h1{font-size:clamp(42px,11vw,59px)}.hero-motion{gap:16px}.iso-demo{height:475px;margin-inline:-12px;width:calc(100% + 24px);max-width:none}.iso-art{top:22px;height:365px;width:100%;left:0}.iso-topline{font-size:5px;top:10px;left:5%;right:5%}.iso-caption{left:6%;bottom:68px;gap:9px}.iso-index{font-size:8px}.iso-title{font-size:14px}.iso-description{font-size:10px}.iso-demo .demo-controls{left:6%;right:6%;bottom:12px}.iso-demo .demo-tabs button{font-size:7px;padding-inline:2px}.iso-demo .demo-tabs button span{margin-left:2px}.iso-demo .demo-pause{width:24px;height:24px}.hero-bottom{margin-top:0}}
+@media(prefers-reduced-motion:reduce){.paper-scan{display:none}.analysis-sheet,.output-tags{transition:none!important}.iso-bar{transition:none!important}}
+@media(min-width:961px){.iso-art{height:560px;top:23px}.iso-caption{bottom:66px}}
+.iso-demo[data-phase='1'] .document-face,.iso-demo[data-phase='2'] .document-face{opacity:.82}
+/* Dernière séquence : arrivée de l’agent, composition du PDF, validation. */
+.agent-output{pointer-events:none}.arriving-agent{opacity:0;transform:translate(-60px,-30px);transition:opacity .5s,transform 1.2s cubic-bezier(.22,1,.36,1)}.agent-link{opacity:0;transition:opacity .45s}.generated-pdf{opacity:0;transform:translate(-45px,-22.5px);transition:opacity .6s,transform 1.4s cubic-bezier(.22,1,.36,1)}.pdf-reveal{opacity:0;transform:translateY(6px);transition:opacity .6s,transform .7s cubic-bezier(.22,1,.36,1)}.pdf-ready{opacity:0;transform:translate(-12px,-6px);transition:opacity .5s,transform .8s}.iso-demo[data-phase='2'] .analysis-sheet{opacity:0;transform:translate(35px,17.5px);transition-delay:0s}.iso-demo[data-phase='2'] .output-tags,.iso-demo[data-phase='2'] .mapping-lines{opacity:0;transition-delay:0s}.iso-demo[data-phase='2'] .document-face{opacity:.25}.iso-demo[data-phase='2'] .paper-back{opacity:.12}.iso-demo[data-phase='2'] .arriving-agent{opacity:1;transform:translate(0,0);transition-delay:.2s}.iso-demo[data-phase='2'] .agent-link{opacity:1;transition-delay:1s}.iso-demo[data-phase='2'] .generated-pdf{opacity:1;transform:translate(0,0);transition-delay:1.2s}.iso-demo[data-phase='2'] .pdf-reveal{opacity:1;transform:translateY(0)}.iso-demo[data-phase='2'] .pdf-heading{transition-delay:1.8s}.iso-demo[data-phase='2'] .pdf-row-one{transition-delay:2.4s}.iso-demo[data-phase='2'] .pdf-row-two{transition-delay:3.1s}.iso-demo[data-phase='2'] .pdf-row-three{transition-delay:3.8s}.iso-demo[data-phase='2'] .pdf-total{transition-delay:4.5s}.iso-demo[data-phase='2'] .pdf-ready{opacity:1;transform:translate(0,0);transition-delay:5.2s}.iso-demo[data-phase='2'] .demo-tabs button.active::after{animation-duration:10000ms}
+@media(prefers-reduced-motion:reduce){.agent-output *{transition:none!important;transition-delay:0s!important}}
+/* À l’arrivée de l’agent, la projection se redresse avant la rédaction. */
+.agent-projection,.pdf-projection,.ready-projection{transform-origin:0 0;transition:transform 1.8s cubic-bezier(.22,1,.36,1)}
+.agent-projection{transform:matrix(1,-.5,0,1,232,380)}
+.pdf-projection{transform:matrix(1,-.5,0,1,505,350)}
+.ready-projection{transform:matrix(1,-.5,0,1,837,530)}
+.iso-demo[data-phase='2'] .agent-projection{transform:matrix(1,0,0,1,135,310);transition-delay:.6s}
+.iso-demo[data-phase='2'] .pdf-projection{transform:matrix(1.12,0,0,1.12,410,110);transition-delay:.6s}
+.iso-demo[data-phase='2'] .ready-projection{transform:matrix(1,0,0,1,785,520);transition-delay:.6s}
+.iso-demo[data-phase='2'] .document-face,.iso-demo[data-phase='2'] .paper-back{opacity:0;transition:opacity 1s}
+.iso-demo[data-phase='2'] .agent-link{opacity:0}
+.iso-demo[data-phase='2'] .generated-pdf{transition-delay:.35s}
+.iso-demo[data-phase='2'] .pdf-heading{transition-delay:2.1s}
+.iso-demo[data-phase='2'] .pdf-row-one{transition-delay:2.8s}
+.iso-demo[data-phase='2'] .pdf-row-two{transition-delay:3.5s}
+.iso-demo[data-phase='2'] .pdf-row-three{transition-delay:4.2s}
+.iso-demo[data-phase='2'] .pdf-total{transition-delay:4.9s}
+.iso-demo[data-phase='2'] .pdf-ready{transition-delay:5.6s}
+@media(prefers-reduced-motion:reduce){.agent-projection,.pdf-projection,.ready-projection{transition:none!important}}
+
+/* Tempo accéléré : 3,8 s / 3,8 s / 6 s ; redressement coordonné. */
+.iso-demo .demo-tabs button.active::after{animation-duration:3800ms}
+.iso-demo[data-phase='2'] .demo-tabs button.active::after{animation-duration:6000ms}
+.analysis-sheet{transition-duration:1.25s,.8s}
+.agent-projection,.pdf-projection,.ready-projection{transition:transform 1.5s cubic-bezier(.4,0,.2,1)}
+.iso-demo[data-phase='2'] .agent-projection,.iso-demo[data-phase='2'] .pdf-projection,.iso-demo[data-phase='2'] .ready-projection{transition-delay:0s}
+.arriving-agent{transform:translate(-24px,-12px);transition:opacity .45s,transform 1.5s cubic-bezier(.4,0,.2,1)}
+.generated-pdf{transform:none;transition:opacity .7s cubic-bezier(.4,0,.2,1)}
+.iso-demo[data-phase='2'] .arriving-agent,.iso-demo[data-phase='2'] .generated-pdf{transition-delay:0s}
+.iso-demo[data-phase='2'] .analysis-sheet{transition:opacity .65s cubic-bezier(.4,0,.2,1),transform 1.5s cubic-bezier(.4,0,.2,1);transform:translate(0,0)}
+.iso-demo[data-phase='2'] .document-face,.iso-demo[data-phase='2'] .paper-back{transition:opacity .75s cubic-bezier(.4,0,.2,1)}
+.iso-demo[data-phase='2'] .pdf-heading{transition-delay:1.05s}
+.iso-demo[data-phase='2'] .pdf-row-one{transition-delay:1.45s}
+.iso-demo[data-phase='2'] .pdf-row-two{transition-delay:1.85s}
+.iso-demo[data-phase='2'] .pdf-row-three{transition-delay:2.25s}
+.iso-demo[data-phase='2'] .pdf-total{transition-delay:2.65s}
+.iso-demo[data-phase='2'] .pdf-ready{transition-delay:3.05s}
+@media(prefers-reduced-motion:reduce){.agent-projection,.pdf-projection,.ready-projection,.arriving-agent,.generated-pdf,.pdf-reveal,.pdf-ready{transition:none!important;transition-delay:0s!important}}
+/* Commande compacte, sans légende redondante. Cycle de 6,8 secondes. */
+.iso-caption{display:none}
+.iso-demo .demo-controls{left:50%;right:auto;bottom:35px;transform:translateX(-50%);width:max-content;max-width:96%;padding:5px;gap:5px;border:1px solid #eeebf4;border-radius:999px;background:#faf9fc;box-shadow:0 3px 10px #17132305}
+.iso-demo .demo-tabs{gap:3px;flex:none}
+.iso-demo .demo-tabs button{flex:none;padding:10px 17px;border:0;border-radius:999px;font-size:11px;color:#55555f;text-align:center;transition:background .2s,color .2s,box-shadow .2s}
+.iso-demo .demo-tabs button span{margin:0}
+.iso-demo .demo-tabs button.active{background:#fff;color:#4a34f5;border:0;box-shadow:0 1px 5px #2e175a12}
+.iso-demo .demo-tabs button.active::after{display:none}
+.iso-demo .demo-pause{width:31px;height:31px;border:0;border-radius:50%;color:#55555f;background:#eeeaf4;display:grid;place-items:center;margin-right:2px}
+.demo-pause svg{width:16px;height:16px;display:block}
+.analysis-sheet{transition-duration:.7s,.4s}
+.mapping-lines,.output-tags,.field-highlight,.document-face{transition-duration:.4s;transition-delay:0s}
+.iso-bar{transition-duration:.6s;transition-delay:calc(var(--i)*.03s)}
+.agent-projection,.pdf-projection,.ready-projection{transition-duration:.85s}
+.arriving-agent{transition-duration:.3s,.85s}
+.generated-pdf{transition-duration:.4s}
+.iso-demo[data-phase='2'] .analysis-sheet{transition-duration:.4s,.85s}
+.iso-demo[data-phase='2'] .document-face,.iso-demo[data-phase='2'] .paper-back{transition-duration:.4s}
+.pdf-reveal{transition-duration:.3s,.4s}
+.iso-demo[data-phase='2'] .pdf-heading{transition-delay:.5s}
+.iso-demo[data-phase='2'] .pdf-row-one{transition-delay:.75s}
+.iso-demo[data-phase='2'] .pdf-row-two{transition-delay:.95s}
+.iso-demo[data-phase='2'] .pdf-row-three{transition-delay:1.15s}
+.iso-demo[data-phase='2'] .pdf-total{transition-delay:1.4s}
+.iso-demo[data-phase='2'] .pdf-ready{transition-delay:1.6s;transition-duration:.3s,.4s}
+@media(max-width:600px){.iso-demo .demo-controls{bottom:28px}.iso-demo .demo-tabs button{padding:9px 14px;font-size:10px}.iso-demo .demo-pause{width:28px;height:28px}}
+@media(prefers-reduced-motion:reduce){.iso-demo *{transition:none!important;transition-delay:0s!important}}
+
+/* Aucun aperçu des couches futures pendant l’import, y compris au rebouclage. */
+.iso-demo[data-phase="0"] .analysis-sheet,.iso-demo[data-phase="0"] .agent-output{visibility:hidden}
+
+/* Plus de présence pour les documents, en conservant l’espace des commandes. */
+@media(min-width:961px){
+  .hero-motion{min-height:735px}
+  .iso-demo{height:735px}
+  .iso-art{height:645px;top:15px;width:120%;left:-8%}
+}
+@media(min-width:601px) and (max-width:960px){
+  .iso-demo{height:725px}
+  .iso-art{height:650px;top:20px}
+}
+@media(max-width:600px){
+  .iso-demo{height:510px}
+  .iso-art{height:405px;top:18px}
+}

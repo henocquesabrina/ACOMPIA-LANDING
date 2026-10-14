@@ -1,0 +1,11 @@
+#heroApp .dashboard-explained{position:relative}
+.dashboard-help{position:absolute;top:7px;right:7px;width:18px;height:18px;padding:0;border:1px solid #ded3ee;border-radius:50%;background:#fff;color:#55555f;font:11px Geist,system-ui,sans-serif;display:grid;place-items:center;cursor:help;z-index:2;transition:background .2s,color .2s}
+.dashboard-help:hover,.dashboard-help:focus-visible{background:#4a34f5;color:#fff;border-color:#4a34f5;outline:2px solid #d6cbfb;outline-offset:3px}
+#heroApp .kpis>.dashboard-explained{padding-top:16px}
+#heroApp .alert.dashboard-explained{padding-right:34px}
+#heroApp .priority-heading{padding-right:34px}
+#heroApp .chart-heading{padding-right:25px}
+.dashboard-tooltip{position:fixed;z-index:200;max-width:min(290px,calc(100vw - 24px));padding:15px 17px;background:#352441;color:#fff;border:1px solid #655078;border-radius:10px;box-shadow:0 12px 30px #36214724;font-family:Geist,system-ui,sans-serif;pointer-events:auto}
+.dashboard-tooltip[hidden]{display:none}
+.dashboard-tooltip strong{display:block;font-size:12px;font-weight:500;line-height:1.5}
+.dashboard-tooltip p{font-size:11px;line-height:1.7;color:#dfd3eb;margin:6px 0 0}
