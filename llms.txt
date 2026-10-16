@@ -2,7 +2,7 @@
 
 > ACOMPIA aide les entreprises françaises de 50 à 1 000 salariés à évaluer, sécuriser et prouver leur conformité URSSAF. Le logiciel est conçu par Maître Sabrina Henocque Chiche, avocate au Barreau de Paris spécialisée en contentieux URSSAF, édité par ComplyDB SAS, incubé par le Barreau de Paris et résident à Station F (Paris).
 
-ACOMPIA propose trois niveaux. Des outils gratuits (prédiagnostic URSSAF, simulateur d'avantage en nature véhicule), le pilotage par abonnement de la conformité de la flotte véhicules, et un audit continu de conformité URSSAF qui ouvrira en septembre 2026. Les audits ponctuels (flotte véhicules, frais professionnels, protection sociale complémentaire, rémunérations, réduction générale, ruptures de contrat) sont outillés par le logiciel, conçus par l'avocate et proposés sur devis. Formule maison : conçu par une avocate, exécuté par le logiciel.
+ACOMPIA est une solution de fiabilité et de conformité de la paie. Offre principale : le suivi mensuel de la paie, dès 180 € HT par mois au tarif partenaire. Aussi : l'audit de la paie sur 1 à 3 ans dès 2 500 € HT, la gestion de flotte, l'accompagnement en cas de contrôle URSSAF. Outils gratuits : prédiagnostic URSSAF, simulateur d'avantage en nature véhicule, matrice de contrôle RGDU. Conçue par une avocate, augmentée par l'IA.
 
 L'ensemble du contenu juridique est rédigé et vérifié par Maître Sabrina Henocque Chiche, avocate au Barreau de Paris depuis plus de 10 ans, à partir des sources officielles citées dans chaque page (BOSS, Légifrance, urssaf.fr, jurisprudence de la Cour de cassation).
 
@@ -15,10 +15,11 @@ L'ensemble du contenu juridique est rédigé et vérifié par Maître Sabrina He
 
 ## Solution et tarifs
 
-- [La solution ACOMPIA](https://www.acompia.com/solution/) : pilotage de la flotte véhicules (offre entreprise fondatrice limitée à 10 places à l'été 2026), audits ponctuels sur devis avec réponse sous 48 heures, audit continu de conformité URSSAF dès septembre 2026.
-- [Pilotage de flotte et audit AEN véhicule, tarifs](https://www.acompia.com/outils/pilotage-flotte-tarifs/) : abonnement de pilotage à partir de 150 € HT/mois, facturation au véhicule dégressive (calcul de l'avantage en nature par véhicule, détection des pièces manquantes, alertes d'écart paie/DSN, veille du barème BOSS, historique opposable). Audit AEN sur les trois années contrôlables par l'URSSAF à partir de 1 500 € HT, à moitié prix pour les abonnés.
-- [Audit URSSAF sur-mesure](https://www.acompia.com/solution/#audits) : audit ciblé ou multi-thématique, outillé par le logiciel et conçu par l'avocate, sur devis, réponse sous 48 heures.
-- [Prise de rendez-vous](https://calendly.com/she-acompia/30min) : 30 minutes en visio, sans engagement.
+- [Nos offres et tarifs](https://www.acompia.com/offres/) : le suivi mensuel de la paie dès 180 € HT par mois au tarif partenaire, l'audit sur 1 à 3 ans dès 2 500 € HT, la gestion de flotte et l'accompagnement en cas de contrôle URSSAF.
+- [Audit de votre paie, sur 1 à 3 ans](https://www.acompia.com/offres/audit-paie/) : une à trois années, une ou plusieurs sociétés, 26 thèmes. Les risques, les économies possibles et les corrections prioritaires.
+- [Gestion de flotte et avantage en nature véhicule](https://www.acompia.com/offres/gestion-de-flotte/) : l'avantage en nature de chaque véhicule au barème en vigueur, forfait et réel comparés, écarts avec la paie et les DSN, pièces à réunir. Inclus dans le suivi mensuel, seul sur devis.
+- [Contrôle URSSAF en cours, on vous accompagne](https://www.acompia.com/offres/controle-urssaf/) : lettre d'observations, mise en demeure, recours amiable. Relecture de chaque chef de redressement, recalcul des montants, réponse préparée. Même sans abonnement.
+- [Demander une démo](https://calendly.com/she-acompia/30min) : 30 minutes en visio, sans engagement.
 
 ## Ressources
 

@@ -7,120 +7,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
 
-  <title>Page introuvable · ACOMPIA</title>
-
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="alternate icon" href="/favicon.svg">
-  <link rel="mask-icon" href="/favicon.svg" color="#4F46E5">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link href="/css/fonts.css?v=2026-08-31" rel="stylesheet">
-  <link rel="stylesheet" href="/css/variables.css?v=2026-08-31">
-  <link rel="stylesheet" href="/css/style.css?v=2026-08-31">
-  <link rel="stylesheet" href="/css/animations.css?v=2026-08-31">
-  <link rel="stylesheet" href="/css/style-v2.css?v=2026-08-31">
-  <link rel="stylesheet" href="/css/ressources.css?v=2026-08-31">
-  <link rel="stylesheet" href="/css/pages-2026.css?v=2026-08-31">
-
-  <style>
-    .notfound {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 140px 24px 120px;
-      text-align: center;
-    }
-    .notfound h1 {
-      font-size: clamp(28px, 5vw, 40px);
-      margin-bottom: 16px;
-    }
-    .notfound p {
-      color: #555;
-      margin-bottom: 36px;
-    }
-    .notfound-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-    .notfound-links a {
-      display: inline-block;
-      padding: 12px 22px;
-      border: 1px solid #D8DAE5;
-      border-radius: 999px;
-      text-decoration: none;
-      color: #0A0A0A;
-      font-weight: 500;
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-    .notfound-links a:hover {
-      border-color: #4A34F5;
-      background: #F4F4FB;
-    }
-    .notfound-links a.notfound-cta {
-      background: #4A34F5;
-      border-color: #4A34F5;
-      color: #FFFFFF;
-    }
-    .notfound-links a.notfound-cta:hover {
-      background: #3B29C9;
-    }
-  </style>
+  <title>Page introuvable · ACOMPIA</title>
 
   <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
 
   <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
   <script src="/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/accueil/socle.css?v=2026-10-16">
+<link rel="stylesheet" href="/css/accueil/refinement.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/motion.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/isometric.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/dashboard.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/navbar.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/risk-story.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/restored-copy.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/visual-sections.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/product-mockups.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/section-labels.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/dashboard-tooltips.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/section-polish.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/responsive.css?v=team-reverted">
+<link rel="stylesheet" href="/css/accueil/hero-backdrop.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/offres.css?v=2026-10-16">
+<link rel="stylesheet" href="/css/accueil/pages.css?v=2026-10-16">
 </head>
-<body class="ress-page">
+<body id="top">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
-
-  <header>
+  <header id="hd" class="current-navbar">
     <nav id="nav">
       <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
-        <span class="nav-logo-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round">
-            <defs>
-              <radialGradient id="navLogoSun" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#4F46E5"/>
-                <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
-              </radialGradient>
-            </defs>
-            <circle cx="24" cy="20" r="6.5" fill="url(#navLogoSun)" stroke="none"/>
-            <circle cx="24" cy="20" r="9.5" opacity="0.22" fill="none" stroke="#0A0A0A"/>
-            <line x1="6" y1="34" x2="42" y2="34"/>
-            <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
-            <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
-          </svg>
-        </span>
-        <span class="nav-logo-text">ACOMPIA</span>
-      </a>
+          <img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96">
+        </a>
       <div class="nav-links" id="nav-links">
         <div class="nav-dropdown">
-          <a href="/solution/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Notre solution
+          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Nos offres
             <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
           </a>
           <div class="nav-dropdown-menu">
-            <a href="/solution/#platform">
-              <div class="nav-dropdown-theme">Septembre 2026</div>
-              <div class="nav-dropdown-title">Conformité URSSAF en continu</div>
+            <a href="/#suivi">
+              <div class="nav-dropdown-theme">Offre principale</div>
+              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
             </a>
-            <a href="/outils/pilotage-flotte-tarifs/">
-              <div class="nav-dropdown-theme">Flotte véhicules</div>
-              <div class="nav-dropdown-title">Pilotage de l'avantage en nature · tarifs</div>
+            <a href="/offres/audit-paie/">
+              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
+              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
             </a>
-            <a href="/solution/#audits">
-              <div class="nav-dropdown-theme">Sur devis</div>
-              <div class="nav-dropdown-title">Audits sur mesure</div>
+            <a href="/offres/gestion-de-flotte/">
+              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
+              <div class="nav-dropdown-title">La gestion de votre flotte</div>
             </a>
-            <a href="/solution/#devis" class="nav-dropdown-all">Demander un devis →</a>
+            <a href="/offres/controle-urssaf/">
+              <div class="nav-dropdown-theme">Contrôle en cours</div>
+              <div class="nav-dropdown-title">On vous accompagne</div>
+            </a>
+            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
           </div>
         </div>
         <div class="nav-dropdown">
           <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Outils gratuits
+            Boîte à outils
             <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
           </a>
           <div class="nav-dropdown-menu">
@@ -164,8 +116,8 @@
             <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
           </div>
         </div>
-        <a href="/#team">Équipe</a>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Prendre rendez-vous</span></a>
+        <a href="/equipe/sabrina-henocque-chiche/">Équipe</a>
+        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Demander une démo</span></a>
       </div>
       <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
         <span></span><span></span><span></span>
@@ -173,66 +125,18 @@
     </nav>
   </header>
 
-  <main id="main">
-    <section class="notfound">
-      <h1>Page introuvable</h1>
-      <p>La page que vous cherchez n'existe pas ou a été déplacée.</p>
-      <div class="notfound-links">
-        <a href="/">Accueil</a>
-        <a href="/ressources/">Ressources</a>
-        <a class="notfound-cta" href="/#prediag">Prédiagnostic gratuit</a>
-      </div>
-    </section>
-  </main>
+<main id="contenu">
+<section class="pg"><div class="wrap">
+  <div class="pg-404">
+    <p class="pg-eyebrow">Erreur 404</p>
+    <h1>Page <em>introuvable</em></h1>
+    <p>La page que vous cherchez n'existe pas ou a été déplacée.</p>
+    <div class="pg-ctas"><a class="btn btn-n" href="/">Accueil</a><a class="btn btn-b" href="/ressources/">Ressources</a><a class="btn btn-b" href="/outils/prediagnostic-urssaf/">Prédiagnostic gratuit</a></div>
+  </div>
+</div></section>
+</main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-brand-row">
-          <span class="footer-logo-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" stroke="#F0F1F8" stroke-width="1.7" stroke-linecap="round">
-              <defs>
-                <radialGradient id="footerLogoSun404" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#4F46E5"/>
-                  <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
-                </radialGradient>
-              </defs>
-              <circle cx="24" cy="20" r="6.5" fill="url(#footerLogoSun404)" stroke="none"/>
-              <circle cx="24" cy="20" r="9.5" opacity="0.30" fill="none" stroke="#F0F1F8"/>
-              <line x1="6" y1="34" x2="42" y2="34"/>
-              <line x1="11" y1="38" x2="37" y2="38" opacity="0.6"/>
-              <line x1="16" y1="42" x2="32" y2="42" opacity="0.35"/>
-            </svg>
-          </span>
-          <span class="footer-logo">ACOMPIA</span>
-        </div>
-        <p>Le tiers de confiance de la conformité URSSAF en entreprise.</p>
-        <p class="footer-legal-entity">&copy; 2026 ComplyDB SAS · Tous droits réservés</p>
-      </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <p class="footer-col-title">Solution</p>
-          <a href="/#prediag">Prédiagnostic gratuit</a>
-          <a href="/solution/#audits">Nos audits</a>
-          <a href="/solution/#platform">La solution ACOMPIA</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-col-title">Ressources</p>
-          <a href="/ressources/">Toutes les publications</a>
-          <a href="/ressources/controle-urssaf/">Guide contrôle URSSAF 2026</a>
-          <a href="/ressources/charges-patronales-salariales-urssaf/">Guide charges et cotisations 2026</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-col-title">Légal</p>
-          <a href="/mentions-legales.html">Mentions légales</a>
-          <a href="/politique-confidentialite.html">Politique de confidentialité</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="/js/config.js" defer></script>
-  <script src="/js/socle.js" defer></script>
-  <script src="/js/main.js" defer></script>
+<footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
+<script src="/js/accueil/navbar.js"></script>
 </body>
 </html>

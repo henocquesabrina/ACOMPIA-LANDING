@@ -25,17 +25,18 @@
 
   <title>Ressources URSSAF : guides et cas pratiques d'une avocate · ACOMPIA</title>
 
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="alternate icon" href="../favicon.svg">
-  <link rel="mask-icon" href="../favicon.svg" color="#4F46E5">
 
-  <link href="../css/fonts.css?v=2026-08-31" rel="stylesheet">
-  <link rel="stylesheet" href="../css/variables.css?v=2026-08-31">
-  <link rel="stylesheet" href="../css/style.css?v=2026-08-31">
-  <link rel="stylesheet" href="../css/animations.css?v=2026-08-31">
-  <link rel="stylesheet" href="../css/style-v2.css?v=2026-08-31">
-  <link rel="stylesheet" href="../css/ressources.css?v=2026-08-31">
-  <link rel="stylesheet" href="../css/pages-2026.css?v=2026-08-31">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/css/accueil/socle.css?v=2026-10-16">
+  <link rel="stylesheet" href="/css/accueil/refinement.css?v=contrast-2">
+  <link rel="stylesheet" href="/css/accueil/navbar.css?v=contrast-2">
+  <link rel="stylesheet" href="/css/accueil/section-labels.css?v=contrast-2">
+  <link rel="stylesheet" href="/css/accueil/section-polish.css?v=contrast-2">
+  <link rel="stylesheet" href="/css/accueil/responsive.css?v=team-reverted">
+  <link rel="stylesheet" href="/css/accueil/articles.css?v=2026-10-16">
 
   <script type="application/ld+json">
   {
@@ -175,332 +176,6 @@
   ]
 }
   </script>
-
-  <!-- ===== OVERRIDE VARIANTE B (maquette, ne pas indexer) ===== -->
-    <style id="hub-override">
-/* ================================================================
-   VARIANTE B · « Bibliothèque dense »
-   La barre de filtres devient le geste principal (pastilles avec
-   compteurs) et la liste passe en rangées type index, à la Silae.
-   ================================================================ */
-.is-hidden { display: none !important; }
-
-/* Barre de filtres : pastilles à compteur, bandeau blanc affirmé */
-.ress-filters {
-  /* La barre héritait d'un positionnement fixe sans décalage horizontal : elle
-     restait large de 1 280 px mais collée au bord gauche, si bien qu'au-delà de
-     cette largeur son filet s'arrêtait en plein écran, à côté d'un contenu, lui,
-     centré. En collante, elle reprend le flux et se centre comme le reste ;
-     `max-width` levée, elle balaie toute la fenêtre, et le remplissage réaligne
-     les pastilles sur la colonne de 1 280 px. */
-  position: sticky;
-  max-width: none;
-  margin: 0;
-  padding-inline: max(48px, calc((100% - 1280px) / 2 + 48px));
-  top: 93px !important;
-  z-index: 60 !important;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  gap: 2px;
-  padding: 10px 48px;
-  background: #FFFFFF;
-  border-top: 0;
-  /* Un seul filet, et seulement quand la barre passe devant le contenu : au
-     repos elle est dans le flux, un cadre complet la faisait lire comme un
-     encadré plutôt que comme un rail de tri. */
-  border-bottom: 1px solid rgba(16, 16, 20, 0.08);
-  box-shadow: none;
-}
-.ress-filters::-webkit-scrollbar { display: none; }
-/* Desktop : tout tient à l'écran en 2 rangées si besoin, pas de chip coupé à droite */
-@media (min-width: 1024px) {
-  .ress-filters { flex-wrap: wrap; overflow-x: visible; }
-}
-/* Treize pastilles cerclées, chacune avec sa gélule de compteur, faisaient de
-   la barre de filtres le bloc le plus lourd de la page — plus lourd que la
-   bibliothèque qu'elle sert à trier. Elles perdent leur contour et leur fond :
-   ce sont des libellés cliquables, le survol pose une surface, et seul l'actif
-   se remplit de mauve. Le compteur redevient un simple nombre en retrait,
-   posé après le libellé. */
-.ress-filter {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-  padding: 7px 13px;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  text-transform: none;
-  color: #55556A;
-  transition: background 0.18s ease, color 0.18s ease;
-}
-.ress-filter:hover { background: #F7F6FC; color: #0C0C14; }
-.ress-filter--active,
-.ress-filter--active:hover {
-  background: #4A34F5;
-  color: #FFFFFF;
-  font-weight: 500;
-}
-.ress-filter--active::after { display: none; }
-.ress-filter .cnt {
-  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  color: #8B8B99;
-  background: none;
-  border-radius: 0;
-  padding: 0;
-  line-height: 1;
-}
-.ress-filter--active .cnt {
-  color: rgba(255, 255, 255, 0.62);
-  background: none;
-}
-@media (max-width: 900px) {
-  .ress-filters { top: 93px !important; padding: 11px 24px; }
-}
-
-/* En-tête compact : on voit la bibliothèque dès le premier écran. L'échelle
-   revient toutefois à celle de l'accueil — 58 px au plus large, resserrés à
-   -0,04 em — parce qu'un titre à 42 px sur une page par ailleurs identique
-   faisait paraître la bibliothèque secondaire. Le chapeau suit à 17 px. */
-/* 156 px de retrait haut : la valeur datait du temps où la barre de navigation
-   et la barre de filtres étaient toutes deux hors flux et recouvraient le début
-   de la page. Les deux sont désormais collantes, donc dans le flux : le retrait
-   s'ajoutait aux 93 px de la barre et laissait un vide de deux tiers d'écran
-   avant le titre. */
-.ress-page-header { padding: 44px 48px 26px; }
-.ress-page-title {
-  font-size: clamp(32px, 4vw, 58px);
-  letter-spacing: -0.04em;
-  line-height: 1.02;
-  margin-bottom: 14px;
-}
-.ress-page-subtitle { font-size: 17px; color: #55555F; }
-.ress-rule { display: none; }
-.hubB-index-meta {
-  max-width: 1280px;
-  margin: 14px auto 0;
-  padding: 0 48px;
-  font-family: 'Geist Mono', monospace;
-  font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #6B6B66; /* A11Y : contraste 4.5:1 mini (ex-#A3A094) */
-}
-.hubB-index-meta b { color: #4A34F5; font-weight: 500; }
-
-/* ===== Index de bibliothèque ===== */
-.hubB-list {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 10px 48px 110px;
-}
-.hubB-head,
-.hubB-row {
-  display: grid;
-  grid-template-columns: 34px 178px minmax(0, 1fr) 74px 62px 20px;
-  gap: 20px;
-  align-items: center;
-}
-.hubB-head {
-  padding: 14px 12px 10px;
-  border-bottom: 1px solid #0A0A0A;
-  font-family: 'Geist Mono', monospace;
-  font-size: 9.5px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #6B6B66; /* A11Y : contraste 4.5:1 mini (ex-#A3A094) */
-}
-.hubB-row {
-  padding: 18px 14px;
-  border-bottom: 1px solid rgba(16, 16, 20, 0.08);
-  /* Rayon interne de la charte, comme les tuiles de l'accueil. */
-  border-radius: 14px;
-  text-decoration: none;
-  color: #0A0A0A;
-  transition: background 0.16s ease;
-}
-.hubB-row:hover { background: #F7F6FC; }
-.hubB-num {
-  font-family: 'Geist Mono', monospace;
-  font-size: 10.5px;
-  color: #6B6B66; /* A11Y : contraste 4.5:1 mini (ex-#B5B2A6) */
-}
-.hubB-capsule {
-  justify-self: start;
-  font-family: 'Geist Mono', monospace;
-  font-size: 9.5px;
-  font-weight: 500;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: #4A34F5;
-  background: #EFEDF8;
-  border-radius: 999px;
-  padding: 5px 11px;
-  white-space: nowrap;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.hubB-main { min-width: 0; }
-.hubB-title {
-  display: block;
-  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
-  /* 17 px et -0,02 em : l'échelle des titres de ligne de l'accueil. À 15,5 px
-     la liste se lisait comme un tableau de données, pas comme une bibliothèque. */
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.hubB-desc {
-  display: block;
-  margin-top: 3px;
-  font-size: 13px;
-  color: #6B6B66;
-  line-height: 1.45;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.hubB-date,
-.hubB-dur {
-  font-family: 'Geist Mono', monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.08em;
-  color: #6E6E6E; /* A11Y : contraste 4.5:1 mini (ex-#767676) */
-  white-space: nowrap;
-}
-.hubB-arrow {
-  color: #C9C6BC;
-  font-size: 15px;
-  transition: color 0.16s ease, transform 0.16s ease;
-}
-.hubB-row:hover .hubB-arrow { color: #4A34F5; transform: translateX(3px); }
-/* A11Y : effet estompé sans opacity globale (contraste 4.5:1 conservé) */
-.hubB-row--soon { opacity: 1; cursor: default; }
-.hubB-row--soon .hubB-title { color: #3F3F3F; }
-.hubB-row--soon .hubB-num,
-.hubB-row--soon .hubB-desc,
-.hubB-row--soon .hubB-date,
-.hubB-row--soon .hubB-dur { color: #6B6B66; }
-.hubB-row--soon:hover { background: transparent; }
-.hubB-row--soon:hover .hubB-arrow { color: #C9C6BC; transform: none; }
-.hubB-row--soon .hubB-capsule { background: #F1F0EA; color: #6B6B66; }
-
-/* ===== Responsive ===== */
-@media (max-width: 980px) {
-  .ress-page-header { padding: 32px 24px 20px; }
-  .hubB-index-meta { padding: 0 24px; }
-  .hubB-list { padding: 8px 24px 84px; }
-  .hubB-head,
-  .hubB-row { grid-template-columns: 34px 150px minmax(0, 1fr) 70px 56px 18px; gap: 14px; }
-}
-@media (max-width: 760px) {
-  .ress-page-header { padding: 26px 24px 18px; }
-  .hubB-head { display: none; }
-  .hubB-list { padding-top: 4px; }
-  .hubB-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 12px;
-    padding: 15px 4px;
-    border-radius: 0;
-  }
-  .hubB-num, .hubB-arrow { display: none; }
-  .hubB-capsule { order: 1; }
-  .hubB-date { order: 2; margin-left: auto; }
-  .hubB-dur { order: 3; }
-  .hubB-main { order: 4; width: 100%; }
-  .hubB-title { white-space: normal; }
-  .hubB-desc { display: none; }
-}
-
-/* Neutralise le sticky generique de style-v2 sur le header de page */
-.ress-page-header { position: static !important; }
-.hubC-banner {
-  margin: 46px 0 4px;
-  background: var(--night, #0E0E1A);
-  border-radius: 20px;
-  padding: 34px 40px;
-  display: flex;
-  align-items: center;
-  gap: 36px;
-  color: #FFFFFF;
-  position: relative;
-  overflow: hidden;
-}
-.hubC-banner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 96% 0%, rgba(79, 70, 229, 0.35), transparent 52%);
-  pointer-events: none;
-}
-.hubC-banner-left { flex: 1; position: relative; z-index: 1; }
-.hubC-banner-eyebrow {
-  font-family: 'Geist Mono', monospace;
-  font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #A5B4FC;
-  margin-bottom: 10px;
-}
-.hubC-banner-title {
-  font-family: 'Schibsted Grotesk', system-ui, sans-serif;
-  font-size: 21px;
-  font-weight: 650;
-  letter-spacing: -0.015em;
-  margin: 0 0 7px;
-  color: #FFFFFF;
-}
-.hubC-banner-sub {
-  font-size: 14px;
-  line-height: 1.55;
-  color: rgba(240, 241, 248, 0.72);
-  margin: 0;
-  max-width: 60ch;
-}
-.hubC-banner-cta {
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent, #4A34F5);
-  color: #FFFFFF;
-  border-radius: 999px;
-  padding: 13px 24px;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.hubC-banner-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-cta, 0 8px 24px rgba(79, 70, 229, 0.35));
-}
-@media (max-width: 860px) {
-  .hubC-banner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 24px; }
-}
-</style>
   <script id="hub-filtres">
 /* Filtrage par sujet : boutons .ress-filter[data-filter] / cartes [data-theme] */
 document.addEventListener('DOMContentLoaded', function () {
@@ -537,53 +212,42 @@ document.addEventListener('DOMContentLoaded', function () {
 </head>
 <body class="ress-page">
 
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
+  <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <header>
+  <header id="hd" class="current-navbar">
     <nav id="nav">
       <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
-        <span class="nav-logo-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round">
-            <defs>
-              <radialGradient id="navLogoSun" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#4F46E5"/>
-                <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
-              </radialGradient>
-            </defs>
-            <circle cx="24" cy="20" r="6.5" fill="url(#navLogoSun)" stroke="none"/>
-            <circle cx="24" cy="20" r="9.5" opacity="0.22" fill="none" stroke="#0A0A0A"/>
-            <line x1="6" y1="34" x2="42" y2="34"/>
-            <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
-            <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
-          </svg>
-        </span>
-        <span class="nav-logo-text">ACOMPIA</span>
-      </a>
+          <img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96">
+        </a>
       <div class="nav-links" id="nav-links">
         <div class="nav-dropdown">
-          <a href="/solution/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Notre solution
+          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Nos offres
             <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
           </a>
           <div class="nav-dropdown-menu">
-            <a href="/solution/#platform">
-              <div class="nav-dropdown-theme">Septembre 2026</div>
-              <div class="nav-dropdown-title">Conformité URSSAF en continu</div>
+            <a href="/#suivi">
+              <div class="nav-dropdown-theme">Offre principale</div>
+              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
             </a>
-            <a href="/outils/pilotage-flotte-tarifs/">
-              <div class="nav-dropdown-theme">Flotte véhicules</div>
-              <div class="nav-dropdown-title">Pilotage de l'avantage en nature · tarifs</div>
+            <a href="/offres/audit-paie/">
+              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
+              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
             </a>
-            <a href="/solution/#audits">
-              <div class="nav-dropdown-theme">Sur devis</div>
-              <div class="nav-dropdown-title">Audits sur mesure</div>
+            <a href="/offres/gestion-de-flotte/">
+              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
+              <div class="nav-dropdown-title">La gestion de votre flotte</div>
             </a>
-            <a href="/solution/#devis" class="nav-dropdown-all">Demander un devis →</a>
+            <a href="/offres/controle-urssaf/">
+              <div class="nav-dropdown-theme">Contrôle en cours</div>
+              <div class="nav-dropdown-title">On vous accompagne</div>
+            </a>
+            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
           </div>
         </div>
         <div class="nav-dropdown">
           <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Outils gratuits
+            Boîte à outils
             <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
           </a>
           <div class="nav-dropdown-menu">
@@ -627,8 +291,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
           </div>
         </div>
-        <a href="/#team">Équipe</a>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Prendre rendez-vous</span></a>
+        <a href="/equipe/sabrina-henocque-chiche/">Équipe</a>
+        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Demander une démo</span></a>
       </div>
       <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
         <span></span><span></span><span></span>
@@ -638,12 +302,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <main id="main">
 
-    <header class="ress-page-header">
+    <div class="ress-page-header">
       <h1 class="ress-page-title">Ressources URSSAF</h1>
       <p class="ress-page-subtitle">
         Guides, cas pratiques et analyses signés Maître Sabrina Henocque Chiche, avocate au Barreau de Paris, spécialisée en droit social et contentieux URSSAF.
       </p>
-    </header>
+    </div>
 
     <nav class="ress-filters" aria-label="Filtres par thème">
       <button class="ress-filter ress-filter--active" type="button" data-filter="all">Tous les sujets <span class="cnt">16</span></button>
@@ -863,9 +527,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     </section>
 
-  </main>
-
-  <aside class="hubC-banner">
+    <aside class="hubC-banner">
         <div class="hubC-banner-left">
           <div class="hubC-banner-eyebrow">Par où commencer ?</div>
           <h2 class="hubC-banner-title">Faites d'abord le prédiagnostic URSSAF gratuit</h2>
@@ -874,53 +536,14 @@ document.addEventListener('DOMContentLoaded', function () {
         <a class="hubC-banner-cta" href="/outils/prediagnostic-urssaf/">Lancer le prédiagnostic <span aria-hidden="true">→</span></a>
       </aside>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-brand-row">
-          <span class="footer-logo-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" stroke="#F0F1F8" stroke-width="1.7" stroke-linecap="round">
-              <defs>
-                <radialGradient id="footerLogoSun" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#4F46E5"/>
-                  <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
-                </radialGradient>
-              </defs>
-              <circle cx="24" cy="20" r="6.5" fill="url(#footerLogoSun)" stroke="none"/>
-              <circle cx="24" cy="20" r="9.5" opacity="0.30" fill="none" stroke="#F0F1F8"/>
-              <line x1="6" y1="34" x2="42" y2="34"/>
-              <line x1="11" y1="38" x2="37" y2="38" opacity="0.6"/>
-              <line x1="16" y1="42" x2="32" y2="42" opacity="0.35"/>
-            </svg>
-          </span>
-          <span class="footer-logo">ACOMPIA</span>
-        </div>
-        <p>Le tiers de confiance de la conformité URSSAF en entreprise.</p>
-        <p class="footer-legal-entity">&copy; 2026 ComplyDB SAS · Tous droits réservés</p>
-      </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <p class="footer-col-title">Solution</p>
-          <a href="/#prediag">Prédiagnostic gratuit</a>
-          <a href="/solution/#audits">Nos audits</a>
-          <a href="/solution/#platform">La solution ACOMPIA</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-col-title">Ressources</p>
-          <a href="./">Toutes les publications</a>
-          <a href="aen-vehicule-urssaf/">Guide AEN véhicule 2026</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-col-title">Légal</p>
-          <a href="../mentions-legales.html">Mentions légales</a>
-          <a href="../politique-confidentialite.html">Politique de confidentialité</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  </main>
+
+
+
+  <footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
 
   <script src="../js/config.js" defer></script>
   <script src="../js/socle.js" defer></script>
-  <script src="../js/main.js" defer></script>
+  <script src="/js/accueil/navbar.js" defer></script>
 </body>
 </html>

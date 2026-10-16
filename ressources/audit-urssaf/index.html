@@ -31,17 +31,18 @@
 
   <title>Audit URSSAF, les 8 zones à vérifier avant un contrôle · ACOMPIA</title>
 
-  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-  <link rel="alternate icon" href="../../favicon.svg">
-  <link rel="mask-icon" href="../../favicon.svg" color="#4F46E5">
 
-  <link href="../../css/fonts.css?v=2026-08-31" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/variables.css?v=2026-08-31">
-  <link rel="stylesheet" href="../../css/style.css?v=2026-08-31">
-  <link rel="stylesheet" href="../../css/animations.css?v=2026-08-31">
-  <link rel="stylesheet" href="../../css/style-v2.css?v=2026-08-31">
-  <link rel="stylesheet" href="../../css/ressources.css?v=2026-08-31">
-  <link rel="stylesheet" href="../../css/pages-2026.css?v=2026-08-31">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/css/accueil/socle.css?v=2026-10-16">
+  <link rel="stylesheet" href="/css/accueil/refinement.css?v=contrast-2">
+  <link rel="stylesheet" href="/css/accueil/navbar.css?v=contrast-2">
+  <link rel="stylesheet" href="/css/accueil/section-labels.css?v=contrast-2">
+  <link rel="stylesheet" href="/css/accueil/section-polish.css?v=contrast-2">
+  <link rel="stylesheet" href="/css/accueil/responsive.css?v=team-reverted">
+  <link rel="stylesheet" href="/css/accueil/articles.css?v=2026-10-16">
 
   <script type="application/ld+json">
   {
@@ -176,7 +177,7 @@
         "givenName": "Sabrina",
         "familyName": "Henocque Chiche",
         "jobTitle": "Avocate au Barreau de Paris, spécialisée en droit social et contentieux URSSAF",
-        "description": "Avocate au Barreau de Paris avec plus de 10 années d'expérience en contentieux URSSAF, fondatrice d'ACOMPIA (solution de conformité URSSAF incubée par le Barreau de Paris).",
+        "description": "Avocate au Barreau de Paris avec plus de 10 années d'expérience en contentieux URSSAF, fondatrice d'ACOMPIA (solution de fiabilité et de conformité de la paie, incubée à l'Incubateur du Barreau de Paris).",
         "image": "https://www.acompia.com/assets/images/sabrina-portrait.jpg",
         "knowsAbout": ["URSSAF", "Droit social", "Cotisations sociales", "Contrôle URSSAF", "Redressement URSSAF", "Audit de conformité", "Avantages en nature", "Protection sociale complémentaire"],
         "alumniOf": "Barreau de Paris",
@@ -268,53 +269,42 @@
 </head>
 <body class="ress-page">
 
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
+  <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <header>
+  <header id="hd" class="current-navbar">
     <nav id="nav">
       <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
-        <span class="nav-logo-icon" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round">
-            <defs>
-              <radialGradient id="navLogoSun" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#4F46E5"/>
-                <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
-              </radialGradient>
-            </defs>
-            <circle cx="24" cy="20" r="6.5" fill="url(#navLogoSun)" stroke="none"/>
-            <circle cx="24" cy="20" r="9.5" opacity="0.22" fill="none" stroke="#0A0A0A"/>
-            <line x1="6" y1="34" x2="42" y2="34"/>
-            <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
-            <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
-          </svg>
-        </span>
-        <span class="nav-logo-text">ACOMPIA</span>
-      </a>
+          <img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96">
+        </a>
       <div class="nav-links" id="nav-links">
         <div class="nav-dropdown">
-          <a href="/solution/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Notre solution
+          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Nos offres
             <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
           </a>
           <div class="nav-dropdown-menu">
-            <a href="/solution/#platform">
-              <div class="nav-dropdown-theme">Septembre 2026</div>
-              <div class="nav-dropdown-title">Conformité URSSAF en continu</div>
+            <a href="/#suivi">
+              <div class="nav-dropdown-theme">Offre principale</div>
+              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
             </a>
-            <a href="/outils/pilotage-flotte-tarifs/">
-              <div class="nav-dropdown-theme">Flotte véhicules</div>
-              <div class="nav-dropdown-title">Pilotage de l'avantage en nature · tarifs</div>
+            <a href="/offres/audit-paie/">
+              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
+              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
             </a>
-            <a href="/solution/#audits">
-              <div class="nav-dropdown-theme">Sur devis</div>
-              <div class="nav-dropdown-title">Audits sur mesure</div>
+            <a href="/offres/gestion-de-flotte/">
+              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
+              <div class="nav-dropdown-title">La gestion de votre flotte</div>
             </a>
-            <a href="/solution/#devis" class="nav-dropdown-all">Demander un devis →</a>
+            <a href="/offres/controle-urssaf/">
+              <div class="nav-dropdown-theme">Contrôle en cours</div>
+              <div class="nav-dropdown-title">On vous accompagne</div>
+            </a>
+            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
           </div>
         </div>
         <div class="nav-dropdown">
           <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Outils gratuits
+            Boîte à outils
             <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
           </a>
           <div class="nav-dropdown-menu">
@@ -358,8 +348,8 @@
             <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
           </div>
         </div>
-        <a href="/#team">Équipe</a>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Prendre rendez-vous</span></a>
+        <a href="/equipe/sabrina-henocque-chiche/">Équipe</a>
+        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Demander une démo</span></a>
       </div>
       <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
         <span></span><span></span><span></span>
@@ -390,7 +380,7 @@
           <img class="article-author-mini-photo" src="../../assets/images/sabrina-portrait.jpg" alt="Maître Sabrina Henocque Chiche, avocate au Barreau de Paris spécialisée en droit social" width="44" height="44" loading="eager">
           <div>
             <div><strong>Sabrina Henocque Chiche</strong></div>
-            <div style="font-size:12.5px; color:#888;">Avocate au Barreau de Paris</div>
+            <div class="article-author-mini-role">Avocate au Barreau de Paris</div>
           </div>
         </div>
         <span class="sep"></span>
@@ -546,7 +536,7 @@
         </p>
 
         <p>
-          C'est exactement la finalité d'ACOMPIA, structurer cette revue, la rendre lisible thème par thème et faire de la conformité URSSAF un sujet piloté plutôt qu'un risque subi. Les <strong>huit zones</strong> de cet article correspondent aux huit thèmes du <strong>prédiagnostic</strong> ci-dessous, qui est le moyen le plus rapide de commencer votre auto-évaluation.
+          C'est la finalité d'ACOMPIA. La solution structure cette revue, thème par thème, et vous dit quoi corriger. Les <strong>huit zones</strong> de cet article correspondent aux huit thèmes du <strong>prédiagnostic</strong> ci-dessous, qui est le moyen le plus rapide de commencer votre auto-évaluation.
         </p>
 
         <h2 id="references">Références juridiques principales</h2>
@@ -635,7 +625,7 @@
           <div class="article-cta-block">
             <h4>Besoin d'un audit complet ?</h4>
             <p>30 minutes en visio avec Maître Henocque Chiche pour cadrer le périmètre de votre audit de conformité et prioriser vos zones de risque.</p>
-            <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="article-cta-btn">Prendre rendez-vous</a>
+            <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="article-cta-btn">Demander une démo</a>
           </div>
         </div>
 
@@ -646,11 +636,11 @@
             <h3 class="article-author-card-name" id="author-name">Sabrina Henocque Chiche</h3>
             <p class="article-author-card-title">Avocate au Barreau de Paris · Droit social, contentieux URSSAF</p>
             <p class="article-author-card-bio">
-              Plus de 10 années d'expérience en contentieux URSSAF auprès d'entreprises de 50 à 1&nbsp;000 salariés. Fondatrice d'ACOMPIA, solution de conformité URSSAF incubée par le Barreau de Paris. Intervient régulièrement sur les contrôles et redressements, les avantages en nature, la protection sociale complémentaire et le temps de travail.
+              Plus de 10 années d'expérience en contentieux URSSAF auprès d'entreprises de 50 à 1&nbsp;000 salariés. Fondatrice d'ACOMPIA, solution de fiabilité et de conformité de la paie, incubée à l'Incubateur du Barreau de Paris. Intervient régulièrement sur les contrôles et redressements, les avantages en nature, la protection sociale complémentaire et le temps de travail.
             </p>
             <div class="article-author-card-links">
               <a class="article-author-card-link" href="https://www.linkedin.com/in/sabrinahenocquechiche/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a class="article-author-card-link" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer">Prendre rendez-vous</a>
+              <a class="article-author-card-link" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer">Demander une démo</a>
               <a class="article-author-card-link" href="../../equipe/sabrina-henocque-chiche/">Sa pratique</a>
             </div>
           </div>
@@ -709,54 +699,10 @@
 
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-brand-row">
-          <span class="footer-logo-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" stroke="#F0F1F8" stroke-width="1.7" stroke-linecap="round">
-              <defs>
-                <radialGradient id="footerLogoSunAudit" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#4F46E5"/>
-                  <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
-                </radialGradient>
-              </defs>
-              <circle cx="24" cy="20" r="6.5" fill="url(#footerLogoSunAudit)" stroke="none"/>
-              <circle cx="24" cy="20" r="9.5" opacity="0.30" fill="none" stroke="#F0F1F8"/>
-              <line x1="6" y1="34" x2="42" y2="34"/>
-              <line x1="11" y1="38" x2="37" y2="38" opacity="0.6"/>
-              <line x1="16" y1="42" x2="32" y2="42" opacity="0.35"/>
-            </svg>
-          </span>
-          <span class="footer-logo">ACOMPIA</span>
-        </div>
-        <p>Le tiers de confiance de la conformité URSSAF en entreprise.</p>
-        <p class="footer-legal-entity">&copy; 2026 ComplyDB SAS · Tous droits réservés</p>
-      </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <p class="footer-col-title">Solution</p>
-          <a href="/outils/prediagnostic-urssaf/">Prédiagnostic gratuit</a>
-          <a href="/solution/#audits">Nos audits</a>
-          <a href="/solution/#platform">La solution ACOMPIA</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-col-title">Ressources</p>
-          <a href="../">Toutes les publications</a>
-          <a href="../controle-urssaf/">Guide contrôle URSSAF 2026</a>
-          <a href="../charges-patronales-salariales-urssaf/">Guide charges et cotisations 2026</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-col-title">Légal</p>
-          <a href="../../mentions-legales.html">Mentions légales</a>
-          <a href="../../politique-confidentialite.html">Politique de confidentialité</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
 
   <script src="../../js/config.js" defer></script>
   <script src="../../js/socle.js" defer></script>
-  <script src="../../js/main.js" defer></script>
+  <script src="/js/accueil/navbar.js" defer></script>
 </body>
 </html>

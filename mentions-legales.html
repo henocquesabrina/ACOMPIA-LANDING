@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Mentions légales d'ACOMPIA, solution de conformité URSSAF éditée par ComplyDB SAS.">
@@ -15,53 +16,129 @@
   <meta property="og:site_name" content="ACOMPIA">
   <meta name="twitter:card" content="summary">
 
-  <!-- Favicon ACOMPIA · D4 Horizon + soleil -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="alternate icon" href="favicon.svg">
-  <link rel="mask-icon" href="favicon.svg" color="#4F46E5">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <title>Mentions légales · ACOMPIA</title>
-  <link href="css/fonts.css?v=2026-08-31" rel="stylesheet">
-
-
-  <link rel="stylesheet" href="css/legal-v2.css?v=2026-08-31">
-  <link rel="stylesheet" href="css/pages-2026.css?v=2026-08-31">
 
   <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
 
   <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
-  <script src="js/analytics.js" defer></script>
+  <script src="/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/accueil/socle.css?v=2026-10-16">
+<link rel="stylesheet" href="/css/accueil/refinement.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/motion.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/isometric.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/dashboard.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/navbar.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/risk-story.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/restored-copy.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/visual-sections.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/product-mockups.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/section-labels.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/dashboard-tooltips.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/section-polish.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/responsive.css?v=team-reverted">
+<link rel="stylesheet" href="/css/accueil/hero-backdrop.css?v=contrast-2">
+<link rel="stylesheet" href="/css/accueil/offres.css?v=2026-10-16">
+<link rel="stylesheet" href="/css/accueil/pages.css?v=2026-10-16">
 </head>
-<body>
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
+<body id="top">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
-  <nav class="legal-nav">
-    <a href="/" class="legal-nav-logo" aria-label="Retour à l'accueil ACOMPIA">
-      <span class="legal-nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 48 48" fill="none" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round">
-          <defs>
-            <radialGradient id="legalLogoSun" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#4F46E5"/>
-              <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.85"/>
-            </radialGradient>
-          </defs>
-          <circle cx="24" cy="20" r="6.5" fill="url(#legalLogoSun)" stroke="none"/>
-          <circle cx="24" cy="20" r="9.5" opacity="0.22" fill="none" stroke="#0A0A0A"/>
-          <line x1="6" y1="34" x2="42" y2="34"/>
-          <line x1="11" y1="38" x2="37" y2="38" opacity="0.5"/>
-          <line x1="16" y1="42" x2="32" y2="42" opacity="0.28"/>
-        </svg>
-      </span>
-      <span class="legal-nav-wordmark">ACOMPIA</span>
-    </a>
-    <a href="/" class="legal-nav-back">← Retour au site</a>
-  </nav>
+  <header id="hd" class="current-navbar">
+    <nav id="nav">
+      <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
+          <img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96">
+        </a>
+      <div class="nav-links" id="nav-links">
+        <div class="nav-dropdown">
+          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Nos offres
+            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="/#suivi">
+              <div class="nav-dropdown-theme">Offre principale</div>
+              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
+            </a>
+            <a href="/offres/audit-paie/">
+              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
+              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
+            </a>
+            <a href="/offres/gestion-de-flotte/">
+              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
+              <div class="nav-dropdown-title">La gestion de votre flotte</div>
+            </a>
+            <a href="/offres/controle-urssaf/">
+              <div class="nav-dropdown-theme">Contrôle en cours</div>
+              <div class="nav-dropdown-title">On vous accompagne</div>
+            </a>
+            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Boîte à outils
+            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="/outils/prediagnostic-urssaf/">
+              <div class="nav-dropdown-theme">Gratuit · 3 minutes</div>
+              <div class="nav-dropdown-title">Prédiagnostic URSSAF</div>
+            </a>
+            <a href="/outils/simulateur-avantage-en-nature-vehicule/">
+              <div class="nav-dropdown-theme">Gratuit · barème 2026</div>
+              <div class="nav-dropdown-title">Simulateur d'avantage en nature véhicule</div>
+            </a>
+            <a href="/outils/" class="nav-dropdown-all">Tous les outils →</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/ressources/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Ressources
+            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="/ressources/controle-urssaf/">
+              <div class="nav-dropdown-theme">Contrôle URSSAF</div>
+              <div class="nav-dropdown-title">Comment ça se passe et que risque-t-on ?</div>
+            </a>
+            <a href="/ressources/audit-urssaf/">
+              <div class="nav-dropdown-theme">Audit URSSAF</div>
+              <div class="nav-dropdown-title">Les 8 zones à vérifier avant un contrôle</div>
+            </a>
+            <a href="/ressources/aen-vehicule-urssaf/">
+              <div class="nav-dropdown-theme">AEN véhicule</div>
+              <div class="nav-dropdown-title">Le guide complet 2026</div>
+            </a>
+            <a href="/ressources/reduction-generale-cotisations-patronales/">
+              <div class="nav-dropdown-theme">Réduction générale</div>
+              <div class="nav-dropdown-title">RGDU : le guide 2026</div>
+            </a>
+            <a href="/ressources/reformes-urssaf-2025-2026/">
+              <div class="nav-dropdown-theme">Actualités</div>
+              <div class="nav-dropdown-title">Réformes URSSAF 2025-2026</div>
+            </a>
+            <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
+          </div>
+        </div>
+        <a href="/equipe/sabrina-henocque-chiche/">Équipe</a>
+        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Demander une démo</span></a>
+      </div>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
 
-  <article class="legal-page" id="main">
-    <div class="legal-tag">Cadre légal</div>
+<main id="contenu">
+<section class="pg"><div class="wrap"><article class="pg-legal">
+    <p class="pg-ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span>Cadre légal</p>
     <h1>Mentions <em>légales</em></h1>
-    <p class="legal-updated">Dernière mise à jour · juillet 2026</p>
+    <p class="pg-maj">Dernière mise à jour · juillet 2026</p>
 
     <h2>1. Éditeur du site</h2>
     <p>
@@ -132,16 +209,10 @@
       Les présentes mentions légales sont soumises au droit français. Tout litige relatif à l'utilisation
       de ce site sera soumis à la compétence exclusive des tribunaux de Paris.
     </p>
+</article></div></section>
+</main>
 
-  </article>
-
-  <footer class="legal-footer">
-    <div class="legal-footer-inner">
-      <span>© 2026 ComplyDB SAS · Tous droits réservés</span>
-      <span class="legal-footer-sep"></span>
-      <a href="politique-confidentialite.html">Politique de confidentialité</a>
-    </div>
-  </footer>
-
+<footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
+<script src="/js/accueil/navbar.js"></script>
 </body>
 </html>

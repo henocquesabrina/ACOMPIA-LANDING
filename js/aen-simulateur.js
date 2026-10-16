@@ -354,7 +354,7 @@ function rendreResultat(r){
     '<p class="rf-sous">Multipliez ce montant par votre flotte : l\'enjeu se compte souvent en dizaines de milliers d\'euros d\'assiette. Deux façons d\'y voir clair.</p>'+
     '<div class="res-cta">'+
       '<a class="btn-p" href="'+ACOMPIA_CONFIG.rdvURL+'" target="_blank" rel="noopener">Demander un devis pour l\'audit de votre flotte</a>'+
-      '<a class="btn-s" href="/outils/pilotage-flotte-tarifs/">Découvrir l\'outil de pilotage continu</a>'+
+      '<a class="btn-s" href="/offres/gestion-de-flotte/">Découvrir la gestion de flotte</a>'+
     '</div>'+
   '</div>';
 
@@ -536,7 +536,7 @@ function afficherRapport(f){
         '<p>Multiplié par vos véhicules, l\'enjeu se compte en dizaines de milliers d\'euros. Nous auditons vos pratiques sur les trois années contrôlables et vous outillons pour rester conforme en continu.</p>'+
         '<div class="rc-btns">'+
           '<a class="p" href="'+ACOMPIA_CONFIG.rdvURL+'" target="_blank" rel="noopener">Demander un devis d\'audit</a>'+
-          '<a class="s" href="/outils/pilotage-flotte-tarifs/">Découvrir le pilotage de flotte</a>'+
+          '<a class="s" href="/offres/gestion-de-flotte/">Découvrir la gestion de flotte</a>'+
         '</div>'+
       '</div>'+
     '</div>';

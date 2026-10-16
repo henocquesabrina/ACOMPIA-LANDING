@@ -509,7 +509,7 @@ function grilleANV(fleetAnswer) {
     <div class="rpt-anv">
       <h4>Le module Avantage en nature véhicule</h4>
       <p class="rpt-anv-mention">Surveillance continue de la conformité de votre flotte, à partir de 89 € HT/mois (tarif au véhicule, dégressif). Ouverture en septembre 2026. Les entreprises fondatrices bénéficient de la mise en route offerte et de leur diagnostic livré avant la rentrée.</p>
-      <a href="/solution/#fondateurs" class="btn-primary rpt-anv-cta">Découvrir l'offre fondatrice →</a>
+      <a href="/offres/gestion-de-flotte/" class="btn-primary rpt-anv-cta">Découvrir la gestion de flotte →</a>
     </div>
   `;
 }

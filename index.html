@@ -4,17 +4,17 @@
   <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ACOMPIA confronte votre paie et vos DSN aux règles URSSAF, pièces à l’appui. Un plan d’action par ordre de priorité. D’abord en audit, puis chaque mois.">
+  <meta name="description" content="Fiabilisez votre paie. Comprenez les écarts, choisissez vos priorités et préparez les corrections. ACOMPIA, conçue par une avocate, augmentée par l’IA.">
   <meta name="author" content="ComplyDB SAS">
   <meta name="robots" content="index, follow">
   <meta name="msvalidate.01" content="252510406CA621DFA696C828645CA9FF">
   <meta name="theme-color" content="#FFFFFF">
   <link rel="canonical" href="https://www.acompia.com/">
 
-  <!-- Favicon ACOMPIA · D4 Horizon + soleil -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="alternate icon" href="favicon.svg">
-  <link rel="mask-icon" href="favicon.svg" color="#4F46E5">
+  <!-- Favicon ACOMPIA : le A -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -35,12 +35,12 @@
 
   <title>Conformité de la paie · Audit et suivi mensuel avec ACOMPIA</title>
 
-  <!-- Routage des ancres historiques : les sections déplacées vers /solution/ restent joignables -->
+  <!-- Routage des ancres historiques : les anciennes ancres renvoient vers les pages offres -->
   <script>
   (function () {
     var h = location.hash;
     if (['#how', '#platform', '#audits', '#fondateurs', '#devis', '#devis-form', '#notify-form'].indexOf(h) > -1) {
-      location.replace('/solution/' + (h === '#devis-form' || h === '#notify-form' ? '#devis' : h));
+      location.replace({'#audits': '/offres/audit-paie/', '#platform': '/offres/#offres', '#fondateurs': '/equipe/sabrina-henocque-chiche/', '#how': '/offres/'}[h] || '/offres/#devis');
     }
   })();
   </script>
@@ -231,299 +231,18 @@
   </script>
 
   <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
 
   <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
-  <script src="js/analytics.js" defer></script>
+  
 
 
 
 
-<style>
-@font-face{font-family:Geist;src:url(assets/fonts/geist-latin.woff2) format('woff2');font-weight:100 900;font-display:swap}
-@font-face{font-family:'Schibsted Grotesk';src:url(assets/fonts/schibsted-latin.woff2) format('woff2');font-weight:400 900;font-display:swap}
-@font-face{font-family:'Geist Mono';src:url(assets/fonts/geist-mono-latin.woff2) format('woff2');font-display:swap}
-/* Jetons repris de css/landing-2026.css */
-:root{
-  --l26-encre:#101014;--l26-texte-2:#55555F;--l26-texte-3:#5F5F6B;
-  --l26-mauve:#4A34F5;--l26-mauve-clair:#8C7BFF;
-  --l26-page:#FFFFFF;--l26-bande:#EFEDF8;--l26-surface:#F7F6FC;--l26-sombre:#0E0E1A;
-  --l26-rouge:#C0293F;--l26-vert:#16713F;
-  --l26-bord-1:rgba(16,16,20,.06);--l26-bord-2:rgba(16,16,20,.08);--l26-bord-3:rgba(16,16,20,.16);
-  --l26-r-panneau:clamp(28px,3vw,44px);--l26-r-interne:18px;
-  --l26-ombre-carte:0 30px 70px -34px rgba(16,16,20,.28);
-  --l26-police:'Schibsted Grotesk',system-ui,sans-serif;--l26-mono:'Geist Mono',ui-monospace,monospace;
-  --l26-gouttiere:clamp(24px,4vw,56px);
-  /* Couleurs de l'application, pour les maquettes d'interface */
-  --ui-rouge:#F07178;--ui-rouge-p:#FBD5D8;--ui-vert:#3DBE7A;--ui-vert-p:#C9EEDA;--ui-gris:#E9E9EF;--ui-mauve:#6B5FC7;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--l26-police);color:var(--l26-encre);background:var(--l26-page);-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1280px;margin:0 auto;padding:0 var(--l26-gouttiere)}
-.mono{font-family:var(--l26-police);font-size:15px;font-weight:600;letter-spacing:-.005em;color:var(--l26-texte-3)}
-.mono.m{color:var(--l26-mauve)}
-.num{font-variant-numeric:tabular-nums}
-
-/* Nav */
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:saturate(1.6) blur(14px);-webkit-backdrop-filter:saturate(1.6) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
-header.s{border-bottom-color:var(--l26-bord-2)}
-nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{font-weight:600;letter-spacing:.3em;font-size:17px}
-.links{display:flex;gap:30px;font-size:15px;color:var(--l26-texte-2)}
-.links a:hover{color:var(--l26-encre)}
-.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font-weight:600;font-size:16px;border:1px solid var(--l26-encre);transition:background .15s}
-.btn small{font-weight:400;font-size:14px;opacity:.55}
-.btn-n{background:var(--l26-encre);color:#fff}
-.btn-n:hover{background:#2a2a33}
-.btn-b{border-color:var(--l26-bord-3)}
-.btn-b:hover{border-color:var(--l26-encre)}
-.nav-cta{height:42px;font-size:15px;padding:0 18px}
-
-/* ---------- Maquettes d'interface codées ---------- */
-.app{background:#fff;border:1px solid var(--l26-bord-2);border-radius:var(--l26-r-interne);box-shadow:var(--l26-ombre-carte);font-size:13px;color:#2A2A33;overflow:hidden}
-.app h4{font-size:20px;font-weight:600;letter-spacing:-.02em;color:var(--l26-encre)}
-.app .sub{font-size:12.5px;color:#55555f;margin-top:4px}
-.app .lbl{font-size:12px;color:#55555f}
-.app .card{border:1px solid var(--l26-bord-2);border-radius:12px;padding:16px}
-.app .pbtn{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:8px;border:1px solid var(--l26-bord-3);font-size:12px;font-weight:500;background:#fff;white-space:nowrap}
-.app .pbtn.f{background:var(--ui-mauve);border-color:var(--ui-mauve);color:#fff}
-.sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px;vertical-align:0}
-.split{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;margin:12px 0}
-.split i{display:block;height:100%;border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
-.on .split i,.hero-app.in .split i{width:var(--w)}
-
-/* Tableau de bord du premier écran */
-.dash{display:grid;grid-template-columns:190px 1fr;min-height:520px}
-.side{background:#FAFAFC;border-right:1px solid var(--l26-bord-1);padding:18px 14px;font-size:12.5px;color:#5A5A66}
-.side .brand{font-weight:600;color:var(--l26-encre);font-size:15px;margin-bottom:18px;display:flex;align-items:center;gap:8px}
-.side .brand i{width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,var(--l26-mauve-clair),var(--l26-mauve))}
-.side .co{background:#fff;border:1px solid var(--l26-bord-2);border-radius:8px;padding:8px 10px;font-weight:600;font-size:11.5px;color:var(--l26-encre);margin-bottom:16px}
-.side .grp{font-family:var(--l26-mono);font-size:10px;letter-spacing:.06em;color:#55555f;margin:14px 0 6px}
-.side .it{display:flex;justify-content:space-between;padding:6px 8px;border-radius:6px}
-.side .it.a{background:var(--l26-bande);color:var(--ui-mauve);font-weight:600}
-.side .it b{font-weight:500;font-size:11px;color:#55555f}
-.main{padding:22px 24px}
-.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.years{display:flex;border:1px solid var(--l26-bord-2);border-radius:8px;padding:2px;font-size:12px}
-.years span{padding:4px 10px;border-radius:6px;color:#55555f}
-.years span.a{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08);color:var(--l26-encre);font-weight:600}
-.alert{display:flex;justify-content:space-between;align-items:center;margin:16px 0;padding:10px 14px;border-radius:10px;background:var(--l26-bande);font-size:12.5px}
-.alert b{color:var(--ui-mauve)}
-.grid2{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
-.kpis{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}
-.big{font-size:34px;font-weight:600;letter-spacing:-.03em;color:var(--l26-encre);margin-top:8px}
-.big small{font-size:16px;color:#55555f;font-weight:500}
-.big.g{color:var(--ui-vert);font-size:26px}
-.optim{background:#F2FBF6;border-color:#D8F1E3!important}
-.row{display:flex;justify-content:space-between;font-size:12px;margin-top:6px;color:#5A5A66}
-.row b{color:var(--l26-encre);font-weight:600}
-.chart{margin-top:14px}
-.chart svg{width:100%;height:120px;display:block}
-.bar-up,.bar-dn{transform-box:fill-box;transform:scaleY(0);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
-.bar-up{transform-origin:bottom}.bar-dn{transform-origin:top}
-.hero-app.in .bar-up,.hero-app.in .bar-dn{transform:scaleY(1)}
-.donut{display:flex;flex-direction:column;align-items:center;gap:14px}
-.donut svg{width:132px;height:132px;transform:rotate(-90deg)}
-.donut circle{fill:none;stroke-width:16}
-.donut .seg{stroke-dasharray:0 400;transition:stroke-dasharray 1.2s ease}
-.donut-c{position:relative}
-.donut-c div{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-size:28px;font-weight:600;line-height:1}
-.donut-c small{display:block;font-size:11px;color:#55555f;font-weight:400;margin-top:2px}
-.leg{width:100%;font-size:12px}
-.leg div{display:flex;justify-content:space-between;padding:4px 0;color:#5A5A66}
-.leg b{color:var(--l26-encre);font-weight:600}
-.foot{margin-top:12px;font-size:11.5px;color:#5A5A66}
-.foot b{color:var(--l26-vert)}
-
-/* Hero */
-.hero{padding:clamp(56px,8vw,104px) 0 0}
-.hero-top{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:end}
-.hero h1{font-size:clamp(48px,7vw,100px);line-height:.96;letter-spacing:-.045em;font-weight:700;margin-top:22px}
-.hero h1 span{color:var(--l26-mauve)}
-.hero-side p{font-size:clamp(17px,1.5vw,19px);line-height:1.55;color:var(--l26-texte-2)}
-.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
-.facts{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;font-size:14px;color:var(--l26-texte-3)}
-.facts span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--l26-mauve);margin-right:8px;vertical-align:2px}
-.showcase{margin-top:clamp(48px,6vw,80px);background:var(--l26-bande);border-radius:var(--l26-r-panneau);padding:clamp(24px,5vw,64px) clamp(24px,5vw,64px) 0;overflow:hidden}
-.showcase .app{border-bottom:0;border-radius:var(--l26-r-interne) var(--l26-r-interne) 0 0}
-.backers{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:36px 0;border-bottom:1px solid var(--l26-bord-2)}
-.backers div{display:flex;gap:clamp(24px,5vw,64px);flex-wrap:wrap;font-weight:600;font-size:19px;color:#55555f;letter-spacing:-.01em}
-
-/* Pourquoi */
-section{padding:clamp(80px,10vw,144px) 0}
-.why{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,120px)}
-h2{font-size:clamp(36px,4.6vw,64px);line-height:1.02;letter-spacing:-.04em;font-weight:700;margin-top:18px}
-.lede{font-size:18px;line-height:1.6;color:var(--l26-texte-2);margin-top:22px;max-width:520px}
-.figure{margin-top:48px;padding-top:28px;border-top:1px solid var(--l26-encre)}
-.figure b{display:block;font-size:clamp(72px,9vw,128px);line-height:.9;letter-spacing:-.06em;font-weight:700}
-.figure p{margin-top:14px;font-size:16px;line-height:1.5;color:var(--l26-texte-2);max-width:440px}
-.figure small{display:block;margin-top:10px;font-family:var(--l26-mono);font-size:11px;color:var(--l26-texte-3)}
-.causes{list-style:none;align-self:end}
-.causes li{display:grid;grid-template-columns:48px 1fr;gap:8px;padding:28px 0;border-top:1px solid var(--l26-bord-2)}
-.causes li:last-child{border-bottom:1px solid var(--l26-bord-2)}
-.causes .n{font-family:var(--l26-mono);font-size:13px;color:var(--l26-mauve);padding-top:5px}
-.causes h3{font-size:22px;letter-spacing:-.02em;line-height:1.25}
-.causes p{margin-top:8px;color:var(--l26-texte-2);line-height:1.55}
-
-/* Solution : récit collant */
-.sol{background:var(--l26-surface)}
-.sol-head{max-width:760px;margin-bottom:clamp(40px,6vw,64px)}
-.story{display:grid;grid-template-columns:4fr 7fr;gap:clamp(32px,5vw,80px)}
-.step{min-height:78vh;display:flex;flex-direction:column;justify-content:center;opacity:.3;transition:opacity .35s}
-.step.on{opacity:1}
-.step .mono{margin-bottom:14px}
-.step h3{font-size:clamp(26px,2.6vw,36px);letter-spacing:-.03em;line-height:1.1}
-.step p{margin-top:14px;font-size:17px;line-height:1.6;color:var(--l26-texte-2);max-width:420px}
-.kpi{margin-top:28px;display:flex;align-items:baseline;gap:14px;padding-top:20px;border-top:1px solid var(--l26-bord-2);max-width:420px}
-.kpi b{font-size:40px;letter-spacing:-.04em;font-weight:700}
-.kpi span{font-size:14px;color:var(--l26-texte-3);line-height:1.4}
-.pin{position:sticky;top:100px;height:calc(100vh - 140px);display:flex;align-items:center}
-.stage{position:relative;width:100%;height:min(600px,100%);background:var(--l26-bande);border-radius:var(--l26-r-panneau);overflow:hidden}
-.panel{position:absolute;inset:clamp(20px,3vw,40px);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(20px) scale(.98);transition:opacity .45s,transform .45s;pointer-events:none}
-.panel.on{opacity:1;transform:none;pointer-events:auto}
-.panel .app{width:100%}
-.dots{position:absolute;left:50%;transform:translateX(-50%);bottom:16px;display:flex;gap:6px}
-.dots i{width:20px;height:4px;border-radius:2px;background:var(--l26-bord-3);transition:.3s}
-.dots i.on{background:var(--l26-mauve);width:34px}
-
-/* Panneau 1 : audit */
-.p1{padding:22px}
-.p1 .cols{display:grid;grid-template-columns:1fr 1.15fr;margin-top:16px;border:1px solid var(--l26-bord-2);border-radius:12px;overflow:hidden}
-.p1 .l{background:#FAFAFC;padding:20px}
-.p1 .r{padding:20px}
-.p1 .big{font-size:42px;color:var(--ui-mauve)}
-.p1 .row{font-size:13px;margin-top:10px}
-.p1 hr{border:0;border-top:1px solid var(--l26-bord-1);margin:14px 0}
-.p1 .row .gr{color:var(--l26-vert)}
-.tabs-ui{display:flex;gap:4px;margin-top:16px;padding:3px;background:var(--l26-bande);border-radius:8px;font-size:12px;width:max-content}
-.tabs-ui span{padding:5px 10px;border-radius:6px;color:#5A5A66}
-.tabs-ui span.a{background:#fff;color:var(--l26-encre);font-weight:600}
-.tabs-ui b{font-weight:500;color:#55555f;margin-left:4px}
-
-/* Panneau 2 : actions */
-.p2{padding:22px}
-.tbl{width:100%;border-collapse:collapse;margin-top:12px}
-.tbl th{font-family:var(--l26-mono);font-weight:400;font-size:10px;letter-spacing:.06em;color:#55555f;text-align:left;padding:8px 6px;border-bottom:1px solid var(--l26-bord-2)}
-.tbl td{padding:9px 6px;border-bottom:1px solid var(--l26-bord-1);vertical-align:middle}
-.tbl td:nth-child(3),.tbl th:nth-child(3){text-align:right}
-.tbl td b{display:block;font-weight:600;font-size:12.5px;color:var(--l26-encre)}
-.tbl td small{font-size:11px;color:#55555f}
-.tbl .t{font-size:11.5px;color:#5A5A66}
-.tbl .m{font-weight:600}
-.tbl tr.r{opacity:0;transform:translateX(10px);transition:opacity .4s,transform .4s}
-.panel.on .tbl tr.r{opacity:1;transform:none}
-.tbl tfoot td{border:0;padding-top:12px;font-weight:600}
-
-/* Panneau 3 : contrôle */
-.p3{padding:22px}
-.p3 .cols{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-top:16px}
-.ins div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--l26-bord-1)}
-.ins b{font-weight:600;font-size:13px;color:var(--l26-encre);display:block}
-.ins small{font-size:11px;color:#55555f}
-.ins .v{text-align:right;white-space:nowrap}
-.segs{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin:10px 0 8px}
-.segs i{height:7px;border-radius:2px;background:var(--ui-gris);transition:background .3s}
-.panel.on .segs i.f{background:var(--ui-mauve)}
-.nb{margin-top:10px;padding:10px;border-radius:8px;background:var(--l26-bande);font-size:11.5px;line-height:1.45}
-.nb b{color:var(--ui-mauve)}
-
-/* Panneau 4 : assistant */
-.p4{padding:26px;max-width:560px;margin:0 auto}
-.prog{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 16px}
-.prog i{height:4px;border-radius:2px;background:var(--ui-gris);position:relative;overflow:hidden}
-.prog i::after{content:"";position:absolute;inset:0;background:var(--ui-mauve);transform:scaleX(0);transform-origin:left;transition:transform .5s}
-.prog i.d::after{transform:none}
-.chk div{display:flex;align-items:center;gap:12px;padding:7px 0;font-size:14px;color:#55555f;transition:color .3s}
-.chk div i{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--l26-bord-3);display:grid;place-items:center;flex:none;transition:.3s}
-.chk div.d{color:var(--l26-encre)}
-.chk div.d i{background:var(--ui-vert);border-color:var(--ui-vert)}
-.chk div.d i::after{content:"";width:8px;height:4px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
-.ready{margin-top:14px;padding:12px 14px;border-radius:10px;background:#E8F7EE;color:var(--l26-vert);font-weight:600;font-size:14px;opacity:0;transform:translateY(6px);transition:.4s}
-.ready.d{opacity:1;transform:none}
-.acts{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
-
-/* 26 thèmes : familles à gauche, fiche à droite */
-.themes{margin-top:clamp(64px,8vw,112px)}
-.themes-h{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:end;margin-bottom:clamp(36px,4vw,56px)}
-.themes-h h3{font-size:clamp(32px,4vw,56px);line-height:1.02;letter-spacing:-.04em;margin-top:14px}
-.themes-h p{color:var(--l26-texte-2);font-size:17px;line-height:1.55}
-.ix{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:start}
-.ix-g{font-size:13px;color:var(--l26-texte-3);padding:28px 0 8px}
-.ix-g:first-child{padding-top:0}
-.ix-list button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:36px 1fr auto;align-items:baseline;gap:8px;padding:9px 0;border-top:1px solid var(--l26-bord-2);font-size:clamp(19px,1.7vw,24px);font-weight:600;letter-spacing:-.02em;color:#55555f;transition:color .15s}
-.ix-list button .k{font-size:12px;font-weight:400;letter-spacing:0;color:#55555f;font-variant-numeric:tabular-nums}
-.ix-list button .d{width:7px;height:7px;border-radius:50%;background:var(--l26-rouge);opacity:.5}
-.ix-list button:hover,.ix-list button[aria-selected=true]{color:var(--l26-encre)}
-.ix-list button[aria-selected=true] .k{color:var(--l26-mauve)}
-.ix-list button[aria-selected=true] .d{opacity:1}
-.ix-list button:focus-visible{outline:2px solid var(--l26-mauve);outline-offset:2px}
-.ix-pin{position:sticky;top:110px}
-.ix-stage{background:var(--l26-bande);border-radius:var(--l26-r-panneau);padding:clamp(24px,4vw,48px);min-height:440px;display:flex;align-items:center}
-.ix-card{width:100%;padding:24px;animation:fin .3s ease both}
-.ix-card .crumb{font-size:12px;color:#55555f}
-.ix-card h4{margin-top:6px}
-.ix-card .desc{margin-top:6px;font-size:14px;color:#5A5A66;line-height:1.5}
-.fd{margin-top:20px;border:1px solid var(--l26-bord-2);border-radius:12px;overflow:hidden}
-.fd-h{display:flex;justify-content:space-between;padding:10px 14px;background:#FAFAFC;border-bottom:1px solid var(--l26-bord-1);font-size:12px;color:#55555f}
-.fd-r{display:grid;grid-template-columns:1fr auto;gap:16px;padding:12px 14px;border-bottom:1px solid var(--l26-bord-1)}
-.fd-r:last-child{border:0}
-.fd-r b{display:block;font-size:13.5px;font-weight:600;color:var(--l26-encre)}
-.fd-r small{font-size:12px;color:#55555f}
-.fd-r .v{text-align:right;font-weight:600;font-size:13.5px;white-space:nowrap;font-variant-numeric:tabular-nums}
-.fd-r .v small{display:block;font-weight:400}
-.src{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px}
-.src span{border:1px solid var(--l26-bord-2);border-radius:10px;padding:10px;font-size:12px;color:#5A5A66}
-.src span::before{content:"✓";display:block;color:var(--ui-vert);font-weight:700;margin-bottom:4px}
-.ix-card .acts{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
-@keyframes fin{from{opacity:0;transform:translateY(4px)}}
-
-/* Offres */
-.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(40px,5vw,64px)}
-.offer{display:flex;flex-direction:column;border-radius:var(--l26-r-panneau);background:var(--l26-surface);border:1px solid var(--l26-bord-1);overflow:hidden;transition:transform .25s,box-shadow .25s}
-.offer:hover{transform:translateY(-4px);box-shadow:var(--l26-ombre-carte)}
-.offer .txt{padding:32px 32px 0;flex:1}
-.offer .tp{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-.tag{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:var(--l26-mauve);color:#fff}
-.offer h3{font-size:26px;letter-spacing:-.03em;line-height:1.1}
-.offer p{margin-top:12px;color:var(--l26-texte-2);line-height:1.55;font-size:15.5px}
-.offer .go{display:inline-flex;margin-top:22px;font-weight:600;font-size:15px;border-bottom:1px solid currentColor;padding-bottom:2px}
-.offer .mini{margin:28px 0 0 32px;border-radius:14px 0 0 0;border-right:0;border-bottom:0;box-shadow:none;padding:16px;font-size:12px;min-height:170px}
-.offer.main{background:var(--l26-sombre);color:#fff;border-color:var(--l26-sombre)}
-.offer.main p{color:rgba(255,255,255,.66)}
-.offer.main .mono{color:var(--l26-mauve-clair)}
-.mini .ln{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--l26-bord-1)}
-.mini .ln:last-child{border:0}
-.mini .ln b{font-weight:600}
-
-/* CTA final */
-.final{padding-top:0}
-.final .box{background:var(--l26-bande);border-radius:var(--l26-r-panneau);padding:clamp(48px,8vw,112px) clamp(28px,6vw,96px);display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end}
-.final h2{margin-top:0;font-size:clamp(36px,5vw,72px)}
-.final h2 span{color:var(--l26-texte-3)}
-.final p{color:var(--l26-texte-2);font-size:15px;margin-top:16px}
-footer{padding:32px 0 48px}
-
-.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
-.rv.in{opacity:1;transform:none}
-
-@media (max-width:1080px){.dash{grid-template-columns:1fr}.side{display:none}}
-@media (max-width:960px){
-  .links{display:none}
-  .hero-top,.why,.final .box{grid-template-columns:1fr;gap:28px}
-  .grid2,.kpis,.p1 .cols,.p3 .cols{grid-template-columns:1fr}
-  .story{grid-template-columns:1fr}
-  .pin{display:none}
-  .step{min-height:0;opacity:1;padding:36px 0;border-top:1px solid var(--l26-bord-2)}
-  .offers,.ix,.themes-h{grid-template-columns:1fr}
-  .ix-pin{position:static}
-  .themes-h{gap:16px}
-  .btn{flex:1 1 auto;justify-content:center}
-  .nav-cta{flex:none}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
-</style>
+  <!-- Analytics · Cloudflare Web Analytics (sans cookie, conforme RGPD) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
+  <!-- Analytics · PostHog EU -->
+  <script src="/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/accueil/socle.css?v=2026-10-16">
 <link rel="stylesheet" href="css/accueil/refinement.css?v=contrast-2">
 <link rel="stylesheet" href="css/accueil/motion.css?v=contrast-2">
 <link rel="stylesheet" href="css/accueil/isometric.css?v=contrast-2">
@@ -549,29 +268,33 @@ footer{padding:32px 0 48px}
         </a>
       <div class="nav-links" id="nav-links">
         <div class="nav-dropdown">
-          <a href="/solution/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Notre solution
+          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
+            Nos offres
             <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
           </a>
           <div class="nav-dropdown-menu">
-            <a href="/solution/#platform">
-              <div class="nav-dropdown-theme">Septembre 2026</div>
-              <div class="nav-dropdown-title">Conformité de la paie en continu</div>
+            <a href="/#suivi">
+              <div class="nav-dropdown-theme">Offre principale</div>
+              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
             </a>
-            <a href="/outils/pilotage-flotte-tarifs/">
-              <div class="nav-dropdown-theme">Flotte véhicules</div>
-              <div class="nav-dropdown-title">Pilotage de l'avantage en nature · tarifs</div>
+            <a href="/offres/audit-paie/">
+              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
+              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
             </a>
-            <a href="/solution/#audits">
-              <div class="nav-dropdown-theme">Sur devis</div>
-              <div class="nav-dropdown-title">Audits sur mesure</div>
+            <a href="/offres/gestion-de-flotte/">
+              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
+              <div class="nav-dropdown-title">La gestion de votre flotte</div>
             </a>
-            <a href="/solution/#devis" class="nav-dropdown-all">Demander un devis →</a>
+            <a href="/offres/controle-urssaf/">
+              <div class="nav-dropdown-theme">Contrôle en cours</div>
+              <div class="nav-dropdown-title">On vous accompagne</div>
+            </a>
+            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
           </div>
         </div>
         <div class="nav-dropdown">
           <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Outils gratuits
+            Boîte à outils
             <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
           </a>
           <div class="nav-dropdown-menu">
@@ -758,7 +481,6 @@ footer{padding:32px 0 48px}
       <small class="risk-disclaimer">Exemple fictif : 496 € d’écart mensuel constant, hors majorations.</small>
     </div>
   </div>
-  <div class="risk-evidence"><strong><span>Plus de</span>8 sur 10</strong><div><p>contrôles URSSAF aboutissent à un redressement.</p><small>Pour 667 M€ de redressements dus par les entreprises en 2025.</small></div></div>
 </div></section>
 
 <!-- Solution -->
@@ -870,14 +592,14 @@ footer{padding:32px 0 48px}
             
             <p class="mq-pour-qui">Pour les responsables paie, les DRH et les DAF, paie interne ou confiée à un cabinet, une ou plusieurs sociétés. Pour les cabinets de paie aussi, sur tous leurs dossiers.</p>
           </div>
-          <ul class="l26-lignes"><li class="l26-ligne"><span class="l26-ligne-num">01</span><span><span class="l26-ligne-titre">Les écarts à traiter ce mois-ci</span><span class="l26-ligne-sous">Vous savez où concentrer vos vérifications et quelles corrections préparer.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">02</span><span><span class="l26-ligne-titre">Les effets de seuil anticipés</span><span class="l26-ligne-sous">Effectif, SMIC, plafonds. Vous savez avant la paie ce qui change pour vous.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">03</span><span><span class="l26-ligne-titre">Savoir ce qu’une nouvelle règle change pour vous</span><span class="l26-ligne-sous">Une règle change. ACOMPIA vous dit si elle vous concerne, et combien.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">04</span><span><span class="l26-ligne-titre">Une synthèse prête pour votre direction</span><span class="l26-ligne-sous">Des enjeux chiffrés et des priorités claires pour expliquer vos besoins et vos décisions.</span></span></li></ul>
+          <ul class="l26-lignes"><li class="l26-ligne"><span class="l26-ligne-num">01</span><span><span class="l26-ligne-titre">Votre DSN vérifiée avant l’envoi</span><span class="l26-ligne-sous">Comparée à celle du mois précédent, salarié par salarié. Vous corrigez avant l’envoi, sans attendre les retours des organismes.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">02</span><span><span class="l26-ligne-titre">Chaque alerte suivie jusqu’à sa correction</span><span class="l26-ligne-sous">Le mois suivant, ACOMPIA vérifie que l’écart a disparu. Vous êtes prévenu par email ou dans la solution.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">03</span><span><span class="l26-ligne-titre">Les écarts à traiter ce mois-ci</span><span class="l26-ligne-sous">Vous savez où concentrer vos vérifications et quelles corrections préparer.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">04</span><span><span class="l26-ligne-titre">Les effets de seuil anticipés</span><span class="l26-ligne-sous">Effectif, SMIC, plafonds. Vous savez avant la paie ce qui change pour vous.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">05</span><span><span class="l26-ligne-titre">Savoir ce qu’une nouvelle règle change pour vous</span><span class="l26-ligne-sous">Une règle change. ACOMPIA vous dit si elle vous concerne, et combien.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">06</span><span><span class="l26-ligne-titre">Une synthèse prête pour votre direction</span><span class="l26-ligne-sous">Des enjeux chiffrés et des priorités claires pour expliquer vos besoins et vos décisions.</span></span></li></ul>
         </div>
       </div>
 </details></div></div>
       <div class="mq-autres">
         <p class="l26-eyebrow section-eyebrow">Nos autres offres</p>
         <h2 class="l26-h2">Faites le point. <em>Là où vous en avez besoin.</em></h2>
-        <div class="mq-autres-grille" tabindex="0" role="region" aria-label="Nos autres offres — faites défiler horizontalement sur mobile"><div class="offer-visual-wrap"><a class="mq-autre" href="/ressources/audit-urssaf/"><div class="offer-preview audit-preview" aria-hidden="true"><div class="audit-paper"><span>ACOMPIA / AUDIT DE PAIE</span><strong>Votre situation.<br>Pièces à l’appui.</strong><div class="audit-rule"></div><div class="audit-metric"><small>Risque estimé</small><b>51 989 €</b></div><div class="audit-mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>Dossier de démonstration</small></div><span class="preview-note">01 — 03 ANS ANALYSÉS</span></div><span class="mq-autre-tag">Savoir où vous en êtes</span><strong>L'audit de votre paie, sur 1 à 3 ans</strong><span class="mq-autre-texte">Une prise de poste, une reprise de société ou un contrôle annoncé ? Retrouvez une vision claire des risques identifiés, des économies possibles et des corrections prioritaires sur la période analysée.</span><span class="mq-autre-lien">Découvrir l'audit →</span></a></div><div class="offer-visual-wrap"><a class="mq-autre" href="/outils/pilotage-flotte-tarifs/"><div class="offer-preview fleet-preview" aria-hidden="true"><svg viewBox="0 0 360 140" fill="none"><path d="M52 94h-9V72l24-8 30-32h132l39 32 35 13v28h-25M98 105h131" stroke="currentColor" stroke-width="2"/><path d="M82 64h162l-26-24H106zM153 40v24M175 76h20" stroke="currentColor" stroke-width="1.4"/><circle cx="76" cy="104" r="21" fill="#faf8fe" stroke="currentColor" stroke-width="2"/><circle cx="253" cy="104" r="21" fill="#faf8fe" stroke="currentColor" stroke-width="2"/><circle cx="76" cy="104" r="9" stroke="currentColor"/><circle cx="253" cy="104" r="9" stroke="currentColor"/></svg><div class="fleet-comparison"><span>AU FORFAIT <b>228 €</b></span><span>AU RÉEL <b>À comparer ↗</b></span></div><span class="preview-note">UN VÉHICULE. DEUX MÉTHODES. / DÉMO</span></div><span class="mq-autre-tag">Avantage en nature véhicule</span><strong>Des avantages en nature mieux maîtrisés</strong><span class="mq-autre-texte">Comparez le forfait et le réel pour chaque véhicule. Comprenez les écarts avec la paie et identifiez les justificatifs à réunir pour étayer vos choix. Disponible dès maintenant.</span><span class="mq-autre-lien">Découvrir la gestion de flotte →</span></a></div></div>
+        <div class="mq-autres-grille" tabindex="0" role="region" aria-label="Nos autres offres — faites défiler horizontalement sur mobile"><div class="offer-visual-wrap"><a class="mq-autre" href="/offres/audit-paie/"><div class="offer-preview audit-preview" aria-hidden="true"><div class="audit-paper"><span>ACOMPIA / AUDIT DE PAIE</span><strong>Votre situation.<br>Pièces à l’appui.</strong><div class="audit-rule"></div><div class="audit-metric"><small>Risque estimé</small><b>51 989 €</b></div><div class="audit-mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>Dossier de démonstration</small></div><span class="preview-note">01 — 03 ANS ANALYSÉS</span></div><span class="mq-autre-tag">Savoir où vous en êtes</span><strong>L'audit de votre paie, sur 1 à 3 ans</strong><span class="mq-autre-texte">Une prise de poste, une reprise de société ou un contrôle annoncé ? Retrouvez une vision claire des risques identifiés, des économies possibles et des corrections prioritaires sur la période analysée.</span><span class="mq-autre-lien">Découvrir l'audit →</span></a></div><div class="offer-visual-wrap"><a class="mq-autre" href="/offres/gestion-de-flotte/"><div class="offer-preview fleet-preview" aria-hidden="true"><svg viewBox="0 0 360 140" fill="none"><path d="M52 94h-9V72l24-8 30-32h132l39 32 35 13v28h-25M98 105h131" stroke="currentColor" stroke-width="2"/><path d="M82 64h162l-26-24H106zM153 40v24M175 76h20" stroke="currentColor" stroke-width="1.4"/><circle cx="76" cy="104" r="21" fill="#faf8fe" stroke="currentColor" stroke-width="2"/><circle cx="253" cy="104" r="21" fill="#faf8fe" stroke="currentColor" stroke-width="2"/><circle cx="76" cy="104" r="9" stroke="currentColor"/><circle cx="253" cy="104" r="9" stroke="currentColor"/></svg><div class="fleet-comparison"><span>AU FORFAIT <b>228 €</b></span><span>AU RÉEL <b>À comparer ↗</b></span></div><span class="preview-note">UN VÉHICULE. DEUX MÉTHODES. / DÉMO</span></div><span class="mq-autre-tag">Avantage en nature véhicule</span><strong>Des avantages en nature véhicule mieux maîtrisés</strong><span class="mq-autre-texte">Comparez le forfait et le réel pour chaque véhicule. Comprenez les écarts avec la paie et identifiez les justificatifs à réunir pour étayer vos choix. Disponible dès maintenant.</span><span class="mq-autre-lien">Découvrir la gestion de flotte →</span></a></div></div>
       </div>
 <div class="mq-roi visual-roi"><div>
         <p class="l26-eyebrow section-eyebrow">La valeur au quotidien</p>
@@ -949,7 +671,7 @@ footer{padding:32px 0 48px}
             </details>
             <p class="l26-faq-pied">
               D'autres questions&nbsp;?
-              <a href="/solution/#faq">Confidentialité, engagement, tarifs et disponibilité</a> ·
+              <a href="/offres/#faq">Nos offres et tarifs, vos questions</a> ·
               <a href="/ressources/">Toutes les ressources</a>
             </p>
         </div>
@@ -970,7 +692,7 @@ footer{padding:32px 0 48px}
   </div>
 </div></div></section>
 
-<footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ACOMPIA · Maquette de présentation</span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
+<footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
 
 <script>
 // 26 thèmes. Un constat n'est affiché que s'il existe dans le dossier de démonstration.

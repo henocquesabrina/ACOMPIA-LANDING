@@ -1,0 +1,78 @@
+/* Pages simples du site 2026 : profil équipe, pages légales, 404.
+   S'appuie uniquement sur les jetons --l26-* de socle.css. */
+
+.pg{padding:clamp(48px,7vw,96px) 0 clamp(64px,8vw,112px)}
+.pg-ariane{font:500 11px var(--l26-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--l26-texte-3);margin-bottom:clamp(32px,5vw,56px)}
+.pg-ariane a{color:var(--l26-texte-3)}
+.pg-ariane a:hover{color:var(--l26-mauve)}
+.pg-ariane span[aria-hidden]{margin:0 8px;color:var(--l26-bord-3)}
+.pg-eyebrow{font:500 11px var(--l26-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--l26-mauve);margin-bottom:16px}
+.pg h1{font-size:clamp(40px,5.4vw,72px);line-height:1.03;letter-spacing:-.045em;font-weight:600}
+.pg h1 em,.pg h2 em{font-style:normal;color:var(--l26-texte-3)}
+.pg-h2{font-size:clamp(28px,3.2vw,42px);line-height:1.08;letter-spacing:-.035em;font-weight:600}
+.pg-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:32px}
+.pg-ctas .btn{height:48px;font-size:15px}
+.pg-lien{font-size:15px;font-weight:550;border-bottom:1px solid var(--l26-bord-3);padding-bottom:3px}
+.pg-lien:hover{border-color:var(--l26-encre)}
+
+/* ---------- Profil équipe ---------- */
+.pg-profil{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:clamp(32px,6vw,88px);align-items:center}
+.pg-portrait{aspect-ratio:4/5;border-radius:var(--l26-r-panneau);overflow:hidden;background:var(--l26-bande)}
+.pg-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.pg-role{margin-top:20px;max-width:640px;font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:var(--l26-texte-2)}
+
+.pg-duo{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,80px);margin-top:clamp(64px,8vw,112px)}
+.pg-texte p{font-size:17px;line-height:1.7;color:var(--l26-texte-2)}
+.pg-texte p+p{margin-top:16px}
+.pg-texte strong{color:var(--l26-encre)}
+
+.pg-bande{margin-top:clamp(56px,7vw,96px);background:var(--l26-bande);border-radius:var(--l26-r-panneau);padding:clamp(32px,5vw,64px)}
+.pg-bande .pg-duo{margin-top:0}
+.pg-puces{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pg-puces li{background:#fff;border-radius:14px;padding:14px 18px;font-size:15.5px;line-height:1.45;color:var(--l26-encre)}
+
+.pg-pubs{margin-top:clamp(64px,8vw,112px)}
+.pg-pubs-tete{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.pg-cartes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pg-carte{display:flex;flex-direction:column;gap:14px;min-height:220px;padding:24px;border:1px solid var(--l26-bord-2);border-radius:var(--l26-r-interne);background:#fff;transition:border-color .15s,box-shadow .15s}
+.pg-carte:hover{border-color:var(--l26-bord-3);box-shadow:var(--l26-ombre-carte)}
+.pg-carte-haut{display:flex;justify-content:space-between;gap:12px;font:500 11px var(--l26-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--l26-texte-3)}
+.pg-carte-haut span:first-child{color:var(--l26-mauve)}
+.pg-carte h3{font-size:20px;line-height:1.25;letter-spacing:-.02em;font-weight:600}
+.pg-carte-meta{margin-top:auto;font-size:13.5px;color:var(--l26-texte-3)}
+.pg-carte--toutes{background:var(--l26-bande);border-color:transparent}
+
+/* ---------- Pages légales ---------- */
+.pg-legal{max-width:760px;margin:0 auto}
+.pg-legal .pg-maj{margin-top:18px;font-size:14px;color:var(--l26-texte-3)}
+.pg-legal h2{margin:56px 0 16px;padding-top:28px;border-top:1px solid var(--l26-bord-2);font-size:clamp(22px,2.2vw,28px);line-height:1.2;letter-spacing:-.025em;font-weight:600}
+.pg-legal h3{margin:28px 0 10px;font-size:18px;letter-spacing:-.015em;font-weight:600}
+.pg-legal p,.pg-legal li{font-size:16.5px;line-height:1.7;color:var(--l26-texte-2)}
+.pg-legal p+p{margin-top:12px}
+.pg-legal ul{margin:12px 0 0 20px}
+.pg-legal li+li{margin-top:6px}
+.pg-legal strong{color:var(--l26-encre);font-weight:600}
+.pg-legal a{color:var(--l26-mauve);border-bottom:1px solid rgba(74,52,245,.3);overflow-wrap:anywhere}
+.pg-legal a:hover{border-color:var(--l26-mauve)}
+
+/* ---------- 404 ---------- */
+.pg-404{background:var(--l26-bande);border-radius:var(--l26-r-panneau);padding:clamp(48px,8vw,112px) clamp(28px,6vw,96px);text-align:center}
+.pg-404 .pg-eyebrow{margin-bottom:20px}
+.pg-404 p{margin:20px auto 0;max-width:520px;font-size:17px;line-height:1.6;color:var(--l26-texte-2)}
+.pg-404 .pg-ctas{justify-content:center}
+.pg-404 .btn-b{background:#fff}
+
+@media(max-width:960px){
+  .pg-cartes{grid-template-columns:1fr 1fr}
+}
+@media(max-width:800px){
+  .pg-profil,.pg-duo{grid-template-columns:1fr}
+  .pg-portrait{max-width:280px}
+  .pg-puces,.pg-cartes{grid-template-columns:1fr}
+  .pg-carte{min-height:0}
+  .pg-ctas .btn{flex:0 1 auto}
+}
+.pg-profil>*,.pg-duo>*,.pg-cartes>*{min-width:0}
+.pg h1,.pg-h2,.pg-carte h3{overflow-wrap:break-word}
+@media(max-width:600px){.pg h1{font-size:clamp(34px,10vw,44px)}.pg-carte-haut{flex-direction:column;gap:4px}}
+.pg-legal .pg-ariane a{color:var(--l26-texte-3);border:0}
