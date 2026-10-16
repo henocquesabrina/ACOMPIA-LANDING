@@ -818,3 +818,13 @@ body.report-mode .rpt-sticky-cta{background: var(--l26-mauve);}
 .article-cta-block--accent{background:var(--l26-bande);border-color:transparent}
 .article-faq{margin-top:56px}
 .article-faq h2{font-size:clamp(26px,2.8vw,36px);letter-spacing:-.04em;font-weight:500;margin:0 0 12px;color:#201a29}
+
+/* Aperçus repris de l'accueil (« Nos autres offres ») : même papier d'audit, même véhicule forfait / réel. */
+.outil-apercu{width:100%;margin-bottom:18px}
+.outil-carte .outil-apercu{height:240px}
+.outil-apercu .audit-paper>strong{font-size:23px;line-height:1.2;display:block;margin:17px 0;color:#755c8c}
+.outil-carte:hover .audit-paper{transform:rotate(-3deg) translateY(12px)}
+.outil-carte:hover .fleet-preview svg{transform:translateX(8px)}
+.outil-hero--visuel .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);align-items:center}
+.outil-hero--visuel .outil-apercu{height:320px;margin:0}
+@media (max-width:900px){.outil-hero--visuel .wrap{grid-template-columns:minmax(0,1fr)}.outil-hero--visuel .outil-apercu{height:250px}}

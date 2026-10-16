@@ -95,3 +95,8 @@
 .p2-carte-prix p{font-size:14.5px;line-height:1.55;color:#5f5570}
 @media (max-width:900px){.p2-cartes-prix{grid-template-columns:minmax(0,1fr)}}
 .p2-visuel img{max-height:520px;object-fit:cover;object-position:top}
+/* Tableau de bord codé de l'accueil, en réduction dans le premier écran de /offres/ */
+.p2-hero .p2-tdb{margin:0;min-width:0}
+.p2-tdb .showcase{zoom:.62;width:1150px}
+.p2-hero{overflow-x:clip}
+@media (max-width:900px){.p2-tdb .showcase{zoom:.42;width:auto}}
