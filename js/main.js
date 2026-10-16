@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   activerDropdownsNav();
   animerCompteursStat();
   activerFormulaireDevis();
+  preselectionnerTypeAudit();
+  prerremplirSujetDevis();
   activerFormulaireNotify();
 });
 
@@ -231,6 +233,66 @@ function activerFormulaireDevis() {
     conteneur.querySelector('.js-name').textContent = champ('name').split(' ')[0];
     conteneur.querySelector('.js-email').textContent = champ('email');
   });
+}
+
+/* === Présélection du type d'audit depuis l'URL ===
+   Un lien du type /solution/?audit=psc#devis ouvre le formulaire de devis avec
+   le thème déjà sélectionné. La valeur lue dans l'URL est confrontée à une liste
+   fermée, puis à une option réellement présente dans le select. Elle n'est jamais
+   écrite dans le DOM, ce qui exclut toute injection depuis l'URL. */
+const TYPES_AUDIT_AUTORISES = ['anv', 'frais-pro', 'psc', 'remunerations', 'multi', 'autre'];
+
+/* Contextes d'article autorisés dans l'URL. La valeur lue n'est jamais affichée
+   telle quelle : elle sert seulement de clé dans cette table, dont seul le libellé
+   est écrit dans le champ message, via value. */
+const SUJETS_AUTORISES = {
+  'reprise-paie': 'Changement de prestataire ou de logiciel de paie',
+  'trop-verse': 'Cotisations versées en trop, analyse dans les deux sens',
+  'cloture': 'Clôture de paie 2026, écarts et corrections encore ouvertes'
+};
+
+function preselectionnerTypeAudit() {
+  const select = document.getElementById('devis-audit-type');
+  if (!select) return;
+
+  let demande = null;
+  try {
+    demande = new URLSearchParams(window.location.search).get('audit');
+  } catch (e) {
+    return;
+  }
+  if (!demande) return;
+
+  const valeur = String(demande).trim().toLowerCase();
+  if (!TYPES_AUDIT_AUTORISES.includes(valeur)) return;
+
+  const option = Array.from(select.options).find(o => o.value === valeur);
+  if (!option) return;
+
+  select.value = option.value;
+  select.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* === Contexte de la demande depuis l'URL ===
+   /solution/?audit=multi&sujet=reprise-paie#devis préremplit le message avec le
+   libellé correspondant, sans écraser ce que le visiteur a déjà saisi. */
+function prerremplirSujetDevis() {
+  const message = document.getElementById('devis-message');
+  if (!message || message.value) return;
+
+  let demande = null;
+  try {
+    demande = new URLSearchParams(window.location.search).get('sujet');
+  } catch (e) {
+    return;
+  }
+  if (!demande) return;
+
+  const libelle = SUJETS_AUTORISES[String(demande).trim().toLowerCase()];
+  if (!libelle) return;
+
+  message.value = libelle;
+  message.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
 /* === Platform notify form === */
