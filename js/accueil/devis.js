@@ -10,7 +10,8 @@
   var SUJETS = {
     'reprise-paie': 'Changement de prestataire ou de logiciel de paie',
     'trop-verse': 'Cotisations versées en trop, analyse dans les deux sens',
-    'cloture': 'Clôture de paie 2026, écarts et corrections encore ouvertes'
+    'cloture': 'Clôture de paie 2026, écarts et corrections encore ouvertes',
+    'repas': 'Indemnités de repas et primes de panier, plafonds et preuves'
   };
   function majChamps() {
     var v = offre.value;
