@@ -14,7 +14,8 @@
     'repas': 'Indemnités de repas et primes de panier, plafonds et preuves',
     'taux-atmp-2027': 'Taux AT/MP 2027, taux unique, notification et contestation',
     'flagrance-sociale': 'Flagrance sociale, loi du 25 juin 2026, mesures conservatoires et contrainte',
-    'versement-mobilite': 'Versement mobilité, établissement, zone et taux'
+    'versement-mobilite': 'Versement mobilité, établissement, zone et taux',
+    'indemnites-rupture': 'Indemnités de rupture, exonération en 2026 et projet de loi pour 2027'
   };
   function majChamps() {
     var v = offre.value;
