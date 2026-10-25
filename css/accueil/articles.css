@@ -256,3 +256,80 @@ a.hubB-row:hover .hubB-arrow{color:var(--l26-mauve);transform:translateX(3px)}
   .hubB-main{order:4;width:100%}
   .hubC-banner{margin-inline:var(--l26-gouttiere);max-width:none}
 }
+
+/* ===== Articles de novembre 2026 : taux AT/MP et versement mobilité (script build_articles.py) ===== */
+/* Portée : les deux articles de novembre 2026 (classe .art-nov26 sur l'article). Jetons --l26-* de socle.css. */
+
+/* Titre long : on réduit un peu la taille et on élargit la mesure */
+.ress-page .article-hero--long .article-title-banner{max-width:30ch;font-size:clamp(30px,4.1vw,52px);line-height:1.08}
+
+/* Réponse directe : étiquette mauve, respiration régulière */
+.art-nov26 .reponse-directe{margin:0 0 1.4em;font-size:16.5px;line-height:1.65;color:var(--a-texte)}
+.art-nov26 .reponse-directe>strong:first-child{color:var(--l26-mauve)}
+.art-nov26>p:first-child+.reponse-directe{margin-top:4px}
+.art-nov26 h2+.reponse-directe{margin-top:0}
+
+/* À retenir : liens lisibles dans l'encadré */
+.art-nov26 .callout-retenir li strong{color:var(--l26-encre)}
+
+/* À ne pas déformer : encadré ambre, distinct du violet des réponses directes */
+.art-nov26 .encadre-deformer{margin:32px 0;padding:20px 24px 20px 26px;border:1px solid #F0DDB0;border-left:3px solid #D98A0B;border-radius:0 var(--l26-r-interne) var(--l26-r-interne) 0;background:#FFFBF1}
+.art-nov26 .encadre-deformer-label{margin:0 0 8px;font:500 11px/1.4 var(--l26-mono);letter-spacing:.1em;text-transform:uppercase;color:#8A5A00}
+.art-nov26 .encadre-deformer p{margin:0;font-size:16px;line-height:1.65;color:var(--a-texte)}
+
+/* Tableaux : cadre arrondi, ombres de défilement, légendes datées */
+.art-nov26 .table-scroll{margin:6px 0 10px;border:1px solid var(--l26-bord-2);border-radius:var(--l26-r-interne);background:
+  linear-gradient(to right,#fff 30%,rgba(255,255,255,0)) left center/36px 100% no-repeat local,
+  linear-gradient(to left,#fff 30%,rgba(255,255,255,0)) right center/36px 100% no-repeat local,
+  radial-gradient(farthest-side at 0 50%,rgba(42,42,51,.14),rgba(42,42,51,0)) left center/12px 100% no-repeat scroll,
+  radial-gradient(farthest-side at 100% 50%,rgba(42,42,51,.14),rgba(42,42,51,0)) right center/12px 100% no-repeat scroll,#fff;-webkit-overflow-scrolling:touch}
+.art-nov26 .table-scroll table{width:100%;min-width:600px;font-size:14.5px;line-height:1.5}
+.art-nov26 .table-scroll th{padding:12px 16px;white-space:normal;background:var(--l26-surface);border-bottom:1px solid var(--l26-bord-3)}
+.art-nov26 .table-scroll td{padding:14px 16px}
+.art-nov26 .table-scroll td:first-child{font-weight:500;color:var(--l26-encre)}
+.art-nov26 .table-scroll tr:last-child td{border-bottom:0}
+.art-nov26 .table-scroll .num{text-align:right;white-space:nowrap}
+.art-nov26 .table-scroll td strong{font-weight:600}
+.art-nov26 .table-version{margin:30px 0 8px;font:500 11px/1.4 var(--l26-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--l26-mauve)}
+.art-nov26 .table-source{margin:0 0 1.6em;font-size:13.5px;line-height:1.6;color:var(--l26-texte-3)}
+.art-nov26 .table-source a{color:var(--l26-texte-2)}
+
+/* Exemple chiffré : bloc mis en valeur */
+.art-nov26 .exemple-chiffre{margin:30px 0;padding:clamp(20px,3vw,30px);border:1px solid var(--a-bord);border-top:3px solid var(--l26-mauve);border-radius:var(--l26-r-interne);background:#fff}
+.art-nov26 .exemple-chiffre-label{margin:0 0 14px;font:500 11px/1.4 var(--l26-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--l26-mauve)}
+.art-nov26 .exemple-chiffre>p{margin:0 0 1em;font-size:16px;line-height:1.7}
+.art-nov26 .exemple-chiffre>p:last-child{margin-bottom:0}
+.art-nov26 .exemple-chiffre .reponse-directe{margin-bottom:1.1em}
+.art-nov26 .exemple-chiffre .table-scroll{margin:18px 0}
+.art-nov26 .exemple-resultat{padding:16px 20px;border-radius:12px;background:var(--l26-bande);font-size:17px!important;line-height:1.6!important;color:var(--l26-encre)}
+.art-nov26 .exemple-resultat strong:first-child{color:var(--l26-mauve)}
+
+/* Grille de vérifications : étapes numérotées */
+.art-nov26 .article-steps{list-style:none;counter-reset:etape;margin:24px 0;padding:0}
+.art-nov26 .article-steps li{counter-increment:etape;position:relative;margin:0 0 12px;padding:16px 20px 16px 68px;border:1px solid var(--l26-bord-2);border-radius:var(--l26-r-interne);background:#fff;font-size:16px;line-height:1.65}
+.art-nov26 .article-steps li::before{content:counter(etape);position:absolute;left:18px;top:16px;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:var(--l26-bande);font:500 14px/1 var(--l26-mono);color:var(--l26-mauve)}
+.art-nov26 .article-steps li>strong:first-child{display:block;margin-bottom:4px;font:500 11px/1.4 var(--l26-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--l26-mauve)}
+
+/* Appels à l'action : bouton mis en avant, note discrète */
+.art-nov26 .article-ctas{margin:clamp(40px,5vw,56px) 0}
+.art-nov26 .article-cta-block h3{margin:0}
+
+/* Limites : section sobre */
+.art-nov26 .article-limites{margin:clamp(48px,6vw,72px) 0 0;padding:24px 26px;border-top:1px solid var(--l26-bord-3);background:var(--l26-surface);border-radius:0 0 var(--l26-r-interne) var(--l26-r-interne)}
+.art-nov26 .article-limites h2{margin:0 0 12px;font-size:22px;letter-spacing:-.025em}
+.art-nov26 .article-limites p{margin:0;font-size:15px;line-height:1.7;color:var(--l26-texte-2)}
+
+/* Références */
+.art-nov26 .article-refs-date--avant{margin:0 0 12px}
+.art-nov26 .article-refs a{word-break:break-word}
+
+/* Mobile */
+@media (max-width:760px){
+  .art-nov26 .encadre-deformer{padding:18px 18px 18px 20px}
+  .art-nov26 .article-steps li{padding:14px 16px 14px 56px}
+  .art-nov26 .article-steps li::before{left:14px;top:14px;width:28px;height:28px;font-size:13px}
+  .art-nov26 .exemple-chiffre{padding:18px}
+  .art-nov26 .article-limites{padding:20px}
+}
+.art-nov26 .exemple-chiffre--inline{padding:18px 22px;border-top-width:1px;border-left:3px solid var(--l26-mauve)}
+.art-nov26 .exemple-chiffre--inline strong{color:var(--l26-mauve)}
