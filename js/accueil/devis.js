@@ -13,7 +13,8 @@
     'cloture': 'Clôture de paie 2026, écarts et corrections encore ouvertes',
     'repas': 'Indemnités de repas et primes de panier, plafonds et preuves',
     'taux-atmp-2027': 'Taux AT/MP 2027, taux unique, notification et contestation',
-    'flagrance-sociale': 'Flagrance sociale, loi du 25 juin 2026, mesures conservatoires et contrainte'
+    'flagrance-sociale': 'Flagrance sociale, loi du 25 juin 2026, mesures conservatoires et contrainte',
+    'versement-mobilite': 'Versement mobilité, établissement, zone et taux'
   };
   function majChamps() {
     var v = offre.value;
