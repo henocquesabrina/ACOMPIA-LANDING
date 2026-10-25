@@ -333,3 +333,22 @@ a.hubB-row:hover .hubB-arrow{color:var(--l26-mauve);transform:translateX(3px)}
 }
 .art-nov26 .exemple-chiffre--inline{padding:18px 22px;border-top-width:1px;border-left:3px solid var(--l26-mauve)}
 .art-nov26 .exemple-chiffre--inline strong{color:var(--l26-mauve)}
+
+/* Texte justifié (consigne de Sabrina, 25/10/2026) : paragraphes et listes du corps, jamais les titres ni les tableaux */
+.article-content p,
+.article-content li,
+.article-content blockquote p,
+.article-content .reponse-directe p,
+.article-content .article-faq p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+.article-content table p,
+.article-content .table-scroll p,
+.article-content .article-ctas p,
+.article-content .article-cta-btn {
+  text-align: left;
+  hyphens: manual;
+}
