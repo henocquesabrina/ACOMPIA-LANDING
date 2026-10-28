@@ -11,7 +11,8 @@
     'reprise-paie': 'Changement de prestataire ou de logiciel de paie',
     'trop-verse': 'Cotisations versées en trop, analyse dans les deux sens',
     'cloture': 'Clôture de paie 2026, écarts et corrections encore ouvertes',
-    'repas': 'Indemnités de repas et primes de panier, plafonds et preuves'
+    'repas': 'Indemnités de repas et primes de panier, plafonds et preuves',
+    'groupe': 'Prévoyance et frais de santé dans un groupe, société par société'
   };
   function majChamps() {
     var v = offre.value;
