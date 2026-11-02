@@ -828,3 +828,6 @@ body.report-mode .rpt-sticky-cta{background: var(--l26-mauve);}
 .outil-hero--visuel .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);align-items:center}
 .outil-hero--visuel .outil-apercu{height:320px;margin:0}
 @media (max-width:900px){.outil-hero--visuel .wrap{grid-template-columns:minmax(0,1fr)}.outil-hero--visuel .outil-apercu{height:250px}}
+
+/* Prédiagnostic sur téléphone : le bouton de démarrage doit tenir dans le premier écran (audit du 02/11/2026). */
+@media (max-width:700px){body:has(#start-prediag) .outil-hero--visuel .outil-apercu{display:none}}
