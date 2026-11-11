@@ -257,7 +257,7 @@ a.hubB-row:hover .hubB-arrow{color:var(--l26-mauve);transform:translateX(3px)}
   .hubC-banner{margin-inline:var(--l26-gouttiere);max-width:none}
 }
 
-/* ===== Articles de novembre 2026 : taux AT/MP et versement mobilité (script build_articles.py) ===== */
+/* ===== Articles de novembre 2026 : taux AT/MP, versement mobilité et flagrance sociale (script build_articles.py) ===== */
 /* Portée : les deux articles de novembre 2026 (classe .art-nov26 sur l'article). Jetons --l26-* de socle.css. */
 
 /* Titre long : on réduit un peu la taille et on élargit la mesure */
@@ -352,3 +352,9 @@ a.hubB-row:hover .hubB-arrow{color:var(--l26-mauve);transform:translateX(3px)}
   text-align: left;
   hyphens: manual;
 }
+
+/* Ligne « Mis à jour le » en tête d'article, sections stables et sous-titres */
+.art-nov26 .article-maj{margin:0 0 1.2em;font:500 12px/1.5 var(--l26-mono);letter-spacing:.04em;color:var(--l26-texte-3);text-align:left;hyphens:manual}
+.art-nov26 h3{margin:1.8em 0 .5em}
+.art-nov26 .encadre-deformer+.encadre-deformer{margin-top:-12px}
+.art-nov26 [id]{scroll-margin-top:96px}
