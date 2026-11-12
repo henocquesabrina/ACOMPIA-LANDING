@@ -864,7 +864,7 @@ function generateReportHTML(scoring, contact) {
       <div class="rpt-cta-main">
         <span class="rpt-cta-kicker">Étape suivante</span>
         <h3>Confirmer ${firstPriorityName} avec vos données</h3>
-        <p>Un échange de 30 minutes permet de vérifier les faits déterminants, de choisir les pièces utiles et de décider si un audit ciblé est pertinent.</p>
+        <p>Un échange d'une vingtaine de minutes permet de vérifier les faits déterminants, de choisir les pièces utiles et de décider si un audit ciblé est pertinent.</p>
         <a href="${rdvURL}" target="_blank" rel="noopener noreferrer" class="btn-primary" onclick="if(window.posthog) posthog.capture('prediag_rdv_clique', { source: 'rapport' })">Vérifier mes résultats →</a>
       </div>
       ${disclaimerFinal()}

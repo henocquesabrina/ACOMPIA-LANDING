@@ -125,96 +125,41 @@
 
   <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
   <script src="../../js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/site-2026-11-entete.css?v=2026-11-12e">
+<link rel="stylesheet" href="/css/site-2026-11-contenus.css?v=2026-11-12e">
 </head>
 <body class="ress-page">
 
   <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <header id="hd" class="current-navbar">
-    <nav id="nav">
-      <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
-          <img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96">
-        </a>
-      <div class="nav-links" id="nav-links">
-        <div class="nav-dropdown">
-          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Nos offres
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/#suivi">
-              <div class="nav-dropdown-theme">Offre principale</div>
-              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
-            </a>
-            <a href="/offres/audit-paie/">
-              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
-              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
-            </a>
-            <a href="/offres/gestion-de-flotte/">
-              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
-              <div class="nav-dropdown-title">La gestion de votre flotte</div>
-            </a>
-            <a href="/offres/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle en cours</div>
-              <div class="nav-dropdown-title">On vous accompagne</div>
-            </a>
-            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
-          </div>
+  <header class="s26-hd" id="s26-hd"><!-- s26 -->
+  <div class="s26-in">
+    <a class="s26-logo" href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="133" height="34"></a>
+    <nav class="s26-nav" aria-label="Navigation principale">
+      <a href="/#gains">La solution</a>
+      <a href="/offres/">Offres</a>
+      <div class="s26-dd"><button type="button" aria-haspopup="true">Outils <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="s26-dd-menu">
+          <a href="/outils/matrice-controle-rgdu/"><b>Matrice de contrôle RGDU</b><span>Le classeur de contrôle, à télécharger</span></a>
+          <a href="/outils/comparateur-rgdu-mensuel/"><b>Comparateur RGDU mensuel</b><span>Recalculez un mois et comparez à votre paie</span></a>
+          <a href="/outils/simulateur-avantage-en-nature-vehicule/"><b>Simulateur avantage en nature véhicule</b><span>Le bon montant, en quelques questions</span></a>
+          <a href="/outils/delai-remboursement-cotisations/"><b>Délai de remboursement d'un trop-payé</b><span>Jusqu'à quand demander le remboursement</span></a>
+          <a href="/outils/pilotage-flotte-tarifs/"><b>Pilotage de flotte</b><span>Le suivi des véhicules, un par un</span></a>
+          <a class="s26-dd-all" href="/outils/">Tous les outils →</a>
         </div>
-        <div class="nav-dropdown">
-          <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Boîte à outils
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/outils/prediagnostic-urssaf/">
-              <div class="nav-dropdown-theme">Gratuit · 3 minutes</div>
-              <div class="nav-dropdown-title">Prédiagnostic URSSAF</div>
-            </a>
-            <a href="/outils/simulateur-avantage-en-nature-vehicule/">
-              <div class="nav-dropdown-theme">Gratuit · barème 2026</div>
-              <div class="nav-dropdown-title">Simulateur d'avantage en nature véhicule</div>
-            </a>
-            <a href="/outils/" class="nav-dropdown-all">Tous les outils →</a>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a href="/ressources/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Ressources
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/ressources/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle URSSAF</div>
-              <div class="nav-dropdown-title">Comment ça se passe et que risque-t-on ?</div>
-            </a>
-            <a href="/ressources/audit-urssaf/">
-              <div class="nav-dropdown-theme">Audit URSSAF</div>
-              <div class="nav-dropdown-title">Les 8 zones à vérifier avant un contrôle</div>
-            </a>
-            <a href="/ressources/aen-vehicule-urssaf/">
-              <div class="nav-dropdown-theme">AEN véhicule</div>
-              <div class="nav-dropdown-title">Le guide complet 2026</div>
-            </a>
-            <a href="/ressources/reduction-generale-cotisations-patronales/">
-              <div class="nav-dropdown-theme">Réduction générale</div>
-              <div class="nav-dropdown-title">RGDU : le guide 2026</div>
-            </a>
-            <a href="/ressources/reformes-urssaf-2025-2026/">
-              <div class="nav-dropdown-theme">Actualités</div>
-              <div class="nav-dropdown-title">Réformes URSSAF 2025-2026</div>
-            </a>
-            <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
-          </div>
-        </div>
-        <a href="/equipe/sabrina-henocque-chiche/">Équipe</a>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Demander une démo</span></a>
       </div>
-      <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="/ressources/">Ressources</a>
     </nav>
-  </header>
+    <a class="s26-btn s26-btn--sm" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a>
+    <details class="s26-m"><summary aria-label="Ouvrir le menu"><i></i><i></i><i></i></summary>
+      <div class="s26-m-menu">
+            <a href="/#gains">La solution</a><a href="/offres/">Offres</a>
+            <a href="/outils/matrice-controle-rgdu/">Matrice de contrôle RGDU</a><a href="/outils/comparateur-rgdu-mensuel/">Comparateur RGDU mensuel</a><a href="/outils/simulateur-avantage-en-nature-vehicule/">Simulateur avantage en nature véhicule</a><a href="/outils/delai-remboursement-cotisations/">Délai de remboursement d'un trop-payé</a><a href="/outils/pilotage-flotte-tarifs/">Pilotage de flotte</a>
+            <a href="/outils/">Tous les outils</a><a href="/ressources/">Ressources</a>
+          </div>
+    </details>
+  </div>
+</header>
 
   <main id="main">
 
@@ -435,7 +380,7 @@
 
         <div class="callout-outil">
           <div class="callout-outil-label">V&eacute;rifier votre exposition</div>
-          <p>Si votre flotte comporte des v&eacute;hicules &eacute;lectriques attribu&eacute;s depuis f&eacute;vrier 2025, deux questions suffisent &agrave; situer le risque&nbsp;: la version de chaque v&eacute;hicule a-t-elle &eacute;t&eacute; rapproch&eacute;e de la liste officielle, et cette v&eacute;rification est-elle trac&eacute;e&nbsp;? Le <a href="/outils/prediagnostic-urssaf/">pr&eacute;diagnostic URSSAF gratuit</a> couvre ce point parmi ses neuf blocs th&eacute;matiques, en trois minutes.</p>
+          <p>Vérifiez le montant de l'avantage en nature avec le <a href="/outils/simulateur-avantage-en-nature-vehicule/">simulateur avantage en nature véhicule</a>, gratuit et sans inscription.</p>
         </div>
 
         <h2 id="justificatifs">Quels justificatifs conserver ?</h2>
@@ -550,13 +495,13 @@
 
         <div class="article-ctas">
           <div class="article-cta-block">
-            <h4>Pr&eacute;diagnostic URSSAF gratuit</h4>
-            <p>3 minutes pour &eacute;valuer votre exposition sur les 8 th&egrave;mes URSSAF, dont l&rsquo;avantage en nature v&eacute;hicule.</p>
-            <a href="/outils/prediagnostic-urssaf/" class="article-cta-btn article-cta-btn--accent">Commencer le pr&eacute;diagnostic</a>
-          </div>
+          <h4>Simulateur avantage en nature véhicule</h4>
+          <p>Le montant de l'avantage en nature au barème 2026, en quelques questions.</p>
+          <a href="/outils/simulateur-avantage-en-nature-vehicule/" class="article-cta-btn article-cta-btn--accent">Ouvrir le simulateur</a>
+        </div>
           <div class="article-cta-block">
             <h4>Une flotte &eacute;lectrique &agrave; s&eacute;curiser ?</h4>
-            <p>30 minutes en visio avec Ma&icirc;tre Henocque Chiche pour cadrer votre situation.</p>
+            <p>Une vingtaine de minutes en visio avec Ma&icirc;tre Henocque Chiche pour cadrer votre situation.</p>
             <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="article-cta-btn">Demander une démo</a>
           </div>
         </div>
@@ -634,10 +579,20 @@
 
   </main>
 
-  <footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
+  <footer class="s26-ft"><!-- s26 -->
+  <div class="s26-in">
+    <a href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="102" height="26"></a>
+    <span>ComplyDB SAS</span><span>25 rue de Ponthieu, 75008 Paris</span>
+    <a href="mailto:she@acompia.com">she@acompia.com</a>
+    <a href="/equipe/">Qui sommes-nous</a>
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/politique-confidentialite.html">Confidentialité</a>
+  </div>
+</footer>
+<div class="s26-sticky" id="s26-sticky"><a class="s26-btn" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a></div>
 
   <script src="../../js/config.js" defer></script>
   <script src="../../js/socle.js" defer></script>
-  <script src="/js/accueil/navbar.js" defer></script>
+<script src="/js/site-2026-11-entete.js?v=2026-11-11" defer></script>
 </body>
 </html>

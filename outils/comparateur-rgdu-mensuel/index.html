@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparateur RGDU mensuel 2026 : recalculez la réduction et comparez à votre paie · ACOMPIA</title>
+<meta name="description" content="Comparez un calcul mensuel de RGDU à votre paie. Coefficient 2026, SMIC de référence, écart et points à vérifier. Gratuit, sans e-mail, calcul fait sur votre poste.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.acompia.com/outils/comparateur-rgdu-mensuel/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Comparateur RGDU mensuel 2026 · ACOMPIA">
+<meta property="og:description" content="Comparez un calcul mensuel de RGDU à votre paie. Retrouvez les hypothèses, les écarts et les points à vérifier.">
+<meta property="og:url" content="https://www.acompia.com/outils/comparateur-rgdu-mensuel/">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="ACOMPIA">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://www.acompia.com/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "WebApplication",
+        "SoftwareApplication"
+      ],
+      "@id": "https://www.acompia.com/outils/comparateur-rgdu-mensuel/#app",
+      "name": "Comparateur RGDU mensuel 2026",
+      "url": "https://www.acompia.com/outils/comparateur-rgdu-mensuel/",
+      "description": "Outil gratuit qui recalcule la réduction générale dégressive unique d'un mois et la compare au montant porté en paie. Calcul fait dans le navigateur, sans e-mail.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Tout navigateur web",
+      "inLanguage": "fr-FR",
+      "isAccessibleForFree": true,
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "featureList": [
+        "Recalcul de la réduction du mois pour un salarié",
+        "Comparaison avec le montant porté en paie",
+        "Comparaison d'un lot de salariés collé depuis un tableur",
+        "Hypothèses retenues et points à vérifier",
+        "Export du résultat"
+      ],
+      "publisher": {
+        "@id": "https://www.acompia.com/#org"
+      },
+      "isBasedOn": "https://www.acompia.com/ressources/rgdu-cas-particuliers-calcul/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://www.acompia.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Outils",
+          "item": "https://www.acompia.com/outils/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Comparateur RGDU mensuel"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.acompia.com/#org",
+      "name": "ACOMPIA",
+      "url": "https://www.acompia.com/"
+    }
+  ]
+}
+</script>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/fonts.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/js/analytics.js" defer></script>
+<style>
+:root{--indigo:#4A34F5;--indigo-d:#3A26D9;--ink:#101014;--grey:#62626E;--lav:#F4F2FF;--line:#E3DEFF;--ok:#166C46;--ok-bg:#E4F3EB;--ko:#B32D37;--ko-bg:#FBE7E9;--wa:#8A5200;--wa-bg:#FFF1DC;--r:20px;--wrap:1160px;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font:400 17px/1.6 Geist,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
+.eyebrow{font:500 13px/1.4 "Geist Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin:0 0 18px}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.022em;line-height:1.1}
+h1{font-size:clamp(34px,4vw,52px);letter-spacing:-.03em;line-height:1.05}
+h2{font-size:clamp(28px,3vw,40px);line-height:1.08}
+h3{font-size:21px;letter-spacing:-.012em;line-height:1.25}
+.lead{color:var(--grey);font-size:18.5px;line-height:1.6}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;border:0;border-radius:999px;background:var(--indigo);color:#fff;font:600 16.5px/1 Geist,system-ui,sans-serif;text-decoration:none;cursor:pointer;box-shadow:0 10px 24px -10px rgba(74,52,245,.55);transition:background .2s,transform .2s,box-shadow .2s}
+.btn:hover{background:var(--indigo-d)}
+.btn:active{transform:scale(.98)}
+.btn .arr{width:18px;height:18px;transition:transform .18s}
+.btn:hover .arr{transform:translateX(4px)}
+.btn--sm{height:42px;padding:0 20px;font-size:14.5px;box-shadow:none}
+.btn--ghost{background:#fff;color:var(--indigo);border:1.5px solid var(--line);box-shadow:none}
+.btn--ghost:hover{background:var(--lav);border-color:#CFC7FF}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:6px}
+section{padding:88px 0}
+
+/* barre du haut */
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.is-stuck{border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav img{height:34px;width:auto}
+.nav nav{display:flex;align-items:center;gap:30px}
+.nav nav a:not(.btn){text-decoration:none;font-size:15px;color:#33333c;font-weight:500}
+.nav nav a:not(.btn):hover,.nav nav a[aria-current]{color:var(--indigo)}
+
+/* premier écran */
+.hero{padding:56px 0 40px}
+.hero h1{margin-bottom:20px;max-width:17ch}
+.hero .lead{max-width:60ch}
+.assure{list-style:none;margin:26px 0 0;padding:0;display:flex;gap:10px 32px;flex-wrap:wrap}
+.assure li{padding-left:28px;font-size:15.5px;font-weight:500;color:#22222a;position:relative}
+.assure li::before{content:"";position:absolute;left:0;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:var(--ok-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.3l2.6 2.6L13 6.5' fill='none' stroke='%23166C46' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+
+/* l'outil */
+.tool{padding:0 0 88px}
+.tool-box{background:var(--lav);border-radius:32px;padding:36px}
+.modes{display:inline-flex;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px;margin-bottom:28px}
+.mode{appearance:none;border:0;background:none;font:600 15.5px/1 Geist,sans-serif;color:#44444e;padding:11px 20px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+.mode[aria-selected="true"]{background:var(--indigo);color:#fff;box-shadow:0 8px 18px -8px rgba(74,52,245,.6)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;min-width:0}
+.card h2{font-size:22px;letter-spacing:-.015em;margin-bottom:20px}
+.f{margin-bottom:18px}
+.f>label,.f>legend,.lab{display:block;font-weight:600;font-size:15.5px;margin-bottom:6px;padding:0}
+.f small{display:block;color:var(--grey);font-size:13.5px;line-height:1.45;margin-top:6px}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.inp{display:flex;align-items:center;border:1.5px solid #D9D5EE;border-radius:12px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.inp:focus-within{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(74,52,245,.14)}
+.inp input{flex:1;min-width:0;border:0;background:none;font:500 17px/1 Geist,sans-serif;color:var(--ink);padding:13px 14px;outline:0;border-radius:12px}
+.inp span{padding:0 14px 0 4px;color:var(--grey);font-size:15px;white-space:nowrap}
+.seg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.seg label{position:relative;display:block;cursor:pointer}
+.seg input{position:absolute;opacity:0;inset:0}
+.seg span{display:block;text-align:center;border:1.5px solid #D9D5EE;border-radius:12px;padding:12px 10px;font-weight:500;font-size:15.5px;background:#fff;transition:all .15s}
+.seg input:checked+span{border-color:var(--indigo);background:#F1EEFF;color:var(--indigo);font-weight:600}
+.seg input:focus-visible+span{outline:2px solid var(--indigo);outline-offset:2px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+details.opt{border-top:1px solid var(--line);padding:0}
+details.opt:last-of-type{border-bottom:1px solid var(--line);margin-bottom:22px}
+details.opt>summary{list-style:none;cursor:pointer;padding:15px 30px 15px 0;font-weight:600;font-size:15.5px;position:relative}
+details.opt>summary::-webkit-details-marker{display:none}
+details.opt>summary::after{content:"";position:absolute;right:6px;top:50%;width:9px;height:9px;border-right:2px solid var(--indigo);border-bottom:2px solid var(--indigo);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+details.opt[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
+details.opt .in{padding:2px 0 18px}
+.chk{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:15px;line-height:1.45;margin-bottom:9px;cursor:pointer}
+.chk input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--indigo)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.reset{appearance:none;border:0;background:none;color:var(--grey);font:500 15px/1 Geist,sans-serif;text-decoration:underline;cursor:pointer;padding:8px}
+
+/* résultat */
+.res{position:sticky;top:96px}
+.res-empty p{color:var(--grey);font-size:16px}
+.res-empty ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:15.5px}
+.res-empty li{padding-left:22px;position:relative}
+.res-empty li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:8px;border-radius:50%;background:#CFC7FF}
+.badge{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:7px 14px;border-radius:999px;margin-bottom:16px}
+.badge i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.b-ok{background:var(--ok-bg);color:var(--ok)}.b-ko{background:var(--ko-bg);color:var(--ko)}.b-wa{background:var(--wa-bg);color:var(--wa)}.b-n{background:#F1EEFF;color:var(--indigo)}
+.res h3{font-size:24px;letter-spacing:-.02em;margin-bottom:8px}
+.res .say{color:#3d3d48;font-size:16px;margin-bottom:20px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:22px}
+.kpis div{padding:14px 16px;border-left:1px solid var(--line)}
+.kpis div:first-child{border-left:0}
+.kpis small{display:block;font:500 11px/1.4 "Geist Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.kpis b{display:block;font-size:22px;font-weight:600;letter-spacing:-.02em;white-space:nowrap;margin-top:4px}
+.kpis .hot{background:#FFF6F7}.kpis .hot b{color:var(--ko)}
+.kpis .calm{background:#F3FAF6}.kpis .calm b{color:var(--ok)}
+.sub{font:500 12px/1.4 "Geist Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin:22px 0 10px}
+dl.hyp{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0;margin:0;font-size:15px;border-top:1px solid var(--line)}
+dl.hyp dt,dl.hyp dd{padding:9px 0;border-bottom:1px solid var(--line);margin:0}
+dl.hyp dt{color:var(--grey)}
+dl.hyp dd{text-align:right;font-weight:600}
+ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:15.5px;line-height:1.5}
+ul.pts li{padding-left:26px;position:relative}
+ul.pts li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;background:#F1EEFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M9 5v5M9 12.6v.4' fill='none' stroke='%234A34F5' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.res-note{margin-top:20px;font-size:13.5px;color:var(--grey);line-height:1.5}
+.res a{color:var(--indigo);font-weight:600}
+
+/* lot */
+textarea{width:100%;min-height:190px;border:1.5px solid #D9D5EE;border-radius:12px;padding:14px;font:400 14.5px/1.55 "Geist Mono",ui-monospace,monospace;color:var(--ink);resize:vertical;background:#fff}
+textarea:focus{outline:0;border-color:var(--indigo);box-shadow:0 0 0 3px rgba(74,52,245,.14)}
+.lot-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;align-items:start}
+.cols5{font:500 13px/1.6 "Geist Mono",monospace;color:#44445a;background:#fff;border:1px dashed #CFC7FF;border-radius:12px;padding:12px 14px;margin:10px 0 0;overflow-wrap:anywhere}
+.tbl-wrap{overflow-x:auto;margin-top:24px;border:1px solid var(--line);border-radius:16px;background:#fff}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:760px}
+th,td{padding:11px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child,th:last-child,td:last-child{text-align:left}
+td:last-child{white-space:normal;min-width:190px;color:#3d3d48}
+th{font:500 11.5px/1.4 "Geist Mono",monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--grey);background:#FBFAFF}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.lot-sum{display:flex;gap:10px 24px;flex-wrap:wrap;margin-top:18px;font-size:15.5px;font-weight:500}
+[hidden]{display:none!important}
+
+/* explications */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.box{border:1px solid var(--line);border-radius:24px;padding:30px}
+.box h3{margin-bottom:14px}
+.box ul{margin:0;padding:0;list-style:none;display:grid;gap:11px;font-size:16px;color:#2a2a34}
+.box li{padding-left:28px;position:relative}
+.box.yes li::before,.box.no li::before{content:"";position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:50%;background:var(--ok-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.3l2.6 2.6L13 6.5' fill='none' stroke='%23166C46' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.box.no li::before{background:#F1F1F4 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M6 6l6 6M12 6l-6 6' fill='none' stroke='%2362626E' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.rules{background:var(--lav)}
+.rules .head{max-width:760px;margin-bottom:36px}
+.rules .head p{margin-top:14px}
+.rt{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.rt table{min-width:0;font-size:15.5px}
+.rt th,.rt td{text-align:left;white-space:normal;padding:14px 20px;vertical-align:top}
+.rt td:first-child{font-weight:600;width:34%}
+.rt td:last-child{color:var(--grey);width:28%;font-size:14.5px}
+.final-box{background:var(--lav);border-radius:32px;padding:64px 56px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:center}
+.final-box h2{margin-bottom:14px}
+.final-box p{color:#4d4d58;font-size:18px}
+.final-box .cta{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.links{display:grid;gap:10px}
+.links a{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 20px;text-decoration:none;transition:border-color .2s,transform .2s}
+.links a:hover{border-color:var(--indigo);transform:translateY(-1px)}
+.links b{display:block;font-weight:600;font-size:16px}
+.links span{font-size:14.5px;color:var(--grey)}
+.legal{font-size:14px;color:var(--grey);margin-top:28px;max-width:80ch}
+/* 12/11 : le détail du calcul et l'export s'ouvrent contre des coordonnées */
+.gate{margin-top:22px;border:1.5px solid var(--line);border-radius:20px;background:var(--lav);padding:24px}
+.gate h4{font-size:19px;line-height:1.25;margin:0 0 6px}
+.gate>p{font-size:15.5px;color:#3d3d48;margin:0 0 12px}
+.gate ul{margin:0 0 16px;padding-left:20px;font-size:15px;color:#3d3d48}
+.gate-f{display:grid;gap:12px}
+.gate-f label{display:block;font-weight:600;font-size:14.5px}
+.gate-f input{display:block;width:100%;margin-top:5px;height:46px;border:1.5px solid var(--line);border-radius:12px;padding:0 14px;font:400 16px Geist,system-ui,sans-serif;background:#fff;color:var(--ink)}
+.gate-f input:focus{outline:2px solid var(--indigo);outline-offset:1px}
+.gate-f .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.gate-err{color:var(--ko);font-size:14.5px;margin:0}
+.gate-rgpd{font-size:13px;color:var(--grey);margin:0;line-height:1.45}
+.gate-ok{margin-top:18px;font-size:14.5px;color:var(--ok);font-weight:600}
+@media print{header,footer,.sticky,#form-un,.tabs,.legal,.gate,.actions,.s26-ft,nav{display:none!important}#res-un{box-shadow:none;border:0}}
+footer{border-top:1px solid var(--line);padding:28px 0 36px;font-size:14px;color:var(--grey)}
+footer .wrap{display:flex;gap:8px 20px;flex-wrap:wrap;align-items:center}
+footer img{height:26px;width:auto;margin-right:8px}
+footer a{color:var(--grey)}
+
+@media (max-width:980px){
+  section{padding:64px 0}
+  .nav nav a:not(.btn){display:none}
+  .cols,.lot-head,.two-col,.final-box{grid-template-columns:minmax(0,1fr)}
+  .res{position:static}
+  .tool-box{padding:20px 16px;border-radius:24px;margin:0 -12px}
+  .final-box{padding:36px 24px;border-radius:24px;gap:28px}
+}
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .wrap{padding:0 20px}
+  .nav .wrap{height:62px}
+  .nav img{height:28px}
+  .nav .btn{height:38px;padding:0 16px;font-size:14px}
+  .card{padding:20px 16px;border-radius:20px}
+  .two{grid-template-columns:minmax(0,1fr)}
+  .seg span{padding:12px 6px;font-size:14.5px}
+  dl.hyp{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+  .kpis{grid-template-columns:1fr}
+  .kpis div{border-left:0;border-top:1px solid var(--line)}
+  .kpis div:first-child{border-top:0}
+  .modes{display:flex}
+  .mode{flex:1;padding:11px 8px}
+  .actions .btn{width:100%}
+  dl.hyp{font-size:14.5px}
+  .rt th:last-child,.rt td:last-child{display:none}
+  .rt td:first-child{width:45%}
+  .rt th,.rt td{padding:12px 14px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+<link rel="stylesheet" href="/css/site-2026-11-entete.css?v=2026-11-12e">
+<link rel="stylesheet" href="/css/site-2026-11-pages-outils.css?v=2026-11-12e">
+</head>
+<body class="po po-rgdu">
+
+<header class="s26-hd" id="s26-hd"><!-- s26 -->
+  <div class="s26-in">
+    <a class="s26-logo" href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="133" height="34"></a>
+    <nav class="s26-nav" aria-label="Navigation principale">
+      <a href="/#gains">La solution</a>
+      <a href="/offres/">Offres</a>
+      <div class="s26-dd"><button type="button" aria-haspopup="true">Outils <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="s26-dd-menu">
+          <a href="/outils/matrice-controle-rgdu/"><b>Matrice de contrôle RGDU</b><span>Le classeur de contrôle, à télécharger</span></a>
+          <a href="/outils/comparateur-rgdu-mensuel/" aria-current="page"><b>Comparateur RGDU mensuel</b><span>Recalculez un mois et comparez à votre paie</span></a>
+          <a href="/outils/simulateur-avantage-en-nature-vehicule/"><b>Simulateur avantage en nature véhicule</b><span>Le bon montant, en quelques questions</span></a>
+          <a href="/outils/delai-remboursement-cotisations/"><b>Délai de remboursement d'un trop-payé</b><span>Jusqu'à quand demander le remboursement</span></a>
+          <a href="/outils/pilotage-flotte-tarifs/"><b>Pilotage de flotte</b><span>Le suivi des véhicules, un par un</span></a>
+          <a class="s26-dd-all" href="/outils/">Tous les outils →</a>
+        </div>
+      </div>
+      <a href="/ressources/">Ressources</a>
+    </nav>
+    <a class="s26-btn s26-btn--sm" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a>
+    <details class="s26-m"><summary aria-label="Ouvrir le menu"><i></i><i></i><i></i></summary>
+      <div class="s26-m-menu">
+            <a href="/#gains">La solution</a><a href="/offres/">Offres</a>
+            <a href="/outils/matrice-controle-rgdu/">Matrice de contrôle RGDU</a><a href="/outils/comparateur-rgdu-mensuel/">Comparateur RGDU mensuel</a><a href="/outils/simulateur-avantage-en-nature-vehicule/">Simulateur avantage en nature véhicule</a><a href="/outils/delai-remboursement-cotisations/">Délai de remboursement d'un trop-payé</a><a href="/outils/pilotage-flotte-tarifs/">Pilotage de flotte</a>
+            <a href="/outils/">Tous les outils</a><a href="/ressources/">Ressources</a>
+          </div>
+    </details>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Outil gratuit · RGDU 2026</p>
+    <h1>Comparateur RGDU mensuel</h1>
+    <p class="lead">Comparez un calcul mensuel de RGDU à votre paie. Retrouvez les hypothèses, les écarts et les points à vérifier. Pour un salarié, ou pour un lot collé depuis votre tableur.</p>
+    <ul class="assure">
+      <li>Résultat immédiat, sans e-mail</li>
+      <li>Vos saisies restent sur votre poste</li>
+      <li>Paramètres 2026 de l'article D. 241-7</li>
+    </ul>
+  </div>
+</section>
+
+<section class="tool" id="comparateur">
+  <div class="wrap">
+    <div class="tool-box ph-no-capture" data-sensible>
+      <div class="modes" role="tablist" aria-label="Mode de comparaison">
+        <button class="mode" role="tab" id="tab-un" aria-selected="true" aria-controls="pan-un">Un salarié</button>
+        <button class="mode" role="tab" id="tab-lot" aria-selected="false" aria-controls="pan-lot" tabindex="-1">Un lot de salariés</button>
+      </div>
+
+      <!-- ===== Un salarié ===== -->
+      <div id="pan-un" role="tabpanel" aria-labelledby="tab-un">
+        <div class="cols">
+          <form class="card" id="form-un" novalidate autocomplete="off">
+            <h2>Les données du mois</h2>
+
+            <fieldset class="f">
+              <legend>Taux de FNAL de l'employeur</legend>
+              <div class="seg">
+                <label><input type="radio" name="fnal" value="fnal010"><span>FNAL à 0,10 %</span></label>
+                <label><input type="radio" name="fnal" value="fnal050"><span>FNAL à 0,50 %</span></label>
+              </div>
+              <small>0,10 % pour les employeurs de moins de 50 salariés, pour certains employeurs agricoles et pour les coopératives agricoles. 0,50 % pour les autres. Indiquez le taux légalement applicable à votre entreprise, et pas seulement votre effectif du moment. Ce taux fixe Tdelta : 0,3781 ou 0,3821.</small>
+            </fieldset>
+
+            <div class="two">
+              <div class="f">
+                <label for="heures">Durée contractuelle</label>
+                <div class="inp"><input id="heures" name="heures" type="text" inputmode="decimal" value="35"><span>h par semaine</span></div>
+                <small>35 pour un temps plein. Hors heures complémentaires.</small>
+              </div>
+              <div class="f">
+                <label for="hs">Heures sup. ou complémentaires</label>
+                <div class="inp"><input id="hs" name="hs" type="text" inputmode="decimal" value="0"><span>h dans le mois</span></div>
+                <small>Le nombre d'heures supplémentaires ou complémentaires rémunérées pour le mois. Ne saisissez pas leur majoration de salaire.</small>
+              </div>
+            </div>
+
+            <div class="f">
+              <label for="remu">Rémunération brute du mois</label>
+              <div class="inp"><input id="remu" name="remu" type="text" inputmode="decimal" placeholder="2 200,00"><span>€</span></div>
+              <small>L'assiette des cotisations de sécurité sociale, heures supplémentaires et prime de partage de la valeur comprises.</small>
+            </div>
+
+            <div class="f">
+              <label for="paie">Réduction portée en paie pour ce mois</label>
+              <div class="inp"><input id="paie" name="paie" type="text" inputmode="decimal" placeholder="538,56"><span>€</span></div>
+              <small>Positif pour une réduction, négatif pour une reprise. Laissez vide pour voir seulement le recalcul.</small>
+            </div>
+
+            <details class="opt">
+              <summary>Absence, entrée ou sortie dans le mois</summary>
+              <div class="in">
+                <div class="two">
+                  <div class="f"><label for="due">Rémunération due</label><div class="inp"><input id="due" name="due" type="text" inputmode="decimal"><span>€</span></div></div>
+                  <div class="f"><label for="theo">Rémunération sans l'absence</label><div class="inp"><input id="theo" name="theo" type="text" inputmode="decimal"><span>€</span></div></div>
+                </div>
+                <small>Dans les deux montants, retirez les éléments qui ne sont pas réduits en stricte proportion de l'absence, par exemple une prime versée en entier ou une prime annuelle. Si la rémunération est maintenue en totalité, ne saisissez rien ici. Les indemnités journalières de sécurité sociale versées par subrogation n'entrent pas dans ces montants. Les indemnités complémentaires financées en partie ou en totalité par l'employeur entrent dans la rémunération due. En cas d'entrée ou de sortie, retirez aussi des deux montants les indemnités versées à l'occasion de la rupture, notamment l'indemnité compensatrice de congés payés et l'indemnité de fin de contrat. Avec des heures supplémentaires dans le même mois, le cas sort du comparateur.</small>
+              </div>
+            </details>
+
+            <details class="opt">
+              <summary>Forfait annuel en jours</summary>
+              <div class="in">
+                <div class="f"><label for="forfait">Nombre de jours du forfait</label><div class="inp"><input id="forfait" name="forfait" type="text" inputmode="numeric"><span>jours par an</span></div>
+                <small>Le SMIC de référence est corrigé seulement si le forfait est inférieur à 218 jours.</small></div>
+              </div>
+            </details>
+
+            <details class="opt" id="d-prog">
+              <summary>Mon logiciel régularise chaque mois</summary>
+              <div class="in">
+                <label class="chk"><input type="checkbox" id="prog" name="prog"><span>Comparer en régularisation progressive, sur les cumuls depuis janvier ou depuis l'embauche.</span></label>
+                <div class="f"><label for="cremu">Cumul des rémunérations des mois précédents</label><div class="inp"><input id="cremu" name="cremu" type="text" inputmode="decimal"><span>€</span></div></div>
+                <div class="f"><label for="csmic">Cumul des SMIC de référence des mois précédents</label><div class="inp"><input id="csmic" name="csmic" type="text" inputmode="decimal"><span>€</span></div></div>
+                <div class="f"><label for="cred">Cumul des réductions déjà appliquées</label><div class="inp"><input id="cred" name="cred" type="text" inputmode="decimal"><span>€</span></div>
+                <small>Les cumuls portent sur le même contrat, depuis janvier ou depuis l'embauche. Un CDD renouvelé ou transformé en CDI se calcule sur toute la période couverte, dans la limite de l'année civile : ses cumuls se poursuivent. Un nouveau CDD distinct chez le même employeur repart de zéro. Saisissez le SMIC de référence cumulé avec ses décimales, six si vous reportez les valeurs du comparateur. Sans décimales, le résultat peut être refusé. Pour le premier mois, saisissez 0 dans les trois cumuls.</small></div>
+              </div>
+            </details>
+
+            <details class="opt">
+              <summary>Situation particulière du salarié ou de l'employeur</summary>
+              <div class="in" id="situations">
+                <p style="font-size:14.5px;color:var(--grey);margin-bottom:12px">Le comparateur vise un salarié sous contrat de travail, dans une entreprise du régime général, aux taux de cotisations de droit commun. Cochez ce qui s'applique.</p>
+                <label class="chk"><input type="checkbox" value="non_eligible"><span>Employeur ou salarié susceptible d'être exclu du champ de la réduction (particulier employeur, employeur public, mandataire sans contrat de travail, stagiaire)</span></label>
+                <label class="chk"><input type="checkbox" value="interim"><span>Contrat de mission (intérim)</span></label>
+                <label class="chk"><input type="checkbox" value="caisse_conges"><span>Affiliation à une caisse de congés payés</span></label>
+                <label class="chk"><input type="checkbox" value="equivalence"><span>Conducteur routier en régime d'heures d'équivalence</span></label>
+                <label class="chk"><input type="checkbox" value="forfait_heures"><span>Forfait annuel en heures</span></label>
+                <label class="chk"><input type="checkbox" value="dfs"><span>Déduction forfaitaire spécifique</span></label>
+                <label class="chk"><input type="checkbox" value="taux_reduits"><span>Taux de cotisations patronales inférieurs au droit commun (journaliste à la pige, VRP à cartes multiples, profession médicale à temps partiel pour plusieurs employeurs, salarié expatrié, retraite complémentaire prise en charge à moins de 60 % par l'employeur, ou toute situation où la somme des taux des cotisations et contributions effectivement à la charge de l'employeur est inférieure à Tmin + Tdelta)</span></label>
+                <label class="chk"><input type="checkbox" value="ppv_exoneree"><span>Prime de partage de la valeur exonérée versée dans le mois ou comprise dans les cumuls</span></label>
+                <label class="chk"><input type="checkbox" value="exoneration_specifique"><span>Exonération spécifique non cumulable, régime spécial ou activité mixte d'aide à domicile</span></label>
+                <label class="chk"><input type="checkbox" value="duree_collective"><span>Durée collective de l'entreprise inférieure à 35 heures</span></label>
+                <label class="chk"><input type="checkbox" value="non_mensualise"><span>Salarié hors mensualisation, rémunéré à la tâche ou sans horaire</span></label>
+                <label class="chk"><input type="checkbox" value="apres_rupture"><span>Somme versée après la rupture du contrat</span></label>
+                <label class="chk"><input type="checkbox" value="fin_juin_2026"><span>Contrat terminé entre le 1er et le 30 juin 2026</span></label>
+                <label class="chk"><input type="checkbox" value="changement_annee"><span>Changement de régime d'exonération ou de valeurs Tmin et Tdelta en cours d'année</span></label>
+                <label class="chk"><input type="checkbox" value="mayotte"><span>Établissement situé à Mayotte</span></label>
+                <label class="chk"><input type="checkbox" value="changement_duree"><span>Changement de durée contractuelle en cours de mois</span></label>
+                <label class="chk"><input type="checkbox" value="regularisation_annuelle"><span>Décembre, ou dernier mois du contrat, quand la paie porte la régularisation</span></label>
+              </div>
+            </details>
+
+            <div class="actions">
+              <button class="btn" type="submit">Comparer <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+              <button class="reset" type="button" id="exemple-un">Charger l'exemple</button>
+              <button class="reset" type="reset">Effacer</button>
+            </div>
+          </form>
+
+          <div class="card res" id="res-un" aria-live="polite">
+            <div class="res-empty">
+              <h2>Le résultat s'affiche ici</h2>
+              <p>Renseignez le mois d'un salarié, puis lancez la comparaison. Vous obtenez :</p>
+              <ul>
+                <li>la réduction recalculée et l'écart avec votre paie</li>
+                <li>les hypothèses retenues : SMIC de référence, plafond, coefficient</li>
+                <li>les points à vérifier dans votre dossier</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Un lot ===== -->
+      <div id="pan-lot" role="tabpanel" aria-labelledby="tab-lot" hidden>
+        <div class="card">
+          <div class="lot-head">
+            <div>
+              <h2>Collez vos lignes de paie</h2>
+              <p style="font-size:16px;color:#3d3d48">Une ligne par salarié, pour un même mois. Cinq colonnes, séparées par un point-virgule ou collées depuis un tableur.</p>
+              <p class="cols5">identifiant ; heures par semaine ; heures supplémentaires ou complémentaires ; rémunération brute ; réduction en paie</p>
+              <fieldset class="f" style="margin-top:20px">
+                <legend>Taux de FNAL de l'employeur</legend>
+                <div class="seg">
+                  <label><input type="radio" name="fnal-lot" value="fnal010"><span>FNAL à 0,10 %</span></label>
+                  <label><input type="radio" name="fnal-lot" value="fnal050"><span>FNAL à 0,50 %</span></label>
+                </div>
+              </fieldset>
+              <label class="chk"><input type="checkbox" id="lot-ok"><span>Je confirme que ces salariés étaient présents tout le mois, sans absence non maintenue, sans forfait et sans situation particulière.</span></label>
+              <p style="font-size:14px;color:var(--grey)">Le lot compare chaque ligne en mois isolé. Les absences, les entrées et sorties, les forfaits et la régularisation progressive se traitent salarié par salarié. Utilisez un identifiant interne plutôt qu'un nom.</p>
+            </div>
+            <div>
+              <label class="lab" for="lot">Vos lignes</label>
+              <textarea id="lot" spellcheck="false" placeholder="A01;35;0;2 200,00;538,56&#10;A02;28;8;1 691,73;633,38"></textarea>
+              <div class="actions" style="margin-top:14px">
+                <button class="btn" type="button" id="go-lot">Comparer le lot <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+                <button class="btn btn--ghost" type="button" id="csv" disabled>Exporter en CSV</button>
+                <button class="reset" type="button" id="exemple-lot">Charger l'exemple</button>
+              </div>
+            </div>
+          </div>
+          <div id="res-lot" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+    <p class="legal">Ce comparateur ne remplace pas la vérification par votre gestionnaire de paie. Il présente l'état des règles applicables aux périodes d'emploi de 2026 et ne constitue pas une consultation juridique. Les calculs sont faits dans votre navigateur : aucune donnée de paie saisie n'est envoyée ni enregistrée. Seules vos coordonnées nous parviennent si vous demandez le détail ou l'export.</p>
+  </div>
+</section>
+
+<section style="padding-top:0" id="perimetre">
+  <div class="wrap">
+    <p class="eyebrow">Le périmètre</p>
+    <h2 style="margin-bottom:36px;max-width:22ch">Ce que le comparateur fait, et ce qu'il ne fait pas.</h2>
+    <div class="two-col">
+      <div class="box yes">
+        <h3>Il traite</h3>
+        <ul>
+          <li>Le calcul du mois, pour un salarié du régime général en 2026, aux taux de droit commun</li>
+          <li>Le temps plein à 35 heures et le temps partiel</li>
+          <li>Les heures supplémentaires et complémentaires</li>
+          <li>L'absence et l'entrée en cours de mois, sans heures supplémentaires</li>
+          <li>La sortie en cours de mois, en régularisation progressive seulement</li>
+          <li>Les forfaits annuels en jours, de 1 à 218 jours</li>
+          <li>L'apprenti éligible : son SMIC de référence n'est pas réduit selon son pourcentage de rémunération. Les corrections habituelles de durée et de présence restent applicables. L'employeur exonéré au titre de l'article L. 6227-8-1 du code du travail reste hors du comparateur</li>
+          <li>La régularisation progressive, si vous saisissez les cumuls</li>
+        </ul>
+      </div>
+      <div class="box no">
+        <h3>Il ne traite pas</h3>
+        <ul>
+          <li>Décembre et le dernier mois du contrat, quand la paie porte une régularisation annuelle</li>
+          <li>Un changement de durée contractuelle en cours de mois</li>
+          <li>L'intérim et les caisses de congés payés</li>
+          <li>Les conducteurs en régime d'équivalence</li>
+          <li>La déduction forfaitaire spécifique</li>
+          <li>Les taux réduits, les salariés expatriés, les exonérations spécifiques, Mayotte</li>
+          <li>Les durées collectives inférieures à 35 heures et le forfait en heures</li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">Le montant recalculé s'entend avant plafonnement. En règle générale, la réduction est limitée aux cotisations et contributions de son champ effectivement dues sur l'année. Une règle particulière s'applique à la minoration du taux d'assurance chômage résultant du bonus-malus. Le comparateur ne recalcule pas ce plafond. Si vous cochez l'une de ces situations, le comparateur affiche « Hors périmètre » et ne donne aucun montant. Il ne les détecte pas à votre place. La <a href="/outils/matrice-controle-rgdu/">matrice de contrôle RGDU</a> et le <a href="/ressources/rgdu-cas-particuliers-calcul/">guide des cas particuliers</a> abordent une partie de ces situations.</p>
+  </div>
+</section>
+
+<section class="rules" id="regles">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Les règles appliquées</p>
+      <h2>Un calcul que vous pouvez refaire à la main.</h2>
+      <p class="lead">Coefficient = Tmin + Tdelta × [ ½ × ( 3 × SMIC de référence ÷ rémunération − 1 ) ]<sup>1,75</sup>. En mois isolé, la réduction du mois est la rémunération multipliée par ce coefficient. En régularisation progressive, le calcul porte sur les cumuls, puis les réductions déjà appliquées sont retranchées.</p>
+    </div>
+    <div class="rt">
+      <table>
+        <thead><tr><th>Paramètre</th><th>Valeur retenue en 2026</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>Tmin</td><td>0,0200</td><td>BOSS, allègements généraux, § 440</td></tr>
+          <tr><td>Tdelta</td><td>0,3781 avec un FNAL à 0,10 %. 0,3821 avec un FNAL à 0,50 %.</td><td>Article D. 241-7, III.</td></tr>
+          <tr><td>Exposant P</td><td>1,75</td><td>BOSS, § 370</td></tr>
+          <tr><td>SMIC retenu</td><td>Celui du 1er janvier 2026, toute l'année : 12,02 € l'heure. Pour un temps plein, le douzième de 1 820 fois ce montant, sans arrondi, soit 1 823,0333 € par mois. La revalorisation du 1er juin 2026 ne le modifie pas.</td><td>Article D. 241-7, IV. BOSS, § 620 et 660</td></tr>
+          <tr><td>Plafond</td><td>La rémunération doit rester strictement inférieure à 3 fois le SMIC de référence du salarié, soit 5 469,10 € par mois pour un temps plein.</td><td>Article D. 241-7, I et IV. Le BOSS (§ 160) retient 65 629,08 € par an, sur la base mensuelle arrondie.</td></tr>
+          <tr><td>Arrondi</td><td>Coefficient arrondi à quatre décimales, puis limité à Tmin + Tdelta.</td><td>BOSS, § 380</td></tr>
+          <tr><td>Temps partiel</td><td>SMIC proratisé selon la durée du contrat, hors heures complémentaires.</td><td>BOSS, § 670</td></tr>
+          <tr><td>Heures supplémentaires</td><td>Nombre d'heures multiplié par le SMIC horaire, sans majoration.</td><td>BOSS, § 650</td></tr>
+          <tr><td>Absence</td><td>SMIC corrigé du rapport entre la rémunération due et celle qui aurait été due.</td><td>BOSS, § 710 et 770</td></tr>
+          <tr><td>Régularisation progressive</td><td>Calcul sur les cumuls, moins les réductions déjà appliquées.</td><td>BOSS, § 1140</td></tr>
+          <tr><td>Plafond du montant</td><td>En règle générale, la réduction ne peut pas dépasser les cotisations et contributions entrant dans son champ et effectivement dues, appréciées sur l'année. Le comparateur le rappelle, sans le recalculer.</td><td>Article D. 241-11 du code de la sécurité sociale</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="suite">
+  <div class="wrap">
+    <div class="final-box">
+      <div class="cta">
+        <div>
+          <p class="eyebrow">Pour aller plus loin</p>
+          <h2>Un écart sur un salarié en cache souvent d'autres.</h2>
+          <p>ACOMPIA relit toute la paie, pas un échantillon, et prépare la correction. Voyez-le sur un cas concret, en une vingtaine de minutes.</p>
+        </div>
+        <a class="btn" data-cta="comparateur_rgdu_demo" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="links">
+        <a href="/outils/matrice-controle-rgdu/" data-cta="comparateur_rgdu_matrice"><b>Matrice de contrôle RGDU 2026</b><span>Le classeur des neuf contrôles, à télécharger</span></a>
+        <a href="/ressources/rgdu-cas-particuliers-calcul/" data-cta="comparateur_rgdu_guide"><b>Guide des cas particuliers</b><span>Temps partiel, absences, conducteurs, intérim</span></a>
+        <a href="/ressources/reduction-generale-cotisations-patronales/" data-cta="comparateur_rgdu_article"><b>La réduction générale en 2026</b><span>Ce qui a changé au 1er janvier</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="s26-ft"><!-- s26 -->
+  <div class="s26-in">
+    <a href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="102" height="26"></a>
+    <span>ComplyDB SAS</span><span>25 rue de Ponthieu, 75008 Paris</span>
+    <a href="mailto:she@acompia.com">she@acompia.com</a>
+    <a href="/equipe/">Qui sommes-nous</a>
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/politique-confidentialite.html">Confidentialité</a>
+  </div>
+</footer>
+<div class="s26-sticky" id="s26-sticky"><a class="s26-btn" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a></div>
+
+<script src="/js/site-2026-11-entete.js?v=2026-11-11" defer></script>
+<script src="/js/config.js"></script>
+<script src="/js/rgdu-comparateur.js"></script>
+<script>
+(function(){
+  'use strict';
+  var d=document, R=window.RGDU;
+  if(!R) return;
+
+  /* Mesure : jamais aucune valeur saisie, seulement l'état et le sens. */
+  function cap(n,p){ if(window.posthog&&posthog.capture) posthog.capture(n,p||{}); }
+  d.querySelectorAll('[data-cta]').forEach(function(a){a.addEventListener('click',function(){cap('cta_clique',{place:a.getAttribute('data-cta')})})});
+  var seen={};
+  window.addEventListener('scroll',function(){
+    var max=d.documentElement.scrollHeight-window.innerHeight; if(max<=0) return;
+    var pct=window.scrollY/max*100;
+    [25,50,75,100].forEach(function(s){ if(pct>=s-0.5&&!seen[s]){seen[s]=1;cap('scroll_atteint',{seuil:s})} });
+    var n=d.getElementById('nav');if(n)n.classList.toggle('is-stuck',window.scrollY>8);
+  },{passive:true});
+
+  function euro(x){ return x.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'; }
+  function coef(x){ return x.toLocaleString('fr-FR',{minimumFractionDigits:4,maximumFractionDigits:4}); }
+  function exact(x){ return x.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:6})+' €'; }
+  function signe(x){ return (x>0?'+ ':x<0?'− ':'')+euro(Math.abs(x)); }
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
+  function val(id){ var v=d.getElementById(id).value.trim(); return v===''?undefined:R.lireNombre(v); }
+  function liste(items,cls){ return '<ul class="'+cls+'">'+items.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>'; }
+
+  var LIENS='<p class="res-note">La <a href="/outils/matrice-controle-rgdu/">matrice de contrôle RGDU</a> et le <a href="/ressources/rgdu-cas-particuliers-calcul/">guide des cas particuliers</a> permettent d\'approfondir certains de ces cas.</p>';
+
+  /* ---------- Onglets ---------- */
+  var tabs=[d.getElementById('tab-un'),d.getElementById('tab-lot')], pans=[d.getElementById('pan-un'),d.getElementById('pan-lot')];
+  function onglet(i){ tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===i?'true':'false');t.tabIndex=k===i?0:-1;pans[k].hidden=k!==i}); }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){onglet(i)});
+    t.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();var n=1-i;onglet(n);tabs[n].focus()} });
+  });
+
+  /* ---------- Détail et export contre coordonnées ----------
+     La synthèse (concordance ou écart, montants) reste libre. Le détail du calcul, les points à vérifier
+     et l'export du lot s'ouvrent une fois les coordonnées laissées. Seules les coordonnées partent vers
+     le Worker (type « devis » : Notion et notification par e-mail). Aucune donnée de paie n'est transmise. */
+  var CLE='acompia_rgdu_ouvert', resume='', detailEnAttente='';
+  var LOCAL=['127.0.0.1','localhost',''].indexOf(location.hostname)>-1||location.protocol==='file:';
+  function ouvert(){ try{return localStorage.getItem(CLE)==='1'}catch(e){return window.__rgduOuvert===true} }
+  function ouvrir(){ window.__rgduOuvert=true; try{localStorage.setItem(CLE,'1')}catch(e){} }
+  function porte(quoi){
+    var un=quoi==='un';
+    return '<div class="gate" data-gate="'+quoi+'"><h4>'+(un?'Recevez le détail du calcul':'Exportez le lot complet')+'</h4>'
+      +'<p>'+(un?'La synthèse ci-dessus est libre. Le détail s\'ouvre tout de suite, contre vos coordonnées.':'L\'export en CSV s\'ouvre tout de suite, contre vos coordonnées.')+'</p>'
+      +(un?'<ul><li>Les hypothèses retenues : SMIC de référence, plafond, coefficient</li><li>Les points à vérifier dans votre dossier</li><li>Une version à imprimer ou à enregistrer en PDF</li></ul>':'')
+      +'<form class="gate-f" novalidate><label>Prénom et nom<input type="text" name="nom" autocomplete="name" required></label>'
+      +'<label>E-mail professionnel<input type="email" name="email" autocomplete="email" required></label>'
+      +'<label>Cabinet ou entreprise<input type="text" name="societe" autocomplete="organization" required></label>'
+      +'<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">'
+      +'<p class="gate-err" role="alert" hidden></p>'
+      +'<div class="actions"><button class="btn" type="submit">'+(un?'Voir le détail':'Exporter en CSV')+'</button></div>'
+      +'<p class="gate-rgpd">Vos coordonnées servent à vous recontacter au sujet d\'ACOMPIA. Aucune donnée de paie saisie n\'est transmise. <a href="/politique-confidentialite.html">Confidentialité</a></p></form></div>';
+  }
+  function brancher(zone,suite){
+    var g=zone.querySelector('.gate'); if(!g) return;
+    var fm=g.querySelector('form'), err=g.querySelector('.gate-err'), quoi=g.getAttribute('data-gate');
+    cap('rgdu_porte_vue',{quoi:quoi});
+    fm.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var nom=fm.nom.value.trim(), email=fm.email.value.trim(), soc=fm.societe.value.trim();
+      if(!nom||!soc||!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)){ err.textContent='Renseignez votre nom, un e-mail valide et votre cabinet ou entreprise.'; err.hidden=false; return; }
+      if(fm.website.value){ ouvrir(); suite(); return; }
+      ouvrir(); cap('rgdu_lead',{quoi:quoi});
+      if(!LOCAL&&window.ACOMPIA_CONFIG){
+        fetch(ACOMPIA_CONFIG.workerURL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'devis',data:{
+          name:nom, email:email, audit_type:'Comparateur RGDU — '+(quoi==='un'?'détail du calcul':'export du lot'),
+          message:'Cabinet ou entreprise : '+soc+' | Résultat : '+(quoi==='un'?resume:'lot comparé')+' | Page : '+location.pathname
+        }})}).then(function(x){ if(!x.ok) throw new Error('Worker '+x.status) }).catch(function(){ cap('lead_envoi_echoue',{page:location.pathname}) });
+      }
+      suite();
+    });
+  }
+
+  /* ---------- Un salarié ---------- */
+  var form=d.getElementById('form-un'), res=d.getElementById('res-un'), vide=res.innerHTML;
+  function lire(){
+    var eff=form.querySelector('input[name="fnal"]:checked');
+    var sit=[]; d.querySelectorAll('#situations input:checked').forEach(function(c){sit.push(c.value)});
+    var e={ fnal: eff?eff.value:undefined, heuresHebdo: val('heures'), heuresSup: val('hs'), remuneration: val('remu'),
+            remuDue: val('due'), remuTheorique: val('theo'), forfaitJours: val('forfait'), situations: sit,
+            methode: d.getElementById('prog').checked?'progressive':'mois' };
+    if(e.heuresHebdo===undefined) e.heuresHebdo=NaN;
+    if(e.heuresSup===undefined) e.heuresSup=0;
+    if(e.remuneration===undefined) e.remuneration=NaN;
+    if(e.methode==='progressive'){ e.cumulRemuAnterieur=val('cremu'); e.cumulSmicAnterieur=val('csmic'); e.cumulReductionAnterieure=val('cred'); var dm=/[.,](\d+)\s*€?\s*$/.exec(d.getElementById('csmic').value); e.cumulSmicDecimales=dm?dm[1].length:0; }
+    return e;
+  }
+  function afficher(e){
+    var r=R.calculerMois(e), html='';
+    if(r.etat==='incomplet'){
+      html='<span class="badge b-wa"><i></i>Calcul incomplet</span><h3>Il manque une donnée.</h3><p class="say">Le comparateur ne calcule rien tant que ces données ne sont pas saisies, en chiffres.</p>'+liste(r.manques,'pts');
+      cap('rgdu_comparaison',{etat:'incomplet'});
+    } else if(r.etat==='hors_perimetre'){
+      html='<span class="badge b-n"><i></i>Hors périmètre</span><h3>Ce cas sort du comparateur.</h3><p class="say">Aucun montant n\'est affiché, pour ne pas vous donner un chiffre faux.</p>'+liste(r.raisons,'pts')+LIENS;
+      cap('rgdu_comparaison',{etat:'hors_perimetre'});
+    } else {
+      var paie=val('paie'), c=paie===undefined?{etat:'sans_objet'}:R.comparer(r,paie);
+      var badge,titre,dire,cls='';
+      if(c.etat==='incomplet'){ badge='<span class="badge b-wa"><i></i>Montant de paie illisible</span>'; titre='Voici le recalcul.'; dire='Le montant de la réduction en paie n\'a pas pu être lu.'; }
+      else if(c.etat!=='compare'){ badge='<span class="badge b-n"><i></i>Recalcul seul</span>'; titre='Voici le recalcul du mois.'; dire='Saisissez la réduction portée en paie pour voir l\'écart.'; }
+      else if(c.sens==='aucun'){ badge='<span class="badge b-ok"><i></i>Aucun écart</span>'; titre='Votre paie concorde avec le recalcul.'; dire=(c.ecart===0?'Le montant porté en paie est celui que donne le calcul du mois.':'Un centime sépare la paie du recalcul. Les articles D. 241-7 à D. 241-11 ne fixent pas l\'arrondi du montant : le comparateur ne compte pas un centime d\'écart.'); cls='calm'; }
+      else if(c.sens==='base'){ badge='<span class="badge b-n"><i></i>Compatible avec une autre base mensuelle</span>'; titre='Le montant en paie est compatible avec une autre base mensuelle.'; dire=(c.concordeAvec.code==='1823_03'?'Il est compatible avec la base mensuelle arrondie de 1 823,03 € que présente le BOSS. Cette concordance ne suffit pas à valider la paie.':'Il est compatible avec une base de '+esc(c.concordeAvec.libelle)+'. La base réellement utilisée par votre logiciel reste à vérifier.'); }
+      else if(c.sens==='paie_superieure'){ badge='<span class="badge b-ko"><i></i>Écart à examiner</span>'; titre='La paie applique plus que le recalcul.'; dire='La réduction en paie dépasse le recalcul du mois. Cherchez d\'où vient la différence avant la prochaine paie.'; cls='hot'; }
+      else { badge='<span class="badge b-wa"><i></i>Écart à examiner</span>'; titre='La paie applique moins que le recalcul.'; dire='La réduction en paie est inférieure au recalcul du mois. Voyez les points à vérifier.'; cls='hot'; }
+      var det='';
+      html=badge+'<h3>'+titre+'</h3><p class="say">'+dire+'</p>';
+      html+='<div class="kpis"><div><small>Recalcul, avant plafond</small><b>'+euro(r.reduction)+'</b></div><div><small>Réduction en paie</small><b>'+(c.etat==='compare'?euro(c.montantPaie):'non saisie')+'</b></div><div class="'+cls+'"><small>Écart</small><b>'+(c.etat==='compare'?signe(c.ecart):'·')+'</b></div></div>';
+      det+='<p class="sub">Hypothèses retenues</p><dl class="hyp">';
+      det+='<dt>Méthode</dt><dd>'+(r.methode==='progressive'?'Régularisation progressive':'Mois isolé')+'</dd>';
+      det+='<dt>SMIC de référence du mois</dt><dd>'+euro(r.smicReference)+'</dd>';
+      if(Math.abs(r.smicReferenceExact-r.smicReference)>1e-9) det+='<dt>Valeur à six décimales, à reporter dans vos cumuls</dt><dd>'+exact(r.smicReferenceExact)+'</dd>';
+      if(r.prorata<1) det+='<dt>Prorata temps partiel</dt><dd>'+(r.prorata*100).toLocaleString('fr-FR',{maximumFractionDigits:2})+' %</dd>';
+      if(r.rapportAbsence<1) det+='<dt>Rapport de correction pour absence</dt><dd>'+r.rapportAbsence.toLocaleString('fr-FR',{minimumFractionDigits:6,maximumFractionDigits:6})+'</dd>';
+      if(r.majorationHeures>0) det+='<dt>dont heures supplémentaires ou complémentaires</dt><dd>'+euro(r.majorationHeures)+'</dd>';
+      if(r.methode==='progressive'){
+        det+='<dt>Rémunération cumulée</dt><dd>'+euro(r.cumulRemuneration)+'</dd><dt>SMIC de référence cumulé</dt><dd>'+(Math.abs(r.cumulSmicReferenceExact-r.cumulSmicReference)>1e-9?exact(r.cumulSmicReferenceExact):euro(r.cumulSmicReference))+'</dd><dt>Réduction cumulée recalculée</dt><dd>'+euro(r.reductionCumulee)+'</dd>';
+      }
+      det+='<dt>Plafond (3 SMIC de référence)</dt><dd>'+euro(r.plafondIndividuel)+'</dd>';
+      det+='<dt>Rémunération sous le plafond</dt><dd>'+(r.eligible?'Oui':(r.methode==='progressive'?'Non, droit cumulé nul':'Non, réduction nulle'))+'</dd>';
+      det+='<dt>Tdelta</dt><dd>'+coef(r.tdelta)+'</dd>';
+      det+='<dt>Coefficient'+(r.methode==='progressive'?' sur le cumul':'')+'</dt><dd>'+coef(r.coefficient)+'</dd></dl>';
+      det+='<p class="res-note" style="margin-top:12px">Montant arrondi au centime. Les articles D. 241-7 à D. 241-11 ne fixent pas cet arrondi.</p>';
+      var pts=R.pointsAVerifier(r,c,e);
+      if(pts.length) det+='<p class="sub">Points à vérifier</p>'+liste(pts,'pts');
+      var prov='<p class="res-note">Simulation provisoire du mois. Elle ne valide ni le droit annuel ni la paie régularisée : la régularisation peut modifier le montant définitif. Cet outil ne remplace pas la vérification par votre gestionnaire.</p>';
+      resume=(c.etat==='compare'?(c.sens==='aucun'?'aucun écart':c.sens==='base'?'compatible avec une autre base mensuelle':c.sens==='paie_superieure'?'écart, la paie applique plus':'écart, la paie applique moins'):'recalcul seul')+' ('+(r.methode==='progressive'?'régularisation progressive':'mois isolé')+')';
+      if(ouvert()){ html+=det+prov+'<div class="actions" style="margin-top:18px"><button class="btn btn--ghost" type="button" id="imprimer">Imprimer ou enregistrer en PDF</button></div>'; }
+      else { html+=porte('un')+prov; detailEnAttente=det; }
+      cap('rgdu_comparaison',{etat:'calcule',methode:r.methode,sens:c.sens||'sans_comparaison'});
+    }
+    res.innerHTML=html;
+    brancher(res,function(){afficher(e)});
+    var bi=d.getElementById('imprimer'); if(bi) bi.addEventListener('click',function(){cap('rgdu_impression',{});window.print()});
+    if(window.matchMedia('(max-width:980px)').matches) res.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  form.addEventListener('submit',function(ev){ev.preventDefault();afficher(lire())});
+  form.addEventListener('reset',function(){res.innerHTML=vide});
+  d.getElementById('exemple-un').addEventListener('click',function(){
+    form.reset();
+    form.querySelector('input[value="fnal010"]').checked=true;
+    d.getElementById('heures').value='28'; d.getElementById('hs').value='8';
+    d.getElementById('remu').value='1 691,73'; d.getElementById('paie').value='633,38';
+    afficher(lire());
+  });
+
+  /* ---------- Lot ---------- */
+  var zone=d.getElementById('lot'), sortie=d.getElementById('res-lot'), bcsv=d.getElementById('csv'), dernier=null;
+  var PILL={aucun:'b-ok',base:'b-n',paie_superieure:'b-ko',paie_inferieure:'b-wa'};
+  function lot(){
+    var eff=d.querySelector('input[name="fnal-lot"]:checked');
+    var L=R.analyserLot(zone.value,{fnal:eff?eff.value:undefined,confirmeOrdinaire:d.getElementById('lot-ok').checked});
+    dernier=L; bcsv.disabled=!L.length;
+    if(!L.length){ sortie.innerHTML='<p class="res-note">Aucune ligne à comparer. Collez au moins une ligne de cinq colonnes.</p>'; return; }
+    var n={ok:0,ecart:0,autre:0}, h='<div class="tbl-wrap"><table><thead><tr><th>Identifiant</th><th>Rémunération</th><th>SMIC de réf.</th><th>Coefficient</th><th>Recalcul</th><th>En paie</th><th>Écart</th><th>Lecture</th></tr></thead><tbody>';
+    L.forEach(function(l){
+      var r=l.resultat,c=l.comparaison;
+      if(r.etat!=='calcule'){
+        n.autre++;
+        h+='<tr><td>'+esc(l.identifiant)+'</td><td colspan="6" style="text-align:left"><span class="pill '+(r.etat==='incomplet'?'b-wa':'b-n')+'">'+R.LIBELLES_ETAT[r.etat]+'</span></td><td>'+esc((r.manques||r.raisons||[]).join(' '))+'</td></tr>';
+      } else {
+        var comp=c.etat==='compare';
+        if(comp&&c.sens==='aucun') n.ok++; else if(comp) n.ecart++; else n.autre++;
+        h+='<tr><td>'+esc(l.identifiant)+'</td><td>'+euro(r.remuneration)+'</td><td>'+euro(r.smicReference)+'</td><td>'+coef(r.coefficient)+'</td><td>'+euro(r.reduction)+'</td><td>'+(comp?euro(c.montantPaie):'·')+'</td><td>'+(comp?signe(c.ecart):'·')+'</td><td>'+(comp?'<span class="pill '+PILL[c.sens]+'">'+R.LIBELLES_SENS[c.sens]+'</span>':'<span class="pill b-wa">Réduction en paie illisible</span>')+'</td></tr>';
+      }
+    });
+    h+='</tbody></table></div><div class="lot-sum"><span>'+L.length+' ligne'+(L.length>1?'s':'')+'</span><span style="color:var(--ok)">'+n.ok+' sans écart</span><span style="color:var(--ko)">'+n.ecart+' avec écart</span><span style="color:var(--grey)">'+n.autre+' non comparée'+(n.autre>1?'s':'')+'</span></div>';
+    h+='<p class="res-note">Les montants recalculés s\'entendent avant plafonnement aux cotisations effectivement dues sur l\'année. Ils sont arrondis au centime, et un centime d\'écart n\'est pas compté. Un écart se lit salarié par salarié. Reprenez les lignes en écart dans l\'onglet « Un salarié » pour voir les hypothèses et les points à vérifier.</p>';
+    sortie.innerHTML=h;
+    cap('rgdu_lot',{lignes:L.length<=10?'1-10':L.length<=50?'11-50':'51+',avec_ecart:n.ecart>0});
+  }
+  d.getElementById('go-lot').addEventListener('click',lot);
+  d.getElementById('exemple-lot').addEventListener('click',function(){
+    d.querySelector('input[name="fnal-lot"][value="fnal010"]').checked=true;
+    d.getElementById('lot-ok').checked=true;
+    zone.value='Identifiant;Heures hebdo;Heures sup;Rémunération;Réduction en paie\nA01;35;0;2 200,00;538,56\nA02;28;8;1 691,73;633,38\nA03;35;10;2 650,00;430,00\nA04;17,5;0;4 000,00;0,00\nA05;39;0;2 500,00;300,00';
+    lot();
+  });
+  bcsv.addEventListener('click',function exporter(){
+    if(!dernier||!dernier.length) return;
+    if(!ouvert()){
+      if(!sortie.querySelector('.gate')){ sortie.insertAdjacentHTML('beforeend',porte('lot')); brancher(sortie,function(){ var g=sortie.querySelector('.gate'); if(g) g.remove(); exporter(); }); }
+      sortie.querySelector('.gate').scrollIntoView({behavior:'smooth',block:'center'}); return;
+    }
+    var blob=new Blob([R.versCsv(dernier)],{type:'text/csv;charset=utf-8'}), a=d.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='comparaison-rgdu.csv'; d.body.appendChild(a); a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+    cap('rgdu_export',{});
+  });
+})();
+</script>
+</body>
+</html>

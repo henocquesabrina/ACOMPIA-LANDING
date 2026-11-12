@@ -9,8 +9,9 @@ L'ensemble du contenu juridique est rédigé et vérifié par Maître Sabrina He
 ## Outils gratuits
 
 - [Simulateur d'avantage en nature véhicule, barème 2026](https://www.acompia.com/outils/simulateur-avantage-en-nature-vehicule/) : calcul gratuit de l'avantage en nature d'un véhicule de fonction selon la méthode forfaitaire de l'arrêté du 25 février 2025. Mise à disposition à compter du 1er février 2025 : véhicule acheté 15 % du prix TTC (10 % au-delà de 5 ans), 20 %/15 % avec carburant ; véhicule loué 50 % du coût annuel TTC, 67 % avec carburant. Véhicule 100 % électrique éligible à l'éco-score : abattement de 70 % plafonné à 4 641,60 € par an en 2026. Ancien barème conservé pour les mises à disposition antérieures. Couvre salarié et dirigeant assimilé, prorata, participation du salarié, plafonnement de la location, calcul de flotte. Le calcul s'exécute dans le navigateur, aucune donnée n'est transmise. Auteure : Maître Sabrina Henocque Chiche, avocate au Barreau de Paris.
-- [Prédiagnostic URSSAF gratuit](https://www.acompia.com/outils/prediagnostic-urssaf/) : questionnaire court de 3 minutes, résultat immédiat avec niveau de vigilance, principaux signaux et thèmes examinés. Gratuit, confidentiel, sans engagement.
 - [Matrice de contrôle RGDU 2026 (classeur Excel)](https://www.acompia.com/outils/matrice-controle-rgdu/) : classeur gratuit pour rejouer à la main le calcul de la réduction générale dégressive unique et le confronter au montant appliqué par le logiciel de paie. Paramètres 2026 (SMIC de référence gelé, Tmin 0,0200, Tdelta 0,3781 ou 0,3821 selon le taux de FNAL, P = 1,75, plafond AT-MP 0,49 %), reconstitution du SMIC de référence sur trois scénarios, comparaison et sens de l'écart, grille des neuf contrôles, tests de bord, onze rubriques DSN à extraire. Le calcul s'exécute dans le tableur de l'utilisateur, aucune donnée n'est transmise. Auteure : Maître Sabrina Henocque Chiche, avocate au Barreau de Paris.
+- [Comparateur RGDU mensuel 2026](https://www.acompia.com/outils/comparateur-rgdu-mensuel/) : outil gratuit qui recalcule la réduction générale dégressive unique d'un mois, pour un salarié ou pour un lot, et la compare au montant porté en paie. Paramètres 2026 de l'article D. 241-7 du code de la sécurité sociale. Calcul fait dans le navigateur, sans e-mail. La régularisation annuelle n'est pas traitée.
+- [Délai de remboursement d'un trop-payé de cotisations](https://www.acompia.com/outils/delai-remboursement-cotisations/) : calculateur gratuit qui indique, paiement par paiement, si le délai de trois ans de l'article L. 243-6 du code de la sécurité sociale court encore et à quelle date il expire. Il calcule des délais, jamais des montants.
 - [Sommaire des outils](https://www.acompia.com/outils/) : tous les outils gratuits ACOMPIA.
 
 ## Solution et tarifs
@@ -19,7 +20,7 @@ L'ensemble du contenu juridique est rédigé et vérifié par Maître Sabrina He
 - [Audit de votre paie, sur 1 à 3 ans](https://www.acompia.com/offres/audit-paie/) : une à trois années, une ou plusieurs sociétés, 26 thèmes. Les risques, les économies possibles et les corrections prioritaires.
 - [Gestion de flotte et avantage en nature véhicule](https://www.acompia.com/offres/gestion-de-flotte/) : l'avantage en nature de chaque véhicule au barème en vigueur, forfait et réel comparés, écarts avec la paie et les DSN, pièces à réunir. Inclus dans le suivi mensuel, seul sur devis.
 - [Contrôle URSSAF en cours, on vous accompagne](https://www.acompia.com/offres/controle-urssaf/) : lettre d'observations, mise en demeure, recours amiable. Relecture de chaque chef de redressement, recalcul des montants, réponse préparée. Même sans abonnement.
-- [Demander une démo](https://calendly.com/she-acompia/30min) : 30 minutes en visio, sans engagement.
+- [Demander une démo](https://calendly.com/she-acompia/30min) : une vingtaine de minutes en visio, sans engagement.
 
 ## Ressources
 

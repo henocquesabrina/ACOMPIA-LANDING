@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
+<title>Trop-payé URSSAF : jusqu'à quand demander le remboursement ? Calculateur · ACOMPIA</title>
+<meta name="description" content="Calculez en une minute la date à laquelle expire le délai de trois ans pour demander à l'URSSAF le remboursement de cotisations trop payées, paiement par paiement. Gratuit, sans e-mail.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.acompia.com/outils/delai-remboursement-cotisations/">
+<link rel="alternate" hreflang="fr-FR" href="https://www.acompia.com/outils/delai-remboursement-cotisations/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="ACOMPIA">
+<meta property="og:title" content="Trop-payé URSSAF : jusqu'à quand demander le remboursement ?">
+<meta property="og:description" content="Un calculateur gratuit. Indiquez vos dates de paiement, voyez si le délai de trois ans court encore et quand il expire.">
+<meta property="og:url" content="https://www.acompia.com/outils/delai-remboursement-cotisations/">
+<meta property="og:image" content="https://www.acompia.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "WebApplication",
+        "SoftwareApplication"
+      ],
+      "@id": "https://www.acompia.com/outils/delai-remboursement-cotisations/#app",
+      "name": "Calculateur du délai de remboursement d'un trop-payé de cotisations",
+      "url": "https://www.acompia.com/outils/delai-remboursement-cotisations/",
+      "description": "Outil gratuit qui indique, paiement par paiement, si le délai de trois ans pour demander le remboursement de cotisations trop payées court encore et à quelle date il expire. Il calcule des délais, jamais des montants.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Tout navigateur web",
+      "inLanguage": "fr-FR",
+      "isAccessibleForFree": true,
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "featureList": [
+        "Date d'expiration du délai de trois ans, paiement par paiement",
+        "Fondement cité pour chaque résultat",
+        "Liste de ce qu'il faut réunir",
+        "Calcul fait dans le navigateur"
+      ],
+      "publisher": {
+        "@id": "https://www.acompia.com/#org"
+      },
+      "isBasedOn": "https://www.acompia.com/ressources/recuperer-trop-paye-cotisations-urssaf/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://www.acompia.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Outils",
+          "item": "https://www.acompia.com/outils/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Délai de remboursement d'un trop-payé"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.acompia.com/#org",
+      "name": "ACOMPIA",
+      "url": "https://www.acompia.com/"
+    }
+  ]
+}
+</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/fonts.css">
+<script src="/js/analytics.js"></script>
+<style>
+
+
+
+
+:root{--indigo:#4A34F5;--indigo-d:#3A26D9;--ink:#101014;--grey:#62626E;--lav:#F4F2FF;--line:#E3DEFF;--ok:#166C46;--ok-bg:#E4F3EB;--ko:#B32D37;--ko-bg:#FBE7E9;--r:20px;--wrap:1160px;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font:400 17px/1.6 Geist,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+p{margin:0}
+figure{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
+.eyebrow{font:500 13px/1.4 "Geist Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin:0 0 18px}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.022em;line-height:1.1}
+h1{font-size:clamp(36px,4.1vw,54px);letter-spacing:-.03em;line-height:1.05}
+h2{font-size:clamp(30px,3.3vw,44px);line-height:1.08}
+h3{font-size:21px;letter-spacing:-.012em;line-height:1.25}
+.lead{color:var(--grey);font-size:18.5px;line-height:1.6}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;border-radius:999px;background:var(--indigo);color:#fff;font:600 16.5px/1 Geist,system-ui,sans-serif;text-decoration:none;box-shadow:0 10px 24px -10px rgba(74,52,245,.55);transition:background .2s,transform .2s,box-shadow .2s}
+.btn:hover{background:var(--indigo-d);box-shadow:0 14px 28px -8px rgba(74,52,245,.5)}
+.btn:active{transform:scale(.98)}
+.btn .arr{width:18px;height:18px;transition:transform .18s}
+.btn:hover .arr{transform:translateX(4px)}
+.btn--sm{height:42px;padding:0 20px;font-size:14.5px;box-shadow:none}
+section{padding:112px 0}
+.head{max-width:820px;margin-bottom:52px}
+.head .lead{margin-top:18px;max-width:640px}
+.pic{width:44px;height:44px;fill:none;stroke:var(--indigo);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cap{font-size:13.5px;color:var(--grey);margin-top:12px}
+.panel{background:var(--lav);border-radius:32px;max-width:1240px;margin:0 auto;padding:88px 0}
+.mid-cta{margin-top:44px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.note{font-size:15px;color:var(--grey)}
+
+/* apparition */
+.js .rv{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* barre du haut */
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.is-stuck{border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav img{height:34px;width:auto}
+.nav nav{display:flex;align-items:center;gap:30px}
+.nav nav a:not(.btn){text-decoration:none;font-size:15px;color:#33333c;font-weight:500}
+.nav nav a:not(.btn):hover{color:var(--indigo)}
+
+/* premier écran */
+.hero{padding:56px 0 0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:56px;align-items:center}
+.hero-txt{padding:24px 0 40px}
+.hero h1{margin-bottom:24px}
+.hero .lead{max-width:540px}
+.cta-row{margin-top:32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.host{display:flex;align-items:center;gap:12px;font-size:14.5px;line-height:1.4;color:var(--grey)}
+.host img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center 18%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.host b{display:block;color:var(--ink);font-weight:600}
+.hero-wrap{position:relative;margin-right:calc((100vw - min(100vw, var(--wrap))) / -2 - 32px)}
+.hero-visual{position:relative;height:600px;border-radius:28px 0 0 28px;overflow:hidden;background:#e9e3da}
+.js .hero-visual{animation:heroIn .7s ease both}
+@keyframes heroIn{from{opacity:0;transform:scale(1.03)}to{opacity:1;transform:none}}
+.scene{position:absolute;left:-15%;top:-2%;width:134%;aspect-ratio:1600/1067}
+.scene img.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.layer{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:0 0;background:#fff url(/assets/dashboard-acompia.png) left top / 100% 111.5% no-repeat;filter:blur(.4px) saturate(.97);opacity:0}
+.scene.is-fit .layer{opacity:1}
+.layer::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.12) 0%,rgba(255,255,255,0) 38%,rgba(0,0,0,.05) 100%)}
+.logo-mask{position:absolute;border-radius:50%;background:radial-gradient(closest-side,#d9dadc 55%,rgba(217,218,220,0));pointer-events:none}
+.chip-float{position:absolute;left:-56px;bottom:64px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px 10px;box-shadow:0 24px 48px -20px rgba(40,30,120,.35);width:min(440px,78%)}
+.chip-float img{width:100%;height:auto;border-radius:8px}
+.chip-float span{display:block;font:500 11.5px/1.4 "Geist Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);margin-top:8px}
+.js .chip-float{animation:chipIn .7s var(--ease) .7s both}
+@keyframes chipIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.proof{margin-top:56px;border-top:1px solid var(--line);padding:28px 0 32px}
+.proof .wrap{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.proof-txt{max-width:560px}
+.proof-txt p{font-size:16px;color:#22222a;font-weight:500}
+.proof-txt .sub{margin-top:6px;font-weight:400;color:var(--grey);font-size:15px}
+.proof ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.proof li{font-size:14px;font-weight:500;color:#44444e;border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:#fff}
+.proof .lbl{border:0;padding:0;font:500 12px/1 "Geist Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-right:4px}
+
+/* gains : grille bento */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(2,minmax(272px,auto));gap:24px}
+.bx{position:relative;background:var(--lav);border-radius:24px;padding:32px 34px;overflow:hidden;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.bx:hover{transform:translateY(-2px);box-shadow:0 16px 32px -16px rgba(74,52,245,.22)}
+.bx .k{font:500 12.5px/1.4 "Geist Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.bx .k .pic{width:26px;height:26px}
+.bx h3{font-size:27px;line-height:1.12;letter-spacing:-.02em;margin-bottom:12px}
+.bx p{color:#4d4d58;font-size:16.5px;max-width:440px}
+.bx-a{grid-column:span 7;grid-row:span 2;display:flex;flex-direction:column}
+.bx-a h3{font-size:34px}
+.bx-b{grid-column:span 5}
+.bx-c{grid-column:span 5}
+.bx-a .ill{margin-top:auto;padding-top:36px}
+.bx-a .ill svg{width:100%;height:auto;display:block}
+.trio{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.trio span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14.5px;font-weight:500;color:#33333c}
+.trio .ok{background:var(--ok-bg);border-color:#BFE1CF;color:var(--ok);font-weight:600}
+.frag{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-top:22px;box-shadow:0 14px 28px -18px rgba(60,40,180,.35)}
+.frag img{width:100%;height:auto;border-radius:6px}
+.frag small,.fragcap{display:block;font:500 11px/1.4 "Geist Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);margin-top:8px}
+.folders{display:flex;gap:8px;flex-wrap:nowrap;margin-top:26px}
+.folders i{width:38px;height:32px;flex:none;border-radius:9px 9px 9px 9px;background:#fff;border:1.5px solid #CFC7FF;position:relative;display:block}
+.folders i::before{content:"";position:absolute;left:-1.5px;top:-8px;width:17px;height:8px;border:1.5px solid #CFC7FF;border-bottom:0;border-radius:6px 6px 0 0;background:#fff}
+.folders i.new{background:var(--indigo);border-color:var(--indigo)}
+.folders i.new::before{background:var(--indigo);border-color:var(--indigo)}
+.js .bx-c .folders i.new{opacity:0;transform:translateY(8px) scale(.9)}
+.js .bx-c.in .folders i.new,.js .bx-c.replay .folders i.new{animation:pop2 .5s var(--ease) both}
+.bx-c .folders i.new:nth-of-type(6){animation-delay:.25s!important}.bx-c .folders i.new:nth-of-type(7){animation-delay:.5s!important}.bx-c .folders i.new:nth-of-type(8){animation-delay:.75s!important}
+@keyframes pop2{from{opacity:0;transform:translateY(8px) scale(.9)}to{opacity:1;transform:none}}
+/* dessin « du temps » */
+.sc-line{opacity:0}
+.js .bx-a.in .sc-line,.js .bx-a.replay .sc-line{animation:sweep 1.6s ease-in-out .3s both}
+@keyframes sweep{0%{transform:translateY(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(150px);opacity:0}}
+.js .bx-a .hit{opacity:0}
+.js .bx-a.in .hit,.js .bx-a.replay .hit{animation:fadeUp .5s ease 1.7s both}
+.js .bx-a.in .hit2,.js .bx-a.replay .hit2{animation-delay:2s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* pilotage : caméra sur la vraie capture */
+.cam{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center}
+.tabs{display:grid;gap:6px;margin-top:8px}
+.tab{appearance:none;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:16px 20px 16px 22px;border-left:2px solid var(--line);position:relative;transition:background .2s,border-color .2s;border-radius:0 14px 14px 0}
+.tab b{display:block;font-weight:600;font-size:18px;line-height:1.3}
+.tab span{display:block;color:var(--grey);font-size:15.5px;line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s,margin .3s}
+.tab:hover{background:rgba(255,255,255,.6)}
+.tab[aria-selected="true"]{border-color:var(--indigo);background:#fff}
+.tab[aria-selected="true"] span{max-height:90px;opacity:1;margin-top:4px}
+.tab .bar{position:absolute;left:-2px;top:0;width:2px;height:0;background:var(--indigo)}
+.tab.run .bar{animation:bar 3.2s linear both}
+@keyframes bar{from{height:0}to{height:100%}}
+.cam-frame{position:relative;aspect-ratio:620/420;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 40px 70px -40px rgba(60,40,180,.45)}
+.cam-frame img{position:absolute;left:0;top:0;width:1145px;max-width:none;transform-origin:0 0;transform:translate(-175px,-52px) scale(1.1);transition:transform .7s cubic-bezier(.65,0,.35,1)}
+
+/* comment ça marche */
+.how-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px;align-items:center}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px 20px;border-radius:16px;border:1px solid transparent;transition:background .3s,border-color .3s;cursor:pointer}
+.steps li:hover{background:#FAF9FF}
+.steps .n{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:600 15px/1 "Geist Mono",monospace;background:var(--lav);color:var(--indigo);transition:background .3s,color .3s}
+.steps b{display:block;font-weight:600;font-size:19px;margin-bottom:2px}
+.steps span{color:var(--grey);font-size:16px}
+.js-anim .steps li.on{background:var(--lav);border-color:var(--line)}
+.js-anim .steps li.on .n{background:var(--indigo);color:#fff}
+.stage{background:var(--lav);border:1px solid var(--line);border-radius:28px;padding:28px 28px 18px;box-shadow:0 24px 48px -24px rgba(74,52,245,.18)}
+.stage svg{width:100%;height:auto;display:block;font-family:Geist,system-ui,sans-serif}
+.stage figcaption{font:500 12px/1.4 "Geist Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);text-align:center;margin-top:10px}
+.a{transition:opacity .6s ease,transform .9s cubic-bezier(.4,0,.2,1)}
+.js-anim .a{opacity:0}
+.js-anim .t1 .a1,.js-anim .t2 .a2,.js-anim .t3 .a3,.js-anim .t4 .a4{opacity:1}
+.js-anim .tag{transform:translateX(-10px)}
+.js-anim .t2 .tag{transform:none}
+.tag:nth-of-type(2){transition-delay:.18s}.tag:nth-of-type(3){transition-delay:.36s}
+.sheet{transform:translate(360px,6px);transition:transform 1s cubic-bezier(.5,0,.2,1) .9s}
+.js-anim .sheet{transform:none}
+.js-anim .t2 .sheet,.js-anim .t3 .sheet,.js-anim .t4 .sheet{transform:translate(360px,6px)}
+.scan{opacity:0}
+.js-anim .t1 .scan{animation:scan 1.5s ease-in-out .2s 1 both}
+.js-anim .t2 .scan,.js-anim .t3 .scan,.js-anim .t4 .scan{animation:none;opacity:0}
+@keyframes scan{0%{transform:translateY(0);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateY(112px);opacity:0}}
+.link{stroke-dasharray:60;stroke-dashoffset:0;transition:stroke-dashoffset .8s ease .3s,opacity .3s}
+.js-anim .link{stroke-dashoffset:60}
+.js-anim .t3 .link,.js-anim .t4 .link{stroke-dashoffset:0}
+.fix rect{fill:var(--ok-bg);stroke:#BFE1CF;transition:fill .6s ease .5s,stroke .6s ease .5s}
+.fix text,.fix path{transition:fill .6s ease .5s,stroke .6s ease .5s}
+.js-anim .fix rect{fill:#fff;stroke:var(--line)}
+.js-anim .fix text{fill:var(--grey)}
+.js-anim .fix path{stroke:var(--grey)}
+.js-anim .t4 .fix rect{fill:var(--ok-bg);stroke:#BFE1CF}
+.js-anim .t4 .fix text{fill:var(--ok)}
+.js-anim .t4 .fix path{stroke:var(--ok)}
+.js-anim .t3 .gap,.js-anim .t4 .gap{animation:pop .5s ease .5s both}
+@keyframes pop{0%{transform:scale(.96)}60%{transform:scale(1.03)}100%{transform:scale(1)}}
+.gap{transform-box:fill-box;transform-origin:center}
+
+/* IA */
+.ia{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+.ia h2{margin-bottom:20px}
+.ia-more{margin-top:22px;font-size:16px;color:#33333c}
+.ia-frags{display:grid;grid-template-columns:1fr;gap:12px;margin-top:26px;max-width:430px}
+.ia-frags .frag{margin:0}
+.chat{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px 26px 22px;box-shadow:0 30px 60px -36px rgba(60,40,180,.4)}
+.chat-top{display:flex;align-items:center;gap:10px;font:500 12.5px/1 "Geist Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin-bottom:18px}
+.chat-top .pic{width:24px;height:24px}
+.qs{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.q{appearance:none;font:500 16px/1.4 Geist,sans-serif;color:#22222a;text-align:left;cursor:pointer;background:var(--lav);border:1px solid var(--line);border-radius:18px 18px 18px 6px;padding:11px 18px;transition:background .2s,border-color .2s,color .2s}
+.q:hover{border-color:#B9AEFF}
+.q[aria-pressed="true"]{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.ans{margin-top:18px;border-top:1px dashed var(--line);padding-top:18px;min-height:150px}
+.ans-txt{font-size:17px;line-height:1.55;color:#1b1b22}
+.ans-txt b{font-weight:600}
+.srcs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.srcs span{font:500 12px/1 "Geist Mono",monospace;letter-spacing:.03em;border:1px solid #CFC7FF;color:var(--indigo);border-radius:999px;padding:7px 12px;background:#FBFAFF}
+.js .srcs span{opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s}
+.js .srcs.show span{opacity:1;transform:none}
+.srcs.show span:nth-child(2){transition-delay:.1s}.srcs.show span:nth-child(3){transition-delay:.2s}
+.chat-foot{font:500 11.5px/1.4 "Geist Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-top:16px}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--indigo);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* pour qui : lignes */
+.rows{border-top:1px solid var(--line)}
+.rowl{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr) 56px;gap:32px;align-items:center;padding:30px 16px;border-bottom:1px solid var(--line);transition:background .2s,padding .2s}
+.rowl:hover{background:var(--lav);padding-left:32px}
+.rowl h3{font-size:27px;line-height:1.15;letter-spacing:-.02em}
+.rowl p{font-size:18px;color:#3d3d48;line-height:1.5}
+.rowl .pic{justify-self:end}
+
+/* offres */
+.offers{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:24px}
+.of{border:1px solid var(--line);border-radius:24px;padding:30px 30px 32px;background:#fff;transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s}
+.of:hover{transform:translateY(-2px);box-shadow:0 16px 32px -16px rgba(74,52,245,.22);border-color:rgba(74,52,245,.4)}
+.of .k{font:500 12.5px/1.4 "Geist Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin:14px 0 10px}
+.of h3{margin-bottom:10px}
+.of p{color:var(--grey);font-size:16px}
+.of--main{border:1.5px solid var(--indigo);background:linear-gradient(180deg,#FBFAFF,#fff)}
+.of--main h3{font-size:27px}
+.of--main p{font-size:17.5px;max-width:460px;color:#3d3d48}
+
+/* équipe */
+.team-head{max-width:820px;margin-bottom:40px}
+.people{display:grid;grid-template-columns:minmax(0,640px);gap:24px}
+.person{display:grid;grid-template-columns:96px 1fr;gap:22px;align-items:center;border:1px solid var(--line);border-radius:24px;padding:26px 28px}
+.person img,.avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:center 18%}
+.avatar{display:flex;align-items:center;justify-content:center;background:var(--lav);color:var(--indigo);font:600 28px/1 Geist,sans-serif}
+.person h3{font-size:19px;margin-bottom:2px}
+.person .k{font:500 12px/1.4 "Geist Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin-bottom:6px}
+.person p{color:var(--grey);font-size:15.5px;line-height:1.5}
+
+/* questions */
+.faq{padding-top:0}
+.faq-grid{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:64px}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:22px 44px 22px 0;font-weight:600;font-size:18.5px;position:relative;transition:color .2s}
+summary:hover{color:var(--indigo)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:6px;top:50%;width:10px;height:10px;border-right:2px solid var(--indigo);border-bottom:2px solid var(--indigo);transform:translateY(-70%) rotate(45deg);transition:transform .25s}
+details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+details p{padding:0 44px 24px 0;color:#4d4d58}
+
+/* appel final */
+.final{padding:0 0 96px}
+.final-box{background:var(--lav);border-radius:32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden;max-width:1240px;margin:0 auto}
+.final-txt{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.final-txt h2{margin-bottom:14px}
+.final-txt>p{color:#4d4d58;margin-bottom:30px;font-size:18.5px}
+.final-alt{margin-top:22px;font-size:15.5px;color:var(--grey)}
+.final-alt a{color:var(--indigo);font-weight:600;text-decoration:none}
+.final-alt a:hover{text-decoration:underline}
+.final-visual{position:relative;min-height:460px;overflow:hidden;background:#eee}
+.final-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%;transform:scale(1.75);transform-origin:42% 100%}
+footer{border-top:1px solid var(--line);padding:28px 0 36px;font-size:14px;color:var(--grey)}
+footer .wrap{display:flex;gap:8px 20px;flex-wrap:wrap;align-items:center}
+footer img{height:26px;width:auto;margin-right:8px}
+footer a{color:var(--grey)}
+.sticky{display:none}
+
+@media (max-width:980px){
+  section{padding:76px 0}
+  .panel{border-radius:0;padding:68px 0}
+  .nav nav a:not(.btn){display:none}
+  .hero{padding-top:28px}
+  .hero-grid,.how-grid,.cam,.ia,.faq-grid,.final-box{grid-template-columns:1fr;gap:36px}
+  .final-box{gap:0;border-radius:24px;margin:0 20px}
+  .hero-txt{padding:8px 0 0}
+  .hero-wrap{margin-right:-32px}
+  .hero-visual{height:auto;aspect-ratio:1.28/1;border-radius:22px 0 0 22px}
+  .chip-float{left:12px;bottom:14px;width:min(360px,80%)}
+  .bento{grid-template-columns:1fr;grid-template-rows:none}
+  .bx-a,.bx-b,.bx-c{grid-column:auto;grid-row:auto}
+  .offers,.people{grid-template-columns:1fr}
+  .rowl{grid-template-columns:1fr 44px;gap:8px 16px;padding:24px 4px}
+  .rowl h3{grid-column:1}.rowl p{grid-column:1;grid-row:2}.rowl .pic{grid-row:1 / span 2;grid-column:2}
+  .rowl:hover{padding-left:4px;background:none}
+  .tabs{grid-auto-flow:row}
+  .final-visual{min-height:0;aspect-ratio:1.5/1;order:-1}
+  .final-txt{padding:40px 26px 44px}
+  .proof{margin-top:40px}
+}
+@media (max-width:600px){
+  body{font-size:16.5px;padding-bottom:84px}
+  .wrap{padding:0 20px}
+  .nav .wrap{height:62px}
+  .nav img{height:28px}
+  .nav .btn{display:none}
+  .lead{font-size:17px}
+  .hero-wrap{margin-right:-20px}
+  .cta-row{flex-direction:column;align-items:stretch;gap:16px}
+  .head{margin-bottom:34px}
+  .bx{padding:26px 22px}
+  .folders{gap:6px}.folders i{width:30px;height:26px}.folders i::before{width:13px;height:7px;top:-7px}
+  .bx h3,.rowl h3{font-size:24px}.bx-a h3{font-size:28px}
+  .rowl p{font-size:16.5px}
+  .tab{padding:14px 14px 14px 16px}
+  .tab b{font-size:17px}
+  .steps li{padding:14px 12px;grid-template-columns:40px 1fr;gap:14px}
+  .steps .n{width:40px;height:40px}
+  .stage{padding:16px 12px 12px;border-radius:20px}
+  .chat{padding:20px 16px 18px;border-radius:20px}
+  .q{font-size:15.5px}
+  .ia-frags{grid-template-columns:1fr}
+  .mid-cta{flex-direction:column;align-items:stretch;gap:10px}
+  .mid-cta .note{text-align:center}
+  .person{grid-template-columns:64px 1fr;gap:16px;padding:20px}
+  .person img,.avatar{width:64px;height:64px}
+  .final{padding-bottom:64px}
+  .final-txt .btn{width:100%}
+  .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s}
+  .sticky.show{transform:none}
+  .sticky .btn{width:100%;height:50px}
+}
+
+/* v5 : finitions après audit */
+.proof .wrap{flex-wrap:nowrap}
+.proof-txt{max-width:480px}
+.proof ul{justify-content:flex-end;flex-wrap:nowrap;white-space:nowrap}
+.proof li{font-size:13.5px;padding:6px 12px}
+.assure{list-style:none;margin:22px 0 0!important;padding:18px 0 0!important;border-top:1px dashed var(--line);display:flex!important;justify-content:flex-start!important;gap:10px 36px!important;flex-wrap:wrap}
+.assure li{border:0!important;padding:0 0 0 28px!important;background:none!important;font-size:15.5px!important;font-weight:500;color:#22222a!important;position:relative}
+.assure li::before{content:"";position:absolute;left:0;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:var(--ok-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.3l2.6 2.6L13 6.5' fill='none' stroke='%23166C46' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.bx-a{justify-content:flex-start}
+.bx-a .ill{margin-top:auto;padding-top:32px}
+.bx-a .ill svg{max-height:300px}
+.ia{align-items:center}
+.ia-k{font:500 12.5px/1.4 "Geist Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin-top:28px}
+.ia-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.ia-list li{padding:11px 0 11px 26px;border-bottom:1px solid var(--line);font-size:16px;color:#22222a;position:relative}
+.ia-list li::before{content:"?";position:absolute;left:2px;top:11px;font:600 14px/1.6 "Geist Mono",monospace;color:var(--indigo)}
+.ia-who{margin-top:16px;font-size:15.5px;color:var(--grey)}
+.rowl{padding-left:0;padding-right:0}
+.rowl:hover{padding-left:16px}
+.offers{grid-template-columns:repeat(3,1fr)}
+.of{display:flex;flex-direction:column}
+.of--main h3{font-size:21px}
+.of--main p{font-size:16px;color:var(--grey);max-width:none}
+.of--main .k{color:var(--indigo)}
+.team-head .lead{max-width:60ch;text-wrap:balance}
+.final-box{align-items:stretch}
+.faq-grid>div:first-child .eyebrow{margin-bottom:14px}
+@media (max-width:980px){
+  .proof .wrap{flex-wrap:wrap}
+  .proof ul{justify-content:flex-start;flex-wrap:wrap}
+  .rowl{grid-template-columns:36px 1fr;gap:6px 14px}
+  .rowl .pic{grid-column:1;grid-row:1;justify-self:start;width:28px;height:28px}
+  .rowl h3{grid-column:2;grid-row:1}.rowl p{grid-column:2;grid-row:2}
+  .rowl:hover{padding-left:0}
+  .offers{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .nav .btn{display:inline-flex;height:38px;padding:0 16px;font-size:14px}
+  .assure{gap:10px 20px!important}
+  .srcs{gap:8px}
+}
+/* option 2 */
+
+/* ===== cadres et panneaux partagés ===== */
+.vf{margin:0;position:relative}
+.vf-in{position:relative;aspect-ratio:560/440;border-radius:26px;overflow:hidden;background:#4A34F5;box-shadow:14px 14px 0 #DDD7FF}
+.vf figcaption{font:500 11px/1.4 "Geist Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:#8A8A96;margin:26px 0 0 4px}
+.vf-rib{position:absolute;inset:0;width:100%;height:100%}
+.vf-dev{position:absolute;left:7.5%;top:11%;width:60%;height:100%;border-radius:16px 0 0 0;background:rgba(16,16,40,.28);display:flex;flex-direction:column;gap:15px;padding:22px 0 0 13px}
+.vf-dev i{width:13px;height:13px;border-radius:4px;background:rgba(255,255,255,.42)}
+.vf-dev i:first-child{background:#fff}
+.vwin{position:absolute;left:14.5%;top:15.5%;width:100%;min-height:100%;background:#fff;border-radius:14px 0 0 0;box-shadow:-18px 20px 50px rgba(20,10,90,.35);font:400 13.5px/1.4 Geist,system-ui,sans-serif;color:#1c1c24;padding:0 0 30px}
+.vbar{display:flex;align-items:center;gap:10px;padding:16px 22% 14px 20px;border-bottom:1px solid #EFEDF8;font-size:15.5px}
+.vbar b{font-weight:600;letter-spacing:-.01em;white-space:nowrap}
+.vgrow{flex:1}
+.vsel{font-size:12px;color:#55556a;border:1px solid #E6E3F5;border-radius:7px;padding:4px 9px;white-space:nowrap}
+.vico{width:24px;height:24px;border:1px solid #E6E3F5;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:#77778a}
+.vtab{font-size:12px;color:#66667a;padding:4px 9px;border-radius:7px;white-space:nowrap}
+.vtab.on{background:#F1EEFF;color:#4A34F5;font-weight:600}
+.vsub{padding:11px 20px 9px;font:500 10.5px/1.4 "Geist Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:#8d8da0}
+.vrow{display:grid;grid-template-columns:10px 1fr auto;align-items:center;gap:13px;padding:11px 20% 11px 20px;border-top:1px solid #F3F1FA}
+.vrow b{display:block;font-weight:600;font-size:13.5px}
+.vrow span:not(.vp){display:block;color:#73738a;font-size:12.5px;margin-top:1px}
+.vrow.is-hot{background:linear-gradient(90deg,#FFF6F7,#fff 70%);box-shadow:inset 3px 0 0 #D2434E}
+.vd{width:9px;height:9px;border-radius:50%}
+.vd.ok{background:#2E9E6A}.vd.ko{background:#D2434E}.vd.wa{background:#E39A2B}
+.vp{display:inline-flex;align-items:center;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.vp-ok{background:#E4F3EB;color:#166C46}.vp-ko{background:#FBE7E9;color:#B32D37}.vp-wa{background:#FFF1DC;color:#8A5200}.vp-n{background:#F1EEFF;color:#4A34F5}
+.vnote{display:flex;align-items:center;gap:9px;margin:0;padding:11px 20px;background:#FFF6F7;border-bottom:1px solid #F7DDE0;font-size:12.5px;color:#7a3a40}
+.vnote i{width:16px;height:16px;border-radius:50%;background:#D2434E;position:relative;flex:none}
+.vnote i::after{content:"!";position:absolute;inset:0;color:#fff;font:700 11px/16px Geist,sans-serif;text-align:center}
+.vnote b{color:#B32D37;font-weight:600}
+.vkpis{display:grid;grid-template-columns:repeat(3,1fr);margin:18px 22% 0 20px;border:1px solid #ECE9F8;border-radius:10px;overflow:hidden}
+.vkpis div{padding:10px 13px;border-left:1px solid #ECE9F8}
+.vkpis div:first-child{border-left:0}
+.vkpis small{display:block;font:500 9.5px/1.4 "Geist Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#8d8da0}
+.vkpis b{font-size:17px;font-weight:600;letter-spacing:-.015em;white-space:nowrap}
+.vkpis .hot{background:#FFF6F7}.vkpis .hot b{color:#B32D37}
+.vdl{display:grid;grid-template-columns:96px 1fr;gap:9px 12px;margin:16px 22% 0 20px;font-size:12.5px}
+.vdl dt{font:500 9.5px/1.9 "Geist Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#8d8da0}
+.vdl dd{margin:0;color:#2a2a36}
+.vact{display:flex;align-items:center;gap:14px;margin:16px 20px 0}
+.vbtn{display:inline-flex;align-items:center;gap:7px;background:#4A34F5;color:#fff;font-weight:600;font-size:12.5px;padding:8px 14px;border-radius:8px}
+.vbtn svg{width:14px;height:14px}
+.vlink{color:#4A34F5;font-weight:600;font-size:12.5px}
+.vhist{margin:18px 20px 0;padding-top:14px;border-top:1px solid #EFEDF8}
+.vhist>b{font-size:13px;font-weight:600}
+.vhist p{display:flex;align-items:center;gap:8px;margin:9px 0 0}
+.vhist p i{width:7px;height:7px;border-radius:50%;background:#CFC7FF;margin-right:2px}
+.vhist em{font-style:normal;color:#9a9aae}
+
+/* panneaux fidèles à l'application */
+.vtabs{display:flex;gap:18px;padding:0 20px;border-bottom:1px solid #EFEDF8;font-size:12.5px;color:#66667a;white-space:nowrap}
+.vtabs span{padding:10px 0 9px;border-bottom:2px solid transparent}
+.vtabs .on{color:#1c1c24;font-weight:600;border-color:#4A34F5}
+.vtabs em,.vsub2 em{font-style:normal;font-size:11px;color:#77778a;margin-left:3px}
+.vsub2{padding:15px 20px 8px}
+.vsub2 small{display:block;font:500 9.5px/1.4 "Geist Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#4A34F5;margin-bottom:3px}
+.vsub2 b{font-size:14.5px;font-weight:600}
+.vcard{display:flex;align-items:center;gap:14px;margin:0 22% 9px 20px;padding:13px 14px;border:1px solid #ECE9F8;border-radius:11px;background:#fff}
+.vcard>div{flex:1;min-width:0}
+.vcard b{display:block;font-size:13px;font-weight:600;line-height:1.35}
+.vcard p{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px;margin:6px 0 0;font-size:11.5px;color:#73738a}
+.vcard p.top{margin:0 0 6px}
+.vcard.is-hot{border-color:#D9D2FF;box-shadow:0 6px 16px -10px rgba(74,52,245,.45)}
+.vc{font-size:11px;border:1px solid #E6E3F5;border-radius:6px;padding:2px 7px;color:#44445a;white-space:nowrap}
+.vbtn2{font-size:12px;font-weight:600;border:1px solid #E0DCF5;border-radius:8px;padding:7px 12px;white-space:nowrap;color:#2a2a36}
+.vcard .vbtn{white-space:nowrap;background:#5B4BC4}
+.vchev{font-style:normal;color:#9a9aae;font-size:16px}
+.vmore{display:flex;justify-content:space-between;margin:12px 22% 0 20px;font-size:12px;color:#73738a}
+.vmore b{color:#4A34F5;font-weight:600}
+.vback{padding:14px 20px 0;font-size:12px;color:#66667a}
+.vtitle{padding:10px 20px 12px}
+.vtitle small{display:block;font-size:11px;color:#8d8da0}
+.vtitle>b{display:block;font-size:17px;font-weight:600;letter-spacing:-.015em;margin:2px 0 8px}
+.vtitle p{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#73738a;margin:0}
+.vblock{margin:0 22% 10px 20px;border:1px solid #ECE9F8;border-radius:11px;padding:13px 15px}
+.vblock small{display:block;font-size:11px;color:#73738a;margin-bottom:6px}
+.vblock p{font-size:12.5px;line-height:1.55;color:#22222c;margin:0 0 6px}
+.vblock p:last-child{margin:0}
+.vnext{background:#F7F5FF;border-color:#E3DEFF}
+.vnext p{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.vnext i{font:600 10px/18px "Geist Mono",monospace;width:18px;height:18px;border-radius:50%;background:#fff;border:1px solid #D9D2FF;color:#4A34F5;text-align:center;font-style:normal}
+.vfold{display:flex;justify-content:space-between;margin:0 22% 8px 20px;padding:11px 15px;border:1px solid #ECE9F8;border-radius:11px;font-size:12.5px;font-weight:600}
+.vfold em{font-style:normal;color:#9a9aae}
+/* listes à coches */
+.ck{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.ck li{display:grid;grid-template-columns:22px 1fr;gap:12px;font-size:17px;line-height:1.45;color:#2a2a34}
+.ck svg{width:20px;height:20px;color:#4A34F5;margin-top:3px}
+.ck li.pk{grid-template-columns:40px 1fr;gap:14px;align-items:center}
+.ck li.pk i{width:40px;height:40px;border-radius:12px;background:#F1EEFF;color:#4A34F5;display:flex;align-items:center;justify-content:center}
+.ck li.pk i .gi{width:21px;height:21px}
+.o2-k .gi{width:26px;height:26px}
+.gi{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== option 1 ===== */
+.o1-gains{background:var(--lav);padding:88px 0}
+.o1-gains h2{margin-bottom:52px}
+.o1-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:56px}
+.tile{display:inline-flex;width:52px;height:52px;border-radius:14px;background:#4A34F5;color:#fff;align-items:center;justify-content:center;box-shadow:0 10px 20px -8px rgba(74,52,245,.6);margin-bottom:22px}
+.o1-cols h3{font-size:24px;margin-bottom:8px}
+.o1-cols p{font-size:17.5px;color:#4d4d58;max-width:300px}
+.o1-pil{padding:104px 0}
+.o1-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:start}
+.o1-left h2{margin-bottom:18px}
+.o1-left .lead{margin-bottom:28px;max-width:460px}
+.o1-left .vf{margin-top:56px;max-width:500px}
+.o1-num{list-style:none;margin:0;padding:0}
+.o1-num>li{display:grid;grid-template-columns:86px 1fr;gap:8px;padding:34px 0;border-top:1px solid var(--line)}
+.o1-num>li:first-child{border-top:0;padding-top:6px}
+.o1-num>li>b{font-size:44px;font-weight:500;letter-spacing:-.03em;line-height:1;color:#4A34F5}
+.o1-num h3{font-size:28px;margin:4px 0 18px}
+/* ===== option 2 ===== */
+.o2{padding:96px 0}
+.o2 h2{margin-bottom:28px}
+.o2-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:88px;align-items:center;padding:56px 0}
+.o2-row.rev .o2-txt{order:2}
+.o2-row.rev{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.o2-k{display:flex;align-items:center;gap:10px;font:500 13px/1.4 "Geist Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:#4A34F5;margin-bottom:16px}
+.o2-txt h3{font-size:34px;line-height:1.1;letter-spacing:-.025em;margin-bottom:24px}
+.o2-txt .btn{margin-top:30px}
+/* ===== option 3 ===== */
+.o3{padding:96px 0;background:var(--lav)}
+.o3 h2{margin-bottom:36px}
+.o3-tabs{display:inline-flex;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px;margin-bottom:44px}
+.o3-tab{appearance:none;border:0;background:none;font:600 16px/1 Geist,sans-serif;color:#44444e;display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+.o3-tab[aria-selected="true"]{background:#4A34F5;color:#fff;box-shadow:0 8px 18px -8px rgba(74,52,245,.6)}
+.o3-stage{background:#fff;border:1px solid var(--line);border-radius:32px;padding:56px 70px 44px 56px}
+.o3-pane{display:none;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:72px;align-items:center}
+.o3-pane.on{display:grid;animation:o3in .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes o3in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.o3-txt h3{font-size:34px;line-height:1.1;letter-spacing:-.025em;margin-bottom:24px}
+.o3-txt .btn{margin-top:32px}
+@media (max-width:900px){
+  .o1-cols,.o1-grid,.o2-row,.o2-row.rev,.o3-pane.on{grid-template-columns:1fr;gap:36px}
+  .o2-row.rev .o2-txt{order:0}
+  .o3-stage{padding:28px 30px 28px 20px;border-radius:24px}
+  .o3-tabs{display:flex;overflow-x:auto;border-radius:18px}
+  .o3-tab{padding:11px 14px;font-size:14.5px;white-space:nowrap}
+  .o2-txt h3,.o3-txt h3{font-size:27px}
+  .vf-in{box-shadow:9px 9px 0 #DDD7FF}
+  .vwin{font-size:12px}
+  .o1-num>li{grid-template-columns:60px 1fr}
+  .o1-num>li>b{font-size:34px}
+}
+
+@media (max-width:900px){.vf-in{aspect-ratio:1/.92}.vwin{left:8%;top:11%;width:122%;transform:scale(.8);transform-origin:0 0;min-height:125%}.vf-dev{left:3%;top:7%}.o2-row{padding:32px 0}.o2-row .vf{margin-right:9px}}
+.o2{padding:104px 0 40px}
+.o2-row{padding:48px 0}
+.o2 .btn{color:#fff}
+
+/* fondatrice */
+.founder{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:72px;align-items:center;background:var(--lav);border-radius:32px;padding:56px 64px 56px 56px}
+.founder-ph{position:relative;margin:0}
+.founder-ph img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 12%;border-radius:24px;position:relative;z-index:1}
+.founder-ph::before{content:"";position:absolute;inset:14px -14px -14px 14px;border-radius:24px;background:#4A34F5}
+.founder-txt h2{margin-bottom:18px}
+.founder-txt .lead{max-width:56ch;color:#4d4d58}
+.founder-pts{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:14px}
+.founder-pts li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:center}
+.founder-pts i{width:44px;height:44px;border-radius:12px;background:#fff;color:#4A34F5;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px -8px rgba(74,52,245,.4)}
+.founder-pts b{display:block;font-weight:600;font-size:17px;line-height:1.3}
+.founder-pts span{font-size:15.5px;color:var(--grey);line-height:1.4}
+.final-visual img{object-position:50% 30%!important;transform:none!important}
+@media (max-width:980px){.founder{grid-template-columns:1fr;gap:40px;padding:32px 24px 36px;border-radius:24px}.founder-ph{max-width:260px}}
+
+/* menu déroulant */
+.dd{position:relative}
+.dd>button{appearance:none;border:0;background:none;font:500 15px/1 Geist,sans-serif;color:#33333c;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:10px 0}
+.dd>button svg{width:12px;height:12px;transition:transform .2s}
+.dd:hover>button,.dd:focus-within>button{color:var(--indigo)}
+.dd:hover>button svg,.dd:focus-within>button svg{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:100%;left:50%;transform:translate(-50%,6px);width:360px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:0 30px 60px -24px rgba(40,30,120,.35);opacity:0;visibility:hidden;transition:opacity .18s,transform .18s,visibility .18s}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.dd-menu a{display:block;padding:11px 14px;border-radius:12px;text-decoration:none}
+.dd-menu a:hover{background:var(--lav)}
+.dd-menu b{display:block;font-weight:600;font-size:15px;color:var(--ink)}
+.dd-menu span{display:block;font-size:13.5px;color:var(--grey);font-weight:400}
+.dd-menu .dd-all{margin-top:4px;border-top:1px solid var(--line);border-radius:0 0 12px 12px;color:var(--indigo)!important;font-weight:600;font-size:14.5px!important}
+@media (max-width:980px){.dd{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.js .rv{opacity:1;transform:none}}
+
+
+/* ===== calculateur délai de remboursement ===== */
+.dr-pre{border:1px solid var(--line);background:#fff;border-radius:20px;padding:22px 24px 8px;margin:0 0 30px;min-width:0}
+.dr-pre legend{font:500 12px/1.4 "Geist Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);padding:0 8px;margin-left:-8px}
+.dr-q{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 24px;align-items:center;padding:14px 0;border-top:1px solid #F1EEFB}
+.dr-q:first-of-type{border-top:0}
+.dr-q p{font-size:16px;line-height:1.45;color:#22222a;margin:0}
+.dr-h3{font-size:22px;margin:0 0 6px}
+.dr-hint{color:var(--grey);font-size:15.5px;margin:0 0 18px;max-width:760px}
+.dr-info{background:#F1EEFF;color:#3A26D9}
+@media (max-width:980px){.dr-q{grid-template-columns:1fr}.dr-pre{padding:18px 16px 6px}.dr-yn{flex-wrap:wrap}}
+
+.gi{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.dr-hero{padding:64px 0 40px}
+.dr-hero h1{font-size:clamp(32px,3.7vw,50px);max-width:900px;margin-bottom:22px}
+.dr-hero .lead{max-width:680px}
+.dr-ass{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:12px 28px}
+.dr-ass li{display:flex;align-items:center;gap:10px;font-size:15.5px;font-weight:500;color:#22222a}
+.dr-ass i{width:36px;height:36px;border-radius:11px;background:var(--lav);color:var(--indigo);display:flex;align-items:center;justify-content:center;flex:none}
+.dr-ass .gi{width:19px;height:19px}
+.dr-scope{margin-top:26px;font-size:15px;color:var(--grey);max-width:720px}
+.dr-tool{padding:24px 0 96px}
+.dr-panel{background:var(--lav);border-radius:32px;padding:44px 44px 40px;max-width:1240px;margin:0 auto}
+.dr-panel h2{font-size:clamp(24px,2.4vw,32px);margin-bottom:8px}
+.dr-panel>p{color:var(--grey);font-size:16.5px;margin-bottom:26px;max-width:720px}
+.dr-lines{display:grid;gap:14px}
+.dr-line{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 24px 20px;display:grid;grid-template-columns:repeat(12,1fr);gap:16px 18px;align-items:start;position:relative}
+.dr-line legend{font:500 12px/1.4 "Geist Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);padding:0;margin-bottom:2px;grid-column:1/-1;float:left;width:100%}
+fieldset.dr-line{margin:0;min-width:0}
+.dr-f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.dr-f label,.dr-f .dr-lab{font-size:14px;font-weight:600;color:#22222a}
+.dr-f small{font-size:13px;color:var(--grey);font-weight:400;line-height:1.4}
+.dr-f input[type=text],.dr-f input[type=date],.dr-f select{font:400 16px/1.2 Geist,system-ui,sans-serif;color:var(--ink);background:#fff;border:1px solid #CFC7FF;border-radius:12px;height:48px;padding:0 14px;width:100%;min-width:0}
+.dr-f input:focus-visible,.dr-f select:focus-visible,.dr-btn2:focus-visible,.dr-del:focus-visible,.dr-yn label:focus-within{outline:2px solid var(--indigo);outline-offset:2px}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c12{grid-column:1/-1}
+.dr-check{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:#33333c}
+.dr-check input{width:18px;height:18px;margin-top:2px;accent-color:var(--indigo);flex:none}
+.dr-yn{display:flex;gap:8px}
+.dr-yn label{display:inline-flex;align-items:center;gap:8px;border:1px solid #CFC7FF;border-radius:12px;height:48px;padding:0 16px;font-size:15px;font-weight:500;cursor:pointer;background:#fff}
+.dr-yn input{accent-color:var(--indigo)}
+.dr-del{position:absolute;top:16px;right:18px;appearance:none;border:0;background:none;color:var(--grey);font:500 13.5px/1 Geist,sans-serif;cursor:pointer;padding:6px 4px;border-radius:6px}
+.dr-del:hover{color:#B32D37}
+.dr-actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+.dr-btn2{appearance:none;font:600 15.5px/1 Geist,sans-serif;color:var(--indigo);background:#fff;border:1.5px solid var(--indigo);border-radius:999px;height:48px;padding:0 22px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.dr-btn2:hover{background:#FBFAFF}
+.dr-btn2--ghost{border-color:var(--line);color:#44444e}
+.dr-res{margin-top:34px}
+.dr-res h3{font-size:22px;margin-bottom:6px}
+.dr-res>p{color:var(--grey);font-size:15.5px;margin-bottom:16px}
+.dr-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.dr-table th{text-align:left;font:500 11.5px/1.4 "Geist Mono",ui-monospace,monospace;letter-spacing:.09em;text-transform:uppercase;color:var(--grey);padding:14px 18px;border-bottom:1px solid var(--line);background:#FBFAFF}
+.dr-table td{padding:18px;border-bottom:1px solid #F1EEFB;vertical-align:top;font-size:15.5px;line-height:1.5}
+.dr-table tr:last-child td{border-bottom:0}
+.dr-table td:first-child{font-weight:600;width:16%}
+.dr-table td:nth-child(2){width:30%}
+.dr-pill{display:inline-flex;align-items:center;font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;white-space:nowrap;margin-bottom:8px}
+.dr-ok{background:var(--ok-bg);color:var(--ok)}
+.dr-ko{background:var(--ko-bg);color:var(--ko)}
+.dr-wa{background:#FFF1DC;color:#8A5200}
+.dr-na{background:#EEEEF2;color:#4d4d58}
+.dr-date{display:block;font-weight:600;font-size:17px;color:var(--ink)}
+.dr-sub{display:block;color:var(--grey);font-size:14.5px}
+.dr-table a{color:var(--indigo);font-weight:600}
+.dr-empty{background:#fff;border:1px dashed #CFC7FF;border-radius:20px;padding:26px;color:var(--grey);font-size:15.5px}
+.dr-warn{margin-top:18px;font-size:14.5px;color:#4d4d58;border-left:3px solid var(--indigo);padding-left:14px;max-width:820px}
+.dr-next{padding:0 0 96px}
+.dr-next-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.dr-next h2{margin-bottom:22px}
+.dr-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.dr-list li{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:center;font-size:17px;line-height:1.45;color:#2a2a34}
+.dr-list i{width:40px;height:40px;border-radius:12px;background:var(--lav);color:var(--indigo);display:flex;align-items:center;justify-content:center}
+.dr-note{margin-top:22px;font-size:15.5px;color:var(--grey)}
+.dr-card{border:1px solid var(--line);border-radius:24px;padding:30px}
+.dr-card h3{font-size:21px;margin-bottom:10px}
+.dr-card p{color:var(--grey);font-size:16px;margin-bottom:16px}
+.dr-card a.lk{color:var(--indigo);font-weight:600;text-decoration:none;display:block;margin-top:8px}
+.dr-card a.lk:hover{text-decoration:underline}
+.dr-rules{padding:0 0 96px}
+.dr-rules h2{margin-bottom:26px}
+.dr-rules details p{padding-right:0}
+.dr-rules blockquote{margin:0 0 14px;padding:12px 16px;border-left:3px solid var(--line);background:#FBFAFF;border-radius:0 12px 12px 0;font-size:15.5px;color:#33333c}
+.dr-rules cite{display:block;font-style:normal;font-size:13.5px;color:var(--grey);margin-top:6px}
+.dr-rules cite a{color:var(--indigo)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:980px){
+  .dr-panel{border-radius:0;padding:36px 20px}
+  .dr-line{grid-template-columns:1fr;padding:20px 16px 18px}
+  .c3,.c4,.c5,.c6{grid-column:1/-1}
+  .dr-next-grid{grid-template-columns:1fr;gap:36px}
+  .dr-table thead{display:none}
+  .dr-table,.dr-table tbody,.dr-table tr,.dr-table td{display:block;width:100%!important}
+  .dr-table tr{border-bottom:1px solid var(--line);padding:16px 16px 6px}
+  .dr-table tr:last-child{border-bottom:0}
+  .dr-table td{border:0;padding:0 0 12px}
+  .dr-table td[data-l]::before{content:attr(data-l);display:block;font:500 11px/1.4 "Geist Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:var(--grey);margin-bottom:3px}
+  .dr-hero{padding:36px 0 28px}
+  .dr-tool,.dr-next,.dr-rules{padding-bottom:64px}
+}
+@media print{.nav,.s26-hd,.sticky,footer,.dr-actions,.dr-del,.dr-next,.dr-hero .cta-row,.final{display:none!important}.dr-panel{background:#fff;padding:0}body{padding:0}}
+</style>
+<link rel="stylesheet" href="/css/site-2026-11-entete.css?v=2026-11-12e">
+<link rel="stylesheet" href="/css/site-2026-11-pages-outils.css?v=2026-11-12e">
+</head>
+<body class="po po-delai">
+<header class="s26-hd" id="s26-hd"><!-- s26 -->
+  <div class="s26-in">
+    <a class="s26-logo" href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="133" height="34"></a>
+    <nav class="s26-nav" aria-label="Navigation principale">
+      <a href="/#gains">La solution</a>
+      <a href="/offres/">Offres</a>
+      <div class="s26-dd"><button type="button" aria-haspopup="true">Outils <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="s26-dd-menu">
+          <a href="/outils/matrice-controle-rgdu/"><b>Matrice de contrôle RGDU</b><span>Le classeur de contrôle, à télécharger</span></a>
+          <a href="/outils/comparateur-rgdu-mensuel/"><b>Comparateur RGDU mensuel</b><span>Recalculez un mois et comparez à votre paie</span></a>
+          <a href="/outils/simulateur-avantage-en-nature-vehicule/"><b>Simulateur avantage en nature véhicule</b><span>Le bon montant, en quelques questions</span></a>
+          <a href="/outils/delai-remboursement-cotisations/" aria-current="page"><b>Délai de remboursement d'un trop-payé</b><span>Jusqu'à quand demander le remboursement</span></a>
+          <a href="/outils/pilotage-flotte-tarifs/"><b>Pilotage de flotte</b><span>Le suivi des véhicules, un par un</span></a>
+          <a class="s26-dd-all" href="/outils/">Tous les outils →</a>
+        </div>
+      </div>
+      <a href="/ressources/">Ressources</a>
+    </nav>
+    <a class="s26-btn s26-btn--sm" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a>
+    <details class="s26-m"><summary aria-label="Ouvrir le menu"><i></i><i></i><i></i></summary>
+      <div class="s26-m-menu">
+            <a href="/#gains">La solution</a><a href="/offres/">Offres</a>
+            <a href="/outils/matrice-controle-rgdu/">Matrice de contrôle RGDU</a><a href="/outils/comparateur-rgdu-mensuel/">Comparateur RGDU mensuel</a><a href="/outils/simulateur-avantage-en-nature-vehicule/">Simulateur avantage en nature véhicule</a><a href="/outils/delai-remboursement-cotisations/">Délai de remboursement d'un trop-payé</a><a href="/outils/pilotage-flotte-tarifs/">Pilotage de flotte</a>
+            <a href="/outils/">Tous les outils</a><a href="/ressources/">Ressources</a>
+          </div>
+    </details>
+  </div>
+</header>
+
+<main id="top">
+<section class="dr-hero">
+  <div class="wrap">
+    <p class="eyebrow">Outil gratuit · Trop-payé de cotisations</p>
+    <h1>Trop-payé de cotisations&nbsp;: jusqu'à quand pouvez-vous demander le remboursement&nbsp;?</h1>
+    <p class="lead">Indiquez la date de chaque paiement. Vous voyez, ligne par ligne, si le délai de trois ans court encore et à quelle date il expire. Le résultat s'affiche tout de suite, sans e-mail.</p>
+    <ul class="dr-ass">
+      <li><i><svg class="gi" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></i>Le calcul se fait dans votre navigateur</li>
+      <li><i><svg class="gi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-2-1.3-4.3-1.8-7-1.8v13c2.700 0 5 .5 7 1.800 2-1.300 4.300-1.800 7-1.800v-13c-2.700 0-5 .5-7 1.800Z"/><path d="M12 6.500v13"/></svg></i>Fondé sur l'article L. 243-6 du code de la sécurité sociale</li>
+      <li><i><svg class="gi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.500" r="3.500"/><path d="M5 19.500c.800-3.300 3.500-5 7-5s6.200 1.700 7 5"/></svg></i>Sans création de compte</li>
+    </ul>
+    <p class="dr-scope">Pour les employeurs du régime général, hors particuliers employeurs. L'outil traite les cotisations de sécurité sociale et d'allocations familiales versées à l'URSSAF ou à la CGSS. Il calcule des délais, jamais des montants.</p>
+  </div>
+</section>
+
+<section class="dr-tool" id="calcul">
+  <div class="dr-panel ph-no-capture" data-sensible>
+    <h2>Votre situation</h2>
+    <p>Trois questions, puis une ligne par paiement. Le calcul se fait dans votre navigateur. Les dates et les libellés saisis ne sont pas transmis. La mesure d'audience reçoit des informations de navigation (pages vues, clics, défilement), le type de situation choisi, le type de résultat et le nombre de lignes, sans aucune des dates saisies.</p>
+    <form id="dr-form" novalidate onsubmit="return false">
+      <fieldset class="dr-pre" id="dr-pre">
+        <legend>Avant de commencer</legend>
+        <div class="dr-q" role="group" aria-labelledby="dr-q1"><p id="dr-q1">Vous êtes un employeur du régime général, hors particuliers employeurs, et ces paiements sont des cotisations de sécurité sociale ou d'allocations familiales versées à l'URSSAF ou à la CGSS. Si votre paiement mêle plusieurs contributions, la date calculée ne vaut que pour la part de cotisations de sécurité sociale et d'allocations familiales.</p><div class="dr-yn"><label><input type="radio" name="dr-nature" value="oui">Oui</label><label><input type="radio" name="dr-nature" value="non">Non ou je ne sais pas</label></div></div>
+        <div class="dr-q" role="group" aria-labelledby="dr-q2"><p id="dr-q2">Ces sommes sont liées à un contrôle de l'URSSAF ou de la CGSS, à un redressement ou à une mise en demeure.</p><div class="dr-yn"><label><input type="radio" name="dr-ctrl" value="non">Non</label><label><input type="radio" name="dr-ctrl" value="oui">Oui ou je ne sais pas</label></div></div>
+        <div class="dr-q" role="group" aria-labelledby="dr-q3"><p id="dr-q3">Une demande de remboursement, une réclamation ou un échange écrit avec l'URSSAF ou la CGSS a déjà eu lieu sur ce trop-payé.</p><div class="dr-yn"><label><input type="radio" name="dr-dem" value="non">Non</label><label><input type="radio" name="dr-dem" value="oui">Oui ou je ne sais pas</label></div></div>
+      </fieldset>
+      <h3 class="dr-h3">Vos paiements</h3>
+      <p class="dr-hint">Une ligne par paiement. Saisissez la date à laquelle chaque somme a été payée. Le caractère provisionnel d'un versement ne suffit pas à reporter le point de départ&nbsp;: il faut rechercher la date à laquelle les sommes ont été acquittées (Cass. 2e civ., 6 octobre 2016, n° 15-24.714). Si vous ne pouvez pas rattacher le trop-payé à un paiement précis, l'outil ne peut pas calculer de date.</p>
+      <div class="dr-lines" id="dr-lines"></div>
+      <div class="dr-actions">
+        <button type="button" class="dr-btn2" id="dr-add">+ Ajouter un paiement</button>
+        <button type="button" class="dr-btn2 dr-btn2--ghost" id="dr-print">Imprimer le résultat</button>
+      </div>
+    </form>
+
+    <div class="dr-res" aria-live="polite">
+      <h3>Votre résultat</h3>
+      <p>Calculé à la date du <span id="dr-today"></span>, à l'heure de Paris. Le calcul lit l'horloge de votre appareil et se met à jour si la date change.</p>
+      <div id="dr-out"><p class="dr-empty">Répondez aux trois questions, puis indiquez un premier paiement. Le résultat apparaît ici.</p></div>
+      <p class="dr-warn">Cet outil donne un repère sur le délai ordinaire de trois ans, d'après les seules dates saisies. Il ne remplace pas l'analyse de votre dossier. Il ne tient compte d'aucune cause d'interruption ou de suspension du délai. Il ne dit pas si le trop-payé est fondé.</p>
+    </div>
+    <noscript><p class="dr-warn">Ce calculateur a besoin de JavaScript. Sans lui, retenez la règle : la demande de remboursement se prescrit par trois ans à compter de la date de paiement de chaque cotisation (article L. 243-6 du code de la sécurité sociale).</p></noscript>
+  </div>
+</section>
+
+<section class="dr-next">
+  <div class="wrap dr-next-grid">
+    <div>
+      <p class="eyebrow">Avant d'écrire à l'URSSAF</p>
+      <h2>Ce qu'il faut réunir.</h2>
+      <ul class="dr-list">
+        <li><i><svg class="gi" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.500" width="16" height="14.500" rx="2.200"/><path d="M4 10h16M8.500 3.500v4M15.500 3.500v4"/></svg></i><span>La date de paiement de chaque cotisation, avec sa preuve</span></li>
+        <li><i><svg class="gi" viewBox="0 0 24 24" aria-hidden="true"><rect x="5.500" y="3.500" width="13" height="17" rx="2.200"/><path d="M8.500 7.500h7M8.500 12h.01M12 12h.01M15.500 12h.01M8.500 16h.01M12 16h.01M15.500 16h.01"/></svg></i><span>Le montant réclamé, chiffré ou au moins déterminable, avec le mode de calcul</span></li>
+        <li><i><svg class="gi" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.500h7l4 4V20a.5.5 0 0 1-.5.500h-10.500a.5.5 0 0 1-.5-.5V4a.5.5 0 0 1 .5-.5Z"/><path d="M14 3.500v4h4M9.500 12h5M9.500 15.500h5"/></svg></i><span>La période concernée et les pièces qui la justifient</span></li>
+        <li><i><svg class="gi" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4 3.500 10.500l6.500 2.500 2.500 6.500L20 4Z"/><path d="M10 13l4-4"/></svg></i><span>Une demande écrite à l'URSSAF ou à la CGSS, en pratique par lettre recommandée avec accusé de réception, et la preuve de sa réception</span></li>
+      </ul>
+      <p class="dr-note">L'organisme dispose ensuite de quatre mois pour rembourser, à compter de la demande (article L. 243-6, III).</p>
+    </div>
+    <div class="dr-card">
+      <h3>Comprendre la règle en détail</h3>
+      <p>Le délai, les deux exceptions prévues par le texte, la procédure en trois temps et les huit sources de trop-payé les plus fréquentes.</p>
+      <a class="lk" data-cta="article_trop_paye" href="/ressources/recuperer-trop-paye-cotisations-urssaf/">Lire « Récupérer un trop-payé de cotisations » →</a>
+      <a class="lk" data-cta="article_controle" href="/ressources/trop-verse-controle-urssaf/">Le trop versé opposé pendant un contrôle →</a>
+    </div>
+  </div>
+</section>
+
+<section class="dr-rules" id="regles">
+  <div class="wrap faq-grid">
+    <h2>Les règles appliquées</h2>
+    <div>
+      <details>
+        <summary>D'où part le délai de trois ans&nbsp;?</summary>
+        <blockquote>«&nbsp;La demande de remboursement des cotisations de sécurité sociale et d'allocations familiales indûment versées se prescrit par trois ans à compter de la date à laquelle lesdites cotisations ont été acquittées.&nbsp;»<cite>Code de la sécurité sociale, article L. 243-6, I. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029962138" target="_blank" rel="noopener noreferrer">Légifrance</a></cite></blockquote>
+        <p>Le délai part du paiement, pas de la découverte de l'erreur. Chaque paiement a donc sa propre date limite.</p>
+      </details>
+      <details>
+        <summary>Comment la date limite est-elle calculée&nbsp;?</summary>
+        <p>L'outil prend la date de paiement et ajoute trois ans. Le jour du paiement ne compte pas&nbsp;: la prescription se compte par jours, et elle est acquise lorsque le dernier jour du terme est accompli (code civil, articles 2228 et 2229). La Cour de cassation décompte ainsi un délai de prescription&nbsp;: ouvert par un événement du 10 août 2019, un délai d'un an avait «&nbsp;commencé à courir le 11 août 2019 à 0 heure pour s'achever le 10 août 2020 à minuit&nbsp;» (Cass. soc., 21 mai 2025, n° 24-10.009, rendu sur une autre prescription). Le délai expire donc le jour anniversaire en fin de journée (24 heures).</p>
+        <p>Dans une affaire jugée sur l'article L. 243-6, pour une demande du 27 mars 2018, la prescription n'a été retenue que pour les versements antérieurs au 27 mars 2015 (Cass. 2e civ., 6 avril 2023, n° 21-19.111). Ce décompte n'était pas discuté devant la Cour.</p>
+        <p>Aucun report n'est ajouté quand cette date tombe un samedi, un dimanche ou un jour férié. Les règles de calcul des délais de prescription sont distinctes de celles des délais de procédure, et un délai de prescription n'est pas prorogé au premier jour ouvrable suivant (Cass. 2e civ., 7 avril 2016, n° 15-12.960, rendu pour un autre délai de prescription).</p>
+        <p>Pour un paiement du 29 février, le délai court du 1er mars et s'achève le 28 février de la troisième année. Pour un paiement du 28 février dont le terme tombe une année bissextile, l'outil retient le 28 février et non le 29&nbsp;: c'est la date la plus précoce, retenue par prudence.</p>
+      </details>
+      <details>
+        <summary>La demande doit-elle être envoyée ou reçue avant le terme&nbsp;?</summary>
+        <p>L'article L. 243-6 dit que la demande «&nbsp;se prescrit par trois ans&nbsp;». Il ne dit pas si elle doit être envoyée ou reçue avant le terme. Aucune des décisions lues pour cet outil ne tranche ce point.</p>
+        <blockquote>«&nbsp;Toute personne tenue de respecter une date limite ou un délai pour présenter une demande, déposer une déclaration, exécuter un paiement ou produire un document auprès d'une administration peut satisfaire à cette obligation au plus tard à la date prescrite au moyen d'un envoi de correspondance, le cachet apposé par les prestataires de services postaux autorisés au titre de l'article L. 3 du code des postes et des communications électroniques faisant foi.&nbsp;»<cite>Code des relations entre le public et l'administration, article L. 112-1.</cite></blockquote>
+        <p>Ce code range les organismes de sécurité sociale parmi les administrations (article L. 100-3) et s'applique en l'absence de dispositions spéciales (article L. 100-1). Par prudence, l'outil vous conseille pourtant une réception par l'URSSAF ou la CGSS au plus tard la veille du terme. Cette date de prudence n'est pas une date légale.</p>
+        <p>La demande doit aussi être assez précise. Une lettre sans montant, sans pièce et sans calcul n'interrompt pas le délai (Cass. 2e civ., 4 mai 2017, n° 16-15.820). Un courrier qui contient les éléments permettant de déterminer le montant de l'indu l'interrompt (Cass. 2e civ., 28 mai 2014, n° 13-17.758).</p>
+      </details>
+      <details>
+        <summary>Que se passe-t-il après une décision de justice&nbsp;?</summary>
+        <blockquote>«&nbsp;Lorsque l'obligation de remboursement desdites cotisations naît d'une décision juridictionnelle qui révèle la non-conformité de la règle de droit dont il a été fait application à une règle de droit supérieure, la demande de remboursement ne peut porter que sur la période postérieure au 1er janvier de la troisième année précédant celle où la décision révélant la non-conformité est intervenue.&nbsp;»<cite>Code de la sécurité sociale, article L. 243-6, I.</cite></blockquote>
+        <p>Dans ce cas, l'outil vous rappelle le 1er janvier qui sert de seuil. Il ne dit pas si votre période est couverte, ni jusqu'à quand agir. Une simple décision favorable ne suffit pas : l'obligation de remboursement doit naître d'une décision juridictionnelle révélant la non-conformité de la règle appliquée à une règle supérieure.</p>
+      </details>
+      <details>
+        <summary>Que se passe-t-il après une rectification du taux accidents du travail&nbsp;?</summary>
+        <blockquote>«&nbsp;Lorsque l'obligation de remboursement des cotisations naît d'une décision rectificative d'une caisse d'assurance retraite et de la santé au travail en matière de taux de cotisation d'accidents du travail et maladies professionnelles, la demande de remboursement des cotisations peut porter sur l'ensemble de la période au titre de laquelle les taux sont rectifiés.&nbsp;»<cite>Code de la sécurité sociale, article L. 243-6, I.</cite></blockquote>
+        <p>L'outil le rappelle. Ce dispositif s'applique aux recours formés devant la caisse primaire d'assurance maladie ou la caisse d'assurance retraite et de la santé au travail à compter du 1er janvier 2015 (loi n° 2014-1554 du 22 décembre 2014, article 27, II). Selon l'URSSAF, l'employeur dispose alors de trois ans à compter de la réception de la décision qui fait naître son droit à remboursement (lettre circulaire n° 2015-0000025 du 15 juin 2015). L'outil ne vérifie pas ces conditions. Il ne dit pas si votre période est visée et ne calcule pas ce délai.</p>
+      </details>
+      <details>
+        <summary>Quels cas l'outil ne traite-t-il pas&nbsp;?</summary>
+        <p>Le trop versé lié à un contrôle, à un redressement ou à une mise en demeure. Un trop-payé qui a déjà fait l'objet d'une demande ou d'un échange écrit avec l'URSSAF ou la CGSS. Les particuliers employeurs et les régimes autres que le régime général. Les autres décisions de justice. Les contributions autres que les cotisations de sécurité sociale et d'allocations familiales&nbsp;: versement mobilité, assurance chômage, CSG et CRDS, retraite complémentaire. Plusieurs sont recouvrées selon les règles des cotisations du régime général, et la Cour de cassation applique le délai de trois ans à la restitution d'un versement de transport indu (Cass. 2e civ., 6 octobre 2016, n° 15-24.714). L'outil ne calcule pas leur délai. Les paiements antérieurs au 1er janvier 2015. Pour ces situations, repérées par les questions du formulaire, l'outil affiche «&nbsp;Hors périmètre&nbsp;» et vous renvoie vers l'article. Les autres causes d'interruption ou de suspension du délai ne sont ni détectées ni calculées. Elles peuvent modifier le résultat affiché.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="demo">
+  <div class="final-box" id="cta-final">
+    <div class="final-txt">
+      <h2>Un trop-payé se cherche dans toute la paie.</h2>
+      <p>ACOMPIA relit toute la paie, montre où regarder et prépare la correction.</p>
+      <a class="btn" data-cta="appel_final" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="final-alt">Une vingtaine de minutes, sur un cas concret.</p>
+    </div>
+    <div class="final-visual">
+      <img src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=1600&q=80" alt="Une équipe souriante regarde ensemble un écran d'ordinateur" width="1600" height="1068" loading="lazy">
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="102" height="26">
+    <span>ComplyDB SAS</span><span>25 rue de Ponthieu, 75008 Paris</span>
+    <a href="mailto:she@acompia.com">she@acompia.com</a>
+    <a href="/mentions-legales.html">Mentions légales</a>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn" data-cta="barre_mobile" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a></div>
+
+<script src="/js/delai-remboursement.js"></script>
+<script src="/js/site-2026-11-entete.js?v=2026-11-11" defer></script>
+<script>
+(function(){
+  var d=document, D=window.DelaiRemboursement;
+  function cap(n,p){if(window.posthog&&posthog.capture)posthog.capture(n,p||{})}
+  /* barre du haut, bouton collant, mesure des clics (comme l'accueil) */
+  var nav=d.getElementById('nav');
+  function onScroll(){if(nav)nav.classList.toggle('is-stuck',window.scrollY>8)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var sticky=d.getElementById('sticky');
+  if(sticky&&'IntersectionObserver' in window){
+    var fin=d.getElementById('cta-final');
+    new IntersectionObserver(function(en){sticky.classList.toggle('show',!en[0].isIntersecting&&window.scrollY>600)}).observe(fin);
+    window.addEventListener('scroll',function(){if(window.scrollY<=600)sticky.classList.remove('show')},{passive:true});
+  }
+  d.querySelectorAll('[data-cta]').forEach(function(a){a.addEventListener('click',function(){cap('cta_clique',{place:a.getAttribute('data-cta')})})});
+  var seen={};
+  window.addEventListener('scroll',function(){
+    var max=d.documentElement.scrollHeight-window.innerHeight;if(max<=0)return;
+    var pct=window.scrollY/max*100;
+    [25,50,75,100].forEach(function(s){if(pct>=s-0.5&&!seen[s]){seen[s]=1;cap('scroll_atteint',{seuil:s})}});
+  },{passive:true});
+  if(!D)return;
+
+  var S=D.SITUATIONS,E=D.ETATS;
+  var ARTICLE='/ressources/recuperer-trop-paye-cotisations-urssaf/', ARTICLE_CONTROLE='/ressources/trop-verse-controle-urssaf/';
+  var MOIS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  function aujourdhui(){return D.jourParis(new Date()).date}
+  function enClair(iso){var x=D.lireDate(iso);if(!x)return '';return (x.j===1?'1er':x.j)+' '+MOIS[x.m-1]+' '+x.a}
+  function el(tag,attrs,kids){var e=d.createElement(tag);for(var k in (attrs||{})){if(k==='text')e.textContent=attrs[k];else if(k==='cls')e.className=attrs[k];else e.setAttribute(k,attrs[k])}(kids||[]).forEach(function(c){if(c)e.appendChild(typeof c==='string'?d.createTextNode(c):c)});return e}
+
+  var OPTIONS=[
+    [S.ERREUR,"Erreur de calcul ou de paramétrage, repérée par vous"],
+    [S.NON_CONFORMITE,"Décision de justice qui révèle la non-conformité d'une règle à une règle supérieure"],
+    [S.TAUX_ATMP,"Décision de la caisse qui rectifie votre taux accidents du travail"],
+    [S.DECISION_AUTRE,"Autre décision de justice (annulation, par exemple)"]
+  ];
+  var lignes=[], compteur=0, box=d.getElementById('dr-lines'), out=d.getElementById('dr-out');
+  var jour=aujourdhui();
+  function majJour(){var j=aujourdhui();if(j!==jour){jour=j;d.querySelectorAll('#dr-lines input[type=date]').forEach(function(i){i.setAttribute('max',jour)})}d.getElementById('dr-today').textContent=enClair(jour)}
+  var CTX={natureConfirmee:undefined,redressement:undefined,demandeDejaFaite:undefined};
+  function brancher(nom,cle,valeurOui){d.querySelectorAll('input[name="'+nom+'"]').forEach(function(r){r.addEventListener('change',function(){CTX[cle]=(r.value==='oui')===valeurOui?true:false;rendre()})})}
+  brancher('dr-nature','natureConfirmee',true);
+  brancher('dr-ctrl','redressement',true);
+  brancher('dr-dem','demandeDejaFaite',true);
+  majJour();
+  /* Une page restée ouverte après minuit doit changer de date : contrôle chaque minute et à chaque retour sur l'onglet. */
+  setInterval(function(){var avant=jour;majJour();if(jour!==avant)rendre()},60000);
+  d.addEventListener('visibilitychange',function(){if(!d.hidden){var avant=jour;majJour();if(jour!==avant)rendre()}});
+
+  function champ(cls,labelTxt,input,aide){
+    var id=input.id, f=el('div',{cls:'dr-f '+cls},[el('label',{for:id,text:labelTxt}),input]);
+    if(aide)f.appendChild(el('small',{text:aide}));
+    return f;
+  }
+  function ajouter(){
+    compteur++;var n=compteur, L={id:n,libelle:'',situation:S.ERREUR,datePaiement:'',dateDecision:''};
+    lignes.push(L);
+    var fs=el('fieldset',{cls:'dr-line','data-id':n});
+    fs.appendChild(el('legend',{text:'Paiement '+lignes.length}));
+    var iLib=el('input',{type:'text',id:'dr-lib-'+n,maxlength:'40',placeholder:'Mars 2024',autocomplete:'off'});
+    iLib.addEventListener('input',function(){L.libelle=iLib.value;rendre()});
+    var sel=el('select',{id:'dr-sit-'+n});
+    OPTIONS.forEach(function(o){sel.appendChild(el('option',{value:o[0],text:o[1]}))});
+    var zone=el('div',{cls:'c12',style:'display:contents'});
+    sel.addEventListener('change',function(){L.situation=sel.value;dessinerZone();rendre();cap('delai_situation_choisie',{situation:L.situation})});
+    fs.appendChild(champ('c3','Période concernée',iLib,'Sert seulement à vous repérer.'));
+    fs.appendChild(champ('c5',"D'où vient le trop-payé",sel));
+    fs.appendChild(zone);
+    function dessinerZone(){
+      zone.textContent='';
+      if(L.situation===S.ERREUR){
+        var iP=el('input',{type:'date',id:'dr-pay-'+n,max:jour,value:L.datePaiement});
+        iP.addEventListener('input',function(){L.datePaiement=iP.value;rendre()});
+        zone.appendChild(champ('c4','Date de paiement de la cotisation',iP,"La date à laquelle l'URSSAF a été payée, pas la date d'échéance. En cas de doute entre deux dates, retenez la plus ancienne."));
+      }
+      if(L.situation===S.NON_CONFORMITE){
+        var iD=el('input',{type:'date',id:'dr-dec-'+n,max:jour,value:L.dateDecision});
+        iD.addEventListener('input',function(){L.dateDecision=iD.value;rendre()});
+        zone.appendChild(champ('c4','Date de la décision de justice',iD,"Une simple décision favorable ne suffit pas. Le remboursement doit naître d'une décision qui révèle la non-conformité de la règle appliquée à une règle supérieure."));
+      }
+    }
+    var del=el('button',{type:'button',cls:'dr-del','aria-label':'Supprimer ce paiement',text:'Supprimer'});
+    del.addEventListener('click',function(){lignes=lignes.filter(function(x){return x!==L});fs.remove();renumeroter();rendre();if(!lignes.length)ajouter()});
+    fs.appendChild(del);
+    dessinerZone();box.appendChild(fs);renumeroter();
+    return iLib;
+  }
+  function renumeroter(){box.querySelectorAll('legend').forEach(function(lg,i){lg.textContent='Paiement '+(i+1)})}
+
+  /* Texte d'un résultat : [classe de pastille, libellé, bloc date, fondement, suite] */
+  function lien(href,txt){return el('a',{href:href,text:txt})}
+  function decrire(L,r){
+    var regleG="Article L. 243-6, I du code de la sécurité sociale : trois ans à compter de la date de paiement.";
+    var conv=r.fevrier29?" Pour un paiement du 29 février, le délai court du 1er mars et s'achève le 28 février.":(r.fevrier28?" Pour un paiement du 28 février dont le terme tombe une année bissextile, l'outil retient le 28 février : c'est la date la plus précoce, retenue par prudence.":'');
+    var ENVOI=" Le texte ne dit pas si la demande doit être envoyée ou reçue avant le terme.";
+    var dans=r.joursRestants===1?'Cette date est demain.':'Cette date est dans '+r.joursRestants+' jours.';
+    if(r.etat===E.RECLAMABLE)return ['dr-ok','Délai de trois ans en cours',['Le délai expire le '+enClair(r.dateLimite)+' en fin de journée (24 heures)', dans+' Par prudence, visez une réception de votre demande au plus tard le '+enClair(r.datePrudence)+'.'],regleG,["Si le trop-payé est fondé, adressez à l'URSSAF ou à la CGSS une demande écrite et précise, indiquant un montant chiffré ou au moins déterminable, avec son mode de calcul et ses pièces."+ENVOI+" Par prudence, faites en sorte qu'elle soit reçue par l'organisme au plus tard la veille du terme."+conv]];
+    if(r.etat===E.DERNIER_JOUR)return ['dr-wa','Dernier jour du délai',["Le délai de trois ans expire aujourd'hui en fin de journée (24 heures), le "+enClair(r.dateLimite),''],regleG,["Faites partir votre demande aujourd'hui par un moyen qui prouve la date d'envoi et, si vous le pouvez, déposez-la aussi aujourd'hui par un canal qui prouve la réception le jour même. Il n'est pas certain qu'un envoi le dernier jour suffise."+ENVOI+conv]];
+    if(r.etat===E.HORS_DELAI)return ['dr-ko','Délai de trois ans expiré',['Le délai a expiré le '+enClair(r.dateLimite),"D'après les seules dates saisies."],regleG,["Le délai ordinaire calculé à partir de cette date de paiement est expiré. Faites vérifier les éléments susceptibles d'en modifier le cours ou le point de départ."+conv]];
+    if(r.etat===E.INFORMATION&&r.motif==='non_conformite')return ['dr-info','Ce que dit le texte',['La demande ne peut porter que sur la période postérieure au '+enClair(r.dateSeuil),"L'outil ne dit pas si votre période est couverte, ni jusqu'à quand agir."],"Article L. 243-6, I : période postérieure au 1er janvier de la troisième année précédant celle de la décision.",["Faites vérifier que la décision révèle bien une non-conformité, quelle période elle ouvre et le délai pour agir."]];
+    if(r.etat===E.INFORMATION)return ['dr-info','Ce que dit le texte',["La demande peut porter sur l'ensemble de la période dont les taux sont rectifiés","Ce dispositif s'applique aux recours formés devant la CPAM ou la CARSAT à compter du 1er janvier 2015. Selon l'URSSAF, l'employeur dispose de trois ans à compter de la réception de la décision qui fait naître son droit à remboursement (lettre circulaire n° 2015-0000025). L'outil ne vérifie pas ces conditions et ne calcule pas ce délai."],"Article L. 243-6, I : décision rectificative de la caisse en matière de taux accidents du travail et maladies professionnelles.",["Faites vérifier la période rectifiée et la date de réception de la décision. Joignez la décision de la caisse à votre demande."]];
+    if(r.etat===E.MANQUANT){
+      var m={situation:"Choisissez d'où vient le trop-payé.",nature:"Répondez à la première question, en haut du formulaire.",redressement:"Répondez à la deuxième question, en haut du formulaire.",demande:"Répondez à la troisième question, en haut du formulaire.",date_paiement:"Indiquez la date de paiement de la cotisation.",date_paiement_invalide:"La date de paiement n'est pas valide. Vérifiez-la.",date_paiement_future:"La date de paiement est dans le futur. Indiquez un paiement déjà effectué.",date_decision:"Indiquez la date de la décision de justice.",date_decision_invalide:"La date de la décision n'est pas valide. Vérifiez-la.",date_decision_future:"La date de la décision est dans le futur."}[r.motif]||"Une information manque.";
+      var aide=(r.motif||'').indexOf('date_paiement')===0?["L'outil ne déduit jamais une date de paiement. Elle figure sur votre relevé bancaire ou sur votre compte en ligne."]:["Le calcul se fait dès que l'information est donnée."];
+      return ['dr-na','Information manquante',[m,''],'',aide];
+    }
+    /* hors périmètre */
+    var h={
+      controle:["L'outil ne traite pas les sommes liées à un contrôle, à un redressement ou à une mise en demeure. La procédure applicable et les effets des actes déjà intervenus doivent être vérifiés dans le dossier.",lien(ARTICLE_CONTROLE,"Lire l'article sur le trop versé pendant un contrôle")],
+      autre_contribution:["Cette version de l'outil ne calcule que les cotisations de sécurité sociale et d'allocations familiales versées à l'URSSAF ou à la CGSS par un employeur du régime général, hors particuliers employeurs. D'autres contributions suivent les mêmes règles de recouvrement, mais l'outil ne calcule pas leur délai. Ne présumez pas un délai plus long : le délai de trois ans à compter du paiement peut aussi s'appliquer.",lien(ARTICLE,"Lire l'article")],
+      decision_autre:["Quand le remboursement naît d'une décision de justice, le délai ne peut pas commencer avant la naissance de l'obligation de rembourser (Cass. 2e civ., 11 janvier 2024, n° 21-13.497). Ce cas demande une analyse du dossier.",lien(ARTICLE,"Lire l'article")],
+      demande_deja_faite:["Une demande suffisamment précise peut avoir interrompu le délai et en avoir fait courir un nouveau. L'outil ne recalcule pas ce cas.",lien(ARTICLE,"Lire l'article")],
+      paiement_ancien:["L'outil ne calcule pas les paiements antérieurs au 1er janvier 2015.",lien(ARTICLE,"Lire l'article")]
+    }[r.motif]||["Ce cas n'est pas traité par l'outil.",lien(ARTICLE,"Lire l'article")];
+    return ['dr-na','Hors périmètre',[h[0],''],'',[h[1]]];
+  }
+  var dernier='';
+  function rendre(){
+    majJour();
+    var utiles=lignes.filter(function(L){return L.libelle||L.datePaiement||L.dateDecision||L.situation!==S.ERREUR});
+    out.textContent='';
+    if(!utiles.length){out.appendChild(el('p',{cls:'dr-empty',text:'Répondez aux trois questions, puis indiquez un premier paiement. Le résultat apparaît ici.'}));return}
+    var tb=el('tbody');
+    var etats=[];
+    utiles.forEach(function(L){
+      var r=D.evaluerLigne({situation:L.situation,datePaiement:L.datePaiement,dateDecision:L.dateDecision,natureConfirmee:CTX.natureConfirmee,redressement:CTX.redressement,demandeDejaFaite:CTX.demandeDejaFaite},jour), t=decrire(L,r);etats.push(r.etat);
+      var c2=el('td',{'data-l':'Résultat'},[el('span',{cls:'dr-pill '+t[0],text:t[1]}),el('span',{cls:'dr-date',text:t[2][0]}),t[2][1]?el('span',{cls:'dr-sub',text:t[2][1]}):null]);
+      var c4=el('td',{'data-l':'À faire'});t[4].forEach(function(x){c4.appendChild(typeof x==='string'?d.createTextNode(x):x)});
+      tb.appendChild(el('tr',{},[el('td',{'data-l':'Paiement',text:L.libelle||('Paiement '+(lignes.indexOf(L)+1))}),c2,el('td',{'data-l':'Fondement',text:t[3]||'Non calculé.'}),c4]));
+    });
+    out.appendChild(el('table',{cls:'dr-table'},[el('thead',{},[el('tr',{},[el('th',{scope:'col',text:'Paiement'}),el('th',{scope:'col',text:'Résultat'}),el('th',{scope:'col',text:'Fondement'}),el('th',{scope:'col',text:'À faire'})])]),tb]));
+    /* mesure : uniquement les états, jamais une date ni un libellé */
+    var cle=etats.join(',');
+    if(cle!==dernier&&etats.some(function(e){return e!==E.MANQUANT})){dernier=cle;cap('delai_resultat',{nb_lignes:etats.length,etats:cle})}
+  }
+  d.getElementById('dr-add').addEventListener('click',function(){var i=ajouter();i.focus();cap('delai_ligne_ajoutee',{nb_lignes:lignes.length})});
+  d.getElementById('dr-print').addEventListener('click',function(){cap('delai_imprime',{});window.print()});
+  ajouter();
+})();
+</script>
+</body>
+</html>

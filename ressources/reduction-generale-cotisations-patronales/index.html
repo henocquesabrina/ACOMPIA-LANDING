@@ -212,7 +212,7 @@
             "name": "Jusqu'à quel salaire s'applique la réduction générale en 2026 ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La RGDU s'applique aux rémunérations inférieures à 3 fois le SMIC applicable au 1er janvier 2026. C'est le grand élargissement de la réforme, car l'ancienne réduction Fillon s'arrêtait à 1,6 SMIC. La réduction est nulle à partir de 3 SMIC, comme l'énonce l'article L. 241-13, III. Mais la formule réglementaire ne descend pas en dessous de Tmin, soit 0,0200 : juste avant le plafond, la réduction vaut encore 2 % de la rémunération. Le passage est une rupture, non une extinction progressive. Ce plafond de 5 469,09 € vaut pour un temps plein présent toute la période ; pour un temps partiel, il est diminué en proportion de la durée de travail."
+              "text": "La RGDU s'applique aux rémunérations inférieures à 3 fois le SMIC applicable au 1er janvier 2026. C'est le grand élargissement de la réforme, car l'ancienne réduction Fillon s'arrêtait à 1,6 SMIC. La réduction est nulle à partir de 3 SMIC, comme l'énonce l'article L. 241-13, III. Mais la formule réglementaire ne descend pas en dessous de Tmin, soit 0,0200 : juste avant le plafond, la réduction vaut encore 2 % de la rémunération. Le passage est une rupture, non une extinction progressive. Ce plafond de 5 469,10 € vaut pour un temps plein présent toute la période ; pour un temps partiel, il est diminué en proportion de la durée de travail."
             }
           },
           {
@@ -258,96 +258,41 @@
 
   <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
   <script src="/js/analytics.js"></script>
+<link rel="stylesheet" href="/css/site-2026-11-entete.css?v=2026-11-12e">
+<link rel="stylesheet" href="/css/site-2026-11-contenus.css?v=2026-11-12e">
 </head>
 <body class="ress-page">
 
   <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <header id="hd" class="current-navbar">
-    <nav id="nav">
-      <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
-          <img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96">
-        </a>
-      <div class="nav-links" id="nav-links">
-        <div class="nav-dropdown">
-          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Nos offres
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/#suivi">
-              <div class="nav-dropdown-theme">Offre principale</div>
-              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
-            </a>
-            <a href="/offres/audit-paie/">
-              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
-              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
-            </a>
-            <a href="/offres/gestion-de-flotte/">
-              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
-              <div class="nav-dropdown-title">La gestion de votre flotte</div>
-            </a>
-            <a href="/offres/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle en cours</div>
-              <div class="nav-dropdown-title">On vous accompagne</div>
-            </a>
-            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
-          </div>
+  <header class="s26-hd" id="s26-hd"><!-- s26 -->
+  <div class="s26-in">
+    <a class="s26-logo" href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="133" height="34"></a>
+    <nav class="s26-nav" aria-label="Navigation principale">
+      <a href="/#gains">La solution</a>
+      <a href="/offres/">Offres</a>
+      <div class="s26-dd"><button type="button" aria-haspopup="true">Outils <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="s26-dd-menu">
+          <a href="/outils/matrice-controle-rgdu/"><b>Matrice de contrôle RGDU</b><span>Le classeur de contrôle, à télécharger</span></a>
+          <a href="/outils/comparateur-rgdu-mensuel/"><b>Comparateur RGDU mensuel</b><span>Recalculez un mois et comparez à votre paie</span></a>
+          <a href="/outils/simulateur-avantage-en-nature-vehicule/"><b>Simulateur avantage en nature véhicule</b><span>Le bon montant, en quelques questions</span></a>
+          <a href="/outils/delai-remboursement-cotisations/"><b>Délai de remboursement d'un trop-payé</b><span>Jusqu'à quand demander le remboursement</span></a>
+          <a href="/outils/pilotage-flotte-tarifs/"><b>Pilotage de flotte</b><span>Le suivi des véhicules, un par un</span></a>
+          <a class="s26-dd-all" href="/outils/">Tous les outils →</a>
         </div>
-        <div class="nav-dropdown">
-          <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Boîte à outils
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/outils/prediagnostic-urssaf/">
-              <div class="nav-dropdown-theme">Gratuit · 3 minutes</div>
-              <div class="nav-dropdown-title">Prédiagnostic URSSAF</div>
-            </a>
-            <a href="/outils/simulateur-avantage-en-nature-vehicule/">
-              <div class="nav-dropdown-theme">Gratuit · barème 2026</div>
-              <div class="nav-dropdown-title">Simulateur d'avantage en nature véhicule</div>
-            </a>
-            <a href="/outils/" class="nav-dropdown-all">Tous les outils →</a>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a href="/ressources/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Ressources
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/ressources/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle URSSAF</div>
-              <div class="nav-dropdown-title">Comment ça se passe et que risque-t-on ?</div>
-            </a>
-            <a href="/ressources/audit-urssaf/">
-              <div class="nav-dropdown-theme">Audit URSSAF</div>
-              <div class="nav-dropdown-title">Les 8 zones à vérifier avant un contrôle</div>
-            </a>
-            <a href="/ressources/aen-vehicule-urssaf/">
-              <div class="nav-dropdown-theme">AEN véhicule</div>
-              <div class="nav-dropdown-title">Le guide complet 2026</div>
-            </a>
-            <a href="/ressources/reduction-generale-cotisations-patronales/">
-              <div class="nav-dropdown-theme">Réduction générale</div>
-              <div class="nav-dropdown-title">RGDU : le guide 2026</div>
-            </a>
-            <a href="/ressources/reformes-urssaf-2025-2026/">
-              <div class="nav-dropdown-theme">Actualités</div>
-              <div class="nav-dropdown-title">Réformes URSSAF 2025-2026</div>
-            </a>
-            <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
-          </div>
-        </div>
-        <a href="/equipe/sabrina-henocque-chiche/">Équipe</a>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Demander une démo</span></a>
       </div>
-      <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="/ressources/">Ressources</a>
     </nav>
-  </header>
+    <a class="s26-btn s26-btn--sm" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a>
+    <details class="s26-m"><summary aria-label="Ouvrir le menu"><i></i><i></i><i></i></summary>
+      <div class="s26-m-menu">
+            <a href="/#gains">La solution</a><a href="/offres/">Offres</a>
+            <a href="/outils/matrice-controle-rgdu/">Matrice de contrôle RGDU</a><a href="/outils/comparateur-rgdu-mensuel/">Comparateur RGDU mensuel</a><a href="/outils/simulateur-avantage-en-nature-vehicule/">Simulateur avantage en nature véhicule</a><a href="/outils/delai-remboursement-cotisations/">Délai de remboursement d'un trop-payé</a><a href="/outils/pilotage-flotte-tarifs/">Pilotage de flotte</a>
+            <a href="/outils/">Tous les outils</a><a href="/ressources/">Ressources</a>
+          </div>
+    </details>
+  </div>
+</header>
 
   <main id="main">
 
@@ -364,6 +309,7 @@
         <div class="article-hero-banner-content">
           <div class="article-eyebrow">Guide complet · Charges et cotisations</div>
           <h1 class="article-title-banner">Réduction générale des cotisations patronales, comprendre la RGDU 2026 sans se tromper</h1>
+<p class="s26-suite"><a href="/outils/comparateur-rgdu-mensuel/"><b>Comparateur RGDU mensuel</b><span>Recalculez un mois et comparez à votre paie, gratuitement.</span><i aria-hidden="true">→</i></a></p>
         </div>
       </div>
 
@@ -412,13 +358,13 @@
             <li>Le <strong>SMIC de référence</strong> servant au calcul est <strong>gelé</strong> à sa valeur du 1<sup>er</sup> janvier 2026 (12,02&nbsp;€ de l'heure) pour toute l'année, même après la revalorisation du SMIC réel à 12,31&nbsp;€ en juin. Deux valeurs de SMIC coexistent donc sur le bulletin en 2026.</li>
             <li>La réduction se calcule par un <strong>coefficient dégressif</strong> appliqué à la rémunération brute, avec les paramètres <strong>Tmin = 0,0200</strong>, <strong>P = 1,75</strong> et un <strong>Tdelta</strong> qui dépend du taux de contribution FNAL applicable, en pratique selon le seuil de 50 salariés.</li>
             <li>Le risque de <strong>redressement URSSAF</strong> se joue sur deux points, le bon calcul du <strong>SMIC de référence</strong> et la bonne composition de l'<strong>assiette</strong>. Une réduction surévaluée, c'est de la cotisation non payée, récupérée avec majorations, en principe sur trois ans.</li>
-            <li>Pour situer votre exposition en quelques minutes, le <strong>prédiagnostic gratuit</strong> couvre les huit thèmes URSSAF les plus souvent redressés, dont les exonérations.</li>
+            
           </ul>
         </div>
 
         <div class="callout-outil">
           <div class="callout-outil-label">Outil gratuit</div>
-          <p>Situez votre exposition URSSAF en 3 minutes avec le <a href="/outils/prediagnostic-urssaf/">prédiagnostic gratuit</a>, sans inscription.</p>
+          <p>Rejouez le calcul de la réduction générale avec la <a href="/outils/matrice-controle-rgdu/">matrice de contrôle RGDU</a>, un classeur gratuit à télécharger.</p>
         </div>
 
         <h2 id="cest-quoi">La réduction générale en clair</h2>
@@ -619,7 +565,7 @@
           <li><strong>CSS, art. L.244-11</strong>, prescription portée à 5 ans en cas de travail illégal constaté par procès-verbal.</li>
           <li><strong>Loi n°&nbsp;2025-199 du 28 février 2025</strong> (LFSS 2025), réforme des allègements généraux en deux temps (article 18).</li>
           <li><strong>Loi n°&nbsp;2025-1403 du 30 décembre 2025</strong> (LFSS 2026), ajustements 2026 et règles particulières (notamment article 40).</li>
-          <li><strong>Décret n°&nbsp;2025-1228 du 17 décembre 2025</strong>, SMIC au 1<sup>er</sup> janvier 2026 (12,02&nbsp;€ de l'heure, 1&nbsp;823,03&nbsp;€ par mois).</li>
+          <li><strong>Décret n°&nbsp;2025-1228 du 17 décembre 2025</strong>, SMIC au 1<sup>er</sup> janvier 2026 (12,02&nbsp;€ de l'heure, soit 1&nbsp;823,0333&nbsp;€ par mois retenus dans le calcul, un douzième de 1&nbsp;820 heures).</li>
           <li><strong>Décret n°&nbsp;2026-509 du 12 juin 2026</strong>, modalités d'application de la RGDU et gel du paramètre SMIC pour 2026.</li>
           <li><strong>Arrêté du 22 mai 2026</strong>, relèvement du SMIC à 12,31&nbsp;€ de l'heure au 1<sup>er</sup> juin 2026.</li>
           <li><em>Cass. 2<sup>e</sup> civ., 15 mai 2025, n°&nbsp;23-10.330</em>, intérim et compte épargne-temps, preuve des éléments permettant de déterminer le coefficient de réduction pour chaque mission.</li>
@@ -656,7 +602,7 @@
           <details>
             <summary>Jusqu'à quel salaire s'applique la réduction générale en 2026 ?</summary>
             <div>
-              La RGDU s'applique aux rémunérations <strong>inférieures à 3 fois le SMIC</strong> applicable au 1<sup>er</sup> janvier 2026. C'est le grand élargissement de la réforme, car l'ancienne réduction Fillon s'arrêtait à 1,6&nbsp;SMIC. La réduction est nulle à partir de 3&nbsp;SMIC, comme l'énonce l'article L.&nbsp;241-13,&nbsp;III. Mais la formule réglementaire ne descend pas en dessous de Tmin, soit 0,0200&nbsp;: juste avant le plafond, la réduction vaut encore 2&nbsp;% de la rémunération. Le passage est une rupture, non une extinction progressive. Ce plafond de 5&nbsp;469,09&nbsp;€ vaut par ailleurs pour un temps plein présent toute la période&nbsp;; pour un temps partiel, il est diminué en proportion de la durée de travail.
+              La RGDU s'applique aux rémunérations <strong>inférieures à 3 fois le SMIC</strong> applicable au 1<sup>er</sup> janvier 2026. C'est le grand élargissement de la réforme, car l'ancienne réduction Fillon s'arrêtait à 1,6&nbsp;SMIC. La réduction est nulle à partir de 3&nbsp;SMIC, comme l'énonce l'article L.&nbsp;241-13,&nbsp;III. Mais la formule réglementaire ne descend pas en dessous de Tmin, soit 0,0200&nbsp;: juste avant le plafond, la réduction vaut encore 2&nbsp;% de la rémunération. Le passage est une rupture, non une extinction progressive. Ce plafond de 5&nbsp;469,10&nbsp;€ vaut par ailleurs pour un temps plein présent toute la période&nbsp;; pour un temps partiel, il est diminué en proportion de la durée de travail.
             </div>
           </details>
 
@@ -691,13 +637,13 @@
 
         <div class="article-ctas">
           <div class="article-cta-block">
-            <h4>Prédiagnostic URSSAF gratuit</h4>
-            <p>3 minutes pour évaluer votre exposition sur les 8 thèmes URSSAF les plus souvent redressés, dont les exonérations et la réduction générale.</p>
-            <a href="/outils/prediagnostic-urssaf/" class="article-cta-btn article-cta-btn--accent">Commencer le prédiagnostic</a>
-          </div>
+          <h4>Matrice de contrôle RGDU</h4>
+          <p>Un classeur gratuit pour rejouer le calcul de la réduction générale et le comparer à votre paie.</p>
+          <a href="/outils/matrice-controle-rgdu/" class="article-cta-btn article-cta-btn--accent">Ouvrir la matrice</a>
+        </div>
           <div class="article-cta-block">
             <h4>Un doute sur votre calcul de RGDU ?</h4>
-            <p>30 minutes en visio avec Maître Henocque Chiche pour vérifier votre paramétrage et sécuriser l'assiette avant un contrôle.</p>
+            <p>Une vingtaine de minutes en visio avec Maître Henocque Chiche pour vérifier votre paramétrage et sécuriser l'assiette avant un contrôle.</p>
             <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="article-cta-btn">Demander une démo</a>
           </div>
         </div>
@@ -772,10 +718,19 @@
 
   </main>
 
-  <footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
-
-  <script src="/js/accueil/navbar.js" defer></script>
+  <footer class="s26-ft"><!-- s26 -->
+  <div class="s26-in">
+    <a href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="102" height="26"></a>
+    <span>ComplyDB SAS</span><span>25 rue de Ponthieu, 75008 Paris</span>
+    <a href="mailto:she@acompia.com">she@acompia.com</a>
+    <a href="/equipe/">Qui sommes-nous</a>
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/politique-confidentialite.html">Confidentialité</a>
+  </div>
+</footer>
+<div class="s26-sticky" id="s26-sticky"><a class="s26-btn" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a></div>
 <script src="/js/config.js" defer></script>
 <script src="/js/socle.js" defer></script>
+<script src="/js/site-2026-11-entete.js?v=2026-11-11" defer></script>
 </body>
 </html>

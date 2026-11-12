@@ -37,7 +37,7 @@
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
-  {
+{
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -89,18 +89,10 @@
         "@type": "Audience",
         "audienceType": "Entreprises 50 à 1000 salariés"
       },
-      "priceRange": "€€€",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Audits URSSAF ACOMPIA",
         "itemListElement": [
-          {
-            "@type": "Offer",
-            "name": "Prédiagnostic URSSAF",
-            "description": "Évaluation gratuite en ligne de votre exposition aux principaux risques URSSAF, avec rapport immédiat et plan d'action priorisé.",
-            "price": "0",
-            "priceCurrency": "EUR"
-          },
           {
             "@type": "Offer",
             "name": "Audit Avantages en Nature Véhicules",
@@ -232,144 +224,60 @@
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b01d505cbce14f329e8146bc1521d519"}'></script>
   <!-- Analytics · PostHog EU -->
   <script src="/js/analytics.js" defer></script>
-<link rel="stylesheet" href="/css/accueil/socle.css?v=2026-10-16">
-<link rel="stylesheet" href="/css/accueil/refinement.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/motion.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/isometric.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/dashboard.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/navbar.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/risk-story.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/restored-copy.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/visual-sections.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/product-mockups.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/section-labels.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/dashboard-tooltips.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/section-polish.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/responsive.css?v=team-reverted">
-<link rel="stylesheet" href="/css/accueil/hero-backdrop.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/offres.css?v=2026-10-16">
+<link rel="stylesheet" href="/css/site-2026-11.css?v=2026-11-12e">
+<link rel="stylesheet" href="/css/site-2026-11-offres.css?v=2026-11-12e">
+<link rel="stylesheet" href="/css/site-2026-11-sous-offres.css?v=2026-11-12e">
+<link rel="stylesheet" href="/css/site-2026-11-entete.css?v=2026-11-12e">
 </head>
 <body id="top">
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 
-  <header id="hd" class="current-navbar">
-    <nav id="nav">
-      <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
-          <img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96">
-        </a>
-      <div class="nav-links" id="nav-links">
-        <div class="nav-dropdown">
-          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Nos offres
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/#suivi">
-              <div class="nav-dropdown-theme">Offre principale</div>
-              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
-            </a>
-            <a href="/offres/audit-paie/">
-              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
-              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
-            </a>
-            <a href="/offres/gestion-de-flotte/">
-              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
-              <div class="nav-dropdown-title">La gestion de votre flotte</div>
-            </a>
-            <a href="/offres/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle en cours</div>
-              <div class="nav-dropdown-title">On vous accompagne</div>
-            </a>
-            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
-          </div>
+  <header class="s26-hd" id="s26-hd"><!-- s26 -->
+  <div class="s26-in">
+    <a class="s26-logo" href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="133" height="34"></a>
+    <nav class="s26-nav" aria-label="Navigation principale">
+      <a href="/#gains">La solution</a>
+      <a href="/offres/">Offres</a>
+      <div class="s26-dd"><button type="button" aria-haspopup="true">Outils <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="s26-dd-menu">
+          <a href="/outils/matrice-controle-rgdu/"><b>Matrice de contrôle RGDU</b><span>Le classeur de contrôle, à télécharger</span></a>
+          <a href="/outils/comparateur-rgdu-mensuel/"><b>Comparateur RGDU mensuel</b><span>Recalculez un mois et comparez à votre paie</span></a>
+          <a href="/outils/simulateur-avantage-en-nature-vehicule/"><b>Simulateur avantage en nature véhicule</b><span>Le bon montant, en quelques questions</span></a>
+          <a href="/outils/delai-remboursement-cotisations/"><b>Délai de remboursement d'un trop-payé</b><span>Jusqu'à quand demander le remboursement</span></a>
+          <a href="/outils/pilotage-flotte-tarifs/"><b>Pilotage de flotte</b><span>Le suivi des véhicules, un par un</span></a>
+          <a class="s26-dd-all" href="/outils/">Tous les outils →</a>
         </div>
-        <div class="nav-dropdown">
-          <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Boîte à outils
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/outils/prediagnostic-urssaf/">
-              <div class="nav-dropdown-theme">Gratuit · 3 minutes</div>
-              <div class="nav-dropdown-title">Prédiagnostic URSSAF</div>
-            </a>
-            <a href="/outils/simulateur-avantage-en-nature-vehicule/">
-              <div class="nav-dropdown-theme">Gratuit · barème 2026</div>
-              <div class="nav-dropdown-title">Simulateur d'avantage en nature véhicule</div>
-            </a>
-            <a href="/outils/" class="nav-dropdown-all">Tous les outils →</a>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a href="/ressources/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Ressources
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/ressources/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle URSSAF</div>
-              <div class="nav-dropdown-title">Comment ça se passe et que risque-t-on ?</div>
-            </a>
-            <a href="/ressources/audit-urssaf/">
-              <div class="nav-dropdown-theme">Audit URSSAF</div>
-              <div class="nav-dropdown-title">Les 8 zones à vérifier avant un contrôle</div>
-            </a>
-            <a href="/ressources/aen-vehicule-urssaf/">
-              <div class="nav-dropdown-theme">AEN véhicule</div>
-              <div class="nav-dropdown-title">Le guide complet 2026</div>
-            </a>
-            <a href="/ressources/reduction-generale-cotisations-patronales/">
-              <div class="nav-dropdown-theme">Réduction générale</div>
-              <div class="nav-dropdown-title">RGDU : le guide 2026</div>
-            </a>
-            <a href="/ressources/reformes-urssaf-2025-2026/">
-              <div class="nav-dropdown-theme">Actualités</div>
-              <div class="nav-dropdown-title">Réformes URSSAF 2025-2026</div>
-            </a>
-            <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
-          </div>
-        </div>
-        <a href="/equipe/sabrina-henocque-chiche/">Équipe</a>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Demander une démo</span></a>
       </div>
-      <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="/ressources/">Ressources</a>
     </nav>
-  </header>
-
-<!-- Premier écran -->
-<div class="hero p2-hero" id="contenu"><div class="wrap">
-  <div class="hero-top">
-    <div class="hero-copy">
-      <div class="eyebrow section-eyebrow">Gestion de flotte · avantage en nature</div>
-      <h1>Des avantages en nature véhicule<br><span>mieux maîtrisés.</span></h1>
-      <p class="hero-description">La solution ACOMPIA calcule l’avantage en nature de chaque véhicule au barème en vigueur. Comparez le forfait et le réel, comprenez les écarts avec la paie et identifiez les justificatifs à réunir.</p>
-      <p class="hero-value">Véhicule par véhicule. Disponible dès maintenant.</p>
-      <div class="ctas"><a class="btn btn-n" href="https://calendly.com/she-acompia/30min">Demander une démo <small>20 min</small></a><a class="text-cta" href="/outils/simulateur-avantage-en-nature-vehicule/">Estimer un véhicule <small>gratuit</small></a><a class="text-cta" href="/offres/#tarifs">Voir les tarifs</a></div>
-    </div>
-    <figure class="p2-visuel"><img src="/assets/p2-vehicules-haut.webp" alt="Vue de la flotte dans ACOMPIA, dossier de démonstration"><figcaption>Dossier de démonstration · données fictives</figcaption></figure>
+    <a class="s26-btn s26-btn--sm" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a>
+    <details class="s26-m"><summary aria-label="Ouvrir le menu"><i></i><i></i><i></i></summary>
+      <div class="s26-m-menu">
+            <a href="/#gains">La solution</a><a href="/offres/">Offres</a>
+            <a href="/outils/matrice-controle-rgdu/">Matrice de contrôle RGDU</a><a href="/outils/comparateur-rgdu-mensuel/">Comparateur RGDU mensuel</a><a href="/outils/simulateur-avantage-en-nature-vehicule/">Simulateur avantage en nature véhicule</a><a href="/outils/delai-remboursement-cotisations/">Délai de remboursement d'un trop-payé</a><a href="/outils/pilotage-flotte-tarifs/">Pilotage de flotte</a>
+            <a href="/outils/">Tous les outils</a><a href="/ressources/">Ressources</a>
+          </div>
+    </details>
   </div>
-</div></div>
-<div class="restored-copy">
-<section><div class="mq-roi"><div><p class="l26-eyebrow section-eyebrow">Pourquoi c’est sensible</p><h2 class="l26-h2">Là où l’avantage en nature <em>se complique.</em></h2><ul><li><strong>Deux barèmes dans la même flotte</strong><span>Le taux dépend de la date à laquelle le véhicule est confié au salarié. Depuis le 1er février 2025, anciens et nouveaux taux cohabitent.</span></li><li><strong>Une information qui n’arrive pas en paie</strong><span>Un salarié change de véhicule, un véhicule de service rentre au domicile. La paie ne le sait pas.</span></li><li><strong>Une pièce qui manque</strong><span>Une note d’usage, une preuve d’éco-score. Sans la pièce, l’évaluation retenue se défend mal.</span></li></ul></div></div></section>
-<section><div class="l26-panneau l26-panneau--sombre mq-commencer"><div class="mq-duo"><div>
-          <p class="l26-eyebrow section-eyebrow">Comment ça marche</p><h2 class="l26-h2">Trois étapes. <em>Toute votre flotte.</em></h2><p class="mq-pour-qui">Vous voyez d’abord toute votre flotte. Vous savez ensuite quoi corriger, véhicule par véhicule.</p></div>
-          <ul class="l26-lignes"><li class="l26-ligne"><span class="l26-ligne-num">01</span><span><span class="l26-ligne-titre">Vous transmettez vos données</span><span class="l26-ligne-sous">Vos DSN, vos bulletins et les pièces de vos véhicules.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">02</span><span><span class="l26-ligne-titre">La solution calcule et compare</span><span class="l26-ligne-sous">L’avantage de chaque véhicule, comparé à ce que la paie a déclaré.</span></span></li><li class="l26-ligne"><span class="l26-ligne-num">03</span><span><span class="l26-ligne-titre">Vous savez quoi corriger</span><span class="l26-ligne-sous">Les écarts, les pièces à réunir et la méthode la plus juste. Vous gardez la décision.</span></span></li></ul></div></div></section>
-<section><div class="p2-capture"><div><div class="p2-head"><p class="l26-eyebrow section-eyebrow">Votre flotte en clair</p><h2 class="l26-h2">Toute votre flotte, <em>sur un écran.</em></h2></div><ul class="p2-points"><li><strong>Par énergie, financement, mode d’évaluation et âge.</strong> La flotte se lit d’un coup d’œil.</li><li><strong>Achat, location longue durée ou crédit-bail.</strong> Toute la flotte est couverte.</li><li><strong>Forfait ou réel, comparés.</strong> L’écart en euros, à partir des éléments que vous fournissez.</li><li><strong>Une estimation à la demande,</strong> pour un véhicule ou pour la flotte.</li></ul><p class="p2-note">Dossier de démonstration, données fictives.</p></div><img src="/assets/p2-vehicules-liste.webp" alt="Liste des véhicules, dossier de démonstration" loading="eager"></div></section>
-<section><div class="p2-capture"><div><div class="p2-head"><p class="l26-eyebrow section-eyebrow">La paie vérifiée</p><h2 class="l26-h2">Ce que votre paie a déclaré, <em>vérifié.</em></h2></div><ul class="p2-points"><li><strong>Chaque écart</strong> entre l’avantage calculé au barème et ce que vos bulletins et vos DSN ont déclaré, véhicule par véhicule, chiffré.</li><li><strong>Chaque pièce manquante,</strong> véhicule par véhicule. Vous savez laquelle réunir.</li><li><strong>L’optimisation possible,</strong> quand un abattement a été oublié.</li><li><strong>Le barème suivi.</strong> Quand une règle bouge, chaque véhicule reste évalué au bon taux.</li></ul><p class="p2-note">Dossier de démonstration, données fictives.</p></div><img src="/assets/p2-audit-vehicule.webp" alt="Constats avantage en nature véhicule, dossier de démonstration" loading="eager"></div></section>
-<section><div class="p2-porte"><div><strong>Incluse dans le suivi mensuel.</strong><p>La gestion de flotte fait partie du suivi mensuel, qui vérifie aussi tous les autres sujets de votre paie, dès 180 € HT par mois au tarif partenaire. Seule, elle est sur devis. L’audit de votre flotte sur 1 à 3 ans démarre à 1 500 € HT.</p></div><a class="btn btn-b" href="/offres/#tarifs">Voir les tarifs</a></div></section>
-<section id="faq" class="l26-faq-zone"><div class="l26-faq-duo"><div><p class="l26-eyebrow section-eyebrow">Questions</p><h2 class="l26-h2">Vos questions <em>sur la flotte.</em></h2><p class="l26-chapeau">Une question sur vos véhicules&nbsp;? Une démo de vingt minutes suffit souvent à y voir clair.</p>
-          <p style="margin-top:26px"><a href="https://calendly.com/she-acompia/30min" class="btn-secondary l26-pill l26-pill--ghost">Demander une démo</a></p></div><div class="l26-faq"><details name="faq-page" class="l26-faq-item" open><summary>Puis-je commencer par un seul véhicule&nbsp;?<span class="l26-plus" aria-hidden="true">+</span></summary><div class="l26-faq-reponse"><p>Oui. Le simulateur gratuit vous donne une estimation pour un véhicule. La démo vous montre ensuite toute votre flotte.</p></div></details><details name="faq-page" class="l26-faq-item"><summary>Quels documents faut-il transmettre&nbsp;?<span class="l26-plus" aria-hidden="true">+</span></summary><div class="l26-faq-reponse"><p>Vos DSN, vos bulletins et les pièces de vos véhicules. La liste vous est envoyée avant la démo.</p></div></details><details name="faq-page" class="l26-faq-item"><summary>Les véhicules en location longue durée sont-ils couverts&nbsp;?<span class="l26-plus" aria-hidden="true">+</span></summary><div class="l26-faq-reponse"><p>Oui. Achat, location longue durée ou crédit-bail, toute la flotte est couverte.</p></div></details><details name="faq-page" class="l26-faq-item"><summary>Les véhicules électriques sont-ils traités à part&nbsp;?<span class="l26-plus" aria-hidden="true">+</span></summary><div class="l26-faq-reponse"><p>Oui. L’abattement s’applique au véhicule éligible. La solution vous dit si la preuve de l’éco-score manque.</p></div></details><details name="faq-page" class="l26-faq-item"><summary>Faut-il prendre le suivi de toute la paie&nbsp;?<span class="l26-plus" aria-hidden="true">+</span></summary><div class="l26-faq-reponse"><p>Non. La gestion de flotte peut être souscrite seule, sur devis. Elle est aussi incluse dans le suivi mensuel, dès 180 € HT par mois au tarif partenaire.</p></div></details></div></div></section>
-</div>
-<section class="final"><div class="wrap"><div class="box">
-  <h2>Voyez votre flotte. <span>Dans la solution ACOMPIA.</span></h2>
-  <div><div class="ctas"><a class="btn btn-n" href="https://calendly.com/she-acompia/30min">Demander une démo <small>20 min</small></a><a class="btn btn-b" href="/outils/simulateur-avantage-en-nature-vehicule/">Estimer un véhicule <small>gratuit</small></a></div><p>Une vingtaine de minutes, sur nos données ou sur un de vos véhicules. Conçue par une avocate, augmentée par l’IA.</p></div>
-</div></div></section>
-<footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
-<script src="/js/accueil/navbar.js"></script>
-<script src="/js/accueil/faq.js"></script>
+</header>
+
+<main class="so">
+<section class="so-hero" id="contenu"><div class="wrap so-hero-grid"><div class="so-hero-txt"><p class="eyebrow">Gestion de flotte · avantage en nature</p><h1>Des avantages en nature véhicule<br><span>mieux maîtrisés.</span></h1><p class="lead">La solution ACOMPIA calcule l’avantage en nature de chaque véhicule au barème en vigueur. Comparez le forfait et le réel, comprenez les écarts avec la paie et identifiez les justificatifs à réunir.</p><p class="so-val"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-validation"/></svg><span>Véhicule par véhicule. Disponible dès maintenant.</span></p><div class="so-ctas"><a class="btn" data-cta="flotte_hero" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="so-btn2" data-cta="flotte_hero_simulateur" href="/outils/simulateur-avantage-en-nature-vehicule/">Estimer un véhicule gratuitement</a></div><p class="so-note">Une vingtaine de minutes, sur un cas concret.</p></div><figure class="vf vf1 so-shot"><div class="vf-in"><svg class="vf-rib" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid slice" fill="none" stroke-linecap="round" aria-hidden="true"><path d="M-40 70C80 10 190 150 330 86S560 -20 700 60" stroke="#7B69FF" stroke-width="44"/><path d="M-60 330C60 420 240 300 330 380" stroke="#6552F7" stroke-width="30"/></svg><img src="/assets/p2-vehicules-haut.webp" alt="Vue de la flotte dans ACOMPIA, dossier de démonstration" loading="lazy"></div><figcaption>Dossier de démonstration, données fictives</figcaption></figure></div></section><section><div class="wrap"><div class="head rv"><p class="eyebrow">Pourquoi c’est sensible</p><h2>Là où l’avantage en nature se complique.</h2></div><ul class="so-cards so-cards--3"><li class="rv"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-calendrier"/></svg></i><h3>Deux barèmes dans la même flotte</h3><p>Le taux dépend de la date à laquelle le véhicule est confié au salarié. Depuis le 1er février 2025, anciens et nouveaux taux cohabitent.</p></li><li class="rv"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-allers-retours"/></svg></i><h3>Une information qui n’arrive pas en paie</h3><p>Un salarié change de véhicule, un véhicule de service rentre au domicile. La paie ne le sait pas.</p></li><li class="rv"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-justificatif-manquant"/></svg></i><h3>Une pièce qui manque</h3><p>Une note d’usage, une preuve d’éco-score. Sans la pièce, l’évaluation retenue se défend mal.</p></li></ul></div></section><section class="so-lav"><div class="wrap"><div class="head rv"><p class="eyebrow">Comment ça marche</p><h2>Trois étapes. Toute votre flotte.</h2><p class="lead">Vous voyez d’abord toute votre flotte. Vous savez ensuite quoi corriger, véhicule par véhicule.</p></div><ul class="of2-path so-path rv"><li><span class="of2-dot"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-depot"/></svg></span><h3>Vous transmettez vos données</h3><p>Vos DSN, vos bulletins et les pièces de vos véhicules.</p></li><li><span class="of2-dot"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></span><h3>La solution calcule et compare</h3><p>L’avantage de chaque véhicule, comparé à ce que la paie a déclaré.</p></li><li><span class="of2-dot"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-corriger"/></svg></span><h3>Vous savez quoi corriger</h3><p>Les écarts, les pièces à réunir et la méthode la plus juste. Vous gardez la décision.</p></li></ul></div></section><section><div class="wrap"><div class="o2-row rv"><div class="o2-txt"><p class="o2-k"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-vehicules"/></svg>Votre flotte en clair</p><h3>Toute votre flotte, sur un écran.</h3><ul class="ck"><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-piloter"/></svg></i><span><b>Par énergie, financement, mode d’évaluation et âge.</b> La flotte se lit d’un coup d’œil.</span></li><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-portefeuille"/></svg></i><span><b>Achat, location longue durée ou crédit-bail.</b> Toute la flotte est couverte.</span></li><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-ecart"/></svg></i><span><b>Forfait ou réel, comparés.</b> L’écart en euros, à partir des éléments que vous fournissez.</span></li><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></i><span><b>Une estimation à la demande,</b> pour un véhicule ou pour la flotte.</span></li></ul></div><figure class="vf vf2 so-shot"><div class="vf-in"><svg class="vf-rib" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid slice" fill="none" stroke-linecap="round" aria-hidden="true"><path d="M-30 300C90 200 150 80 330 60S520 140 700 20" stroke="#7B69FF" stroke-width="44"/><path d="M420 -30C470 60 600 80 700 150" stroke="#6552F7" stroke-width="30"/></svg><img src="/assets/p2-vehicules-liste.webp" alt="Liste des véhicules, dossier de démonstration" loading="lazy"></div><figcaption>Dossier de démonstration, données fictives</figcaption></figure></div><div class="o2-row rev rv"><div class="o2-txt"><p class="o2-k"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-fiabilite"/></svg>La paie vérifiée</p><h3>Ce que votre paie a déclaré, vérifié.</h3><ul class="ck"><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-ecart"/></svg></i><span><b>Chaque écart</b> entre l’avantage calculé au barème et ce que vos bulletins et vos DSN ont déclaré, véhicule par véhicule, chiffré.</span></li><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-justificatif-manquant"/></svg></i><span><b>Chaque pièce manquante,</b> véhicule par véhicule. Vous savez laquelle réunir.</span></li><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-billet"/></svg></i><span><b>L’optimisation possible,</b> quand un abattement a été oublié.</span></li><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-regle"/></svg></i><span><b>Le barème suivi.</b> Quand une règle bouge, chaque véhicule reste évalué au bon taux.</span></li></ul></div><figure class="vf vf3 so-shot"><div class="vf-in"><svg class="vf-rib" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid slice" fill="none" stroke-linecap="round" aria-hidden="true"><path d="M-40 40C120 120 200 -10 360 50S560 180 700 110" stroke="#7B69FF" stroke-width="44"/><path d="M-50 400C40 330 120 420 220 360" stroke="#6552F7" stroke-width="30"/></svg><img src="/assets/p2-audit-vehicule.webp" alt="Constats avantage en nature véhicule, dossier de démonstration" loading="lazy"></div><figcaption>Dossier de démonstration, données fictives</figcaption></figure></div></div></section><section class="of2-ask-sec so-ask"><div class="wrap"><div class="of2-ask rv"><div class="of2-ask-txt"><span class="of2-ask-ic"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-document-fleche"/></svg></span><div><p class="eyebrow">Tarification</p><h2>La tarification vous est communiquée sur demande.</h2><p>Elle tient compte de votre effectif et de votre périmètre. Quelques informations suffisent pour recevoir un devis détaillé.</p></div></div><div class="of2-ask-cta"><a class="btn" data-cta="flotte_tarification" href="/offres/#devis">Demander la tarification <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="of2-btn2" data-cta="flotte_milieu" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a></div></div></div></section><section class="so-porte-sec"><div class="wrap"><div class="so-porte rv"><div><h3>Incluse dans le contrôle continu.</h3><p>La gestion de flotte fait partie du contrôle continu, qui vérifie aussi tous les autres sujets de votre paie. Elle peut aussi être souscrite seule.</p></div><a class="so-btn2" data-cta="flotte_suivi" href="/#suivi">Découvrir le contrôle continu</a></div></div></section><section id="faq" class="so-faq"><div class="wrap faq-grid"><div class="rv"><p class="eyebrow">Questions</p><h2>Vos questions sur la flotte.</h2><p class="so-faqp">Une question sur vos véhicules&nbsp;? Une démo d’une vingtaine de minutes suffit souvent à y voir clair.</p><p class="so-faqb"><a class="so-btn2" data-cta="flotte_faq" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a></p></div><div class="rv"><details open><summary>Puis-je commencer par un seul véhicule&nbsp;?</summary><p>Oui. Le simulateur gratuit vous donne une estimation pour un véhicule. La démo vous montre ensuite toute votre flotte.</p></details><details><summary>Quels documents faut-il transmettre&nbsp;?</summary><p>Vos DSN, vos bulletins et les pièces de vos véhicules. La liste vous est envoyée avant la démo.</p></details><details><summary>Les véhicules en location longue durée sont-ils couverts&nbsp;?</summary><p>Oui. Achat, location longue durée ou crédit-bail, toute la flotte est couverte.</p></details><details><summary>Les véhicules électriques sont-ils traités à part&nbsp;?</summary><p>Oui. L’abattement s’applique au véhicule éligible. La solution vous dit si la preuve de l’éco-score manque.</p></details><details><summary>Faut-il prendre le suivi de toute la paie&nbsp;?</summary><p>Non. La gestion de flotte peut être souscrite seule, sur devis. Elle est aussi incluse dans le contrôle continu.</p></details></div></div></section><section class="so-final"><div class="wrap"><div class="so-finalbox rv"><h2>Voyez votre flotte. <span>Dans la solution ACOMPIA.</span></h2><p>Une vingtaine de minutes, sur nos données ou sur un de vos véhicules.</p><div class="so-ctas"><a class="btn" data-cta="flotte_final" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="so-btn2" data-cta="flotte_final_simulateur" href="/outils/simulateur-avantage-en-nature-vehicule/">Estimer un véhicule gratuitement</a></div><p class="so-sign">Conçue par une avocate, augmentée par l'IA.</p></div></div></section>
+</main>
+<footer class="s26-ft"><!-- s26 -->
+  <div class="s26-in">
+    <a href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="102" height="26"></a>
+    <span>ComplyDB SAS</span><span>25 rue de Ponthieu, 75008 Paris</span>
+    <a href="mailto:she@acompia.com">she@acompia.com</a>
+    <a href="/equipe/">Qui sommes-nous</a>
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/politique-confidentialite.html">Confidentialité</a>
+  </div>
+</footer>
+<div class="s26-sticky" id="s26-sticky"><a class="s26-btn" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a></div>
+<script src="/js/site-2026-11-sous-offres.js?v=2026-11-11" defer></script>
 <script src="/js/config.js" defer></script>
 <script src="/js/socle.js" defer></script>
+<script src="/js/site-2026-11-entete.js?v=2026-11-11" defer></script>
 </body>
 </html>
