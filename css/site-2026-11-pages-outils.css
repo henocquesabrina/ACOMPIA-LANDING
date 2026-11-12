@@ -1,0 +1,193 @@
+/* ACOMPIA · pages d'outils (matrice, simulateur, comparateur, délai), novembre 2026.
+   Chargée en dernier. Tout est préfixé par une classe posée sur <body> : po-matrice, po-sim, po-rgdu, po-delai. */
+
+.po{--po-indigo:#4A34F5;--po-indigo-d:#3A26D9;--po-ink:#101014;--po-grey:#62626E;--po-lav:#F4F2FF;--po-line:#E3DEFF;--po-ok:#166C46;--po-ok-bg:#E4F3EB}
+
+/* ───────── socle commun aux deux pages historiques (matrice, simulateur) ───────── */
+.po-old{background:#fff;color:var(--po-ink);font-family:Geist,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+  --indigo:#4A34F5;--violet:#7B69FF;--indigo-pale:#F4F2FF;--l26-mauve:#4A34F5;--l26-bande:#F4F2FF}
+.po-old .hero.outil-hero{background:none!important;padding:56px 0 8px;overflow:visible}
+.po-old .hero.outil-hero::before,.po-old .hero.outil-hero::after{display:none!important}
+.po-old .outil-ariane{font:500 12.5px/1.4 "Geist Mono",ui-monospace,monospace;letter-spacing:.04em;color:var(--po-grey);margin:0 0 22px}
+.po-old .outil-ariane a{color:var(--po-grey);text-decoration:none}
+.po-old .outil-ariane a:hover{color:var(--po-indigo)}
+.po-old .hero .eyebrow.section-eyebrow{font:500 13px/1.4 "Geist Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--po-indigo);margin:0 0 18px;padding:0;border:0;background:none}
+.po-old .hero .eyebrow.section-eyebrow::before{display:none}
+.po-old .hero h1{font-family:Geist,system-ui,sans-serif;font-weight:600;font-size:clamp(36px,4.1vw,54px);line-height:1.05;letter-spacing:-.03em;color:var(--po-ink);text-wrap:balance}
+.po-old .hero h1 span{color:var(--po-indigo)}
+
+/* bandeau de fin commun déjà posé (s26-demo) : un peu plus d'air */
+.po-old .s26-demo{margin-top:8px}
+
+/* ───────── matrice RGDU ───────── */
+.po-matrice .hero.outil-hero .wrap,
+.po-matrice .outil-article-cadre{max-width:824px;margin-left:auto;margin-right:auto;padding-left:32px;padding-right:32px;box-sizing:border-box}
+.po-matrice .hero.outil-hero .wrap>h1{max-width:none;margin-top:0}
+.po-matrice .outil-article{max-width:none;margin:0;padding:28px 0 0}
+.po-matrice .outil-article>p{font-size:17.5px;line-height:1.65;color:#33333c;margin:0 0 22px}
+.po-matrice .outil-article h2{font-family:Geist,system-ui,sans-serif;font-size:clamp(26px,2.6vw,32px);font-weight:600;letter-spacing:-.022em;line-height:1.12;color:var(--po-ink);margin:56px 0 16px}
+.po-matrice .outil-article a:not(.btn):not(.s26-btn):not(.s26-lien){color:var(--po-indigo);font-weight:500}
+
+/* ce que contient le classeur : liste en pastilles */
+.po-matrice .callout-retenir{margin:36px 0 28px;padding:34px 36px 36px;background:var(--po-lav);border-radius:24px}
+.po-matrice .callout-retenir-title{font:500 13px/1.4 "Geist Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--po-indigo);margin-bottom:22px}
+.po-matrice .callout-retenir ul{display:grid;gap:16px}
+.po-matrice .callout-retenir li{position:relative;padding:3px 0 0 52px;min-height:38px;font-size:16px!important;line-height:1.55;color:#3d3d48}
+.po-matrice .callout-retenir li::before{content:"";position:absolute;left:0;top:0;width:38px;height:38px;border-radius:12px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.5 12.5l3.6 3.6 7.4-7.6' fill='none' stroke='%234A34F5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/22px no-repeat;box-shadow:0 6px 14px -8px rgba(74,52,245,.4)}
+.po-matrice .callout-retenir strong{color:var(--po-ink);font-weight:600}
+
+/* bloc de téléchargement */
+.po-matrice .article-cta-block{margin:28px 0;border-radius:24px;border:1px solid var(--po-line);padding:30px 32px;background:#fff;display:block}
+.po-matrice .article-cta-block h4{font-family:Geist,system-ui,sans-serif;font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1.15;color:var(--po-ink);margin:0}
+.po-matrice .article-cta-block p{font-size:16.5px;line-height:1.6;color:#4d4d58;margin:10px 0 22px}
+.po-matrice .article-cta-block--accent{position:relative;border:1.5px solid var(--po-indigo);background:linear-gradient(180deg,#FBFAFF,#fff);padding:34px 36px 36px 124px;box-shadow:0 30px 60px -36px rgba(60,40,180,.45)}
+.po-matrice .article-cta-block--accent::before{content:"";position:absolute;left:36px;top:36px;width:60px;height:60px;border-radius:18px;background:var(--po-indigo) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/30px no-repeat;box-shadow:0 12px 24px -10px rgba(74,52,245,.6)}
+.po-matrice .article-cta-block--accent h4{font-size:27px}
+.po-matrice .article-cta-btn,.po-matrice .article-cta-btn.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;border-radius:999px;font:600 16.5px/1 Geist,system-ui,sans-serif;text-decoration:none;border:0;transition:background .2s,box-shadow .2s,transform .2s}
+.po-matrice #dl-matrice{background:var(--po-indigo);color:#fff;box-shadow:0 10px 24px -10px rgba(74,52,245,.55)}
+.po-matrice #dl-matrice:hover{background:var(--po-indigo-d);box-shadow:0 14px 28px -8px rgba(74,52,245,.5)}
+.po-matrice #dl-matrice:active{transform:scale(.98)}
+.po-matrice #dl-matrice::after{content:"";width:18px;height:18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 5v13m0 0l-6-6m6 6l6-6' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.po-matrice .article-cta-block:not(.article-cta-block--accent) .article-cta-btn{background:#fff;color:var(--po-indigo);border:1.5px solid #CFC7FF;height:48px;padding:0 24px;font-size:15.5px}
+.po-matrice .article-cta-block:not(.article-cta-block--accent) .article-cta-btn:hover{border-color:var(--po-indigo);background:var(--po-lav)}
+.po-matrice .s26-demo.s26-demo--col{margin:28px 0 36px;border-radius:24px}
+.po-matrice .outil-article h2.s26-demo-t{margin:0 0 10px;font-size:26px}
+
+/* questions fréquentes */
+.po-matrice .article-faq{margin-top:64px;padding-bottom:88px}
+.po-matrice .article-faq h2{margin-top:0}
+.po-matrice .l26-faq-item{border-bottom:1px solid var(--po-line)}
+.po-matrice .l26-faq-item:first-child{border-top:1px solid var(--po-line)}
+.po-matrice .l26-faq-item summary{font-family:Geist,system-ui,sans-serif;font-weight:600;font-size:18px;line-height:1.4;color:var(--po-ink);padding:20px 44px 20px 0;margin:0;min-height:0;transition:color .2s}
+.po-matrice .l26-faq-item{padding:0;margin:0}
+.po-matrice .l26-faq-item summary:hover{color:var(--po-indigo)}
+.po-matrice .l26-plus{color:var(--po-indigo);font-size:22px;font-weight:400}
+.po-matrice .l26-faq-reponse p{font-size:16.5px;line-height:1.6;color:#4d4d58}
+
+/* ───────── simulateur avantage en nature véhicule ───────── */
+.po-sim .hero.outil-hero .wrap,
+.po-sim .outil-references>.wrap,
+.po-sim .outil-porte.wrap{max-width:1160px;margin-left:auto;margin-right:auto;padding-left:32px;padding-right:32px;box-sizing:border-box}
+.po-sim .outil-hero--visuel .wrap{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr);gap:56px;align-items:center}
+.po-sim .hero h1{font-size:clamp(34px,3.7vw,50px)}
+.po-sim .hero.outil-hero{padding-bottom:72px}
+.po-sim .hero h1{max-width:none;margin:0}
+.po-sim .outil-hero .hero-description{font-size:18.5px;line-height:1.6;color:var(--po-grey);max-width:540px;margin-top:24px}
+.po-sim .outil-hero .ctas{margin-top:32px}
+.po-sim .cta-ouvrir,.po-sim .cta-ouvrir.btn{display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;border-radius:999px;border:0;background:var(--po-indigo);color:#fff;font:600 16.5px/1 Geist,system-ui,sans-serif;cursor:pointer;box-shadow:0 10px 24px -10px rgba(74,52,245,.55);transition:background .2s,box-shadow .2s,transform .2s}
+.po-sim .cta-ouvrir:hover{background:var(--po-indigo-d);box-shadow:0 14px 28px -8px rgba(74,52,245,.5)}
+.po-sim .cta-ouvrir:active{transform:scale(.98)}
+.po-sim .outil-badges{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:10px}
+.po-sim .outil-badges li{position:relative;padding-left:30px;font-size:15.5px;font-weight:500;color:#22222a;line-height:1.45}
+.po-sim .outil-badges li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--po-ok-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.3l2.6 2.6L13 6.5' fill='none' stroke='%23166C46' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.po-sim .outil-apercu{border-radius:24px;background:var(--po-lav);border:0}
+
+/* la première question, visible dès l'arrivée */
+.po-q1{display:none}
+.po-q1.on{display:block;background:#fff;border:1px solid var(--po-line);border-radius:28px;padding:30px 30px 26px;box-shadow:0 40px 70px -40px rgba(60,40,180,.45);position:relative}
+.po-q1.on~.outil-apercu,.po-sim .po-has-q1 .outil-apercu{display:none}
+.po-q1-bar{height:6px;border-radius:999px;background:var(--po-lav);overflow:hidden;margin-bottom:22px}
+.po-q1-bar i{display:block;height:100%;width:11%;border-radius:999px;background:var(--po-indigo)}
+.po-q1 h2{font-family:Geist,system-ui,sans-serif;font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1.2;color:var(--po-ink);margin:0 0 18px;text-wrap:balance}
+.po-q1-opts{display:grid;gap:10px}
+.po-q1-opt{appearance:none;display:grid;grid-template-columns:22px 1fr 20px;align-items:center;gap:14px;width:100%;text-align:left;font-family:inherit;background:#fff;border:1.5px solid #DDD8F5;border-radius:16px;padding:15px 18px;cursor:pointer;transition:border-color .15s,background .15s,transform .15s}
+.po-q1-opt:hover,.po-q1-opt:focus-visible{border-color:var(--po-indigo);background:var(--po-lav);outline:0}
+.po-q1-opt:active{transform:scale(.99)}
+.po-q1-opt i{width:20px;height:20px;border-radius:50%;border:2px solid #CFC7FF;display:block}
+.po-q1-opt b{display:block;font-size:16px;font-weight:600;color:var(--po-ink);line-height:1.3}
+.po-q1-opt span span{display:block;font-size:13.5px;color:var(--po-grey);line-height:1.4;margin-top:1px}
+.po-q1-opt em{font-style:normal;color:var(--po-indigo);font-size:18px}
+
+/* sections de référence */
+.po-sim .outil-references{padding:24px 0 0;background:none}
+.po-sim .statique-eyebrow{font:500 13px/1.6 "Geist Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--po-indigo);margin:4px 0 0}
+.po-sim .statique-fold>summary h2,.po-sim .statique>h2{font-family:Geist,system-ui,sans-serif;font-size:23px;font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--po-ink)}
+.po-sim .statique-fold>summary{transition:color .2s}
+.po-sim .statique-fold>summary:hover h2{color:var(--po-indigo)}
+.po-sim .geo-fait{border-radius:16px;border:1px solid var(--po-line);background:#fff}
+.po-sim .outil-porte.wrap{margin-top:72px}
+.po-sim .p2-porte{background:var(--po-lav);border-radius:24px;border:0;padding:32px 36px}
+.po-sim .p2-porte strong{font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--po-ink)}
+.po-sim .p2-porte p{font-size:16px;line-height:1.6;color:#4d4d58}
+.po-sim .p2-porte a{color:var(--po-indigo);font-weight:500}
+.po-sim .p2-porte .btn{border-radius:999px;border:1.5px solid #CFC7FF;background:#fff;color:var(--po-indigo);font:600 15.5px/1 Geist,system-ui,sans-serif;height:48px;padding:0 24px;display:inline-flex;align-items:center;white-space:nowrap}
+.po-sim .p2-porte .btn:hover{border-color:var(--po-indigo)}
+.po-sim .s26-demo{margin-top:40px;margin-bottom:88px}
+
+/* la modale du simulateur, au nouveau design (aucun changement de fonctionnement) */
+.po-sim #overlay.overlay{background:rgba(16,16,40,.5)}
+.po-sim #overlay .modale{border-radius:28px;font-family:Geist,system-ui,sans-serif;box-shadow:0 40px 90px -30px rgba(40,30,120,.55)}
+.po-sim #overlay .m-marque .pt{background:var(--po-indigo)}
+.po-sim #overlay .progress-lib{color:var(--po-indigo);font-weight:500;font-size:11.5px}
+.po-sim #overlay .progress-bar{background:var(--po-lav)}
+.po-sim #overlay .progress-fill{background:var(--po-indigo)}
+.po-sim #overlay .q-titre{font-size:24px;font-weight:600;letter-spacing:-.02em}
+.po-sim #overlay .opt{border-color:#DDD8F5;border-radius:16px}
+.po-sim #overlay .opt:hover,.po-sim #overlay .opt.on{border-color:var(--po-indigo);background:var(--po-lav)}
+.po-sim #overlay .opt .puce{border-color:#CFC7FF}
+.po-sim #overlay .opt.on .puce{border-color:var(--po-indigo);background:var(--po-indigo)}
+.po-sim #overlay .opt .fleche{color:var(--po-indigo)}
+.po-sim #overlay .btn-suivant{background:var(--po-indigo);color:#fff;border:0;border-radius:999px;height:48px;padding:0 26px;font:600 15.5px/1 Geist,system-ui,sans-serif;box-shadow:0 10px 24px -10px rgba(74,52,245,.55)}
+.po-sim #overlay .btn-suivant:hover:not(:disabled){background:var(--po-indigo-d)}
+.po-sim #overlay .btn-suivant:disabled{opacity:.45;box-shadow:none}
+.po-sim #overlay .btn-retour{border-radius:999px}
+.po-sim #overlay input[type=text],.po-sim #overlay input[type=email],.po-sim #overlay input[type=number],.po-sim #overlay select{border-radius:12px}
+.po-sim #overlay input:focus,.po-sim #overlay select:focus{border-color:var(--po-indigo);box-shadow:0 0 0 3px rgba(74,52,245,.14);outline:0}
+
+/* ───────── comparateur RGDU mensuel ───────── */
+.po-rgdu .hero{padding:72px 0 44px}
+.po-rgdu .hero h1{max-width:none}
+.po-rgdu .tool-box{padding:40px}
+.po-rgdu .cols{gap:32px}
+.po-rgdu .card{padding:32px;box-shadow:0 24px 48px -36px rgba(60,40,180,.4)}
+.po-rgdu .card h2{font-size:24px;margin-bottom:24px}
+.po-rgdu .f{margin-bottom:22px}
+.po-rgdu .f>label,.po-rgdu .f>legend,.po-rgdu .lab{margin-bottom:8px}
+.po-rgdu .inp input{padding:15px 16px}
+.po-rgdu .seg span{padding:14px 10px}
+.po-rgdu .res.card{border-top:3px solid var(--po-indigo);border-radius:24px}
+.po-rgdu .res-empty p{font-size:16.5px;line-height:1.6}
+.po-rgdu .res-empty li{padding-left:40px;min-height:30px;display:flex;align-items:center}
+.po-rgdu .res-empty li::before{top:0;width:30px;height:30px;border-radius:10px;background:var(--po-lav) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.5 12.5l3.6 3.6 7.4-7.6' fill='none' stroke='%234A34F5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.po-rgdu .res h3{font-size:26px}
+.po-rgdu .kpis b{font-size:24px}
+.po-rgdu .kpis div{padding:16px 18px}
+.po-rgdu .two-col .box{box-shadow:0 24px 48px -40px rgba(60,40,180,.4)}
+.po-rgdu .legal{max-width:70ch}
+.po-rgdu .s26-ft{margin-top:0}
+
+/* ───────── délai de remboursement ───────── */
+.po-delai .dr-hero{padding-top:72px}
+.po-delai .dr-result,.po-delai #resultat{scroll-margin-top:96px}
+
+@media (max-width:980px){
+  .po-sim .outil-hero--visuel .wrap{grid-template-columns:1fr;gap:36px}
+  .po-sim .hero.outil-hero{padding-bottom:48px}
+  .po-rgdu .tool-box{padding:28px 20px}
+}
+@media (max-width:600px){
+  .po-old .hero.outil-hero{padding-top:32px}
+  .po-matrice .hero.outil-hero .wrap,.po-matrice .outil-article-cadre,
+  .po-sim .hero.outil-hero .wrap,.po-sim .outil-references>.wrap,.po-sim .outil-porte.wrap{padding-left:20px;padding-right:20px}
+  .po-matrice .outil-article>p{font-size:16.5px}
+  .po-matrice .callout-retenir{padding:26px 20px 28px;border-radius:20px}
+  .po-matrice .callout-retenir li{padding-left:46px;font-size:15.5px!important}
+  .po-matrice .callout-retenir li::before{width:34px;height:34px}
+  .po-matrice .article-cta-block{padding:26px 22px;border-radius:20px}
+  .po-matrice .article-cta-block--accent{padding:104px 22px 26px}
+  .po-matrice .article-cta-block--accent::before{left:22px;top:26px}
+  .po-matrice .article-cta-block--accent h4{font-size:24px}
+  .po-matrice .article-cta-btn,.po-matrice .article-cta-btn.btn{width:100%}
+  .po-matrice .l26-faq-item summary{font-size:16.5px}
+  .po-sim .cta-ouvrir,.po-sim .cta-ouvrir.btn{width:100%}
+  .po-q1.on{padding:22px 18px 18px;border-radius:22px}
+  .po-q1 h2{font-size:21px}
+  .po-sim .p2-porte{padding:26px 22px;border-radius:20px}
+  .po-rgdu .hero,.po-delai .dr-hero{padding-top:36px}
+  .po-rgdu .card{padding:24px 18px}
+}
+@media (prefers-reduced-motion:reduce){.po *{transition:none!important}}
+
+/* Grands écrans : la page s'élargit au lieu de laisser deux marges vides */
+@media (min-width:1500px){.po-sim .outil-porte.wrap{max-width:1320px}}
+@media (min-width:1800px){.po-sim .outil-porte.wrap{max-width:1440px}}

@@ -268,96 +268,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
   <script src="../js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/site-2026-11-entete.css?v=2026-11-12e">
+<link rel="stylesheet" href="/css/site-2026-11-contenus.css?v=2026-11-12e">
 </head>
 <body class="ress-page">
 
   <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <header id="hd" class="current-navbar">
-    <nav id="nav">
-      <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
-          <img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96">
-        </a>
-      <div class="nav-links" id="nav-links">
-        <div class="nav-dropdown">
-          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Nos offres
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/#suivi">
-              <div class="nav-dropdown-theme">Offre principale</div>
-              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
-            </a>
-            <a href="/offres/audit-paie/">
-              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
-              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
-            </a>
-            <a href="/offres/gestion-de-flotte/">
-              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
-              <div class="nav-dropdown-title">La gestion de votre flotte</div>
-            </a>
-            <a href="/offres/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle en cours</div>
-              <div class="nav-dropdown-title">On vous accompagne</div>
-            </a>
-            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
-          </div>
+  <header class="s26-hd" id="s26-hd"><!-- s26 -->
+  <div class="s26-in">
+    <a class="s26-logo" href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="133" height="34"></a>
+    <nav class="s26-nav" aria-label="Navigation principale">
+      <a href="/#gains">La solution</a>
+      <a href="/offres/">Offres</a>
+      <div class="s26-dd"><button type="button" aria-haspopup="true">Outils <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="s26-dd-menu">
+          <a href="/outils/matrice-controle-rgdu/"><b>Matrice de contrôle RGDU</b><span>Le classeur de contrôle, à télécharger</span></a>
+          <a href="/outils/comparateur-rgdu-mensuel/"><b>Comparateur RGDU mensuel</b><span>Recalculez un mois et comparez à votre paie</span></a>
+          <a href="/outils/simulateur-avantage-en-nature-vehicule/"><b>Simulateur avantage en nature véhicule</b><span>Le bon montant, en quelques questions</span></a>
+          <a href="/outils/delai-remboursement-cotisations/"><b>Délai de remboursement d'un trop-payé</b><span>Jusqu'à quand demander le remboursement</span></a>
+          <a href="/outils/pilotage-flotte-tarifs/"><b>Pilotage de flotte</b><span>Le suivi des véhicules, un par un</span></a>
+          <a class="s26-dd-all" href="/outils/">Tous les outils →</a>
         </div>
-        <div class="nav-dropdown">
-          <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Boîte à outils
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/outils/prediagnostic-urssaf/">
-              <div class="nav-dropdown-theme">Gratuit · 3 minutes</div>
-              <div class="nav-dropdown-title">Prédiagnostic URSSAF</div>
-            </a>
-            <a href="/outils/simulateur-avantage-en-nature-vehicule/">
-              <div class="nav-dropdown-theme">Gratuit · barème 2026</div>
-              <div class="nav-dropdown-title">Simulateur d'avantage en nature véhicule</div>
-            </a>
-            <a href="/outils/" class="nav-dropdown-all">Tous les outils →</a>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a href="/ressources/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Ressources
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/ressources/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle URSSAF</div>
-              <div class="nav-dropdown-title">Comment ça se passe et que risque-t-on ?</div>
-            </a>
-            <a href="/ressources/audit-urssaf/">
-              <div class="nav-dropdown-theme">Audit URSSAF</div>
-              <div class="nav-dropdown-title">Les 8 zones à vérifier avant un contrôle</div>
-            </a>
-            <a href="/ressources/aen-vehicule-urssaf/">
-              <div class="nav-dropdown-theme">AEN véhicule</div>
-              <div class="nav-dropdown-title">Le guide complet 2026</div>
-            </a>
-            <a href="/ressources/reduction-generale-cotisations-patronales/">
-              <div class="nav-dropdown-theme">Réduction générale</div>
-              <div class="nav-dropdown-title">RGDU : le guide 2026</div>
-            </a>
-            <a href="/ressources/reformes-urssaf-2025-2026/">
-              <div class="nav-dropdown-theme">Actualités</div>
-              <div class="nav-dropdown-title">Réformes URSSAF 2025-2026</div>
-            </a>
-            <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
-          </div>
-        </div>
-        <a href="/equipe/sabrina-henocque-chiche/">Équipe</a>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Demander une démo</span></a>
       </div>
-      <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="/ressources/">Ressources</a>
     </nav>
-  </header>
+    <a class="s26-btn s26-btn--sm" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a>
+    <details class="s26-m"><summary aria-label="Ouvrir le menu"><i></i><i></i><i></i></summary>
+      <div class="s26-m-menu">
+            <a href="/#gains">La solution</a><a href="/offres/">Offres</a>
+            <a href="/outils/matrice-controle-rgdu/">Matrice de contrôle RGDU</a><a href="/outils/comparateur-rgdu-mensuel/">Comparateur RGDU mensuel</a><a href="/outils/simulateur-avantage-en-nature-vehicule/">Simulateur avantage en nature véhicule</a><a href="/outils/delai-remboursement-cotisations/">Délai de remboursement d'un trop-payé</a><a href="/outils/pilotage-flotte-tarifs/">Pilotage de flotte</a>
+            <a href="/outils/">Tous les outils</a><a href="/ressources/">Ressources</a>
+          </div>
+    </details>
+  </div>
+</header>
 
   <main id="main">
 
@@ -393,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
 
       <a class="hubB-row" href="flagrance-sociale-loi-2026/" data-theme="controle">
-        <span class="hubB-num">01</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-bouclier"/></svg></span>
         <span class="hubB-capsule">Flagrance sociale</span>
         <span class="hubB-main">
           <span class="hubB-title">Flagrance sociale : ce que change la loi de 2026</span>
@@ -405,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="taux-at-mp-2027-taux-unique/" data-theme="charges">
-        <span class="hubB-num">02</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></span>
         <span class="hubB-capsule">Taux AT/MP</span>
         <span class="hubB-main">
           <span class="hubB-title">Taux AT/MP 2027 : le taux unique devient automatique</span>
@@ -417,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="prevoyance-frais-de-sante-groupe-urssaf/" data-theme="psc controle">
-        <span class="hubB-num">03</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-sante"/></svg></span>
         <span class="hubB-capsule">Complémentaire santé</span>
         <span class="hubB-main">
           <span class="hubB-title">Prévoyance et frais de santé dans un groupe, ce que l'URSSAF vérifie société par société</span>
@@ -429,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="indemnites-repas-panier-urssaf/" data-theme="frais controle">
-        <span class="hubB-num">04</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-frais"/></svg></span>
         <span class="hubB-capsule">Frais professionnels</span>
         <span class="hubB-main">
           <span class="hubB-title">Indemnités de repas et primes de panier, quels plafonds en 2026 et quelles preuves</span>
@@ -441,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="cloture-paie-2026-corrections-urssaf/" data-theme="charges paie controle">
-        <span class="hubB-num">05</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></span>
         <span class="hubB-capsule">Clôture de paie</span>
         <span class="hubB-main">
           <span class="hubB-title">Clôture de paie 2026 : corrections URSSAF et délais</span>
@@ -453,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="trop-verse-controle-urssaf/" data-theme="controle charges">
-        <span class="hubB-num">06</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-bouclier"/></svg></span>
         <span class="hubB-capsule">Cotisations indues</span>
         <span class="hubB-main">
           <span class="hubB-title">Contrôle URSSAF, comment faire valoir les cotisations versées en trop</span>
@@ -465,7 +410,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="changement-prestataire-paie-controles/" data-theme="paie controle">
-        <span class="hubB-num">07</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-paie"/></svg></span>
         <span class="hubB-capsule">Externalisation paie</span>
         <span class="hubB-main">
           <span class="hubB-title">Changement de logiciel ou de prestataire de paie, quels contrôles prévoir</span>
@@ -477,7 +422,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="redressement-urssaf-protection-sociale-complementaire/" data-theme="psc controle">
-        <span class="hubB-num">08</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-sante"/></svg></span>
         <span class="hubB-capsule">Complémentaire santé</span>
         <span class="hubB-main">
           <span class="hubB-title">Redressement URSSAF en protection sociale complémentaire, comment éviter la réintégration globale</span>
@@ -489,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="anomalie-dsn-urssaf/" data-theme="controle paie">
-        <span class="hubB-num">09</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-bouclier"/></svg></span>
         <span class="hubB-capsule">Contrôle URSSAF</span>
         <span class="hubB-main">
           <span class="hubB-title">Anomalie DSN URSSAF, que corriger, que contester, que faire auditer</span>
@@ -501,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="flotte-automobile-controle-urssaf/" data-theme="aen controle">
-        <span class="hubB-num">10</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-vehicules"/></svg></span>
         <span class="hubB-capsule">AEN véhicule</span>
         <span class="hubB-main">
           <span class="hubB-title">Flotte automobile et contrôle URSSAF, les neuf extractions et les cinq rapprochements</span>
@@ -513,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="rgdu-cas-particuliers-calcul/" data-theme="charges rgdu">
-        <span class="hubB-num">11</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></span>
         <span class="hubB-capsule">Charges et cotisations</span>
         <span class="hubB-main">
           <span class="hubB-title">RGDU 2026, les neuf cas particuliers de calcul et le contrôle de paie</span>
@@ -525,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="avantage-nature-vehicule-electrique-urssaf/" data-theme="aen">
-        <span class="hubB-num">12</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-vehicules"/></svg></span>
         <span class="hubB-capsule">AEN véhicule</span>
         <span class="hubB-main">
           <span class="hubB-title">Avantage en nature véhicule électrique : abattement 2026</span>
@@ -537,7 +482,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="reduire-charges-urssaf-sans-redressement/" data-theme="charges rgdu">
-        <span class="hubB-num">13</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></span>
         <span class="hubB-capsule">Charges et cotisations</span>
         <span class="hubB-main">
           <span class="hubB-title">Réduire ses charges URSSAF, les huit leviers d'optimisation et comment les sécuriser</span>
@@ -549,7 +494,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="recuperer-trop-paye-cotisations-urssaf/" data-theme="charges">
-        <span class="hubB-num">14</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></span>
         <span class="hubB-capsule">Charges et cotisations</span>
         <span class="hubB-main">
           <span class="hubB-title">Trop-payé de cotisations URSSAF, comment le récupérer sans déclencher de redressement</span>
@@ -561,7 +506,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="reduction-generale-cotisations-patronales/" data-theme="charges rgdu">
-        <span class="hubB-num">15</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></span>
         <span class="hubB-capsule">Charges et cotisations</span>
         <span class="hubB-main">
           <span class="hubB-title">Réduction générale des cotisations patronales, comprendre la RGDU 2026 sans se tromper</span>
@@ -573,7 +518,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="audit-urssaf/" data-theme="audit controle">
-        <span class="hubB-num">16</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-loupe"/></svg></span>
         <span class="hubB-capsule">Audit URSSAF</span>
         <span class="hubB-main">
           <span class="hubB-title">Audit URSSAF, les 8 zones à vérifier avant un contrôle</span>
@@ -585,7 +530,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="controle-urssaf/" data-theme="controle">
-        <span class="hubB-num">17</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-bouclier"/></svg></span>
         <span class="hubB-capsule">Contrôle URSSAF</span>
         <span class="hubB-main">
           <span class="hubB-title">Contrôle URSSAF, déroulé, vos droits et comment réduire le risque de redressement</span>
@@ -597,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="charges-patronales-salariales-urssaf/" data-theme="charges rgdu">
-        <span class="hubB-num">18</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></span>
         <span class="hubB-capsule">Charges et cotisations</span>
         <span class="hubB-main">
           <span class="hubB-title">Charges patronales et salariales, assiette, taux et risques de redressement</span>
@@ -609,7 +554,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="externalisation-paie-audit-urssaf/" data-theme="paie audit">
-        <span class="hubB-num">19</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-paie"/></svg></span>
         <span class="hubB-capsule">Externalisation paie</span>
         <span class="hubB-main">
           <span class="hubB-title">Externalisation de la paie, pourquoi faut-il tout de même auditer sa conformité URSSAF ?</span>
@@ -621,7 +566,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="reformes-urssaf-2025-2026/" data-theme="actualites">
-        <span class="hubB-num">20</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-livre"/></svg></span>
         <span class="hubB-capsule">Actualités URSSAF</span>
         <span class="hubB-main">
           <span class="hubB-title">Réformes URSSAF 2025-2026, les évolutions que tout employeur doit connaître</span>
@@ -633,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="forfait-jours-cas-pratique-urssaf/" data-theme="temps">
-        <span class="hubB-num">21</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-temps"/></svg></span>
         <span class="hubB-capsule">Temps de travail</span>
         <span class="hubB-main">
           <span class="hubB-title">Forfait jours sans suivi effectif, comment une ETI a fortement réduit son risque URSSAF</span>
@@ -645,7 +590,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="indemnites-kilometriques-urssaf/" data-theme="frais">
-        <span class="hubB-num">22</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-frais"/></svg></span>
         <span class="hubB-capsule">Frais professionnels</span>
         <span class="hubB-main">
           <span class="hubB-title">Indemnités kilométriques, sont-elles soumises aux cotisations URSSAF en 2026 ?</span>
@@ -657,7 +602,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="protection-sociale-complementaire-urssaf/" data-theme="psc">
-        <span class="hubB-num">23</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-sante"/></svg></span>
         <span class="hubB-capsule">Complémentaire santé</span>
         <span class="hubB-main">
           <span class="hubB-title">Protection sociale complémentaire en entreprise, guide complet 2026</span>
@@ -669,7 +614,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <a class="hubB-row" href="aen-vehicule-urssaf/" data-theme="aen">
-        <span class="hubB-num">24</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-vehicules"/></svg></span>
         <span class="hubB-capsule">AEN véhicule</span>
         <span class="hubB-main">
           <span class="hubB-title">Avantage en nature véhicule, guide complet 2026 pour ne pas être redressé</span>
@@ -681,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </a>
 
       <div class="hubB-row hubB-row--soon" data-theme="ruptures" aria-disabled="true">
-        <span class="hubB-num">25</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-document-fleche"/></svg></span>
         <span class="hubB-capsule">Ruptures</span>
         <span class="hubB-main">
           <span class="hubB-title">Transaction post-rupture, éviter la requalification en salaire</span>
@@ -693,7 +638,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
 
       <div class="hubB-row hubB-row--soon" data-theme="mobilite" aria-disabled="true">
-        <span class="hubB-num">26</span>
+        <span class="hubB-ico" aria-hidden="true"><svg class="gi"><use href="/assets/site-2026-11/icones.svg#ico-billet"/></svg></span>
         <span class="hubB-capsule">Versement mobilité</span>
         <span class="hubB-main">
           <span class="hubB-title">Versement mobilité, périmètre, taux, exonérations en 2026</span>
@@ -709,20 +654,30 @@ document.addEventListener('DOMContentLoaded', function () {
     <aside class="hubC-banner">
         <div class="hubC-banner-left">
           <div class="hubC-banner-eyebrow">Par où commencer ?</div>
-          <h2 class="hubC-banner-title">Faites d'abord le prédiagnostic URSSAF gratuit</h2>
-          <p class="hubC-banner-sub">Trois minutes, aucune donnée de paie à transmettre, un premier niveau de risque thème par thème pour savoir quel parcours ouvrir en premier.</p>
+          <h2 class="hubC-banner-title">Deux outils gratuits pour vérifier un calcul</h2>
+          <p class="hubC-banner-sub">La matrice de contrôle RGDU et le simulateur avantage en nature véhicule, sans inscription.</p>
         </div>
-        <a class="hubC-banner-cta" href="/outils/prediagnostic-urssaf/">Lancer le prédiagnostic <span aria-hidden="true">→</span></a>
+        <a class="hubC-banner-cta" href="/outils/">Voir les outils <span aria-hidden="true">→</span></a>
       </aside>
 
   </main>
 
 
 
-  <footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
+  <footer class="s26-ft"><!-- s26 -->
+  <div class="s26-in">
+    <a href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="102" height="26"></a>
+    <span>ComplyDB SAS</span><span>25 rue de Ponthieu, 75008 Paris</span>
+    <a href="mailto:she@acompia.com">she@acompia.com</a>
+    <a href="/equipe/">Qui sommes-nous</a>
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/politique-confidentialite.html">Confidentialité</a>
+  </div>
+</footer>
+<div class="s26-sticky" id="s26-sticky"><a class="s26-btn" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo</a></div>
 
   <script src="../js/config.js" defer></script>
   <script src="../js/socle.js" defer></script>
-  <script src="/js/accueil/navbar.js" defer></script>
+<script src="/js/site-2026-11-entete.js?v=2026-11-11" defer></script>
 </body>
 </html>

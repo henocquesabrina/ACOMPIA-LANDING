@@ -4,7 +4,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Des outils gratuits et sans inscription : prédiagnostic d'exposition URSSAF en 3 minutes, simulateur d'avantage en nature véhicule au barème 2026 et matrice de contrôle RGDU (Excel).">
+  <meta name="description" content="Des outils gratuits et sans inscription : matrice de contrôle RGDU (Excel), comparateur RGDU mensuel, simulateur d'avantage en nature véhicule au barème 2026 et délai de remboursement d'un trop-payé.">
   <meta name="author" content="ComplyDB SAS">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#FAFAF7">
@@ -16,23 +16,49 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.acompia.com/outils/">
-  <meta property="og:title" content="Outils gratuits URSSAF : prédiagnostic et simulateur AEN véhicule · ACOMPIA">
-  <meta property="og:description" content="Des outils gratuits et sans inscription : prédiagnostic d'exposition URSSAF en 3 minutes, simulateur d'avantage en nature véhicule au barème 2026 et matrice de contrôle RGDU (Excel).">
+  <meta property="og:title" content="Outils gratuits URSSAF : RGDU, avantage en nature, trop-payé · ACOMPIA">
+  <meta property="og:description" content="Des outils gratuits et sans inscription : matrice de contrôle RGDU (Excel), comparateur RGDU mensuel, simulateur d'avantage en nature véhicule au barème 2026 et délai de remboursement d'un trop-payé.">
   <meta property="og:image" content="https://www.acompia.com/assets/og-image.png">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="ACOMPIA">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Outils gratuits URSSAF : prédiagnostic et simulateur AEN véhicule · ACOMPIA">
-  <meta name="twitter:description" content="Des outils gratuits et sans inscription : prédiagnostic d'exposition URSSAF en 3 minutes, simulateur d'avantage en nature véhicule au barème 2026 et matrice de contrôle RGDU (Excel).">
+  <meta name="twitter:title" content="Outils gratuits URSSAF : RGDU, avantage en nature, trop-payé · ACOMPIA">
+  <meta name="twitter:description" content="Des outils gratuits et sans inscription : matrice de contrôle RGDU (Excel), comparateur RGDU mensuel, simulateur d'avantage en nature véhicule au barème 2026 et délai de remboursement d'un trop-payé.">
   <meta name="twitter:image" content="https://www.acompia.com/assets/og-image.png">
 
-  <title>Outils gratuits : prédiagnostic URSSAF et simulateur AEN · ACOMPIA</title>
+  <title>Outils gratuits : matrice et comparateur RGDU, simulateur AEN, trop-payé · ACOMPIA</title>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ItemList","name":"Outils gratuits ACOMPIA","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Prédiagnostic URSSAF","url":"https://www.acompia.com/outils/prediagnostic-urssaf/"},
-    {"@type":"ListItem","position":2,"name":"Simulateur d'avantage en nature véhicule","url":"https://www.acompia.com/outils/simulateur-avantage-en-nature-vehicule/"},
-    {"@type":"ListItem","position":3,"name":"Matrice de contrôle RGDU 2026 (classeur Excel)","url":"https://www.acompia.com/outils/matrice-controle-rgdu/"}
-  ]}
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Outils gratuits ACOMPIA",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Simulateur d'avantage en nature véhicule",
+      "url": "https://www.acompia.com/outils/simulateur-avantage-en-nature-vehicule/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Matrice de contrôle RGDU 2026 (classeur Excel)",
+      "url": "https://www.acompia.com/outils/matrice-controle-rgdu/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Comparateur RGDU mensuel 2026",
+      "url": "https://www.acompia.com/outils/comparateur-rgdu-mensuel/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Délai de remboursement d'un trop-payé de cotisations",
+      "url": "https://www.acompia.com/outils/delai-remboursement-cotisations/"
+    }
+  ]
+}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -46,165 +72,162 @@
 
   <!-- Analytics · PostHog EU (cookie + localStorage depuis le 31/08/2026, IP écartées côté projet, enregistrement de session actif, saisies masquées) -->
   <script src="../js/analytics.js" defer></script>
-<link rel="stylesheet" href="/css/accueil/socle.css?v=2026-10-16">
-<link rel="stylesheet" href="/css/accueil/refinement.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/motion.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/isometric.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/dashboard.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/navbar.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/risk-story.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/restored-copy.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/visual-sections.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/product-mockups.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/section-labels.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/dashboard-tooltips.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/section-polish.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/responsive.css?v=team-reverted">
-<link rel="stylesheet" href="/css/accueil/hero-backdrop.css?v=contrast-2">
-<link rel="stylesheet" href="/css/accueil/offres.css?v=2026-10-16">
-<link rel="stylesheet" href="/css/accueil/outils.css?v=2026-10-16">
+<link rel="stylesheet" href="/css/site-2026-11.css?v=2026-11-12e">
+<link rel="stylesheet" href="/css/site-2026-11-outils.css?v=2026-11-11i">
 </head>
-<body class="page-outil">
-  <a class="skip-link" href="#contenu">Aller au contenu</a>
-
-  <header id="hd" class="current-navbar">
-    <nav id="nav">
-      <a class="nav-logo" href="/" aria-label="Retour à l'accueil ACOMPIA">
-          <img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96">
-        </a>
-      <div class="nav-links" id="nav-links">
-        <div class="nav-dropdown">
-          <a href="/offres/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Nos offres
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/#suivi">
-              <div class="nav-dropdown-theme">Offre principale</div>
-              <div class="nav-dropdown-title">Le suivi mensuel de votre paie</div>
-            </a>
-            <a href="/offres/audit-paie/">
-              <div class="nav-dropdown-theme">Savoir où vous en êtes</div>
-              <div class="nav-dropdown-title">L’audit de votre paie, sur 1 à 3 ans</div>
-            </a>
-            <a href="/offres/gestion-de-flotte/">
-              <div class="nav-dropdown-theme">Avantage en nature véhicule</div>
-              <div class="nav-dropdown-title">La gestion de votre flotte</div>
-            </a>
-            <a href="/offres/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle en cours</div>
-              <div class="nav-dropdown-title">On vous accompagne</div>
-            </a>
-            <a href="/offres/" class="nav-dropdown-all">Nos offres et tarifs →</a>
-          </div>
+<body><!-- s26 -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="/" aria-label="ACOMPIA, accueil"><img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="133" height="34"></a>
+    <nav aria-label="Navigation principale">
+      <a href="/#gains">La solution</a>
+      <a href="/offres/">Offres</a>
+      <div class="dd"><button type="button" aria-haspopup="true" class="is-here">Outils <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dd-menu">
+          <a href="/outils/matrice-controle-rgdu/"><b>Matrice de contrôle RGDU</b><span>Le classeur de contrôle, à télécharger</span></a>
+          <a href="/outils/comparateur-rgdu-mensuel/"><b>Comparateur RGDU mensuel</b><span>Recalculez un mois et comparez à votre paie</span></a>
+          <a href="/outils/simulateur-avantage-en-nature-vehicule/"><b>Simulateur avantage en nature véhicule</b><span>Le bon montant, en quelques questions</span></a>
+          <a href="/outils/delai-remboursement-cotisations/"><b>Délai de remboursement d'un trop-payé</b><span>Jusqu'à quand demander le remboursement</span></a>
+          <a href="/outils/pilotage-flotte-tarifs/"><b>Pilotage de flotte</b><span>Le suivi des véhicules, un par un</span></a>
+          <a class="dd-all" href="/outils/">Tous les outils →</a>
         </div>
-        <div class="nav-dropdown">
-          <a href="/outils/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Boîte à outils
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/outils/prediagnostic-urssaf/">
-              <div class="nav-dropdown-theme">Gratuit · 3 minutes</div>
-              <div class="nav-dropdown-title">Prédiagnostic URSSAF</div>
-            </a>
-            <a href="/outils/simulateur-avantage-en-nature-vehicule/">
-              <div class="nav-dropdown-theme">Gratuit · barème 2026</div>
-              <div class="nav-dropdown-title">Simulateur d'avantage en nature véhicule</div>
-            </a>
-            <a href="/outils/" class="nav-dropdown-all">Tous les outils →</a>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a href="/ressources/" class="nav-dropdown-toggle" aria-haspopup="true">
-            Ressources
-            <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
-          </a>
-          <div class="nav-dropdown-menu">
-            <a href="/ressources/controle-urssaf/">
-              <div class="nav-dropdown-theme">Contrôle URSSAF</div>
-              <div class="nav-dropdown-title">Comment ça se passe et que risque-t-on ?</div>
-            </a>
-            <a href="/ressources/audit-urssaf/">
-              <div class="nav-dropdown-theme">Audit URSSAF</div>
-              <div class="nav-dropdown-title">Les 8 zones à vérifier avant un contrôle</div>
-            </a>
-            <a href="/ressources/aen-vehicule-urssaf/">
-              <div class="nav-dropdown-theme">AEN véhicule</div>
-              <div class="nav-dropdown-title">Le guide complet 2026</div>
-            </a>
-            <a href="/ressources/reduction-generale-cotisations-patronales/">
-              <div class="nav-dropdown-theme">Réduction générale</div>
-              <div class="nav-dropdown-title">RGDU : le guide 2026</div>
-            </a>
-            <a href="/ressources/reformes-urssaf-2025-2026/">
-              <div class="nav-dropdown-theme">Actualités</div>
-              <div class="nav-dropdown-title">Réformes URSSAF 2025-2026</div>
-            </a>
-            <a href="/ressources/" class="nav-dropdown-all">Toutes les ressources →</a>
-          </div>
-        </div>
-        <a href="/equipe/sabrina-henocque-chiche/">Équipe</a>
-        <a href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span>Demander une démo</span></a>
       </div>
-      <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links" type="button">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="/ressources/">Ressources</a>
+      <a class="btn btn--sm" data-cta="barre" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo </a>
     </nav>
-  </header>
-
-  <main id="main">
-
-  <div class="hero p2-hero outil-hero" id="contenu"><div class="wrap">
-    <div class="eyebrow section-eyebrow">Boîte à outils · gratuit</div>
-    <h1>La boîte à outils <span>ACOMPIA.</span></h1>
-    <p class="hero-description">Sans inscription, confidentiels, conçus par une avocate URSSAF. Commencez par mesurer, décidez ensuite.</p>
-  </div></div>
-
-  <div class="restored-copy">
-  <section class="outil-section" id="outils">
-    <div class="outil-cartes">
-      <article class="outil-carte">
-        <div class="offer-preview audit-preview outil-apercu" aria-hidden="true"><div class="audit-paper"><span>ACOMPIA / PRÉDIAGNOSTIC</span><strong>Vos priorités.<br>En 3 minutes.</strong><div class="audit-rule"></div><div class="audit-metric"><small>Vos priorités</small><b>3</b></div><div class="audit-mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>Exemple de restitution</small></div><span class="preview-note">10 QUESTIONS DE BASE · RAPPORT IMMÉDIAT</span></div>
-        <p class="l26-eyebrow">Gratuit · 3 minutes</p>
-        <h2>Prédiagnostic URSSAF</h2>
-        <p class="outil-carte-texte">Un questionnaire ciblé et un rapport immédiat : votre indice d'exposition, vos trois principales zones à risque et un plan d'action priorisé.</p>
-        <div class="outil-carte-pied">
-          <a href="/outils/prediagnostic-urssaf/" class="btn btn-n">Faire le prédiagnostic</a>
-          <span class="outil-note">Confidentiel · sans engagement</span>
-        </div>
-      </article>
-      <article class="outil-carte">
-        <div class="offer-preview fleet-preview outil-apercu" aria-hidden="true"><svg viewBox="0 0 360 140" fill="none"><path d="M52 94h-9V72l24-8 30-32h132l39 32 35 13v28h-25M98 105h131" stroke="currentColor" stroke-width="2"/><path d="M82 64h162l-26-24H106zM153 40v24M175 76h20" stroke="currentColor" stroke-width="1.4"/><circle cx="76" cy="104" r="21" fill="#faf8fe" stroke="currentColor" stroke-width="2"/><circle cx="253" cy="104" r="21" fill="#faf8fe" stroke="currentColor" stroke-width="2"/><circle cx="76" cy="104" r="9" stroke="currentColor"/><circle cx="253" cy="104" r="9" stroke="currentColor"/></svg><div class="fleet-comparison"><span>AU FORFAIT <b>228 €</b></span><span>AU RÉEL <b>À comparer ↗</b></span></div><span class="preview-note">UN VÉHICULE. DEUX MÉTHODES. / EXEMPLE</span></div>
-        <p class="l26-eyebrow">Gratuit · barème 2026</p>
-        <h2>Simulateur AEN véhicule</h2>
-        <p class="outil-carte-texte">Calculez l'assiette de cotisations d'un véhicule de fonction au barème 2026 : achat ou location, thermique ou électrique, salarié ou dirigeant.</p>
-        <div class="outil-carte-pied">
-          <a href="/outils/simulateur-avantage-en-nature-vehicule/" class="btn btn-n">Lancer le simulateur</a>
-          <span class="outil-note">Le calcul reste dans votre navigateur</span>
-        </div>
-      </article>
-    </div>
-    <div class="outil-plus">
-      <p>Responsable paie ? <a href="/outils/matrice-controle-rgdu/">Téléchargez la matrice de contrôle RGDU 2026 (classeur Excel) →</a></p>
-      <p>Vous gérez une flotte ? <a href="/offres/gestion-de-flotte/">Découvrez la gestion de flotte →</a></p>
-    </div>
-  </section>
+    <details class="s26-m"><summary aria-label="Ouvrir le menu"><i></i><i></i><i></i></summary>
+      <div class="s26-m-menu">
+            <a href="/#gains">La solution</a><a href="/offres/">Offres</a>
+            <a href="/outils/matrice-controle-rgdu/">Matrice de contrôle RGDU</a><a href="/outils/comparateur-rgdu-mensuel/">Comparateur RGDU mensuel</a><a href="/outils/simulateur-avantage-en-nature-vehicule/">Simulateur avantage en nature véhicule</a><a href="/outils/delai-remboursement-cotisations/">Délai de remboursement d'un trop-payé</a><a href="/outils/pilotage-flotte-tarifs/">Pilotage de flotte</a>
+            <a href="/outils/">Tous les outils</a><a href="/ressources/">Ressources</a>
+          </div>
+    </details>
   </div>
+</header>
 
-  <section class="final"><div class="wrap"><div class="box">
-    <h2>Pour aller plus loin, <span>la solution ACOMPIA.</span></h2>
-    <div><div class="ctas"><a class="btn btn-n" href="/offres/">Voir nos offres</a><a class="btn btn-b" href="https://calendly.com/she-acompia/30min">Demander une démo <small>20 min</small></a></div><p>Le suivi mensuel de votre paie, l'audit sur 1 à 3 ans et la gestion de flotte.</p></div>
-  </div></div></section>
+<main id="top">
+<section class="ot-hero" id="hero">
+  <div class="wrap">
+    <p class="eyebrow">Outils gratuits</p>
+    <h1>La boîte à outils du pôle social.</h1>
+    <p class="lead">Des outils gratuits pour contrôler un calcul, évaluer un avantage ou repérer vos priorités URSSAF. Faites le calcul vous-même, en quelques minutes.</p>
+    <ul class="assure ot-assure"><li>Gratuits</li><li>Sans création de compte</li><li>Conçus par une avocate</li></ul>
+  </div>
+</section>
 
-  </main>
+<section class="ot-feat" id="matrice">
+  <div class="wrap">
+    <div class="o2-row rv ot-row">
+      <div class="o2-txt">
+        <p class="o2-k"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg>Le plus téléchargé · classeur Excel</p>
+        <h2>Matrice de contrôle RGDU 2026</h2>
+        <p class="lead ot-lead">Une erreur de paramétrage produit douze montants plausibles, puis un écart unique au moment de la régularisation. Ce classeur sert à rejouer le calcul à la main, pour un salarié et un mois donnés, et à le confronter à ce que produit votre logiciel de paie.</p>
+        <ul class="ck"><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-equipe"/></svg></i><span><b>Pour qui.</b> Responsables paie et gestionnaires de paie</span></li><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-controler"/></svg></i><span><b>Vous obtenez.</b> Neuf contrôles, la formule paramétrée, des exemples chiffrés et les rubriques DSN</span></li><li class="pk"><i><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-cadenas"/></svg></i><span><b>Confidentiel.</b> Le classeur s'exécute sur votre poste. Aucune donnée de paie n'est transmise</span></li></ul>
+        <div class="ot-cta"><a class="btn" data-cta="outil_matrice" href="/outils/matrice-controle-rgdu/">Voir et télécharger le classeur <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="ot-next" data-cta="outil_matrice_suite" href="/ressources/rgdu-cas-particuliers-calcul/">Lire le guide des cas particuliers →</a></div>
+      </div>
+      <figure class="vf vf1"><div class="vf-in"><svg class="vf-rib" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid slice" fill="none" stroke-linecap="round" aria-hidden="true"><path d="M-40 70C80 10 190 150 330 86S560 -20 700 60" stroke="#7B69FF" stroke-width="44"/><path d="M-60 330C60 420 240 300 330 380" stroke="#6552F7" stroke-width="30"/></svg><div class="vf-dev" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="vwin">
+  <div class="vbar"><b>Matrice de contrôle RGDU 2026</b><span class="vgrow"></span><span class="vp vp-ok">Classeur Excel</span></div>
+  <div class="vtabs"><span class="on">Les neuf contrôles</span><span>Paramètres 2026</span><span>Calcul salarié</span><span>Comparaison</span></div>
+  <div class="vsub2"><small>Ce que contient le classeur</small><b>Sept onglets pour rejouer le calcul</b></div>
+  <div class="vcard is-hot"><div><b>Les neuf contrôles</b><p><span>La grille complète, avec la donnée DSN et la pièce justificative</span></p></div><em class="vchev">›</em></div>
+  <div class="vcard"><div><b>Calcul salarié</b><p><span>Le SMIC de référence et le coefficient, sur trois scénarios</span></p></div><em class="vchev">›</em></div>
+  <div class="vcard"><div><b>Comparaison</b><p><span>L'écart avec le montant appliqué par votre paie, sur douze mois</span></p></div><em class="vchev">›</em></div>
+  <div class="vcard"><div><b>Tests de bord</b><p><span>Les cas limites à rejouer sur votre moteur de paie</span></p></div><em class="vchev">›</em></div>
+  <div class="vcard"><div><b>Rubriques DSN</b><p><span>Les onze rubriques à extraire, norme 2026.1</span></p></div><em class="vchev">›</em></div>
+</div></div><figcaption>Contenu du classeur, présenté en schéma</figcaption></figure>
+    </div>
+  </div>
+</section>
 
-<!-- ==================== FOOTER ==================== -->
-  <footer class="wrap"><div class="footer-top"><a class="logo" href="/"><img class="acompia-wordmark" src="/assets/acompia-logo-ruban.png" alt="Acompia" width="376" height="96"></a><span>Fiabilité et conformité de la paie. Conçue par une avocate, augmentée par l’IA.</span><a href="/">Retour en haut ↑</a></div><div class="footer-bottom"><span>© 2026 ComplyDB SAS · Tous droits réservés · <a href="mailto:she@acompia.com">she@acompia.com</a> · <a href="tel:+33677052175">06 77 05 21 75</a></span><div><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a></div></div></footer>
+<section class="ot-mid" id="demo-milieu">
+  <div class="wrap"><div class="ot-midbox rv">
+    <p class="ot-midtxt">Un outil vérifie un calcul. <b>ACOMPIA relit toute la paie.</b></p>
+    <div class="ot-midcta"><a class="btn" data-cta="outils_milieu" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><span class="note">Une vingtaine de minutes, sur un cas concret.</span></div>
+  </div></div>
+</section>
 
-  <script src="../js/config.js" defer></script>
-  <script src="../js/socle.js" defer></script>
-<script src="/js/accueil/navbar.js"></script>
-<script src="/js/accueil/faq.js"></script>
+<section class="ot-grid-sec" id="outils">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Les autres outils</p><h2>Évaluer, repérer, suivre.</h2></div>
+    <div class="ot-grid ot-grid--4">
+      <article class="ot-card rv">
+      <div class="ot-top"><span class="ot-tile"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-calculatrice"/></svg></span><span class="ot-tag">Gratuit · Nouveau</span></div>
+      <h3>Comparateur RGDU mensuel</h3>
+      <p class="ot-desc">Comparez un calcul mensuel de RGDU à votre paie. Retrouvez les hypothèses, les écarts et les points à vérifier.</p>
+      <dl class="ot-dl"><dt>Pour qui</dt><dd>Cabinets et services paie, pour un salarié ou pour un lot</dd><dt>Vous obtenez</dt><dd>Le résultat à l'écran, sans donner votre e-mail, et un export à garder</dd></dl>
+      <div class="ot-foot"><a class="btn btn--sm ot-btn" data-cta="outil_comparateur" href="/outils/comparateur-rgdu-mensuel/">Ouvrir l'outil <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="ot-next" data-cta="outil_comparateur_suite" href="/outils/matrice-controle-rgdu/">Télécharger aussi la matrice RGDU →</a></div>
+    </article>
+      <article class="ot-card rv">
+      <div class="ot-top"><span class="ot-tile"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-vehicules"/></svg></span><span class="ot-tag">Gratuit · barème 2026</span></div>
+      <h3>Simulateur avantage en nature véhicule</h3>
+      <p class="ot-desc">Calculez l'assiette de cotisations d'un véhicule de fonction au barème 2026. Achat ou location, thermique ou électrique, salarié ou dirigeant.</p>
+      <dl class="ot-dl"><dt>Pour qui</dt><dd>Paie, ressources humaines et gestionnaires de flotte</dd><dt>Vous obtenez</dt><dd>Le forfait et le réel comparés. Le calcul reste dans votre navigateur</dd></dl>
+      <div class="ot-foot"><a class="btn btn--sm ot-btn" data-cta="outil_simulateur" href="/outils/simulateur-avantage-en-nature-vehicule/">Ouvrir l'outil <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="ot-next" data-cta="outil_simulateur_suite" href="/ressources/aen-vehicule-urssaf/">Lire le guide avantage en nature véhicule →</a></div>
+    </article>
+      <article class="ot-card rv">
+      <div class="ot-top"><span class="ot-tile"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-calendrier"/></svg></span><span class="ot-tag">Gratuit · Nouveau</span></div>
+      <h3>Délai de remboursement d'un trop-payé</h3>
+      <p class="ot-desc">Indiquez la date de chaque paiement. Vous voyez, ligne par ligne, si le délai de trois ans court encore et à quelle date il expire.</p>
+      <dl class="ot-dl"><dt>Pour qui</dt><dd>Employeurs du régime général, hors particuliers employeurs</dd><dt>Vous obtenez</dt><dd>La date d'expiration, paiement par paiement, avec son fondement. Des délais, jamais des montants</dd></dl>
+      <div class="ot-foot"><a class="btn btn--sm ot-btn" data-cta="outil_delai" href="/outils/delai-remboursement-cotisations/">Ouvrir l'outil <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="ot-next" data-cta="outil_delai_suite" href="/ressources/recuperer-trop-paye-cotisations-urssaf/">Lire le guide du trop-payé →</a></div>
+    </article>
+      <article class="ot-card rv">
+      <div class="ot-top"><span class="ot-tile"><svg class="gi" aria-hidden="true"><use href="/assets/site-2026-11/icones.svg#ico-piloter"/></svg></span><span class="ot-tag">Dans la solution ACOMPIA</span></div>
+      <h3>Pilotage de flotte</h3>
+      <p class="ot-desc">L'avantage en nature de chaque véhicule au barème en vigueur. Comparez le forfait et le réel, comprenez les écarts avec la paie et identifiez les justificatifs à réunir.</p>
+      <dl class="ot-dl"><dt>Pour qui</dt><dd>Entreprises et cabinets qui suivent une flotte de véhicules</dd><dt>Vous obtenez</dt><dd>Toute votre flotte en clair, véhicule par véhicule. Vous gardez la décision</dd></dl>
+      <div class="ot-foot"><a class="btn btn--sm ot-btn" data-cta="outil_flotte" href="/offres/gestion-de-flotte/">Voir le pilotage de flotte <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="ot-next" data-cta="outil_flotte_suite" href="/outils/simulateur-avantage-en-nature-vehicule/">Estimer un véhicule gratuitement →</a></div>
+    </article>
+    </div>
+  </div>
+</section>
+
+<section class="final ot-final" id="demo">
+  <div class="final-box rv ot-band final-box--solo" id="cta-final">
+    <div class="final-txt">
+      <p class="eyebrow">Pour aller plus loin</p>
+      <h2>Vous voulez contrôler toute votre paie&nbsp;?</h2>
+      <p>Les outils répondent à une question à la fois. ACOMPIA relit toute la paie, montre où regarder et prépare la correction.</p>
+      <div class="ot-cta"><a class="btn" data-cta="appel_final" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="ot-next" data-cta="vers_accueil" href="/">Découvrir la solution →</a></div>
+      <p class="final-alt">Une vingtaine de minutes, sur un cas concret.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="/assets/acompia-logo-ruban.png" alt="ACOMPIA" width="102" height="26">
+    <span>ComplyDB SAS</span><span>25 rue de Ponthieu, 75008 Paris</span>
+    <a href="mailto:she@acompia.com">she@acompia.com</a>
+    <a href="/equipe/">Qui sommes-nous</a><a href="/mentions-legales.html">Mentions légales</a><a href="/politique-confidentialite.html">Confidentialité</a>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn" data-cta="barre_mobile" href="https://calendly.com/she-acompia/30min" target="_blank" rel="noopener">Demander une démo <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<script>
+(function(){
+  var d=document,reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rv=d.querySelectorAll('.rv');
+  if('IntersectionObserver' in window&&!reduce){
+    var ioR=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ioR.unobserve(e.target)}})},{threshold:.12});
+    rv.forEach(function(el){ioR.observe(el)});
+    setTimeout(function(){rv.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('in')})},1200);
+  }else{rv.forEach(function(el){el.classList.add('in')})}
+  var nav=d.getElementById('nav');
+  function onScroll(){nav.classList.toggle('is-stuck',window.scrollY>8)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var sticky=d.getElementById('sticky'),fin=d.getElementById('cta-final');
+  if(sticky&&fin&&'IntersectionObserver' in window){
+    var io2=new IntersectionObserver(function(en){sticky.classList.toggle('show',!en[0].isIntersecting&&window.scrollY>300)});
+    io2.observe(fin);
+    window.addEventListener('scroll',function(){if(window.scrollY<=300)sticky.classList.remove('show')},{passive:true});
+  }
+  function cap(n,p){if(window.posthog&&posthog.capture)posthog.capture(n,p)}
+  /* cta_clique et scroll_atteint : émis par js/socle.js */
+})();
+</script>
+<script src="/js/config.js" defer></script>
+<script src="/js/socle.js" defer></script>
 </body>
 </html>
