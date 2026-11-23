@@ -15,7 +15,8 @@
     'groupe': 'Prévoyance et frais de santé dans un groupe, société par société',
     'taux-atmp-2027': 'Taux AT/MP 2027, taux unique, notification et contestation',
     'flagrance-sociale': 'Flagrance sociale, loi du 25 juin 2026, mesures conservatoires et contrainte',
-    'versement-mobilite': 'Versement mobilité, zone, décompte des salariés, taux et écart à régulariser'
+    'versement-mobilite': 'Versement mobilité, zone, décompte des salariés, taux et écart à régulariser',
+    'indemnites-rupture': 'Indemnités de rupture, exonération, transaction et date d\'effet'
   };
   function majChamps() {
     var v = offre.value;
