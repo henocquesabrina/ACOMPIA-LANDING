@@ -11,7 +11,7 @@
 
   <url>
     <loc>https://www.acompia.com/ressources/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -245,7 +245,7 @@
   </url>
   <url>
     <loc>https://www.acompia.com/ressources/indemnites-rupture-exoneration-cotisations/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -258,6 +258,12 @@
   <url>
     <loc>https://www.acompia.com/outils/grille-controle-versement-mobilite/</loc>
     <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.acompia.com/outils/calcul-indemnite-rupture-cotisations/</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
